@@ -2,7 +2,36 @@
 
 Práctica de **LLMs aplicados a Finanzas · MIAX**: construir y evaluar un agente que responda preguntas sobre informes anuales 10-K de la SEC, con evidencia verificable y control sobre calidad, coste y latencia.
 
-Este repositorio reúne el material de la sesión 1 y los datos de partida. Los requisitos de la entrega se describen en el [enunciado de la práctica](Practica_LLM_Agente_10K.docx).
+**Estado actual:** prototipo de la sesión 1 desarrollado y ejecutado en un notebook, con herramientas, bucle ReAct y agente con salida estructurada. El repositorio incluye los datos de partida y las salidas de esa ejecución. La evaluación completa de la práctica sigue pendiente.
+
+El [enunciado de la práctica](Practica_LLM_Agente_10K.docx) define la entrega final; este README documenta el avance disponible y los siguientes pasos.
+
+## Qué hay implementado hasta ahora
+
+El punto de entrada es [S1_Herramientas_y_Bucle_Alumno.ipynb](Clase_1/S1_Herramientas_y_Bucle_Alumno.ipynb). Las herramientas y el agente se definen dentro del notebook y requieren ejecutar sus celdas previas.
+
+| Componente | Implementación actual |
+| --- | --- |
+| Entorno | Python 3.12, dependencias en `pyproject.toml` y versiones resueltas en `uv.lock` |
+| Preparación de datos | Localización de los ZIP, verificación de hashes y extracción del corpus y del índice |
+| Herramientas | `list_available`, `get_xbrl_fact`, `search_filings` y `read_section`, definidas en el notebook |
+| Búsqueda | Búsqueda densa FAISS en `miax_s1.buscar`, con prefijo BGE y filtros por ticker, ejercicio e Item aplicados después de la búsqueda |
+| Bucle manual | `agente_manual`, ejecución de herramientas, devolución de `ToolMessage` y manejo de excepciones |
+| Agente con framework | `create_agent` con cuatro herramientas, instrucciones de enrutado y esquema `RespuestaFinanciera` |
+| Memoria | `InMemorySaver` y ejemplos de conversación con el mismo `thread_id` |
+| Trazabilidad | `pretty_trace` para inspeccionar las llamadas a herramienta de una ejecución |
+| Preguntas de ejemplo | Tres registros JSONL: uno numérico, uno extractivo y uno comparativo |
+| Validación de preguntas | `validar`, con comprobaciones de campos, familias, datos disponibles y requisitos del conjunto propio |
+
+### Qué muestran las ejecuciones guardadas
+
+El notebook contiene salidas de una ejecución que monta los datos, realiza búsquedas y construye el agente con las cuatro herramientas. La comprobación numérica de NVIDIA FY2024 devuelve una `RespuestaFinanciera` con `fuente="xbrl"` y verifica que la trayectoria pasó por `get_xbrl_fact`. También hay un ejemplo de memoria que compara los ingresos de NVIDIA entre los dos ejercicios.
+
+En la pregunta manual sobre riesgos de IA e ingresos de Microsoft, el bucle agota las ocho vueltas sin producir una respuesta final. El ejemplo sobre el margen bruto de Amazon también agota su límite. Estos casos muestran trabajo pendiente en el control de ejecución y el tratamiento de datos ausentes.
+
+`max_vueltas` limita las iteraciones del bucle manual; una iteración puede solicitar varias herramientas. El agente con framework todavía no incorpora un límite explícito de llamadas ni el middleware de contraste de cifras exigidos en la entrega.
+
+La demo de `demo_traza.json` está marcada como **provisional**: contiene prosa de ejemplo y no acredita una ejecución real del agente. Las salidas del notebook son ejemplos de funcionamiento; aún no hay una evaluación agregada ni una tabla de resultados baseline frente a final.
 
 ## Objetivo
 
@@ -100,7 +129,7 @@ OPENROUTER_API_KEY=tu_clave_aqui
 
 También puedes proporcionar la variable de entorno o introducir la clave mediante el diálogo de `getpass` del notebook. No incluyas credenciales en código, resultados ni commits.
 
-El proveedor y el modelo se configuran en la variable `MODELO` del notebook. Para comparar baseline y sistema final, registra el modelo utilizado y sus parámetros. Los precios ilustrativos del notebook deben actualizarse al calcular los costes de los experimentos.
+El proveedor y el modelo se configuran en la variable `MODELO` del notebook, con `temperature=0`. El notebook incluye un cálculo ilustrativo de costes por tokens; la medición del coste real por pregunta sigue pendiente.
 
 ### 3. Ejecutar el notebook
 
@@ -112,9 +141,25 @@ Las llamadas al agente requieren una clave válida y acceso al proveedor. La pri
 
 Los [apuntes de la sesión 1](Clase_1/S1_Herramientas_y_Bucle_Apuntes.md) explican las herramientas, el bucle ReAct, la salida estructurada y la inspección de trazas.
 
-## Contratos exigidos por el enunciado
+### 4. Consultar el agente construido
 
-### Herramientas
+Después de ejecutar las celdas que crean `agente`, puedes invocarlo desde una celda del mismo notebook:
+
+```python
+resultado = agente.invoke(
+    {"messages": [{"role": "user", "content":
+                   "¿Cuál fue el revenue de NVIDIA en FY2024?"}]},
+    config={"configurable": {"thread_id": "consulta-readme"}},
+)
+respuesta = resultado["structured_response"]
+print(respuesta.model_dump())
+```
+
+El esquema implementado contiene `respuesta`, `cifra`, `unidad`, `ticker`, `ejercicio`, `fuente`, `cita` y `chunk_id`. `fuente` admite `xbrl`, `texto`, `ambas` o `ninguna`. La salida estructurada valida esos campos; el contraste automático de las afirmaciones con la evidencia requiere los evaluadores pendientes.
+
+## Requisitos pendientes para completar el enunciado
+
+### Conservar los contratos actuales
 
 Los nombres y parámetros existentes deben conservarse para la evaluación con preguntas ciegas. Se puede mejorar su implementación y añadir parámetros con valor por defecto.
 
@@ -125,53 +170,47 @@ Los nombres y parámetros existentes deben conservarse para la evaluación con p
 | `search_filings(query, ticker=None, fiscal_year=None, item=None, k=5)` | Recuperar fragmentos con identificadores para poder citarlos |
 | `read_section(ticker, fiscal_year, item)` | Devolver una sección completa cuando haga falta más contexto |
 
-Los docstrings deben orientar al modelo sobre cuándo usar cada herramienta, los filtros admitidos y las limitaciones de sus resultados.
+Las herramientas actuales incluyen docstrings que orientan al modelo sobre cuándo usarlas y los filtros admitidos. Las mejoras deben conservar también los campos obligatorios de `RespuestaFinanciera`.
 
 ### Respuesta estructurada y guardrails
 
-La salida debe respetar `RespuestaFinanciera`, con los campos **`respuesta`, `cifra`, `unidad`, `ticker`, `ejercicio`, `fuente`, `cita` y `chunk_id`**. `fuente` admite `xbrl`, `texto`, `ambas` o `ninguna`. Se pueden añadir campos sin eliminar ni renombrar los obligatorios.
-
-El sistema final debe limitar las llamadas a herramienta por invocación e incorporar un middleware propio que extraiga las cifras de la respuesta, las contraste con XBRL y devuelva los desajustes al modelo para su corrección.
+Queda por añadir el límite de llamadas a herramienta por invocación y un middleware propio que extraiga las cifras de la respuesta, las contraste con XBRL y devuelva los desajustes al modelo para su corrección. El prompt actual instruye al agente para usar XBRL, pero ese control todavía no está implementado como middleware.
 
 ### Golden set y mejoras del retrieval
 
-El conjunto propio debe contener **20 preguntas en JSONL, con al menos 6 comparativas entre ejercicios**, y pasar el validador proporcionado. Las familias son `extractiva`, `numerica` y `comparativa`.
+El fichero actual `golden_set_ejemplo.jsonl` contiene **tres preguntas** y pasa la validación de ejemplo con `exigir_20=False`. Queda por escribir el conjunto propio de **20 preguntas en JSONL, con al menos 6 comparativas entre ejercicios**, y validarlo con `exigir_20=True`. Las familias son `extractiva`, `numerica` y `comparativa`.
 
 En las preguntas extractivas, la respuesta esperada se ancla a **una frase literal del informe** mediante `ancla_texto`. Un `chunk_id` puede servir para verificar la cita de una ejecución, pero no debe ser la referencia estable para medir mejoras de troceado.
 
-A partir de la búsqueda densa inicial, el enunciado exige aplicar y medir:
+A partir de la búsqueda densa actual, el enunciado exige aplicar y medir:
 
-1. Filtrado por metadatos.
-2. Combinación de BM25 con búsqueda densa.
-3. Reescritura de la consulta con el modelo.
+1. Filtrado por metadatos: ya existe en `miax_s1.buscar`; falta medir su efecto.
+2. Combinación de BM25 con búsqueda densa: pendiente de implementar. `rank-bm25` está incluido como dependencia.
+3. Reescritura de la consulta con el modelo: pendiente de implementar como mejora evaluable.
 
 Se debe reportar `recall@k` tras cada mejora, usando el ancla de texto como referencia y documentando el valor de `k`.
 
 ### Evaluación y reproducibilidad
 
-Se requieren tres evaluadores automáticos:
+Queda por implementar tres evaluadores automáticos:
 
 - **Cita:** existe en el corpus y respalda lo afirmado.
 - **Cifra:** coincide con XBRL dentro de una tolerancia documentada.
 - **Trayectoria:** el agente utilizó la herramienta que correspondía a la pregunta.
 
-La entrega debe exponer **`responder(pregunta)` y `evaluar(ruta_jsonl)`**, ejecutables sobre un clon limpio sin editar código, para procesar las preguntas ciegas. Estas funciones aún no están implementadas en el material actual.
+La entrega debe exponer **`responder(pregunta)` y `evaluar(ruta_jsonl)`**, ejecutables sobre un clon limpio sin editar código, para procesar las preguntas ciegas. Estas funciones aún no existen en el repositorio; la consulta actual se realiza mediante el notebook.
 
 Antes de introducir mejoras, debe guardarse y etiquetarse el baseline con sus resultados. El código debe regenerar los resultados del baseline y del sistema final, así como todas las tablas del informe.
 
 La comparación debe incluir aciertos por familia, `recall@k`, coste medio por pregunta, latencia media y llamadas a herramienta por pregunta, destacando el mejor valor de cada métrica. Coste y latencia deben aparecer como columnas de la tabla.
 
-## Estado actual y pendientes de entrega
-
-El repositorio contiene el notebook de la sesión 1 con las cuatro herramientas, el bucle manual ReAct, el agente con framework, el esquema de respuesta y un validador de preguntas. También incluye el corpus, el índice, los apuntes y una demo grabada. El golden set incluido tiene **tres ejemplos** y no sustituye al conjunto propio de 20 preguntas.
-
-Queda por completar y verificar para la entrega:
+### Lista de trabajo pendiente
 
 - [ ] Exponer `responder(pregunta)` y `evaluar(ruta_jsonl)` y ensayarlas sobre un clon limpio.
 - [ ] Crear y validar las 20 preguntas propias, con al menos 6 comparativas.
 - [ ] Guardar el baseline etiquetado y sus resultados antes de mejorarlo.
 - [ ] Incorporar el límite de llamadas y el middleware de contraste de cifras.
-- [ ] Medir las tres mejoras de retrieval exigidas.
+- [ ] Medir el filtrado actual e implementar y medir BM25 con búsqueda densa y reescritura de consultas.
 - [ ] Implementar los evaluadores de cita, cifra y trayectoria.
 - [ ] Publicar resultados regenerables y la tabla baseline frente a final.
 - [ ] Preparar el informe PDF y la presentación con resultados, costes y experimentos que no mejoraron las métricas.
