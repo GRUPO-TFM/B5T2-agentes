@@ -1,0 +1,7 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+Clase_1/corpus/
+dataset/corpus/
