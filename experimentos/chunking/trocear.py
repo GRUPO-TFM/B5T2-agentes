@@ -175,9 +175,10 @@ def _piezas(
     """Divide una unidad en prosa y tablas.
 
     `separar=False` devuelve la unidad de una pieza: es lo que hace el
-    baseline, que no distingue tabla de prosa. A lo reproduce así. A′, B, C
-    y D sí separan, para que cada naturaleza reciba su tratamiento y para
-    que A′ sea una referencia comparable con B, C y D.
+    baseline, que no distingue tabla de prosa. A, A′ y B la reproducen así,
+    y por eso en las tres una tabla puede quedar cortada por una frontera
+    de ventana. Solo C y D separan, que es la diferencia que el 2×2 quiere
+    aislar: una tabla separada y atómica ya no la parte ninguna ventana.
     """
     tablas = [(a + i, a + f) for i, f in bloques_tabla(seccion[a:b])]
     if not tablas or not separar:
@@ -217,19 +218,54 @@ def _partir_tabla(seccion: str, pieza: Pieza, contar, tope: int) -> list[Fragmen
         for a, b in _lineas(seccion, hf if cabecera else pieza.inicio, pieza.fin)
         if seccion[a:b].strip()
     ]
+    # Sin ninguna fila de datos, «cabecera» se habría comido la tabla entera.
+    # Pasa con el informe del auditor, que va en dos columnas separadas por
+    # tabulador y no lleva una sola cifra. Ahí no hay cabecera que repetir:
+    # se parte por filas y punto.
     if not filas:
-        return [Fragmento(pieza.inicio, pieza.fin)]
+        cabecera = ""
+        filas = [
+            (a, b)
+            for a, b in _lineas(seccion, pieza.inicio, pieza.fin)
+            if seccion[a:b].strip()
+        ]
+        if len(filas) <= 1:
+            # Una sola fila gigantesca: no se puede partir sin romperla, así
+            # que se ventanea por tokens como cualquier otro texto.
+            return _ventanear(
+                seccion, pieza.inicio, pieza.fin, tope, SOLAPE, bge=True
+            )
+
+    # Una cabecera que se come un tercio del fragmento deja de compensar: se
+    # repite solo su última fila, que es la que nombra las columnas.
+    if cabecera and contar(cabecera) > tope // 3:
+        cabecera = cabecera.split("\n")[-1].strip()
 
     coste_cabecera = contar(cabecera) + 1 if cabecera else 0
+    util = max(1, tope - coste_cabecera)
     total = contar(seccion[filas[0][0] : filas[-1][1]])
+
     # Regla (c): repartir las filas entre n fragmentos igualados, no llenar
-    # y dejar una cola diminuta.
-    n = max(1, math.ceil(total / max(1, tope - coste_cabecera)))
-    por_fragmento = math.ceil(len(filas) / n)
+    # y dejar una cola diminuta. Las filas no miden todas lo mismo, así que
+    # se sube n hasta que ninguno se pase del tope: repartir a ojo y luego
+    # truncar en silencio sería justo el fallo que la variante viene a
+    # arreglar.
+    n = max(1, math.ceil(total / util))
+    while n <= len(filas):
+        por_fragmento = math.ceil(len(filas) / n)
+        grupos = [
+            filas[i : i + por_fragmento] for i in range(0, len(filas), por_fragmento)
+        ]
+        if all(
+            contar(seccion[g[0][0] : g[-1][1]]) <= util for g in grupos
+        ):
+            break
+        n += 1
+    else:
+        grupos = [[f] for f in filas]
 
     salida = []
-    for i in range(0, len(filas), por_fragmento):
-        grupo = filas[i : i + por_fragmento]
+    for grupo in grupos:
         ini, fin = recortar(seccion, grupo[0][0], grupo[-1][1])
         salida.append(Fragmento(ini, fin, encabezado_repetido=cabecera))
     # El primer fragmento arranca en la propia cabecera: no hay que repetirla.
@@ -246,9 +282,15 @@ def _ventanear(seccion, ini, fin, tope, solape, bge) -> list[Fragmento]:
     ]
 
 
-def _agrupar_oraciones(seccion, ini, fin, contar, tope, solape) -> list[Fragmento]:
-    """Agrupa oraciones hasta el tope sin cortar ninguna, con solape."""
-    ors = oraciones(seccion, ini, fin)
+def _agrupar(seccion, ors, contar, tope, solape) -> list[Fragmento]:
+    """Agrupa tramos indivisibles hasta el tope, sin cortar ninguno.
+
+    Los tramos son oraciones, y en una pieza mixta también los tramos de
+    tabla. Agrupar unos y otros con el mismo empaquetador es lo que evita
+    que B emita un fragmento por cada trocito de prosa entre dos tablas:
+    eso inflaba el índice un 40 % por un detalle de implementación y no por
+    la estrategia.
+    """
     if not ors:
         return []
     costes = [contar(seccion[a:b]) for a, b in ors]
@@ -271,6 +313,44 @@ def _agrupar_oraciones(seccion, ini, fin, contar, tope, solape) -> list[Fragment
     return salida
 
 
+def _desbordar(seccion, ini, fin, por_oraciones, contar, tope, solape, bge):
+    """Reparte una pieza que no cabe, según el trato que le toque a la prosa.
+
+    Sin `por_oraciones`, ventana de tokens sobre todo el tramo: es lo que
+    hace el baseline y corta donde caiga, tabla incluida.
+
+    Con `por_oraciones`, la prosa se agrupa por oraciones y **las tablas se
+    ventanean como en A**. Por eso hay que recorrer el tramo alternando
+    prosa y tabla: agrupar por oraciones dentro de una tabla no significa
+    nada, y tratarla como indivisible convertiría B en table-aware sin
+    quererlo, que es justo lo que el 2×2 quiere aislar en C.
+    """
+    if not por_oraciones:
+        return _ventanear(seccion, ini, fin, tope, solape, bge)
+
+    # Tramos indivisibles: oraciones en la prosa, y la tabla entera (o sus
+    # ventanas, si no cabe) en las tablas. Después se empaquetan todos
+    # juntos, así que una tabla pequeña no fuerza un fragmento propio.
+    tablas = [(ini + a, ini + b) for a, b in bloques_tabla(seccion[ini:fin])]
+    tramos: list[tuple[int, int]] = []
+    sueltos: list[Fragmento] = []
+    cursor = ini
+    for ti, tf in tablas + [(fin, fin)]:
+        if ti > cursor and seccion[cursor:ti].strip():
+            a, b = recortar(seccion, cursor, ti)
+            tramos.extend(oraciones(seccion, a, b))
+        if tf > ti:
+            a, b = recortar(seccion, ti, tf)
+            if contar(seccion[a:b]) > tope:
+                sueltos.extend(_ventanear(seccion, a, b, tope, solape, bge))
+            else:
+                tramos.append((a, b))
+        cursor = tf
+
+    salida = _agrupar(seccion, sorted(tramos), contar, tope, solape) + sueltos
+    return sorted(salida, key=lambda f: f.inicio_car)
+
+
 def trocear(
     seccion: str,
     *,
@@ -279,17 +359,18 @@ def trocear(
     bge: bool = True,
     tope: int = TOPE_DURO,
     solape: int = SOLAPE,
-    separar_tablas: bool = True,
 ) -> list[Fragmento]:
     """Trocea una sección entera con la configuración de una variante."""
     contar = contar_bge if bge else contar_cl100k
 
-    # 1. Segmentación común: encabezados.
+    # 1. Segmentación común: encabezados. Solo las variantes table-aware
+    #    parten la unidad en prosa y tabla; en las demás la unidad entera es
+    #    una sola pieza, como en el baseline.
     piezas: list[Pieza] = []
     for a, b in unidades(seccion):
         if not seccion[a:b].strip():
             continue
-        piezas.extend(_piezas(seccion, a, b, tablas_atomicas, separar_tablas))
+        piezas.extend(_piezas(seccion, a, b, tablas_atomicas, tablas_atomicas))
 
     # 2. Empaquetar piezas consecutivas mientras quepan; las que no quepan
     #    se desbordan con la regla que le toque a cada una.
@@ -311,15 +392,18 @@ def trocear(
             cerrar()
             if pieza.tabla and pieza.atomica:
                 salida.extend(_partir_tabla(seccion, pieza, contar, tope))
-            elif por_oraciones and not pieza.tabla:
-                salida.extend(
-                    _agrupar_oraciones(
-                        seccion, pieza.inicio, pieza.fin, contar, tope, solape
-                    )
-                )
             else:
                 salida.extend(
-                    _ventanear(seccion, pieza.inicio, pieza.fin, tope, solape, bge)
+                    _desbordar(
+                        seccion,
+                        pieza.inicio,
+                        pieza.fin,
+                        por_oraciones and not pieza.tabla,
+                        contar,
+                        tope,
+                        solape,
+                        bge,
+                    )
                 )
             continue
         if grupo and acumulado + coste > tope:
@@ -337,7 +421,6 @@ VARIANTES = {
         tablas_atomicas=False,
         bge=False,
         tope=500,
-        separar_tablas=False,
     ),
     "Ap": dict(por_oraciones=False, tablas_atomicas=False, bge=True, tope=TOPE_DURO),
     "B": dict(por_oraciones=True, tablas_atomicas=False, bge=True, tope=TOPE_DURO),

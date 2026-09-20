@@ -1,0 +1,19 @@
+{
+  "variante": "Ap",
+  "parametros": {
+    "por_oraciones": false,
+    "tablas_atomicas": false,
+    "bge": true,
+    "tope": 480
+  },
+  "modelo_embeddings": "BAAI/bge-small-en-v1.5",
+  "normalizacion": "L2, IndexFlatIP (coseno)",
+  "prefijo_bge": "solo en la consulta",
+  "tokenizador_recuento": "BAAI/bge-small-en-v1.5 (WordPiece)",
+  "limite_modelo": 512,
+  "n_chunks": 1756,
+  "dimension": 384,
+  "sha256_chunks_jsonl": "17f642a2ae1ea66484395978762b50af58a767455b441840ec1dc94b09e3362d",
+  "tokens_bge_max": 481,
+  "chunks_por_encima_de_510": 0
+}

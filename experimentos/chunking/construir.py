@@ -183,7 +183,8 @@ def cargar(variante: str):
 if __name__ == "__main__":
     import sys
 
-    for variante in sys.argv[1:] or list(VARIANTES):
+    pedidas = [a for a in sys.argv[1:] if not a.startswith("--")]
+    for variante in pedidas or list(VARIANTES):
         destino = construir(variante, rehacer="--rehacer" in sys.argv)
         datos = json.loads(
             (destino / "manifiesto.json").read_text(encoding="utf-8")

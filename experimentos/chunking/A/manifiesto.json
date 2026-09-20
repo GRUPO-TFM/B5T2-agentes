@@ -4,8 +4,7 @@
     "por_oraciones": false,
     "tablas_atomicas": false,
     "bge": false,
-    "tope": 500,
-    "separar_tablas": false
+    "tope": 500
   },
   "modelo_embeddings": "BAAI/bge-small-en-v1.5",
   "normalizacion": "L2, IndexFlatIP (coseno)",
