@@ -29,3 +29,8 @@ packages = ["agente"]
 
 [tool.uv]
 package = true
+
+[dependency-groups]
+experimentos = [
+    "tiktoken>=0.14.0",
+]
