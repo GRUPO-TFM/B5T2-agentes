@@ -119,6 +119,40 @@ def generar() -> list[dict]:
     return filas
 
 
+def evaluar() -> str:
+    """Mide la sonda en todas las variantes. Diagnóstico, no golden set."""
+    from experimentos.chunking.evaluar import (
+        cargar_indice,
+        cobertura_anclas,
+        evaluar_variante,
+    )
+
+    filas = [json.loads(l) for l in SALIDA.read_text(encoding="utf-8").splitlines() if l.strip()]
+    lineas = [
+        "# Sonda de anclas en tabla (diagnóstico aparte)",
+        "",
+        "Cinco preguntas escritas para este experimento, con el ancla en una "
+        "fila de tabla. **No son el golden set** y no entran en la tabla "
+        "principal: el golden set no tiene ni una sola ancla en tabla, así "
+        "que sin esto no hay forma de ver lo que C y D vienen a arreglar.",
+        "",
+        "| Variante | Cobertura | recall@5 | MRR |",
+        "| --- | ---: | ---: | ---: |",
+    ]
+    for v in ("Entregado", "A", "Ap", "B", "C", "D"):
+        _, meta = cargar_indice(v)
+        if "encabezado_repetido" not in meta.columns:
+            meta = meta.assign(encabezado_repetido="")
+        cub, _fallan = cobertura_anclas(meta, filas)
+        ev = evaluar_variante(v, filas, {}, con_filtro=True)
+        lineas.append(
+            f"| {v} | {cub}/{len(filas)} | {ev['aciertos']}/{ev['n_preguntas']} "
+            f"({ev['recall_5']:.0%}) | {ev['mrr']:.3f} |"
+        )
+    lineas.append("")
+    return "\n".join(lineas)
+
+
 if __name__ == "__main__":
     filas = generar()
     with SALIDA.open("w", encoding="utf-8", newline="\n") as fh:
@@ -127,3 +161,10 @@ if __name__ == "__main__":
     for f in filas:
         print(f"{f['id']}  [{f['ancla_inicio']}:{f['ancla_fin']}]  "
               f"{f['ancla_texto'][:70].replace(chr(9), ' | ')}")
+
+    informe = evaluar()
+    destino = SALIDA.parent / "resultados" / "sonda.md"
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    destino.write_text(informe, encoding="utf-8")
+    print()
+    print(informe)

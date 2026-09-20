@@ -11,9 +11,9 @@
   "prefijo_bge": "solo en la consulta",
   "tokenizador_recuento": "BAAI/bge-small-en-v1.5 (WordPiece)",
   "limite_modelo": 512,
-  "n_chunks": 2431,
+  "n_chunks": 1774,
   "dimension": 384,
-  "sha256_chunks_jsonl": "cd938da7203828ac5d4d0315047a335cd02dbc4e12d7262615bdeaa0eb90b0e8",
+  "sha256_chunks_jsonl": "71757e4a34013970a0eca1bd18cc4cc3bf37fac601050c27488a2ed1b4bbf003",
   "tokens_bge_max": 480,
   "chunks_por_encima_de_510": 0
 }

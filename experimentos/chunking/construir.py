@@ -130,6 +130,19 @@ def construir(variante: str, rehacer: bool = False) -> Path:
 
     huella = _sha256(ruta_chunks)
     n_bge = [contar_bge(f["texto"]) for f in filas]
+
+    # Una variante que cuenta con BGE y fija un tope duro no puede dejar
+    # fragmentos por encima del límite del modelo: si los deja, el troceado
+    # tiene un fallo y el índice se construiría sobre texto truncado sin
+    # avisar. A es la excepción a propósito: reproduce el baseline, defecto
+    # incluido.
+    if VARIANTES[variante].get("bge", True):
+        pasados = [
+            (f["chunk_id"], n)
+            for f, n in zip(filas, n_bge)
+            if n > LIMITE_MODELO - 2
+        ]
+        assert not pasados, f"{variante}: fragmentos por encima del tope: {pasados[:5]}"
     manifiesto.write_text(
         json.dumps(
             {

@@ -47,7 +47,15 @@ def _recortar(texto, n=RECORTE):
 
 
 def buscar_tabla(docs_a, docs_c, secciones):
-    """La tabla más grande que A parte y C no."""
+    """La tabla más grande que A parte y C mantiene entera.
+
+    Exigir que C la mantenga entera importa: la tabla más grande del corpus
+    es el índice de exhibits, que no cabe en ningún tope y que **todas** las
+    variantes tienen que partir. Ahí C solo se distingue en que repite la
+    cabecera, y como ejemplo se entiende mal. El caso que ilustra la
+    estrategia es la tabla que A corta por una frontera de ventana y que C,
+    al tratarla como bloque atómico, deja de una pieza.
+    """
     mejor = None
     for r in secciones.itertuples():
         clave = (r.ticker, int(r.fiscal_year), r.item)
@@ -55,6 +63,8 @@ def buscar_tabla(docs_a, docs_c, secciones):
         for ti, tf in bloques_tabla(r.texto):
             if _entero(ta, ti, tf):
                 continue                       # A no la parte: no ilustra nada
+            if not _entero(tc, ti, tf):
+                continue                       # C tampoco la salva
             filas = r.texto[ti:tf].count("\n") + 1
             if mejor is None or filas > mejor[0]:
                 mejor = (filas, clave, ti, tf, r.texto, ta, tc)

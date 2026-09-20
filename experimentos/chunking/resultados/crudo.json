@@ -1,0 +1,1100 @@
+{
+  "Entregado": {
+    "estructura": {
+      "n_chunks": 1749,
+      "tokens_medios": 382.2607204116638,
+      "tokens_max": 561,
+      "pct_sobre_tope": 19.897084048027445,
+      "oraciones_evaluadas": 15139,
+      "cobertura_oraciones": 99.91412907061233,
+      "tablas": 1495,
+      "pct_tablas_partidas": 4.3478260869565215,
+      "fragmentos_tabulares": 721,
+      "pct_tabulares_sin_cabecera": 16.36615811373093
+    },
+    "cobertura_anclas": [
+      14,
+      14,
+      []
+    ],
+    "evaluacion": {
+      "original/filtro": {
+        "variante": "Entregado",
+        "con_filtro": true,
+        "n_preguntas": 14,
+        "aciertos": 7,
+        "recall_5": 0.5,
+        "mrr": 0.37362528344671203,
+        "tokens_top5_medio": 2092.6428571428573,
+        "por_pregunta": {
+          "gX-007": {
+            "posicion": 16,
+            "acierto": false,
+            "tokens_top5": 2501
+          },
+          "gX-008": {
+            "posicion": 2,
+            "acierto": true,
+            "tokens_top5": 2500
+          },
+          "gX-009": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2501
+          },
+          "gX-010": {
+            "posicion": 21,
+            "acierto": false,
+            "tokens_top5": 2500
+          },
+          "gX-011": {
+            "posicion": 5,
+            "acierto": true,
+            "tokens_top5": 1902
+          },
+          "gX-012": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 638
+          },
+          "gX-013": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2227
+          },
+          "gX-014": {
+            "posicion": 6,
+            "acierto": false,
+            "tokens_top5": 2216
+          },
+          "gX-015": {
+            "posicion": 9,
+            "acierto": false,
+            "tokens_top5": 2164
+          },
+          "gX-016": {
+            "posicion": 14,
+            "acierto": false,
+            "tokens_top5": 1872
+          },
+          "gX-017": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 2067
+          },
+          "gX-018": {
+            "posicion": 6,
+            "acierto": false,
+            "tokens_top5": 1724
+          },
+          "gX-019": {
+            "posicion": 2,
+            "acierto": true,
+            "tokens_top5": 2222
+          },
+          "gX-020": {
+            "posicion": 14,
+            "acierto": false,
+            "tokens_top5": 2263
+          }
+        }
+      },
+      "original/sin_filtro": {
+        "variante": "Entregado",
+        "con_filtro": false,
+        "n_preguntas": 14,
+        "aciertos": 2,
+        "recall_5": 0.14285714285714285,
+        "mrr": 0.1669606625979332,
+        "tokens_top5_medio": 2008.9285714285713,
+        "por_pregunta": {
+          "gX-007": {
+            "posicion": 259,
+            "acierto": false,
+            "tokens_top5": 1878
+          },
+          "gX-008": {
+            "posicion": 49,
+            "acierto": false,
+            "tokens_top5": 2313
+          },
+          "gX-009": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2092
+          },
+          "gX-010": {
+            "posicion": 1020,
+            "acierto": false,
+            "tokens_top5": 2001
+          },
+          "gX-011": {
+            "posicion": 220,
+            "acierto": false,
+            "tokens_top5": 1942
+          },
+          "gX-012": {
+            "posicion": 136,
+            "acierto": false,
+            "tokens_top5": 1800
+          },
+          "gX-013": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2136
+          },
+          "gX-014": {
+            "posicion": 90,
+            "acierto": false,
+            "tokens_top5": 1890
+          },
+          "gX-015": {
+            "posicion": 576,
+            "acierto": false,
+            "tokens_top5": 1645
+          },
+          "gX-016": {
+            "posicion": 504,
+            "acierto": false,
+            "tokens_top5": 1652
+          },
+          "gX-017": {
+            "posicion": 10,
+            "acierto": false,
+            "tokens_top5": 2321
+          },
+          "gX-018": {
+            "posicion": 57,
+            "acierto": false,
+            "tokens_top5": 2224
+          },
+          "gX-019": {
+            "posicion": 6,
+            "acierto": false,
+            "tokens_top5": 2006
+          },
+          "gX-020": {
+            "posicion": 794,
+            "acierto": false,
+            "tokens_top5": 2225
+          }
+        }
+      }
+    }
+  },
+  "A": {
+    "estructura": {
+      "n_chunks": 1779,
+      "tokens_medios": 374.54637436762226,
+      "tokens_max": 555,
+      "pct_sobre_tope": 19.73018549747049,
+      "oraciones_evaluadas": 15139,
+      "cobertura_oraciones": 99.93394543893255,
+      "tablas": 1495,
+      "pct_tablas_partidas": 3.8127090301003346,
+      "fragmentos_tabulares": 711,
+      "pct_tabulares_sin_cabecera": 12.658227848101266
+    },
+    "cobertura_anclas": [
+      14,
+      14,
+      []
+    ],
+    "evaluacion": {
+      "original/filtro": {
+        "variante": "A",
+        "con_filtro": true,
+        "n_preguntas": 14,
+        "aciertos": 8,
+        "recall_5": 0.5714285714285714,
+        "mrr": 0.38656591424448566,
+        "tokens_top5_medio": 1982.857142857143,
+        "por_pregunta": {
+          "gX-007": {
+            "posicion": 16,
+            "acierto": false,
+            "tokens_top5": 2501
+          },
+          "gX-008": {
+            "posicion": 2,
+            "acierto": true,
+            "tokens_top5": 2500
+          },
+          "gX-009": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2501
+          },
+          "gX-010": {
+            "posicion": 22,
+            "acierto": false,
+            "tokens_top5": 2014
+          },
+          "gX-011": {
+            "posicion": 5,
+            "acierto": true,
+            "tokens_top5": 1902
+          },
+          "gX-012": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 638
+          },
+          "gX-013": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2237
+          },
+          "gX-014": {
+            "posicion": 6,
+            "acierto": false,
+            "tokens_top5": 2216
+          },
+          "gX-015": {
+            "posicion": 9,
+            "acierto": false,
+            "tokens_top5": 2164
+          },
+          "gX-016": {
+            "posicion": 10,
+            "acierto": false,
+            "tokens_top5": 2192
+          },
+          "gX-017": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 2119
+          },
+          "gX-018": {
+            "posicion": 7,
+            "acierto": false,
+            "tokens_top5": 1643
+          },
+          "gX-019": {
+            "posicion": 4,
+            "acierto": true,
+            "tokens_top5": 889
+          },
+          "gX-020": {
+            "posicion": 2,
+            "acierto": true,
+            "tokens_top5": 2244
+          }
+        }
+      },
+      "original/sin_filtro": {
+        "variante": "A",
+        "con_filtro": false,
+        "n_preguntas": 14,
+        "aciertos": 2,
+        "recall_5": 0.14285714285714285,
+        "mrr": 0.16116160195904844,
+        "tokens_top5_medio": 1693.7857142857142,
+        "por_pregunta": {
+          "gX-007": {
+            "posicion": 263,
+            "acierto": false,
+            "tokens_top5": 1046
+          },
+          "gX-008": {
+            "posicion": 48,
+            "acierto": false,
+            "tokens_top5": 2313
+          },
+          "gX-009": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2092
+          },
+          "gX-010": {
+            "posicion": 1060,
+            "acierto": false,
+            "tokens_top5": 1590
+          },
+          "gX-011": {
+            "posicion": 232,
+            "acierto": false,
+            "tokens_top5": 2227
+          },
+          "gX-012": {
+            "posicion": 145,
+            "acierto": false,
+            "tokens_top5": 993
+          },
+          "gX-013": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2223
+          },
+          "gX-014": {
+            "posicion": 95,
+            "acierto": false,
+            "tokens_top5": 995
+          },
+          "gX-015": {
+            "posicion": 589,
+            "acierto": false,
+            "tokens_top5": 1315
+          },
+          "gX-016": {
+            "posicion": 344,
+            "acierto": false,
+            "tokens_top5": 1523
+          },
+          "gX-017": {
+            "posicion": 15,
+            "acierto": false,
+            "tokens_top5": 1884
+          },
+          "gX-018": {
+            "posicion": 60,
+            "acierto": false,
+            "tokens_top5": 2294
+          },
+          "gX-019": {
+            "posicion": 9,
+            "acierto": false,
+            "tokens_top5": 993
+          },
+          "gX-020": {
+            "posicion": 101,
+            "acierto": false,
+            "tokens_top5": 2225
+          }
+        }
+      }
+    }
+  },
+  "Ap": {
+    "estructura": {
+      "n_chunks": 1756,
+      "tokens_medios": 380.98063781321184,
+      "tokens_max": 481,
+      "pct_sobre_tope": 0.0,
+      "oraciones_evaluadas": 15139,
+      "cobertura_oraciones": 99.90752361450558,
+      "tablas": 1495,
+      "pct_tablas_partidas": 1.605351170568562,
+      "fragmentos_tabulares": 636,
+      "pct_tabulares_sin_cabecera": 8.333333333333334
+    },
+    "cobertura_anclas": [
+      14,
+      14,
+      []
+    ],
+    "evaluacion": {
+      "original/filtro": {
+        "variante": "Ap",
+        "con_filtro": true,
+        "n_preguntas": 14,
+        "aciertos": 8,
+        "recall_5": 0.5714285714285714,
+        "mrr": 0.40653617216117216,
+        "tokens_top5_medio": 1948.4285714285713,
+        "por_pregunta": {
+          "gX-007": {
+            "posicion": 20,
+            "acierto": false,
+            "tokens_top5": 2400
+          },
+          "gX-008": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2400
+          },
+          "gX-009": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2400
+          },
+          "gX-010": {
+            "posicion": 32,
+            "acierto": false,
+            "tokens_top5": 1932
+          },
+          "gX-011": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 2001
+          },
+          "gX-012": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 624
+          },
+          "gX-013": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 1973
+          },
+          "gX-014": {
+            "posicion": 5,
+            "acierto": true,
+            "tokens_top5": 1941
+          },
+          "gX-015": {
+            "posicion": 10,
+            "acierto": false,
+            "tokens_top5": 2057
+          },
+          "gX-016": {
+            "posicion": 13,
+            "acierto": false,
+            "tokens_top5": 2100
+          },
+          "gX-017": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 2098
+          },
+          "gX-018": {
+            "posicion": 6,
+            "acierto": false,
+            "tokens_top5": 1796
+          },
+          "gX-019": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 1320
+          },
+          "gX-020": {
+            "posicion": 15,
+            "acierto": false,
+            "tokens_top5": 2236
+          }
+        }
+      },
+      "original/sin_filtro": {
+        "variante": "Ap",
+        "con_filtro": false,
+        "n_preguntas": 14,
+        "aciertos": 3,
+        "recall_5": 0.21428571428571427,
+        "mrr": 0.14930871764891623,
+        "tokens_top5_medio": 1860.5,
+        "por_pregunta": {
+          "gX-007": {
+            "posicion": 321,
+            "acierto": false,
+            "tokens_top5": 1485
+          },
+          "gX-008": {
+            "posicion": 2,
+            "acierto": true,
+            "tokens_top5": 2283
+          },
+          "gX-009": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 1976
+          },
+          "gX-010": {
+            "posicion": 1319,
+            "acierto": false,
+            "tokens_top5": 1835
+          },
+          "gX-011": {
+            "posicion": 224,
+            "acierto": false,
+            "tokens_top5": 2124
+          },
+          "gX-012": {
+            "posicion": 146,
+            "acierto": false,
+            "tokens_top5": 1475
+          },
+          "gX-013": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2034
+          },
+          "gX-014": {
+            "posicion": 95,
+            "acierto": false,
+            "tokens_top5": 1609
+          },
+          "gX-015": {
+            "posicion": 576,
+            "acierto": false,
+            "tokens_top5": 1614
+          },
+          "gX-016": {
+            "posicion": 343,
+            "acierto": false,
+            "tokens_top5": 1969
+          },
+          "gX-017": {
+            "posicion": 15,
+            "acierto": false,
+            "tokens_top5": 1789
+          },
+          "gX-018": {
+            "posicion": 63,
+            "acierto": false,
+            "tokens_top5": 2223
+          },
+          "gX-019": {
+            "posicion": 7,
+            "acierto": false,
+            "tokens_top5": 1583
+          },
+          "gX-020": {
+            "posicion": 815,
+            "acierto": false,
+            "tokens_top5": 2048
+          }
+        }
+      }
+    }
+  },
+  "B": {
+    "estructura": {
+      "n_chunks": 1774,
+      "tokens_medios": 368.26099210822997,
+      "tokens_max": 480,
+      "pct_sobre_tope": 0.0,
+      "oraciones_evaluadas": 15139,
+      "cobertura_oraciones": 99.90752361450558,
+      "tablas": 1495,
+      "pct_tablas_partidas": 0.9364548494983278,
+      "fragmentos_tabulares": 639,
+      "pct_tabulares_sin_cabecera": 1.8779342723004695
+    },
+    "cobertura_anclas": [
+      14,
+      14,
+      []
+    ],
+    "evaluacion": {
+      "original/filtro": {
+        "variante": "B",
+        "con_filtro": true,
+        "n_preguntas": 14,
+        "aciertos": 8,
+        "recall_5": 0.5714285714285714,
+        "mrr": 0.41250230861575404,
+        "tokens_top5_medio": 1888.142857142857,
+        "por_pregunta": {
+          "gX-007": {
+            "posicion": 8,
+            "acierto": false,
+            "tokens_top5": 2279
+          },
+          "gX-008": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2327
+          },
+          "gX-009": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2168
+          },
+          "gX-010": {
+            "posicion": 14,
+            "acierto": false,
+            "tokens_top5": 1865
+          },
+          "gX-011": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 1919
+          },
+          "gX-012": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 624
+          },
+          "gX-013": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 1962
+          },
+          "gX-014": {
+            "posicion": 5,
+            "acierto": true,
+            "tokens_top5": 1905
+          },
+          "gX-015": {
+            "posicion": 10,
+            "acierto": false,
+            "tokens_top5": 2031
+          },
+          "gX-016": {
+            "posicion": 13,
+            "acierto": false,
+            "tokens_top5": 2114
+          },
+          "gX-017": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 2098
+          },
+          "gX-018": {
+            "posicion": 7,
+            "acierto": false,
+            "tokens_top5": 1781
+          },
+          "gX-019": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 1266
+          },
+          "gX-020": {
+            "posicion": 17,
+            "acierto": false,
+            "tokens_top5": 2095
+          }
+        }
+      },
+      "original/sin_filtro": {
+        "variante": "B",
+        "con_filtro": false,
+        "n_preguntas": 14,
+        "aciertos": 2,
+        "recall_5": 0.14285714285714285,
+        "mrr": 0.12646663900627128,
+        "tokens_top5_medio": 1729.357142857143,
+        "por_pregunta": {
+          "gX-007": {
+            "posicion": 100,
+            "acierto": false,
+            "tokens_top5": 1480
+          },
+          "gX-008": {
+            "posicion": 6,
+            "acierto": false,
+            "tokens_top5": 2129
+          },
+          "gX-009": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 2062
+          },
+          "gX-010": {
+            "posicion": 157,
+            "acierto": false,
+            "tokens_top5": 1781
+          },
+          "gX-011": {
+            "posicion": 238,
+            "acierto": false,
+            "tokens_top5": 1525
+          },
+          "gX-012": {
+            "posicion": 147,
+            "acierto": false,
+            "tokens_top5": 1472
+          },
+          "gX-013": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 1986
+          },
+          "gX-014": {
+            "posicion": 96,
+            "acierto": false,
+            "tokens_top5": 1594
+          },
+          "gX-015": {
+            "posicion": 558,
+            "acierto": false,
+            "tokens_top5": 992
+          },
+          "gX-016": {
+            "posicion": 342,
+            "acierto": false,
+            "tokens_top5": 1969
+          },
+          "gX-017": {
+            "posicion": 13,
+            "acierto": false,
+            "tokens_top5": 1789
+          },
+          "gX-018": {
+            "posicion": 143,
+            "acierto": false,
+            "tokens_top5": 1894
+          },
+          "gX-019": {
+            "posicion": 7,
+            "acierto": false,
+            "tokens_top5": 1583
+          },
+          "gX-020": {
+            "posicion": 798,
+            "acierto": false,
+            "tokens_top5": 1955
+          }
+        }
+      }
+    }
+  },
+  "C": {
+    "estructura": {
+      "n_chunks": 1718,
+      "tokens_medios": 384.42724097788124,
+      "tokens_max": 481,
+      "pct_sobre_tope": 0.0,
+      "oraciones_evaluadas": 15139,
+      "cobertura_oraciones": 99.90752361450558,
+      "tablas": 1495,
+      "pct_tablas_partidas": 0.9364548494983278,
+      "fragmentos_tabulares": 597,
+      "pct_tabulares_sin_cabecera": 0.33500837520938026
+    },
+    "cobertura_anclas": [
+      14,
+      14,
+      []
+    ],
+    "evaluacion": {
+      "original/filtro": {
+        "variante": "C",
+        "con_filtro": true,
+        "n_preguntas": 14,
+        "aciertos": 8,
+        "recall_5": 0.5714285714285714,
+        "mrr": 0.38684098639455783,
+        "tokens_top5_medio": 1819.5714285714287,
+        "por_pregunta": {
+          "gX-007": {
+            "posicion": 20,
+            "acierto": false,
+            "tokens_top5": 2400
+          },
+          "gX-008": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 504
+          },
+          "gX-009": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2400
+          },
+          "gX-010": {
+            "posicion": 32,
+            "acierto": false,
+            "tokens_top5": 1932
+          },
+          "gX-011": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 1728
+          },
+          "gX-012": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 624
+          },
+          "gX-013": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2125
+          },
+          "gX-014": {
+            "posicion": 5,
+            "acierto": true,
+            "tokens_top5": 1968
+          },
+          "gX-015": {
+            "posicion": 16,
+            "acierto": false,
+            "tokens_top5": 1808
+          },
+          "gX-016": {
+            "posicion": 14,
+            "acierto": false,
+            "tokens_top5": 2134
+          },
+          "gX-017": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 2139
+          },
+          "gX-018": {
+            "posicion": 5,
+            "acierto": true,
+            "tokens_top5": 1902
+          },
+          "gX-019": {
+            "posicion": 14,
+            "acierto": false,
+            "tokens_top5": 1819
+          },
+          "gX-020": {
+            "posicion": 16,
+            "acierto": false,
+            "tokens_top5": 1991
+          }
+        }
+      },
+      "original/sin_filtro": {
+        "variante": "C",
+        "con_filtro": false,
+        "n_preguntas": 14,
+        "aciertos": 3,
+        "recall_5": 0.21428571428571427,
+        "mrr": 0.12455436804851087,
+        "tokens_top5_medio": 1650.2857142857142,
+        "por_pregunta": {
+          "gX-007": {
+            "posicion": 319,
+            "acierto": false,
+            "tokens_top5": 1444
+          },
+          "gX-008": {
+            "posicion": 4,
+            "acierto": true,
+            "tokens_top5": 1809
+          },
+          "gX-009": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 1976
+          },
+          "gX-010": {
+            "posicion": 1321,
+            "acierto": false,
+            "tokens_top5": 1508
+          },
+          "gX-011": {
+            "posicion": 183,
+            "acierto": false,
+            "tokens_top5": 2191
+          },
+          "gX-012": {
+            "posicion": 149,
+            "acierto": false,
+            "tokens_top5": 1586
+          },
+          "gX-013": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 1861
+          },
+          "gX-014": {
+            "posicion": 95,
+            "acierto": false,
+            "tokens_top5": 1441
+          },
+          "gX-015": {
+            "posicion": 632,
+            "acierto": false,
+            "tokens_top5": 30
+          },
+          "gX-016": {
+            "posicion": 344,
+            "acierto": false,
+            "tokens_top5": 1975
+          },
+          "gX-017": {
+            "posicion": 16,
+            "acierto": false,
+            "tokens_top5": 1724
+          },
+          "gX-018": {
+            "posicion": 35,
+            "acierto": false,
+            "tokens_top5": 1959
+          },
+          "gX-019": {
+            "posicion": 27,
+            "acierto": false,
+            "tokens_top5": 1433
+          },
+          "gX-020": {
+            "posicion": 809,
+            "acierto": false,
+            "tokens_top5": 2167
+          }
+        }
+      }
+    }
+  },
+  "D": {
+    "estructura": {
+      "n_chunks": 1722,
+      "tokens_medios": 376.51335656213706,
+      "tokens_max": 480,
+      "pct_sobre_tope": 0.0,
+      "oraciones_evaluadas": 15139,
+      "cobertura_oraciones": 99.90752361450558,
+      "tablas": 1495,
+      "pct_tablas_partidas": 0.9364548494983278,
+      "fragmentos_tabulares": 597,
+      "pct_tabulares_sin_cabecera": 0.33500837520938026
+    },
+    "cobertura_anclas": [
+      14,
+      14,
+      []
+    ],
+    "evaluacion": {
+      "original/filtro": {
+        "variante": "D",
+        "con_filtro": true,
+        "n_preguntas": 14,
+        "aciertos": 8,
+        "recall_5": 0.5714285714285714,
+        "mrr": 0.3890120791906506,
+        "tokens_top5_medio": 1773.0,
+        "por_pregunta": {
+          "gX-007": {
+            "posicion": 8,
+            "acierto": false,
+            "tokens_top5": 2279
+          },
+          "gX-008": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 472
+          },
+          "gX-009": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2168
+          },
+          "gX-010": {
+            "posicion": 14,
+            "acierto": false,
+            "tokens_top5": 1865
+          },
+          "gX-011": {
+            "posicion": 4,
+            "acierto": true,
+            "tokens_top5": 1745
+          },
+          "gX-012": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 624
+          },
+          "gX-013": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2114
+          },
+          "gX-014": {
+            "posicion": 5,
+            "acierto": true,
+            "tokens_top5": 1932
+          },
+          "gX-015": {
+            "posicion": 16,
+            "acierto": false,
+            "tokens_top5": 1790
+          },
+          "gX-016": {
+            "posicion": 14,
+            "acierto": false,
+            "tokens_top5": 2109
+          },
+          "gX-017": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 2139
+          },
+          "gX-018": {
+            "posicion": 5,
+            "acierto": true,
+            "tokens_top5": 1898
+          },
+          "gX-019": {
+            "posicion": 13,
+            "acierto": false,
+            "tokens_top5": 1765
+          },
+          "gX-020": {
+            "posicion": 18,
+            "acierto": false,
+            "tokens_top5": 1922
+          }
+        }
+      },
+      "original/sin_filtro": {
+        "variante": "D",
+        "con_filtro": false,
+        "n_preguntas": 14,
+        "aciertos": 3,
+        "recall_5": 0.21428571428571427,
+        "mrr": 0.1324253361906884,
+        "tokens_top5_medio": 1602.357142857143,
+        "por_pregunta": {
+          "gX-007": {
+            "posicion": 99,
+            "acierto": false,
+            "tokens_top5": 1480
+          },
+          "gX-008": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 1255
+          },
+          "gX-009": {
+            "posicion": 3,
+            "acierto": true,
+            "tokens_top5": 2062
+          },
+          "gX-010": {
+            "posicion": 192,
+            "acierto": false,
+            "tokens_top5": 1482
+          },
+          "gX-011": {
+            "posicion": 190,
+            "acierto": false,
+            "tokens_top5": 2152
+          },
+          "gX-012": {
+            "posicion": 148,
+            "acierto": false,
+            "tokens_top5": 1687
+          },
+          "gX-013": {
+            "posicion": 1,
+            "acierto": true,
+            "tokens_top5": 2042
+          },
+          "gX-014": {
+            "posicion": 92,
+            "acierto": false,
+            "tokens_top5": 1150
+          },
+          "gX-015": {
+            "posicion": 604,
+            "acierto": false,
+            "tokens_top5": 30
+          },
+          "gX-016": {
+            "posicion": 338,
+            "acierto": false,
+            "tokens_top5": 1975
+          },
+          "gX-017": {
+            "posicion": 14,
+            "acierto": false,
+            "tokens_top5": 1724
+          },
+          "gX-018": {
+            "posicion": 30,
+            "acierto": false,
+            "tokens_top5": 1910
+          },
+          "gX-019": {
+            "posicion": 26,
+            "acierto": false,
+            "tokens_top5": 1433
+          },
+          "gX-020": {
+            "posicion": 799,
+            "acierto": false,
+            "tokens_top5": 2051
+          }
+        }
+      }
+    }
+  }
+}

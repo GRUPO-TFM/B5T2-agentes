@@ -332,8 +332,22 @@ def _desbordar(seccion, ini, fin, por_oraciones, contar, tope, solape, bge):
     # ventanas, si no cabe) en las tablas. Después se empaquetan todos
     # juntos, así que una tabla pequeña no fuerza un fragmento propio.
     tablas = [(ini + a, ini + b) for a, b in bloques_tabla(seccion[ini:fin])]
+    salida: list[Fragmento] = []
     tramos: list[tuple[int, int]] = []
-    sueltos: list[Fragmento] = []
+
+    def volcar():
+        """Empaqueta lo acumulado y vacía.
+
+        Hay que vaciar antes de una tabla que se ventanea aparte: si no, el
+        empaquetador uniría la prosa de antes con la de después y el
+        fragmento se tragaría la tabla entera por el hueco. Así salían
+        fragmentos de 1.739 tokens, más del triple del límite del modelo.
+        """
+        nonlocal tramos
+        if tramos:
+            salida.extend(_agrupar(seccion, tramos, contar, tope, solape))
+            tramos = []
+
     cursor = ini
     for ti, tf in tablas + [(fin, fin)]:
         if ti > cursor and seccion[cursor:ti].strip():
@@ -342,13 +356,13 @@ def _desbordar(seccion, ini, fin, por_oraciones, contar, tope, solape, bge):
         if tf > ti:
             a, b = recortar(seccion, ti, tf)
             if contar(seccion[a:b]) > tope:
-                sueltos.extend(_ventanear(seccion, a, b, tope, solape, bge))
+                volcar()
+                salida.extend(_ventanear(seccion, a, b, tope, solape, bge))
             else:
                 tramos.append((a, b))
         cursor = tf
-
-    salida = _agrupar(seccion, sorted(tramos), contar, tope, solape) + sueltos
-    return sorted(salida, key=lambda f: f.inicio_car)
+    volcar()
+    return salida
 
 
 def trocear(
