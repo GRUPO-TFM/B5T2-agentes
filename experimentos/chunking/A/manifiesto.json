@@ -1,0 +1,20 @@
+{
+  "variante": "A",
+  "parametros": {
+    "por_oraciones": false,
+    "tablas_atomicas": false,
+    "bge": false,
+    "tope": 500,
+    "separar_tablas": false
+  },
+  "modelo_embeddings": "BAAI/bge-small-en-v1.5",
+  "normalizacion": "L2, IndexFlatIP (coseno)",
+  "prefijo_bge": "solo en la consulta",
+  "tokenizador_recuento": "tiktoken cl100k_base",
+  "limite_modelo": 512,
+  "n_chunks": 1779,
+  "dimension": 384,
+  "sha256_chunks_jsonl": "7e880503c7d0a04672566b521422c1d788b8e2895ae03b6f7beb93f486e81332",
+  "tokens_bge_max": 555,
+  "chunks_por_encima_de_510": 351
+}
