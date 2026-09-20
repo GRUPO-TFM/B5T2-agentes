@@ -13,9 +13,16 @@ PAQUETES = [
     ("indice_faiss.zip", "6b5610ad8ac6ea50364445d39bb464d993cbd87048fb07c4fe16657d7ac11655"),
 ]
 URL_RESPALDO = ""          # vacio si no estan alojados
-DESTINO = pathlib.Path("corpus")
 
+_raiz = pathlib.Path(".").resolve()
+for _c in [_raiz, *_raiz.parents]:
+    if (_c / "pyproject.toml").is_file():
+        _raiz = _c
+        break
+
+DESTINO = _raiz / "corpus"
 CANDIDATOS = [
+    _raiz / "dataset",
     pathlib.Path("."),
     pathlib.Path("/content"),
     pathlib.Path("/content/drive/MyDrive/MIAX_2026"),

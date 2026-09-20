@@ -36,14 +36,18 @@ PREFIJO_CONSULTA_BGE = (
     "Represent this sentence for searching relevant passages: "
 )
 
-# Dónde puede estar el corpus ya descomprimido, en el orden en que se mira.
-# `corpus/` es donde lo deja la celda de setup; el resto son los sitios donde
-# aparece cuando el notebook se ejecuta fuera de Colab.
+def _raiz_repo() -> Path:
+    for p in Path(__file__).resolve().parents:
+        if (p / "pyproject.toml").is_file():
+            return p
+    return Path.cwd().resolve()
+
+
+# Una sola copia: corpus/ en la raíz del repo (y Colab, si aplica).
 CANDIDATOS_CORPUS = [
+    _raiz_repo() / "corpus",
     Path("corpus"),
     Path("/content/corpus"),
-    Path(__file__).resolve().parent / "corpus",
-    Path(__file__).resolve().parents[3] / "data" / "corpus",
 ]
 
 RUTA_TRAZA_DEMO = Path(__file__).resolve().parent / "demo_traza.json"
