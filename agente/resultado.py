@@ -72,24 +72,61 @@ def tokens_de(resultado) -> tuple[int, int]:
     return entrada, salida
 
 
+# El mensaje EXACTO que `ToolCallLimitMiddleware` mete como ToolMessage cuando
+# bloquea una llamada (langchain/agents/middleware/tool_call_limit.py).
+# Buscar "limit" y "exceed" sueltos en el contenido NO vale: el texto de los
+# 10-K habla de export licensing "limits" y thresholds "exceeding", y eso daba
+# falsos positivos en preguntas sobre controles de exportación de NVIDIA.
+_PREFIJO_LIMITE = "Tool call limit exceeded"
+
+
 def _limite_alcanzado(mensajes) -> bool:
+    """¿Se bloqueó alguna llamada por haber alcanzado el techo?"""
     for m in mensajes:
         tipo = m.get("type") if isinstance(m, dict) else type(m).__name__
         contenido = m.get("content") if isinstance(m, dict) else getattr(m, "content", "")
         if tipo in ("tool", "ToolMessage") and isinstance(contenido, str) \
-                and ("limit" in contenido.lower() and "exceed" in contenido.lower()
-                     or "bloquead" in contenido.lower()):
+                and contenido.startswith(_PREFIJO_LIMITE):
             return True
     return False
 
 
 def _correcciones(mensajes) -> list[str]:
+    """Las marcas de los verificadores que saltaron en esta invocación.
+
+    Es lo que permite atribuir dentro de un peldaño sin hacer una ablación: un
+    guardrail que nunca salta no ha contribuido nada, y eso se cuenta, no se
+    estima.
+    """
     marcas = []
     for m in mensajes:
         contenido = m.get("content") if isinstance(m, dict) else getattr(m, "content", "")
         if isinstance(contenido, str) and contenido.startswith("[VERIFICACIÓN AUTOMÁTICA"):
             marcas.append(contenido.split("]", 1)[0].strip("["))
     return marcas
+
+
+_OK_ESQUEMA = "Returning structured response"
+
+
+def _reintentos_esquema(mensajes) -> int:
+    """Veces que la salida estructurada fue RECHAZADA y hubo que reintentar.
+
+    `create_agent` implementa la salida estructurada como una tool call. Si el
+    esquema valida, devuelve un ToolMessage de éxito; si Pydantic falla, devuelve
+    el error para que el modelo se corrija. Contar los segundos mide cuánto
+    trabaja el esquema estricto.
+    """
+    n = 0
+    for m in mensajes:
+        nombre = m.get("name") if isinstance(m, dict) else getattr(m, "name", None)
+        tipo = m.get("type") if isinstance(m, dict) else type(m).__name__
+        if nombre in NO_SON_HERRAMIENTAS and tipo in ("tool", "ToolMessage"):
+            contenido = str(m.get("content") if isinstance(m, dict)
+                            else getattr(m, "content", ""))
+            if not contenido.startswith(_OK_ESQUEMA):
+                n += 1
+    return n
 
 
 def normalizar_resultado(resultado, *, modelo: str = "", arquitectura: str = "",
@@ -136,6 +173,7 @@ def normalizar_resultado(resultado, *, modelo: str = "", arquitectura: str = "",
                        else (resultado.get("latencia_s") if isinstance(resultado, dict) else None)),
         "limite_alcanzado": _limite_alcanzado(mensajes),
         "correcciones": _correcciones(mensajes),
+        "reintentos_esquema": _reintentos_esquema(mensajes),
         "messages": planos,
         "modelo": modelo or (resultado.get("modelo", "") if isinstance(resultado, dict) else ""),
         "arquitectura": arquitectura or (resultado.get("arquitectura", "") if isinstance(resultado, dict) else ""),

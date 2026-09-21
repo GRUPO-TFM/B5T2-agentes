@@ -1,6 +1,6 @@
 """Línea de comandos del harness.
 
-    uv run python -m agente.cli ejecutar  --arq baseline --rep 1 [--ids gX-001,gX-002] [--forzar]
+    uv run python -m agente.cli ejecutar  --arq baseline --rep 1 [--ids gX-001,gX-002] [--familia numerica] [--forzar]
     uv run python -m agente.cli puntuar   --arq baseline --rep 1 [--sin-recall]
     uv run python -m agente.cli todo      --arq baseline [--reps 3]      # ejecutar+puntuar ×reps, y comparar
     uv run python -m agente.cli comparar
@@ -30,7 +30,9 @@ def main(argv=None) -> int:
 
     sp = sub.add_parser("ejecutar"); arq_arg(sp, "baseline")
     sp.add_argument("--rep", type=int, default=1); sp.add_argument("--golden", default=GOLDEN)
-    sp.add_argument("--ids", default=None, help="coma-separados"); sp.add_argument("--forzar", action="store_true")
+    sp.add_argument("--ids", default=None, help="coma-separados")
+    sp.add_argument("--familia", default=None, choices=["numerica","extractiva","comparativa"])
+    sp.add_argument("--forzar", action="store_true")
 
     sp = sub.add_parser("puntuar"); arq_arg(sp, "baseline")
     sp.add_argument("--rep", type=int, default=1); sp.add_argument("--sin-recall", action="store_true")
@@ -51,11 +53,14 @@ def main(argv=None) -> int:
 
     if a.orden == "ejecutar":
         from agente.interfaz import ejecutar
-        ejecutar(a.golden, a.arq, a.rep, solo_ids=a.ids.split(",") if a.ids else None, forzar=a.forzar)
+        ejecutar(a.golden, a.arq, a.rep, solo_ids=a.ids.split(",") if a.ids else None,
+                 solo_familia=a.familia, forzar=a.forzar)
     elif a.orden == "puntuar":
         from agente.interfaz import puntuar, resumir
         t = puntuar(a.arq, a.rep, con_recall=not a.sin_recall)
-        print(t[["id", "familia", "acierto", "cita", "cifra", "trayectoria", "n_llamadas", "coste_usd"]].to_string(index=False))
+        cols = ["id","familia","acierto","cita","cifra","trayectoria","cifra_dada",
+                "cifra_esperada","n_llamadas","coste_usd"]
+        print(t[[c for c in cols if c in t]].to_string(index=False))
         print(); print(json.dumps(resumir(t, a.arq), ensure_ascii=False, indent=1, default=float))
     elif a.orden == "todo":
         from agente.interfaz import ejecutar_todo

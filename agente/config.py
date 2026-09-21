@@ -62,15 +62,24 @@ A2 = replace(
                 "a inglés.",
 )
 
+# A3 y A4 estaban juntos y se separaron: el híbrido es retrieval y el prompt de
+# comparativas es procedimiento. Van a las mismas 8 preguntas, así que mezclados
+# no habría forma de atribuir el salto a uno o a otro.
 A3 = replace(
-    A2, nombre="a3_comparativas",
-    hibrido=True, prompt="comparativas",
-    descripcion="+ híbrido BM25 y procedimiento explícito para comparativas y "
-                "conceptos por acción (splits).",
+    A2, nombre="a3_hibrido",
+    hibrido=True,
+    descripcion="+ híbrido BM25 con RRF, medido DESPUÉS de la reescritura.",
 )
 
-ARQUITECTURAS: dict[str, Arquitectura] = {a.nombre: a for a in (BASELINE, A1, A2, A3)}
-ARQUITECTURAS["final"] = A3          # alias: lo que corre `evaluar()` el día 24
+A4 = replace(
+    A3, nombre="a4_comparativas",
+    prompt="comparativas",
+    descripcion="+ procedimiento explícito de comparativas y conceptos por "
+                "acción (splits).",
+)
+
+ARQUITECTURAS: dict[str, Arquitectura] = {a.nombre: a for a in (BASELINE, A1, A2, A3, A4)}
+ARQUITECTURAS["final"] = A4          # alias: lo que corre `evaluar()` el día 24
 
 
 def arquitectura(nombre: str | Arquitectura) -> Arquitectura:

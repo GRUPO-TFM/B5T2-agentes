@@ -1,0 +1,314 @@
+{
+ "item": {
+  "id": "gX-017",
+  "pregunta": "¿Cuánto crecieron las ventas netas de Apple entre FY2024 y FY2025?",
+  "familia": "comparativa",
+  "ticker": "AAPL",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "De 391.035 a 416.161 millones de dólares, un 6,4 % más.",
+  "cifra_esperada": 416161000000.0,
+  "unidad": "USD",
+  "concept_xbrl": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "item_esperado": "7",
+  "ancla_texto": "Americas net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone and Services.",
+  "ancla_inicio": 4375,
+  "ancla_fin": 4490,
+  "chunk_id_esperado": "AAPL-2025-7-0002",
+  "herramienta_esperada": [
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "autor": "grupo-X"
+ },
+ "rep": 1,
+ "thread_id": "baseline-rep1-gX-017",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "Las ventas netas de Apple crecieron 25.126 millones de USD (un aumento del 6,43 %, reportado como un 6 % en el informe de gestión) entre FY2024 y FY2025, pasando de 391.035 millones de USD en FY2024 a 416.161 millones de USD en FY2025.",
+   "cifra": 25126000000.0,
+   "unidad": "USD",
+   "ticker": "AAPL",
+   "ejercicio": 2025,
+   "fuente": "ambas",
+   "cita": "Total net sales $ 416,161 Change 6 % $ 391,035",
+   "chunk_id": "AAPL-2025-7-0002"
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "AAPL",
+     "fiscal_year": 2024,
+     "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+     "fiscal_year": 2025,
+     "ticker": "AAPL"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "AAPL",
+     "fiscal_year": 2024,
+     "concept": "Revenues"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "query": "Net sales increased total percentage 2025 2024",
+     "ticker": "AAPL",
+     "fiscal_year": 2025,
+     "item": "7"
+    }
+   }
+  ],
+  "n_llamadas": 5,
+  "tokens_in": 10075,
+  "tokens_out": 1193,
+  "coste_usd": 0.01203,
+  "latencia_s": 47.158353299833834,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Cuánto crecieron las ventas netas de Apple entre FY2024 y FY2025?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_118471",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 978,
+     "output_tokens": 56,
+     "total_tokens": 1034,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 46
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_118471",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "AAPL",
+       "fiscal_year": 2024,
+       "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      "id": "call_38184",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+       "fiscal_year": 2025,
+       "ticker": "AAPL"
+      },
+      "id": "call_38190",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1281,
+     "output_tokens": 176,
+     "total_tokens": 1457,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 88
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2024 · RevenueFromContractWithCustomerExcludingAssessedTax = 391,035,000,000 USD (cierre de ejercicio 2024-09-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_38184",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2025 · RevenueFromContractWithCustomerExcludingAssessedTax = 416,161,000,000 USD (cierre de ejercicio 2025-09-27, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_38190",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "AAPL",
+       "fiscal_year": 2024,
+       "concept": "Revenues"
+      },
+      "id": "call_4484232",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1575,
+     "output_tokens": 77,
+     "total_tokens": 1652,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 41
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "AAPL no reportó 'Revenues' en FY2024. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, GrossProfit, Liabilities, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, ResearchAndDevelopmentExpense, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_4484232",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "query": "Net sales increased total percentage 2025 2024",
+       "ticker": "AAPL",
+       "fiscal_year": 2025,
+       "item": "7"
+      },
+      "id": "call_4325424",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1735,
+     "output_tokens": 377,
+     "total_tokens": 2112,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 325
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[AAPL-2025-7-0002] AAPL FY2025 Item 7 (similitud 0.789)\nSegment Operating Performance\n\nThe following table shows net sales by reportable segment for 2025, 2024 and 2023 (dollars in millions):\n\n2025\t\tChange\t\t2024\t\tChange\t\t2023\nAmericas\t$\t178,353\t\t\t7\t%\t\t$\t167,045\t\t\t3\t%\t\t$\t162,560\nEurope\t111,032\t\t\t10\t%\t\t101,328\t\t\t7\t%\t\t94,294\nGreater China\t64,377\t\t\t(4)\t%\t\t66,952\t\t\t(8)\t%\t\t72,559\nJapan\t28,703\t\t\t15\t%\t\t25,052\t\t\t3\t%\t\t24,257\nRest of Asia Pacific\t33,696\t\t\t10\t%\t\t30,658\t\t\t4\t%\t\t29,615\nTotal net sales\t$\t416,161\t\t\t6\t%\t\t$\t391,035\t\t\t2\t%\t\t$\t383,285\n\nAmericas\n\nAmericas net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone and Services. The weakness in foreign currencies relative to the U.S. dollar had an unfavorable year-over-year impact on Americas net sales during 2025.\n\nEurope\n\nEurope net sales increased during 2025 compared to 2024 primarily due to higher net sales of Services, iPhone and Mac.\n\nGreater China\n\nGreater China net sales decreased during 2025 compared to 2024 primarily due to lower net sales of iPhone, partially offset by higher net sales of Mac.\n\nJapan\n\nJapan net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone, Services and iPad.\n\nRest of Asia Pacific\n\nRest of Asia Pacific net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone, Services and Mac.\n\nApple Inc. | 2025 Form 10-K | 22\n\n---\n\n[AAPL-2025-7-0003] AAPL FY2025 Item 7 (similitud 0.773)\nProducts and Services Performance\n\nThe following table shows net sales by category for 2025, 2024 and 2023 (dollars in millions):\n\n2025\t\tChange\t\t2024\t\tChange\t\t2023\niPhone\t$\t209,586\t\t\t4\t%\t\t$\t201,183\t\t\t—\t%\t\t$\t200,583\nMac\t33,708\t\t\t12\t%\t\t29,984\t\t\t2\t%\t\t29,357\niPad\t28,023\t\t\t5\t%\t\t26,694\t\t\t(6)\t%\t\t28,300\nWearables, Home and Accessories\t35,686\t\t\t(4)\t%\t\t37,005\t\t\t(7)\t%\t\t39,845\nServices (1)\t109,158\t\t\t14\t%\t\t96,169\t\t\t13\t%\t\t85,200\nTotal net sales\t$\t416,161\t\t\t6\t%\t\t$\t391,035\t\t\t2\t%\t\t$\t383,285\n\n(1)Services net sales include amortization of the deferred value of services bundled in the sales price of certain products.\n\niPhone\n\niPhone net sales increased during 2025 compared to 2024 due to higher net sales of Pro models.\n\nMac\n\nMac net sales increased during 2025 compared to 2024 primarily due to higher net sales of laptops and desktops.\n\niPad\n\niPad net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPad Air, iPad mini and iPad, partially offset by lower net sales of iPad Pro.\n\nWearables, Home and Accessories\n\nWearables, Home and Accessories net sales decreased during 2025 compared to 2024 primarily due to lower net sales of Accessories and Wearables.\n\nServices\n\nServices net sales increased during 2025 compared to 2024 primarily due to higher net sales from advertising, the App Store and cloud services.\n\nApple Inc. | 2025 Form 10-K | 23\n\n---\n\n[AAPL-2025-7-0004] AAPL FY2025 Item 7 (similitud 0.745)\nGross Margin\n\nProducts and Services gross margin and gross margin percentage for 2025, 2024 and 2023 were as follows (dollars in millions):\n\n2025\t\t2024\t\t2023\nGross margin:\nProducts\t$\t112,887\t\t\t$\t109,633\t\t\t$\t108,803\nServices\t82,314\t\t\t71,050\t\t\t60,345\nTotal gross margin\t$\t195,201\t\t\t$\t180,683\t\t\t$\t169,148\n\nGross margin percentage:\nProducts\t36.8\t%\t\t37.2\t%\t\t36.5\t%\nServices\t75.4\t%\t\t73.9\t%\t\t70.8\t%\nTotal gross margin percentage\t46.9\t%\t\t46.2\t%\t\t44.1\t%\n\nProducts Gross Margin\n\nProducts gross margin increased during 2025 compared to 2024 primarily due to favorable costs and a different mix of products, partially offset by tariff costs.\n\nProducts gross margin percentage decreased during 2025 compared to 2024 primarily due to a different mix of products and tariff costs, partially offset by other favorable costs.\n\nServices Gross Margin\n\nServices gross margin increased during 2025 compared to 2024 primarily due to higher Services net sales and a different mix of services.\n\nServices gross margin percentage increased during 2025 compared to 2024 primarily due to a different mix of services, partially offset by higher costs.\n\nThe Company’s future gross margins can be impacted by a variety of factors, as discussed in Part I, Item 1A of this Form 10-K under the heading “Risk Factors.” As a result, the Company believes, in general, gross margins will be subject to volatility and downward pressure.\n\n---\n\n[AAPL-2025-7-0005] AAPL FY2025 Item 7 (similitud 0.719)\nOperating Expenses\n\nOperating expenses for 2025, 2024 and 2023 were as follows (dollars in millions):\n\n2025\t\tChange\t\t2024\t\tChange\t\t2023\nResearch and development\t$\t34,550\t\t\t10\t%\t\t$\t31,370\t\t\t5\t%\t\t$\t29,915\nPercentage of total net sales\t8\t%\t\t\t\t8\t%\t\t\t\t8\t%\nSelling, general and administrative\t$\t27,601\t\t\t6\t%\t\t$\t26,097\t\t\t5\t%\t\t$\t24,932\nPercentage of total net sales\t7\t%\t\t\t\t7\t%\t\t\t\t7\t%\nTotal operating expenses\t$\t62,151\t\t\t8\t%\t\t$\t57,467\t\t\t5\t%\t\t$\t54,847\nPercentage of total net sales\t15\t%\t\t\t\t15\t%\t\t\t\t14\t%\n\nResearch and Development\n\nThe growth in R&D expense during 2025 compared to 2024 was primarily driven by increases in headcount-related expenses and infrastructure-related costs.\n\nSelling, General and Administrative\n\nThe growth in selling, general and administrative expense during 2025 compared to 2024 was primarily driven by increases in headcount-related expenses and variable selling expenses.\n\nApple Inc. | 2025 Form 10-K | 24\n\n---\n\n[AAPL-2025-7-0006] AAPL FY2025 Item 7 (similitud 0.669)\nProvision for Income Taxes\n\nProvision for income taxes, effective tax rate and statutory federal income tax rate for 2025, 2024 and 2023 were as follows (dollars in millions):\n\n2025\t\t2024\t\t2023\nProvision for income taxes\t$\t20,719\t\t\t$\t29,749\t\t\t$\t16,741\nEffective tax rate\t15.6\t%\t\t24.1\t%\t\t14.7\t%\nStatutory federal income tax rate\t21\t%\t\t21\t%\t\t21\t%\n\nThe Company’s effective tax rate for 2025 was lower than the statutory federal income tax rate primarily due to a lower effective tax rate on foreign earnings, including the impact of changes in unrecognized tax benefits, the impact of the U.S. federal R&D credit, and tax benefits from share-based compensation, partially offset by a change in valuation allowance and state income taxes.\n\nThe Company’s effective tax rate for 2025 was lower compared to 2024 due to a $10.7 billion year-over-year decrease in the provision for income taxes related to the State Aid Decision (refer to Note 7, “Income Taxes” in the Notes to Consolidated Financial Statements in Part II, Item 8 of this Form 10-K) and the impact of changes in unrecognized tax benefits, partially offset by a change in valuation allowance and a higher effective tax rate on foreign earnings.\n\nLiquidity and Capital Resources\n\nThe Company believes its balances of cash, cash equivalents and marketable securities, which totaled $132.4 billion as of September 27, 2025, along with cash generated by ongoing operations and continued access to debt markets, will be sufficient to satisfy its cash requirements and capital return program over the next 12 months and beyond.\n\nThe Company’s material cash requirements include the following contractual obligations:",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_4325424",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinanciera",
+      "args": {
+       "ejercicio": 2025,
+       "cifra": 25126000000,
+       "chunk_id": "AAPL-2025-7-0002",
+       "unidad": "USD",
+       "respuesta": "Las ventas netas de Apple crecieron 25.126 millones de USD (un aumento del 6,43 %, reportado como un 6 % en el informe de gestión) entre FY2024 y FY2025, pasando de 391.035 millones de USD en FY2024 a 416.161 millones de USD en FY2025.",
+       "fuente": "ambas",
+       "cita": "Total net sales $ 416,161 Change 6 % $ 391,035",
+       "ticker": "AAPL"
+      },
+      "id": "call_172788",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4506,
+     "output_tokens": 507,
+     "total_tokens": 5013,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 305
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='Las ventas netas de Apple crecieron 25.126 millones de USD (un aumento del 6,43 %, reportado como un 6 % en el informe de gestión) entre FY2024 y FY2025, pasando de 391.035 millones de USD en FY2024 a 416.161 millones de USD en FY2025.' cifra=25126000000.0 unidad='USD' ticker='AAPL' ejercicio=2025 fuente='ambas' cita='Total net sales $ 416,161 Change 6 % $ 391,035' chunk_id='AAPL-2025-7-0002'",
+    "tool_calls": null,
+    "name": "RespuestaFinanciera",
+    "tool_call_id": "call_172788",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "baseline"
+ }
+}

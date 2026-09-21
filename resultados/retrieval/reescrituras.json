@@ -1,0 +1,72 @@
+{
+ "gX-007": {
+  "pregunta": "¿Cómo describe NVIDIA la situación competitiva del mercado chino en su 10-K de FY2025?",
+  "consulta": "NVIDIA Fiscal 2025 Form 10-K China competition competitive environment competitors",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-008": {
+  "pregunta": "¿Qué demanda antimonopolio del DOJ menciona Alphabet en sus factores de riesgo de FY2025?",
+  "consulta": "Alphabet Item 1A Risk Factors Department of Justice antitrust litigation",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-009": {
+  "pregunta": "¿Qué obligaciones concretas dice Meta que le impone la DMA europea en FY2025?",
+  "consulta": "Meta Platforms Digital Markets Act DMA gatekeeper obligations compliance requirements European Union 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-010": {
+  "pregunta": "¿Qué riesgo de desastres naturales declara Apple sobre sus instalaciones y las de sus proveedores en FY2025?",
+  "consulta": "Apple 10-K Item 1A Risk Factors natural disasters disruption facilities suppliers contract manufacturers 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-011": {
+  "pregunta": "¿Qué inversión en capital anticipa Meta para 2026 según su MD&A de FY2025?",
+  "consulta": "Meta Platforms capital expenditures anticipate expect 2026 MD&A",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-012": {
+  "pregunta": "¿Qué análisis de sensibilidad dice NVIDIA haber realizado sobre su cartera de inversión en FY2025?",
+  "consulta": "NVIDIA fiscal 2025 sensitivity analysis marketable securities investment portfolio market risk",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-013": {
+  "pregunta": "¿Cuánto crecieron los ingresos de Microsoft entre FY2024 y FY2025?",
+  "consulta": "Microsoft revenue increased fiscal year 2025 compared to 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-014": {
+  "pregunta": "¿Cuánto aumentó el beneficio neto de NVIDIA entre FY2024 y FY2025?",
+  "consulta": "NVIDIA net income increased fiscal 2025 compared to fiscal 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-015": {
+  "pregunta": "¿Cuánto crecieron los ingresos de Alphabet entre FY2024 y FY2025?",
+  "consulta": "Alphabet revenue increased 2024 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-016": {
+  "pregunta": "El beneficio neto de Meta bajó entre FY2024 y FY2025 pese a subir el resultado de explotación: ¿cuánto bajó y por qué?",
+  "consulta": "Meta Platforms net income decreased income from operations increased 2025 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-017": {
+  "pregunta": "¿Cuánto crecieron las ventas netas de Apple entre FY2024 y FY2025?",
+  "consulta": "Apple net sales increased 2025 compared to 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-018": {
+  "pregunta": "¿Cuánto creció el flujo de caja de explotación de Amazon entre FY2024 y FY2025?",
+  "consulta": "Amazon net cash provided by operating activities increased 2024 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-019": {
+  "pregunta": "El BPA diluido de NVIDIA pasó de 11,93 en FY2024 a 2,94 en FY2025: ¿significa eso que ganó menos por acción?",
+  "consulta": "NVIDIA diluted net income per share fiscal 2025 fiscal 2024 stock split",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-020": {
+  "pregunta": "¿Cuánto crecieron los ingresos de Meta entre FY2024 y FY2025, y cómo se repartió ese crecimiento por regiones?",
+  "consulta": "Meta Platforms revenue increased 2025 compared to 2024 geographic region",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ }
+}

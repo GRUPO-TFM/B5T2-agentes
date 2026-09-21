@@ -1,0 +1,188 @@
+{
+ "item": {
+  "id": "gX-004",
+  "pregunta": "¿Cuánto gastó Meta en investigación y desarrollo en el ejercicio fiscal 2025?",
+  "familia": "numerica",
+  "ticker": "META",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "57.372 millones de dólares",
+  "cifra_esperada": 57372000000.0,
+  "unidad": "USD",
+  "concept_xbrl": "ResearchAndDevelopmentExpense",
+  "item_esperado": null,
+  "ancla_texto": null,
+  "ancla_inicio": null,
+  "ancla_fin": null,
+  "chunk_id_esperado": null,
+  "herramienta_esperada": [
+   "get_xbrl_fact"
+  ],
+  "autor": "grupo-X"
+ },
+ "rep": 2,
+ "thread_id": "baseline-rep2-gX-004",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "En el ejercicio fiscal 2025, Meta Platforms, Inc. gastó 57.372 millones de dólares (57.372.000.000 USD) en investigación y desarrollo (Research and Development).",
+   "cifra": 57372000000.0,
+   "unidad": "USD",
+   "ticker": "META",
+   "ejercicio": 2025,
+   "fuente": "xbrl",
+   "cita": null,
+   "chunk_id": null
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "META",
+     "fiscal_year": 2025,
+     "concept": "ResearchAndDevelopmentExpense"
+    }
+   }
+  ],
+  "n_llamadas": 2,
+  "tokens_in": 3866,
+  "tokens_out": 640,
+  "coste_usd": 0.0052995,
+  "latencia_s": 8.540680599864572,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Cuánto gastó Meta en investigación y desarrollo en el ejercicio fiscal 2025?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_3906195",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 974,
+     "output_tokens": 112,
+     "total_tokens": 1086,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 102
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_3906195",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "META",
+       "fiscal_year": 2025,
+       "concept": "ResearchAndDevelopmentExpense"
+      },
+      "id": "call_141602",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1333,
+     "output_tokens": 174,
+     "total_tokens": 1507,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 136
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "META FY2025 · ResearchAndDevelopmentExpense = 57,372,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_141602",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinanciera",
+      "args": {
+       "ejercicio": 2025,
+       "cifra": 57372000000,
+       "respuesta": "En el ejercicio fiscal 2025, Meta Platforms, Inc. gastó 57.372 millones de dólares (57.372.000.000 USD) en investigación y desarrollo (Research and Development).",
+       "ticker": "META",
+       "fuente": "xbrl",
+       "unidad": "USD"
+      },
+      "id": "call_86790",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1559,
+     "output_tokens": 354,
+     "total_tokens": 1913,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 240
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='En el ejercicio fiscal 2025, Meta Platforms, Inc. gastó 57.372 millones de dólares (57.372.000.000 USD) en investigación y desarrollo (Research and Development).' cifra=57372000000.0 unidad='USD' ticker='META' ejercicio=2025 fuente='xbrl' cita=None chunk_id=None",
+    "tool_calls": null,
+    "name": "RespuestaFinanciera",
+    "tool_call_id": "call_86790",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "baseline"
+ }
+}

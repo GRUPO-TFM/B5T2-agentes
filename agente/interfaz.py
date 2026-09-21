@@ -33,7 +33,8 @@ from agente.agente import construir_agente
 from agente.config import ARQUITECTURAS, MODELO, REPETICIONES, Arquitectura, arquitectura
 from agente.corpus import raiz_repo
 from agente.evaluadores import EVALUADORES, acierto
-from agente.resultado import herramientas_usadas, normalizar_resultado, tokens_de
+from agente.resultado import (_correcciones, _limite_alcanzado, _reintentos_esquema,
+                              herramientas_usadas, normalizar_resultado, tokens_de)
 
 # USD por millón de tokens (entrada, salida). Los del profesor, consultados el
 # 2/09/2026 en https://openrouter.ai/api/v1/models. REVISAR LA VÍSPERA.
@@ -54,6 +55,55 @@ def coste_de(resultado, modelo: str = MODELO) -> float:
     p_in, p_out = PRECIOS_OPENROUTER[nombre]
     entrada, salida = tokens_de(resultado)
     return (entrada * p_in + salida * p_out) / 1e6
+
+
+# ---------------------------------------------------------------------------
+# calentar — que el arranque no se cuele dentro de una pregunta medida
+# ---------------------------------------------------------------------------
+# La primera llamada a `search_filings` de un proceso carga el índice FAISS y el
+# modelo de embeddings desde disco: ~15-20 s que, sin esto, se suman a la
+# latencia de la pregunta que tuvo la mala suerte de ser la primera en buscar.
+# Peor aún: como el proceso sobrevive entre repeticiones, solo la rep 1 los
+# paga, y eso aparece como varianza entre repeticiones que no es del modelo.
+_MODELO_EMBEDDINGS_CACHE = "models--BAAI--bge-small-en-v1.5"
+
+
+def _embeddings_en_cache() -> bool:
+    """¿Está el modelo ya descargado en la caché de Hugging Face?"""
+    import os
+    base = Path(os.environ.get("HF_HOME") or (Path.home() / ".cache" / "huggingface"))
+    return any((base / "hub").glob(f"{_MODELO_EMBEDDINGS_CACHE}*"))
+
+
+def calentar(*, offline_si_cacheado: bool = True, verbose: bool = True) -> bool:
+    """Carga el índice y el codificador ANTES de empezar a cronometrar.
+
+    Idempotente y barata a partir de la segunda vez (`_indice` tiene lru_cache).
+    Nunca lanza: si el codificador no se puede cargar, avisa y devuelve False —
+    el agente seguirá funcionando y pagará la carga en su primera búsqueda.
+
+    `offline_si_cacheado` pone HF_HUB_OFFLINE=1 cuando el modelo ya está en la
+    caché local: quita el aviso de peticiones anónimas, ahorra un viaje de red
+    por arranque y, sobre todo, hace que la ejecución no dependa de que Hugging
+    Face esté disponible. En un clon recién hecho (sin caché) NO se activa, para
+    que la primera descarga funcione con normalidad.
+    """
+    import os
+    if offline_si_cacheado and "HF_HUB_OFFLINE" not in os.environ and _embeddings_en_cache():
+        os.environ["HF_HUB_OFFLINE"] = "1"
+    comienzo = time.perf_counter()
+    try:
+        from agente.retrieval import _indice
+        indice, meta, _ = _indice()
+    except Exception as e:                                  # noqa: BLE001
+        if verbose:
+            print(f"  aviso: no se pudo precargar el retrieval ({type(e).__name__}: "
+                  f"{e}). La primera búsqueda pagará la carga.", flush=True)
+        return False
+    if verbose:
+        print(f"  retrieval precargado: {indice.ntotal} vectores, "
+              f"{len(meta)} fragmentos ({time.perf_counter() - comienzo:.1f} s)", flush=True)
+    return True
 
 
 # ---------------------------------------------------------------------------
@@ -119,6 +169,7 @@ def _commit_actual() -> str:
 # ---------------------------------------------------------------------------
 def ejecutar(ruta_jsonl: str | Path, arq: str | Arquitectura = "final", rep: int = 1, *,
              modelo: str = MODELO, solo_ids: list[str] | None = None,
+             solo_familia: str | None = None,
              forzar: bool = False, responder_fn=None, verbose: bool = True) -> Path:
     """Corre el agente sobre el JSONL y guarda UN JSON crudo por pregunta.
 
@@ -140,7 +191,16 @@ def ejecutar(ruta_jsonl: str | Path, arq: str | Arquitectura = "final", rep: int
     preguntas = leer_golden(ruta_jsonl)
     if solo_ids:
         preguntas = [p for p in preguntas if p.get("id") in set(solo_ids)]
+    if solo_familia:
+        # Para ablaciones dirigidas: aislar el verificador de cifras solo
+        # necesita las preguntas que llevan cifra. Ahorra un tercio de llamadas.
+        preguntas = [p for p in preguntas if p.get("familia") == solo_familia]
     fn = responder_fn or responder
+
+    # Fuera del bucle a propósito: la carga del codificador no debe caer dentro
+    # de la latencia de ninguna pregunta. Ver `calentar()`.
+    if responder_fn is None:
+        calentar(verbose=verbose)
 
     for i, item in enumerate(preguntas, 1):
         destino = carpeta / f"{item['id']}.json"
@@ -188,17 +248,43 @@ def _fila(registro: dict, arq: Arquitectura, con_recall: bool) -> dict:
 
     r = registro["resultado"]
     sr = r.get("structured_response") or {}
+    llamadas = r.get("llamadas", [])
+    busquedas = [c for c in llamadas if c["name"] == "search_filings"]
+    mensajes = r.get("messages", [])
+    marcas = _correcciones(mensajes)
+    esperada = item.get("cifra_esperada")
+    dada = sr.get("cifra")
+
+    # OJO con los nombres: `cifra` y `cita` son a la vez campos de la respuesta
+    # y nombres de evaluador. Si se llaman igual, el veredicto booleano pisa el
+    # dato y la tabla miente. Por eso la respuesta va con sufijo `_dada`.
     fila.update({
-        "respuesta": sr.get("respuesta"), "cifra": sr.get("cifra"), "unidad": sr.get("unidad"),
-        "ejercicio": sr.get("ejercicio"), "fuente": sr.get("fuente"),
-        "cita": sr.get("cita"), "chunk_id": sr.get("chunk_id"),
+        "respuesta": sr.get("respuesta"),
+        "cifra_dada": dada, "cifra_esperada": esperada,
+        "ratio_cifra": (dada / esperada) if (dada is not None and esperada) else None,
+        "unidad": sr.get("unidad"), "ejercicio": sr.get("ejercicio"),
+        "fuente": sr.get("fuente"),
+        "cita_dada": sr.get("cita"), "chunk_id": sr.get("chunk_id"),
         "herramientas": " → ".join(r.get("herramientas", [])),
         "n_llamadas": r.get("n_llamadas"),
         "tokens_in": r.get("tokens_in"), "tokens_out": r.get("tokens_out"),
         "coste_usd": r.get("coste_usd"), "latencia_s": r.get("latencia_s"),
-        "limite_alcanzado": r.get("limite_alcanzado"),
-        "correcciones": len(r.get("correcciones", [])),
         "sin_respuesta": sr == {},
+        # --- instrumentación: qué guardrail actuó, para atribuir sin ablación ---
+        # Se RECALCULA desde los mensajes en vez de leer el valor que se guardó
+        # al ejecutar. Es la promesa de «crudo primero»: lo derivado se deriva al
+        # puntuar, así un detector corregido se aplica a lo ya guardado sin
+        # repetir una sola llamada. (Pasó: el detector de límite daba falso
+        # positivo con el texto de los 10-K.)
+        "corrigio_cifra": any("CIFRA" in m for m in marcas),
+        "corrigio_cita": any("CITA" in m for m in marcas),
+        "reintentos_esquema": _reintentos_esquema(mensajes),
+        "limite_alcanzado": _limite_alcanzado(mensajes),
+        # --- instrumentación del retrieval: mide el efecto de forzar_filtros ---
+        "n_busquedas": len(busquedas),
+        "busquedas_con_ticker": sum(1 for c in busquedas if c["args"].get("ticker")),
+        "busquedas_con_item": sum(1 for c in busquedas if c["args"].get("item")),
+        "uso_read_section": any(c["name"] == "read_section" for c in llamadas),
     })
     veredictos = {nombre: ev(item, r) for nombre, ev in EVALUADORES.items()}
     fila.update(veredictos)
@@ -257,6 +343,15 @@ def resumir(tabla: pd.DataFrame, etiqueta: str) -> dict:
         "% fuente=ninguna": (float((tabla.get("fuente") == "ninguna").mean())
                              if "fuente" in tabla else float("nan")),
         "errores": int(tabla["error"].notna().sum()) if "error" in tabla else 0,
+        # Cuántas veces actuó cada guardrail. Uno que nunca salta no aportó nada
+        # y se dice con el dato, sin gastar una ablación.
+        "% corrigió cifra": _tasa(tabla, "corrigio_cifra"),
+        "% corrigió cita": _tasa(tabla, "corrigio_cita"),
+        "reintentos esquema": _tasa(tabla, "reintentos_esquema"),
+        "% límite alcanzado": _tasa(tabla, "limite_alcanzado"),
+        "% búsquedas con ticker": (
+            float(tabla["busquedas_con_ticker"].sum() / tabla["n_busquedas"].sum())
+            if "n_busquedas" in tabla and tabla["n_busquedas"].sum() else float("nan")),
     }
     for fam in FAMILIAS:
         sub = tabla[tabla["familia"] == fam] if "familia" in tabla else tabla.iloc[0:0]

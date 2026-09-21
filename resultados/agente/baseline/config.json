@@ -1,0 +1,20 @@
+{
+  "nombre": "baseline",
+  "limites": false,
+  "max_llamadas": 8,
+  "max_read_section": 1,
+  "max_vueltas_modelo": 10,
+  "verificador_cifras": false,
+  "verificador_cita": false,
+  "esquema_estricto": false,
+  "prompt": "base",
+  "filtros_forzados": false,
+  "reescritura": false,
+  "hibrido": false,
+  "k": 5,
+  "descripcion": "El agente del día 10, tal cual. Congelado antes de tocar nada.",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "commit": "d7e2f30",
+  "golden_set": "data/golden_set.jsonl",
+  "fecha": "2026-09-22T00:51:35"
+}

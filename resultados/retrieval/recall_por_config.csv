@@ -1,0 +1,6 @@
+configuración,recall@5,aciertos,coste
+1 · denso plano,0.14285714285714285,2/14,0 llamadas al LLM
+2 · + filtro de metadatos,0.5,7/14,0 llamadas al LLM
+3 · + híbrido BM25,0.5,7/14,"0 llamadas, +1 índice en memoria"
+4 · + reescritura de consulta,0.6428571428571429,9/14,1 llamada al LLM por búsqueda
+5 · reescritura + híbrido,0.8571428571428571,12/14,1 llamada + índice léxico

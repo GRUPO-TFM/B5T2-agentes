@@ -71,3 +71,17 @@ def test_verificador_de_cita_rebota_chunk_inventado_y_parafrasis(chunks_por_id):
     literal = chunks_por_id["NVDA-2025-1A-0013"]["texto"][50:200]
     sr3 = RespuestaFinanciera(respuesta="x", fuente="texto", cita=literal, chunk_id="NVDA-2025-1A-0013")
     assert verificar_cita.after_model(_estado(sr3), None) is None
+
+
+def test_el_texto_del_10k_no_dispara_el_detector_de_limite():
+    """Regresión: buscar «limit» y «exceed» sueltos daba falso positivo en el
+    baseline, que no lleva límites. Los 10-K hablan de export licensing limits
+    y de thresholds exceeding — gX-007 (NVIDIA, controles de exportación)."""
+    from agente.resultado import _limite_alcanzado
+    texto_10k = ("The licensing requirements also apply to the export of products "
+                 "exceeding certain performance thresholds... would limit access "
+                 "to the market for IT services.")
+    assert _limite_alcanzado([{"type": "tool", "content": texto_10k}]) is False
+    assert _limite_alcanzado([{"type": "tool",
+                               "content": "Tool call limit exceeded. Do not call "
+                                          "'search_filings' again."}]) is True

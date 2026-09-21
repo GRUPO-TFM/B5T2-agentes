@@ -1,0 +1,71 @@
+config,id,familia,recall@5,pos_ancla
+1 · denso plano,gX-007,extractiva,False,259
+1 · denso plano,gX-008,extractiva,False,49
+1 · denso plano,gX-009,extractiva,True,1
+1 · denso plano,gX-010,extractiva,False,1020
+1 · denso plano,gX-011,extractiva,False,220
+1 · denso plano,gX-012,extractiva,False,136
+1 · denso plano,gX-013,comparativa,True,1
+1 · denso plano,gX-014,comparativa,False,90
+1 · denso plano,gX-015,comparativa,False,576
+1 · denso plano,gX-016,comparativa,False,504
+1 · denso plano,gX-017,comparativa,False,10
+1 · denso plano,gX-018,comparativa,False,57
+1 · denso plano,gX-019,comparativa,False,6
+1 · denso plano,gX-020,comparativa,False,794
+2 · + filtro de metadatos,gX-007,extractiva,False,16
+2 · + filtro de metadatos,gX-008,extractiva,True,2
+2 · + filtro de metadatos,gX-009,extractiva,True,1
+2 · + filtro de metadatos,gX-010,extractiva,False,21
+2 · + filtro de metadatos,gX-011,extractiva,True,5
+2 · + filtro de metadatos,gX-012,extractiva,True,1
+2 · + filtro de metadatos,gX-013,comparativa,True,1
+2 · + filtro de metadatos,gX-014,comparativa,False,6
+2 · + filtro de metadatos,gX-015,comparativa,False,9
+2 · + filtro de metadatos,gX-016,comparativa,False,14
+2 · + filtro de metadatos,gX-017,comparativa,True,3
+2 · + filtro de metadatos,gX-018,comparativa,False,6
+2 · + filtro de metadatos,gX-019,comparativa,True,2
+2 · + filtro de metadatos,gX-020,comparativa,False,14
+3 · + híbrido BM25,gX-007,extractiva,False,22
+3 · + híbrido BM25,gX-008,extractiva,True,2
+3 · + híbrido BM25,gX-009,extractiva,True,1
+3 · + híbrido BM25,gX-010,extractiva,False,14
+3 · + híbrido BM25,gX-011,extractiva,True,2
+3 · + híbrido BM25,gX-012,extractiva,True,2
+3 · + híbrido BM25,gX-013,comparativa,True,1
+3 · + híbrido BM25,gX-014,comparativa,False,8
+3 · + híbrido BM25,gX-015,comparativa,False,6
+3 · + híbrido BM25,gX-016,comparativa,False,23
+3 · + híbrido BM25,gX-017,comparativa,True,4
+3 · + híbrido BM25,gX-018,comparativa,False,7
+3 · + híbrido BM25,gX-019,comparativa,False,8
+3 · + híbrido BM25,gX-020,comparativa,True,4
+4 · + reescritura de consulta,gX-007,extractiva,False,23
+4 · + reescritura de consulta,gX-008,extractiva,False,10
+4 · + reescritura de consulta,gX-009,extractiva,True,1
+4 · + reescritura de consulta,gX-010,extractiva,False,14
+4 · + reescritura de consulta,gX-011,extractiva,True,3
+4 · + reescritura de consulta,gX-012,extractiva,True,1
+4 · + reescritura de consulta,gX-013,comparativa,True,1
+4 · + reescritura de consulta,gX-014,comparativa,True,2
+4 · + reescritura de consulta,gX-015,comparativa,True,3
+4 · + reescritura de consulta,gX-016,comparativa,False,24
+4 · + reescritura de consulta,gX-017,comparativa,True,1
+4 · + reescritura de consulta,gX-018,comparativa,False,7
+4 · + reescritura de consulta,gX-019,comparativa,True,4
+4 · + reescritura de consulta,gX-020,comparativa,True,4
+5 · reescritura + híbrido,gX-007,extractiva,False,15
+5 · reescritura + híbrido,gX-008,extractiva,True,3
+5 · reescritura + híbrido,gX-009,extractiva,True,1
+5 · reescritura + híbrido,gX-010,extractiva,True,5
+5 · reescritura + híbrido,gX-011,extractiva,True,2
+5 · reescritura + híbrido,gX-012,extractiva,True,1
+5 · reescritura + híbrido,gX-013,comparativa,True,1
+5 · reescritura + híbrido,gX-014,comparativa,True,2
+5 · reescritura + híbrido,gX-015,comparativa,True,2
+5 · reescritura + híbrido,gX-016,comparativa,False,24
+5 · reescritura + híbrido,gX-017,comparativa,True,1
+5 · reescritura + híbrido,gX-018,comparativa,True,2
+5 · reescritura + híbrido,gX-019,comparativa,True,1
+5 · reescritura + híbrido,gX-020,comparativa,True,3
