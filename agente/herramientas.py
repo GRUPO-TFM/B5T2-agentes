@@ -2,14 +2,20 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
+
 from langchain.tools import tool
 
 from agente.corpus import cargar_secciones, cargar_xbrl
 from agente.retrieval import buscar, formatear_fragmentos
 
 
-def construir_herramientas() -> list:
-    """Las cuatro @tool del día 10, con los docstrings que ya funcionaban."""
+def construir_herramientas(
+    *,
+    mejoras: bool = False,
+    reescritor: Callable[[str], str] | None = None,
+) -> list:
+    """Las cuatro @tool del día 10. `mejoras=True` activa retrieval híbrido."""
     secciones = cargar_secciones()
     xbrl = cargar_xbrl()
 
@@ -97,7 +103,7 @@ def construir_herramientas() -> list:
         """
         return formatear_fragmentos(
             buscar(query, ticker=ticker, fiscal_year=fiscal_year,
-                   item=item, k=k)
+                   item=item, k=k, mejoras=mejoras, reescritor=reescritor)
         )
 
     @tool

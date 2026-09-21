@@ -1,8 +1,8 @@
 """Un solo agente, con interruptor de mejoras.
 
-`construir_agente(mejoras=False)` es el del día 10. `mejoras=True` le
-añadirá middleware y retrieval mejorado; hoy el interruptor existe y no
-cambia el comportamiento, para que baseline y final sean el mismo código.
+`construir_agente(mejoras=False)` es el del día 10 (retrieval denso).
+`mejoras=True` activa reescritura de consulta + BM25 + RRF en
+`search_filings`, y engancha el middleware de `middlewares_mejoras()`.
 """
 
 from __future__ import annotations
@@ -37,7 +37,7 @@ def construir_agente(modelo: str = MODELO, mejoras: bool = False):
     """El agente del día 10 (`mejoras=False`) o el sistema final."""
     kwargs: dict = {
         "model": modelo,
-        "tools": construir_herramientas(),
+        "tools": construir_herramientas(mejoras=mejoras),
         "system_prompt": SYSTEM,
         "response_format": RespuestaFinanciera,
         "checkpointer": InMemorySaver(),
