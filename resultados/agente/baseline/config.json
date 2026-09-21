@@ -14,7 +14,7 @@
   "k": 5,
   "descripcion": "El agente del día 10, tal cual. Congelado antes de tocar nada.",
   "modelo": "openrouter:google/gemini-3.8-flash",
-  "commit": "485328a",
+  "commit": "07a5315",
   "golden_set": "data/golden_set.jsonl",
-  "fecha": "2026-09-22T01:30:51"
+  "fecha": "2026-09-22T01:38:45"
 }
