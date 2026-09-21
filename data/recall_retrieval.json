@@ -1,0 +1,602 @@
+{
+  "k": 5,
+  "modelo_embeddings": "BAAI/bge-small-en-v1.5",
+  "modelo_reescritura": "openrouter:google/gemini-3.8-flash",
+  "golden": "data/golden_set.jsonl",
+  "n_con_ancla": 14,
+  "con_reescritura": true,
+  "configuraciones": {
+    "baseline": {
+      "n": 14,
+      "aciertos": 7,
+      "recall_at_k": 0.5,
+      "latencia_media_s": 0.023285714285714288
+    },
+    "hibrido_sin_reescritura": {
+      "n": 14,
+      "aciertos": 7,
+      "recall_at_k": 0.5,
+      "latencia_media_s": 0.08321428571428571
+    },
+    "reescritura_hibrido": {
+      "n": 14,
+      "aciertos": 12,
+      "recall_at_k": 0.8571428571428571,
+      "latencia_media_s": 0.07828571428571429
+    }
+  },
+  "reescritura": {
+    "latencia_media_s": 5.049571428571428,
+    "tokens_entrada": 1534,
+    "tokens_salida": 5915,
+    "coste_usd": 0.023332,
+    "llamadas": 14
+  },
+  "items": [
+    {
+      "id": "gX-007",
+      "familia": "extractiva",
+      "ticker": "NVDA",
+      "fiscal_year": 2025,
+      "item_esperado": "1A",
+      "pregunta": "¿Cómo describe NVIDIA la situación competitiva del mercado chino en su 10-K de FY2025?",
+      "consulta_reescrita": "NVIDIA FY2025 10-K China competition competitive position export controls",
+      "ancla_texto": "The market in China, where our offerings are limited by export controls, is highly competitive and we expect it to remain competitive going forward",
+      "chunk_id_esperado": "NVDA-2025-1A-0013",
+      "baseline": 0,
+      "hibrido": 0,
+      "mejorado": 0,
+      "chunk_ids_baseline": [
+        "NVDA-2025-1A-0003",
+        "NVDA-2025-1A-0034",
+        "NVDA-2025-1A-0036",
+        "NVDA-2025-1A-0007",
+        "NVDA-2025-1A-0033"
+      ],
+      "chunk_ids_hibrido": [
+        "NVDA-2025-1A-0003",
+        "NVDA-2025-1A-0034",
+        "NVDA-2025-1A-0036",
+        "NVDA-2025-1A-0033",
+        "NVDA-2025-1A-0037"
+      ],
+      "chunk_ids_mejorado": [
+        "NVDA-2025-1A-0036",
+        "NVDA-2025-1A-0037",
+        "NVDA-2025-1A-0031",
+        "NVDA-2025-1A-0032",
+        "NVDA-2025-1A-0038"
+      ],
+      "lat_baseline_s": 0.021,
+      "lat_hibrido_s": 0.082,
+      "lat_mejorado_s": 0.074,
+      "lat_reescritura_s": 4.176,
+      "tokens_entrada": 117,
+      "tokens_salida": 409
+    },
+    {
+      "id": "gX-008",
+      "familia": "extractiva",
+      "ticker": "GOOGL",
+      "fiscal_year": 2025,
+      "item_esperado": "1A",
+      "pregunta": "¿Qué demanda antimonopolio del DOJ menciona Alphabet en sus factores de riesgo de FY2025?",
+      "consulta_reescrita": "Alphabet FY2025 Risk Factors DOJ Department of Justice antitrust lawsuit",
+      "ancla_texto": "For example, the DOJ and a number of state Attorneys General filed a lawsuit concerning our Search and Search advertising practices and our compliance with US antitrust laws.",
+      "chunk_id_esperado": "GOOGL-2025-1A-0025",
+      "baseline": 1,
+      "hibrido": 1,
+      "mejorado": 1,
+      "chunk_ids_baseline": [
+        "GOOGL-2025-1A-0026",
+        "GOOGL-2025-1A-0025",
+        "GOOGL-2025-1A-0015",
+        "GOOGL-2025-1A-0024",
+        "GOOGL-2025-1A-0016"
+      ],
+      "chunk_ids_hibrido": [
+        "GOOGL-2025-1A-0026",
+        "GOOGL-2025-1A-0025",
+        "GOOGL-2025-1A-0030",
+        "GOOGL-2025-1A-0023",
+        "GOOGL-2025-1A-0007"
+      ],
+      "chunk_ids_mejorado": [
+        "GOOGL-2025-1A-0026",
+        "GOOGL-2025-1A-0025",
+        "GOOGL-2025-1A-0007",
+        "GOOGL-2025-1A-0010",
+        "GOOGL-2025-1A-0028"
+      ],
+      "lat_baseline_s": 0.018,
+      "lat_hibrido_s": 0.073,
+      "lat_mejorado_s": 0.092,
+      "lat_reescritura_s": 4.377,
+      "tokens_entrada": 115,
+      "tokens_salida": 434
+    },
+    {
+      "id": "gX-009",
+      "familia": "extractiva",
+      "ticker": "META",
+      "fiscal_year": 2025,
+      "item_esperado": "1A",
+      "pregunta": "¿Qué obligaciones concretas dice Meta que le impone la DMA europea en FY2025?",
+      "consulta_reescrita": "Meta Digital Markets Act DMA gatekeeper obligations FY2025",
+      "ancla_texto": "For example, the DMA in the European Union imposes restrictions and requirements on companies like ours, including in areas such as the combination of data across services, mergers and acquisitions, and product design",
+      "chunk_id_esperado": "META-2025-1A-0060",
+      "baseline": 1,
+      "hibrido": 1,
+      "mejorado": 1,
+      "chunk_ids_baseline": [
+        "META-2025-1A-0060",
+        "META-2025-1A-0061",
+        "META-2025-1A-0010",
+        "META-2025-1A-0057",
+        "META-2025-1A-0069"
+      ],
+      "chunk_ids_hibrido": [
+        "META-2025-1A-0060",
+        "META-2025-1A-0010",
+        "META-2025-1A-0061",
+        "META-2025-1A-0057",
+        "META-2025-1A-0004"
+      ],
+      "chunk_ids_mejorado": [
+        "META-2025-1A-0060",
+        "META-2025-1A-0066",
+        "META-2025-1A-0001",
+        "META-2025-1A-0061",
+        "META-2025-1A-0064"
+      ],
+      "lat_baseline_s": 0.019,
+      "lat_hibrido_s": 0.097,
+      "lat_mejorado_s": 0.069,
+      "lat_reescritura_s": 3.617,
+      "tokens_entrada": 113,
+      "tokens_salida": 410
+    },
+    {
+      "id": "gX-010",
+      "familia": "extractiva",
+      "ticker": "AAPL",
+      "fiscal_year": 2025,
+      "item_esperado": "1A",
+      "pregunta": "¿Qué riesgo de desastres naturales declara Apple sobre sus instalaciones y las de sus proveedores en FY2025?",
+      "consulta_reescrita": "AAPL FY2025 risk factors natural disasters facilities suppliers",
+      "ancla_texto": "Many of the Company’s operations, retail stores and facilities, as well as critical business operations of the Company’s suppliers and contract manufacturers, are in locations that are prone to earthquakes and other natural disasters.",
+      "chunk_id_esperado": "AAPL-2025-1A-0003",
+      "baseline": 0,
+      "hibrido": 0,
+      "mejorado": 1,
+      "chunk_ids_baseline": [
+        "AAPL-2025-1A-0023",
+        "AAPL-2025-1A-0026",
+        "AAPL-2025-1A-0010",
+        "AAPL-2025-1A-0016",
+        "AAPL-2025-1A-0030"
+      ],
+      "chunk_ids_hibrido": [
+        "AAPL-2025-1A-0023",
+        "AAPL-2025-1A-0026",
+        "AAPL-2025-1A-0030",
+        "AAPL-2025-1A-0016",
+        "AAPL-2025-1A-0020"
+      ],
+      "chunk_ids_mejorado": [
+        "AAPL-2025-1A-0003",
+        "AAPL-2025-1A-0002",
+        "AAPL-2025-1A-0004",
+        "AAPL-2025-1A-0000",
+        "AAPL-2025-1A-0011"
+      ],
+      "lat_baseline_s": 0.019,
+      "lat_hibrido_s": 0.071,
+      "lat_mejorado_s": 0.083,
+      "lat_reescritura_s": 4.052,
+      "tokens_entrada": 116,
+      "tokens_salida": 402
+    },
+    {
+      "id": "gX-011",
+      "familia": "extractiva",
+      "ticker": "META",
+      "fiscal_year": 2025,
+      "item_esperado": "7",
+      "pregunta": "¿Qué inversión en capital anticipa Meta para 2026 según su MD&A de FY2025?",
+      "consulta_reescrita": "META FY2025 MD&A anticipate capital expenditures 2026",
+      "ancla_texto": "We anticipate making capital expenditures of approximately $115 billion to $135 billion in 2026 to support our AI efforts and core business.",
+      "chunk_id_esperado": "META-2025-7-0031",
+      "baseline": 1,
+      "hibrido": 1,
+      "mejorado": 1,
+      "chunk_ids_baseline": [
+        "META-2025-7-0027",
+        "META-2025-7-0034",
+        "META-2025-7-0025",
+        "META-2025-7-0028",
+        "META-2025-7-0031"
+      ],
+      "chunk_ids_hibrido": [
+        "META-2025-7-0028",
+        "META-2025-7-0031",
+        "META-2025-7-0033",
+        "META-2025-7-0029",
+        "META-2025-7-0034"
+      ],
+      "chunk_ids_mejorado": [
+        "META-2025-7-0031",
+        "META-2025-7-0028",
+        "META-2025-7-0033",
+        "META-2025-7-0029",
+        "META-2025-7-0030"
+      ],
+      "lat_baseline_s": 0.025,
+      "lat_hibrido_s": 0.097,
+      "lat_mejorado_s": 0.074,
+      "lat_reescritura_s": 4.284,
+      "tokens_entrada": 118,
+      "tokens_salida": 440
+    },
+    {
+      "id": "gX-012",
+      "familia": "extractiva",
+      "ticker": "NVDA",
+      "fiscal_year": 2025,
+      "item_esperado": "7A",
+      "pregunta": "¿Qué análisis de sensibilidad dice NVIDIA haber realizado sobre su cartera de inversión en FY2025?",
+      "consulta_reescrita": "NVIDIA FY2025 sensitivity analysis investment portfolio marketable securities",
+      "ancla_texto": "As of the end of fiscal year 2025, we performed a sensitivity analysis on our investment portfolio.",
+      "chunk_id_esperado": "NVDA-2025-7A-0000",
+      "baseline": 1,
+      "hibrido": 1,
+      "mejorado": 1,
+      "chunk_ids_baseline": [
+        "NVDA-2025-7A-0000",
+        "NVDA-2025-7A-0001"
+      ],
+      "chunk_ids_hibrido": [
+        "NVDA-2025-7A-0000",
+        "NVDA-2025-7A-0001"
+      ],
+      "chunk_ids_mejorado": [
+        "NVDA-2025-7A-0000",
+        "NVDA-2025-7A-0001"
+      ],
+      "lat_baseline_s": 0.068,
+      "lat_hibrido_s": 0.087,
+      "lat_mejorado_s": 0.088,
+      "lat_reescritura_s": 10.218,
+      "tokens_entrada": 113,
+      "tokens_salida": 511
+    },
+    {
+      "id": "gX-013",
+      "familia": "comparativa",
+      "ticker": "MSFT",
+      "fiscal_year": 2025,
+      "item_esperado": "7",
+      "pregunta": "¿Cuánto crecieron los ingresos de Microsoft entre FY2024 y FY2025?",
+      "consulta_reescrita": "Microsoft revenue increased FY2024 FY2025",
+      "ancla_texto": "Server products and cloud services revenue increased 23% driven by Azure and other cloud services revenue growth of 34%.",
+      "chunk_id_esperado": "MSFT-2025-7-0001",
+      "baseline": 1,
+      "hibrido": 1,
+      "mejorado": 1,
+      "chunk_ids_baseline": [
+        "MSFT-2025-7-0001",
+        "MSFT-2025-7-0013",
+        "MSFT-2025-7-0003",
+        "MSFT-2025-7-0007",
+        "MSFT-2025-7-0010"
+      ],
+      "chunk_ids_hibrido": [
+        "MSFT-2025-7-0001",
+        "MSFT-2025-7-0006",
+        "MSFT-2025-7-0009",
+        "MSFT-2025-7-0007",
+        "MSFT-2025-7-0013"
+      ],
+      "chunk_ids_mejorado": [
+        "MSFT-2025-7-0001",
+        "MSFT-2025-7-0009",
+        "MSFT-2025-7-0007",
+        "MSFT-2025-7-0010",
+        "MSFT-2025-7-0005"
+      ],
+      "lat_baseline_s": 0.017,
+      "lat_hibrido_s": 0.091,
+      "lat_mejorado_s": 0.073,
+      "lat_reescritura_s": 4.134,
+      "tokens_entrada": 113,
+      "tokens_salida": 535
+    },
+    {
+      "id": "gX-014",
+      "familia": "comparativa",
+      "ticker": "NVDA",
+      "fiscal_year": 2025,
+      "item_esperado": "7",
+      "pregunta": "¿Cuánto aumentó el beneficio neto de NVIDIA entre FY2024 y FY2025?",
+      "consulta_reescrita": "NVIDIA net income FY2025 FY2024",
+      "ancla_texto": "Data Center revenue for fiscal year 2025 was up 142% from a year ago.",
+      "chunk_id_esperado": "NVDA-2025-7-0007",
+      "baseline": 0,
+      "hibrido": 0,
+      "mejorado": 1,
+      "chunk_ids_baseline": [
+        "NVDA-2025-7-0000",
+        "NVDA-2025-7-0013",
+        "NVDA-2025-7-0004",
+        "NVDA-2025-7-0012",
+        "NVDA-2025-7-0011"
+      ],
+      "chunk_ids_hibrido": [
+        "NVDA-2025-7-0000",
+        "NVDA-2025-7-0004",
+        "NVDA-2025-7-0013",
+        "NVDA-2025-7-0011",
+        "NVDA-2025-7-0003"
+      ],
+      "chunk_ids_mejorado": [
+        "NVDA-2025-7-0013",
+        "NVDA-2025-7-0000",
+        "NVDA-2025-7-0012",
+        "NVDA-2025-7-0004",
+        "NVDA-2025-7-0007"
+      ],
+      "lat_baseline_s": 0.016,
+      "lat_hibrido_s": 0.084,
+      "lat_mejorado_s": 0.074,
+      "lat_reescritura_s": 4.506,
+      "tokens_entrada": 113,
+      "tokens_salida": 477
+    },
+    {
+      "id": "gX-015",
+      "familia": "comparativa",
+      "ticker": "GOOGL",
+      "fiscal_year": 2025,
+      "item_esperado": "7",
+      "pregunta": "¿Cuánto crecieron los ingresos de Alphabet entre FY2024 y FY2025?",
+      "consulta_reescrita": "Alphabet revenues FY2024 FY2025 revenue increased",
+      "ancla_texto": "Google Network revenues decreased $567 million from 2024 to 2025, primarily due to a decrease in AdSense revenues, partially offset by an increase in AdMob revenues.",
+      "chunk_id_esperado": "GOOGL-2025-7-0012",
+      "baseline": 0,
+      "hibrido": 0,
+      "mejorado": 1,
+      "chunk_ids_baseline": [
+        "GOOGL-2025-7-0010",
+        "GOOGL-2025-7-0000",
+        "GOOGL-2025-7-0023",
+        "GOOGL-2025-7-0021",
+        "GOOGL-2025-7-0017"
+      ],
+      "chunk_ids_hibrido": [
+        "GOOGL-2025-7-0000",
+        "GOOGL-2025-7-0020",
+        "GOOGL-2025-7-0010",
+        "GOOGL-2025-7-0015",
+        "GOOGL-2025-7-0023"
+      ],
+      "chunk_ids_mejorado": [
+        "GOOGL-2025-7-0012",
+        "GOOGL-2025-7-0015",
+        "GOOGL-2025-7-0016",
+        "GOOGL-2025-7-0014",
+        "GOOGL-2025-7-0009"
+      ],
+      "lat_baseline_s": 0.018,
+      "lat_hibrido_s": 0.071,
+      "lat_mejorado_s": 0.086,
+      "lat_reescritura_s": 10.447,
+      "tokens_entrada": 113,
+      "tokens_salida": 407
+    },
+    {
+      "id": "gX-016",
+      "familia": "comparativa",
+      "ticker": "META",
+      "fiscal_year": 2025,
+      "item_esperado": "7",
+      "pregunta": "El beneficio neto de Meta bajó entre FY2024 y FY2025 pese a subir el resultado de explotación: ¿cuánto bajó y por qué?",
+      "consulta_reescrita": "META FY2024 FY2025 net income decreased income from operations provision for income taxes",
+      "ancla_texto": "Absent the valuation allowance charge as of the enactment date, our 2025 effective tax rate would have decreased by 17 percentage points to 13%",
+      "chunk_id_esperado": "META-2025-7-0003",
+      "baseline": 0,
+      "hibrido": 0,
+      "mejorado": 0,
+      "chunk_ids_baseline": [
+        "META-2025-7-0000",
+        "META-2025-7-0007",
+        "META-2025-7-0027",
+        "META-2025-7-0028",
+        "META-2025-7-0001"
+      ],
+      "chunk_ids_hibrido": [
+        "META-2025-7-0000",
+        "META-2025-7-0007",
+        "META-2025-7-0028",
+        "META-2025-7-0022",
+        "META-2025-7-0032"
+      ],
+      "chunk_ids_mejorado": [
+        "META-2025-7-0028",
+        "META-2025-7-0019",
+        "META-2025-7-0020",
+        "META-2025-7-0031",
+        "META-2025-7-0015"
+      ],
+      "lat_baseline_s": 0.026,
+      "lat_hibrido_s": 0.097,
+      "lat_mejorado_s": 0.086,
+      "lat_reescritura_s": 4.281,
+      "tokens_entrada": 128,
+      "tokens_salida": 534
+    },
+    {
+      "id": "gX-017",
+      "familia": "comparativa",
+      "ticker": "AAPL",
+      "fiscal_year": 2025,
+      "item_esperado": "7",
+      "pregunta": "¿Cuánto crecieron las ventas netas de Apple entre FY2024 y FY2025?",
+      "consulta_reescrita": "¿Cuánto crecieron las ventas netas de Apple entre FY2024 y FY2025?",
+      "ancla_texto": "Americas net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone and Services.",
+      "chunk_id_esperado": "AAPL-2025-7-0002",
+      "baseline": 1,
+      "hibrido": 1,
+      "mejorado": 1,
+      "chunk_ids_baseline": [
+        "AAPL-2025-7-0000",
+        "AAPL-2025-7-0003",
+        "AAPL-2025-7-0002",
+        "AAPL-2025-7-0007",
+        "AAPL-2025-7-0005"
+      ],
+      "chunk_ids_hibrido": [
+        "AAPL-2025-7-0000",
+        "AAPL-2025-7-0003",
+        "AAPL-2025-7-0005",
+        "AAPL-2025-7-0002",
+        "AAPL-2025-7-0007"
+      ],
+      "chunk_ids_mejorado": [
+        "AAPL-2025-7-0000",
+        "AAPL-2025-7-0003",
+        "AAPL-2025-7-0005",
+        "AAPL-2025-7-0002",
+        "AAPL-2025-7-0007"
+      ],
+      "lat_baseline_s": 0.015,
+      "lat_hibrido_s": 0.072,
+      "lat_mejorado_s": 0.085,
+      "lat_reescritura_s": 3.881,
+      "tokens_entrada": 0,
+      "tokens_salida": 0
+    },
+    {
+      "id": "gX-018",
+      "familia": "comparativa",
+      "ticker": "AMZN",
+      "fiscal_year": 2025,
+      "item_esperado": "7",
+      "pregunta": "¿Cuánto creció el flujo de caja de explotación de Amazon entre FY2024 y FY2025?",
+      "consulta_reescrita": "AMZN Amazon net cash provided by operating activities FY2024 FY2025 increase",
+      "ancla_texto": "The increase in operating cash flow in 2025, compared to the prior year, was due to an increase in net income (loss), excluding non-cash expenses, and changes in working capital",
+      "chunk_id_esperado": "AMZN-2025-7-0007",
+      "baseline": 0,
+      "hibrido": 0,
+      "mejorado": 1,
+      "chunk_ids_baseline": [
+        "AMZN-2025-7-0024",
+        "AMZN-2025-7-0012",
+        "AMZN-2025-7-0013",
+        "AMZN-2025-7-0000",
+        "AMZN-2025-7-0018"
+      ],
+      "chunk_ids_hibrido": [
+        "AMZN-2025-7-0024",
+        "AMZN-2025-7-0012",
+        "AMZN-2025-7-0018",
+        "AMZN-2025-7-0000",
+        "AMZN-2025-7-0001"
+      ],
+      "chunk_ids_mejorado": [
+        "AMZN-2025-7-0008",
+        "AMZN-2025-7-0007",
+        "AMZN-2025-7-0024",
+        "AMZN-2025-7-0012",
+        "AMZN-2025-7-0018"
+      ],
+      "lat_baseline_s": 0.019,
+      "lat_hibrido_s": 0.074,
+      "lat_mejorado_s": 0.07,
+      "lat_reescritura_s": 4.695,
+      "tokens_entrada": 117,
+      "tokens_salida": 336
+    },
+    {
+      "id": "gX-019",
+      "familia": "comparativa",
+      "ticker": "NVDA",
+      "fiscal_year": 2025,
+      "item_esperado": "8",
+      "pregunta": "El BPA diluido de NVIDIA pasó de 11,93 en FY2024 a 2,94 en FY2025: ¿significa eso que ganó menos por acción?",
+      "consulta_reescrita": "NVIDIA diluted net income per share FY2024 FY2025 11.93 2.94 stock split retroactive adjustment",
+      "ancla_texto": "In June 2024, we executed a ten-for-one stock split of our common stock.",
+      "chunk_id_esperado": "NVDA-2025-8-0015",
+      "baseline": 1,
+      "hibrido": 0,
+      "mejorado": 1,
+      "chunk_ids_baseline": [
+        "NVDA-2025-8-0041",
+        "NVDA-2025-8-0015",
+        "NVDA-2025-8-0051",
+        "NVDA-2025-8-0001",
+        "NVDA-2025-8-0068"
+      ],
+      "chunk_ids_hibrido": [
+        "NVDA-2025-8-0051",
+        "NVDA-2025-8-0041",
+        "NVDA-2025-8-0049",
+        "NVDA-2025-8-0065",
+        "NVDA-2025-8-0050"
+      ],
+      "chunk_ids_mejorado": [
+        "NVDA-2025-8-0006",
+        "NVDA-2025-8-0011",
+        "NVDA-2025-8-0015",
+        "NVDA-2025-8-0031",
+        "NVDA-2025-8-0028"
+      ],
+      "lat_baseline_s": 0.017,
+      "lat_hibrido_s": 0.075,
+      "lat_mejorado_s": 0.078,
+      "lat_reescritura_s": 4.1,
+      "tokens_entrada": 135,
+      "tokens_salida": 538
+    },
+    {
+      "id": "gX-020",
+      "familia": "comparativa",
+      "ticker": "META",
+      "fiscal_year": 2025,
+      "item_esperado": "7",
+      "pregunta": "¿Cuánto crecieron los ingresos de Meta entre FY2024 y FY2025, y cómo se repartió ese crecimiento por regiones?",
+      "consulta_reescrita": "Meta revenue increased FY2024 FY2025 revenue by geographic region",
+      "ancla_texto": "In 2025, revenue increased by 21% in United States & Canada, 24% in Europe, 20% in Asia-Pacific, and 27% in Rest of World, in each case relative to 2024",
+      "chunk_id_esperado": "META-2025-7-0009",
+      "baseline": 0,
+      "hibrido": 1,
+      "mejorado": 1,
+      "chunk_ids_baseline": [
+        "META-2025-7-0007",
+        "META-2025-7-0029",
+        "META-2025-7-0013",
+        "META-2025-7-0028",
+        "META-2025-7-0005"
+      ],
+      "chunk_ids_hibrido": [
+        "META-2025-7-0007",
+        "META-2025-7-0000",
+        "META-2025-7-0005",
+        "META-2025-7-0009",
+        "META-2025-7-0013"
+      ],
+      "chunk_ids_mejorado": [
+        "META-2025-7-0009",
+        "META-2025-7-0022",
+        "META-2025-7-0023",
+        "META-2025-7-0021",
+        "META-2025-7-0024"
+      ],
+      "lat_baseline_s": 0.028,
+      "lat_hibrido_s": 0.094,
+      "lat_mejorado_s": 0.064,
+      "lat_reescritura_s": 3.926,
+      "tokens_entrada": 123,
+      "tokens_salida": 482
+    }
+  ]
+}
