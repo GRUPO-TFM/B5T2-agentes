@@ -13,6 +13,14 @@ El repositorio tiene **dos capas**, a propósito:
 
 No se trabaja sobre los notebooks de `clase/` para la entrega. Lo que salió de clase (herramientas, bucle, esquema) vive en `agente/`.
 
+> **En esta rama** hay una tercera capa, `experimentos/`, que **no toca la
+> entrega**: es trabajo de laboratorio sobre el retrieval. El primero es
+> [**el experimento de chunking**](experimentos/chunking/README.md) — compara
+> cinco estrategias de troceado y explica por qué el idioma de la pregunta
+> tapaba el efecto del troceado, y por qué el índice entregado embebe
+> truncado uno de cada seis fragmentos. Ese README se lee solo: conclusión,
+> diseño, resultados, límites y recomendación.
+
 ## Cómo se usa
 
 ```bash
@@ -68,6 +76,9 @@ tabla = evaluar("data/golden_set.jsonl", etiqueta="baseline")
 ├── clase/                            # material de aula (no es la entrega)
 │   ├── s1/                           # sesión 1
 │   └── s2/                           # sesión 2
+│
+├── experimentos/                     # laboratorio, no entra en la entrega
+│   └── chunking/                     # 5 estrategias de troceado + resultados
 │
 └── corpus/                           # extraído, no se commitea
 ```
