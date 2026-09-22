@@ -171,3 +171,32 @@ def test_integracion_hibrido_real_respeta_filtros():
                                                  "ticker": "NVDA", "fiscal_year": 2025, "item": "1A"})
     ids = [l.split("]")[0][1:] for l in salida.split("\n") if l.startswith("[")]
     assert len(ids) == 3 and all(i.startswith("NVDA-2025-1A-") for i in ids)
+
+
+def test_la_reescritura_no_se_come_las_comillas_de_frases_exactas(monkeypatch):
+    """`.strip('"')` a secas rompía `"net sales" growth`. Solo se quitan las
+    comillas que envuelven la consulta ENTERA."""
+    from agente import recall as R
+
+    class _Resp:
+        def __init__(self, t): self.text = t
+
+    def falso(texto):
+        monkeypatch.setattr(R, "init_chat_model", None, raising=False)
+        class _M:
+            def invoke(self, _): return _Resp(texto)
+        return _M()
+
+    import types, sys
+    def con(texto, consulta="q"):
+        mod = types.ModuleType("langchain.chat_models")
+        mod.init_chat_model = lambda *a, **k: falso(texto)
+        monkeypatch.setitem(sys.modules, "langchain.chat_models", mod)
+        monkeypatch.setattr(R, "_ruta_cache", lambda: tmp)
+        return R.reescribir_consulta(consulta)
+
+    import tempfile, pathlib
+    tmp = pathlib.Path(tempfile.mkdtemp()) / "c.json"
+    assert con('"net sales" growth', "c1") == '"net sales" growth'      # se conservan
+    tmp.unlink(missing_ok=True)
+    assert con('"just wrapped"', "c2") == 'just wrapped'                # envuelven todo: fuera

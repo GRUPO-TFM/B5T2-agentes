@@ -38,6 +38,9 @@ Leyenda de categorías:
 | 18 | proceso | se borró la rep 1 de un baseline completo creyendo que no había corrido | `rep1: 0 preguntas guardadas` | se rehízo desde cero; lección: mirar `crudo/` antes de borrar, y el bloque de limpieza ahora solo informa si los dos flags están apagados |
 | 19 | proceso | «0,53 ¢» leído como 53 céntimos | contraste con openrouter.ai/activity | es 0,0053 $; pendiente cambiar el formato a USD con 4 decimales |
 | 20 | proceso | el primer `pytest` de una sesión dio 39 y el segundo, sin tocar nada, 41 | — | sin explicación confirmada (caché/sincronía de Windows); irrelevante una vez commiteado |
+| 21 | medición | el `k` de la arquitectura no llegaba a `search_filings`: la firma decía `k: int = 5` y LangChain rellena ese 5 antes de que el código pueda sustituirlo — el parámetro existía pero era inerte | el test de integración con el FAISS real pidió `k=3` y recibió 5 fragmentos (el test de cableado pasaba `k=0` y no lo pilló) | el valor por defecto de la firma es ahora el `k` de la arquitectura (el esquema que ve el modelo lo refleja); test con los tres casos: sin `k`, `k` explícito, `k=0`. Nada medido afectado: todos los presets tienen `k=5` |
+| 22 | proceso | `uv run --with pytest pytest` deja de arrancar: «An Application Control policy has blocked this file (os error 4551)» | al lanzar los tests tras A1 | es Windows (App Control) bloqueando el lanzador `pytest.exe` que uv crea en una carpeta temporal; `python -m pytest` no pasa por el `.exe` y funciona. Regla: siempre `uv run --with pytest python -m pytest -q` |
+| 23 | proceso | el test de integración (`hibrido=True` con FAISS y BM25 reales) no corre en el contenedor de Claude porque no alcanza huggingface.co; solo corre en el PC de Javi | `53 passed, 1 skipped` aquí frente a `54 passed` allí | `skipif` cuando el codificador no está en caché; la verificación final es siempre en el PC de Javi |
 
 ---
 

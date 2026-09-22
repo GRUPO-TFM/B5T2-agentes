@@ -192,4 +192,140 @@ Si A2 no mueve nada, no es un peldaño fallido: es la diapositiva «lo que mejor
 el retriever no siempre mejora al agente, porque el agente ya hace parte del
 trabajo del retriever». Y la tabla del §4.4 sigue siendo válida para lo que mide.
 
+> **Resultado (medido el 2026-09-22, commit `aaaa10d`, 3 reps × 20, 0 errores):**
+>
+> | métrica | A1 | A2 | predicción |
+> |---|---|---|---|
+> | acierto | 75,0 % | **75,0 %** (0,75 en las tres reps) | «no mueve el acierto» ✔ |
+> | numéricas · extractivas · comparativas | 100 · 100 · 37,5 | **100 · 100 · 37,5** | planas ✔ |
+> | cita · cifra | 64,3 % · 100 % | **64,3 % · 100 %** | planas ✔ |
+> | trayectoria | 75,0 % | 76,7 % | plana ✔ (gX-017 busca en 1 de 3 reps: ruido) |
+> | **recall@5 del retriever** | 50,0 % | **64,3 %** | — |
+> | coste | 1,41 ¢ | 1,44 ¢ | sube ✔ (+2 %, menos de lo previsto) |
+> | latencia | 17,1 s | **29,4 s** | +1-3 s ✘ **+12,3 s** |
+>
+> **La predicción se cumple en su punto central, y con el contraste más limpio
+> posible: el recall@5 del retriever sube 14 pp (50 % → 64 %, que es el 7/14 →
+> 9/14 de la tabla del §4.4) y el acierto del agente no se mueve ni una pregunta.**
+> `cambios por pregunta` sale literalmente vacío: las 20 preguntas dan el mismo
+> veredicto en A1 y en A2. La posición mediana del ancla mejora de 5,5 a 3,5.
+> Mejor retrieval, misma respuesta.
+>
+> **Y el mecanismo no es el que se predijo.** La predicción decía que la
+> reescritura no cambiaría las consultas porque el modelo ya escribe en inglés.
+> Falso: **cambió 53 de 63 búsquedas (84 %)**. Lo que pasa es lo que escribió:
+> convirtió consultas en lenguaje natural en **sintaxis booleana de buscador por
+> palabras clave**:
+>
+> | consulta del modelo | reescritura |
+> |---|---|
+> | `China competitive position competitors market export controls` | `China "competitive position" competition "export controls" "Item 1A" "Risk Factors"` |
+> | `Digital Markets Act gatekeeper "obligations" OR "requirements"` | `"Digital Markets Act" AND gatekeeper AND (obligations OR requirements OR compliance)` |
+> | `capital expenditures 2026 anticipate expect` | `MD&A "Liquidity and Capital Resources" "capital expenditures" (expect OR anticipate) 2026` |
+>
+> El retriever es **denso**: codifica la cadena entera con BGE y compara cosenos.
+> Las comillas, los `AND`, los `OR` y los paréntesis no son operadores para él,
+> son tokens más. La reescritura le está hablando en un idioma que no entiende.
+> Que aun así no empeore se explica por los filtros de metadatos: dentro de un
+> único `ticker`+`fiscal_year`+`item` quedan pocas decenas de fragmentos y el
+> orden apenas cambia. **El filtro absorbe el ruido de la reescritura.**
+>
+> Esto sí sugiere un experimento con sentido para A3: esa sintaxis booleana es
+> justo lo que BM25 **sí** aprovecha (términos literales, entrecomillados
+> exactos). La reescritura podría no estar de más — podría estar esperando al
+> retriever adecuado, que es el híbrido.
+>
+> **El coste real de A2 es la latencia: +72 % (17,1 → 29,4 s), y en las preguntas
+> que buscan, +88 % (25,7 → 48,3 s).** El coste en dólares sube solo un 2 %,
+> porque la llamada de reescritura gasta pocos tokens; lo que gasta es una vuelta
+> de red por búsqueda con un modelo que razona antes de responder. La caché no
+> ayuda dentro de una ejecución porque cada consulta del modelo es distinta.
+> Para el día 24 esto importa: A2 tal cual añadiría ~4 minutos a las 10 preguntas
+> ciegas sin cambiar una sola respuesta.
+>
+> **Hallazgo no previsto, y el más limpio del peldaño: el verificador de cifras
+> dejó de dispararse por completo.** En A1, `% corrigió cifra` era 5 % (3 de 60,
+> las tres la misma pregunta: gX-019). En A2 es **0,0 % en las tres repeticiones**,
+> y `cifra` sigue al 100 %. La causa es el arreglo del `:,.0f` en
+> `get_xbrl_fact`: la traza de A2 muestra «EarningsPerShareDiluted = 2.94
+> USD/shares» y `correcciones: []` — el modelo copia el valor bueno a la primera
+> y no hay nada que corregir. Es la confirmación medida de lo que se sospechaba
+> al leer la traza de A1: **el guardrail estaba tapando un defecto de la
+> herramienta, no un error del modelo.** Arreglada la herramienta, el guardrail
+> no aporta nada en este golden set — lo cual no es un argumento para quitarlo
+> (el hold-out del día 24 puede traer otra cosa), sino la prueba de que la
+> instrumentación permite decir qué aportó cada pieza contando, no estimando.
+>
+> **Defecto menor detectado:** `reescribir_consulta` hace `.strip('"')`, que se
+> come la comilla inicial y final legítimas de una consulta booleana
+> (`"competitive position"` llega como `competitive position"`). Sin efecto aquí
+> (el retriever denso las ignora igual), pero hay que arreglarlo antes de A3, que
+> es donde las comillas empiezan a contar.
+
+
+---
+
+## A3 y A4 · el orden se invierte (decidido el 2026-09-22, antes de ejecutar)
+
+**Por qué A4 antes que A3.** Las 5 preguntas que siguen fallando en A2 son
+comparativas que responden `fuente='xbrl'` y **nunca llaman a `search_filings`**
+(gX-013, gX-014, gX-015, gX-017, gX-018). Ningún cambio de retrieval puede
+tocarlas: no hay búsqueda que mejorar. Luego **A3 está predicho plano con casi
+certeza** y **A4 es el único peldaño que puede subir el acierto**. Como A4 es
+además `final` — lo que el evaluador ejecuta el día 24 — y la entrega es mañana,
+se mide A4 primero y A3 después, para rellenar el peldaño. La escalera del
+informe se ordena igual al leerla.
+
+## A4 · `a4_comparativas` (predicho el 2026-09-22, antes de ejecutar)
+
+Qué añade sobre A2: el híbrido BM25 (que es A3) y el prompt `COMPARATIVAS`, cuyo
+paso 3 dice explícitamente «busca la explicación de la variación con
+search_filings en el Item 7 (MD&A) del ejercicio más reciente, con ticker y
+fiscal_year como filtros», más el procedimiento de conceptos por acción (splits).
+
+**Predicción principal: las 5 comparativas mudas empiezan a buscar, y aciertan.**
+El argumento no es optimismo, es la tabla de posiciones del ancla con el
+retrieval de A4 (`reescritura + híbrido`, la fila 5 del §4.4):
+
+| pregunta | pos. del ancla con el retrieval de A4 |
+|---|---|
+| gX-013 | **1** |
+| gX-014 | **2** |
+| gX-015 | **2** |
+| gX-017 | **1** |
+| gX-018 | **2** |
+
+Las cinco tienen el ancla entre la posición 1 y la 2. **El retrieval no es el
+cuello de botella: el cuello de botella era que el agente no buscaba.** Si el
+paso 3 consigue que busquen, el fragmento con la cita literal les aparece el
+primero o el segundo.
+
+Números concretos, para que la predicción sea falsable:
+- comparativas: 37,5 % → **entre 75 % y 100 %** (de 3/8 a 6-8/8)
+- acierto global: 75,0 % → **entre 87,5 % y 100 %**
+- `cita`: 64,3 % → **≥ 85 %**
+- `trayectoria`: 76,7 % → **≥ 95 %** (es la métrica que más directamente mide
+  «ahora sí pasa por search_filings»)
+- numéricas y extractivas: **100 %, no deben bajar**
+- coste y latencia: **suben**. Más búsquedas en 8 preguntas, cada una con su
+  llamada de reescritura, más el índice BM25. Estimación: ~2,0 ¢ y ~40 s.
+
+**Riesgos identificados, en orden de probabilidad:**
+1. **El límite de 8 llamadas.** Una comparativa con el procedimiento completo
+   gasta 2 `get_xbrl_fact` + 1 búsqueda de split + 1 búsqueda de MD&A, y
+   `list_available` suele ir de primera: 5. Con una reformulación de más, 7.
+   gX-019 ya tocaba el techo en A1 y A2. Si `% límite alcanzado` sube por encima
+   del 10 %, el techo hay que subirlo a 10 — no quitarlo.
+2. **El verificador de cita.** Al empezar a citar donde antes no se citaba,
+   puede dispararse (en A2 estaba al 0 %). Que se dispare es que funciona; lo
+   que hay que mirar es si la corrección arregla o si el modelo insiste.
+3. **La respuesta larga.** El procedimiento pide explicar la variación Y el
+   split; el esquema estricto exige coherencia entre `fuente`, `cifra` y
+   `cita`. `reintentos_esquema` lo dirá.
+
+**Si A4 no mueve las comparativas**, la conclusión sería que el problema no es
+que no se lo hayamos pedido, sino que el modelo prefiere cerrar con XBRL porque
+el prompt honesto de A1 le dio permiso — y entonces la ablación que toca es
+quitar de `HONESTO` la línea de «a la tercera, cierra» y medir solo eso.
+
 > Resultado: _(pendiente)_
