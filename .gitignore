@@ -11,3 +11,6 @@ __pycache__/
 # Una sola copia extraída, en la raíz. Se regenera desde dataset/*.zip
 corpus/
 clase/**/corpus/
+
+# Ficheros de bloqueo de Office
+~$*

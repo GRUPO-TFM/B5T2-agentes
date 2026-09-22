@@ -1,0 +1,390 @@
+{
+ "item": {
+  "id": "gX-020",
+  "pregunta": "¿Cuánto crecieron los ingresos de Meta entre FY2024 y FY2025, y cómo se repartió ese crecimiento por regiones?",
+  "familia": "comparativa",
+  "ticker": "META",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "De 164.501 a 200.966 millones de dólares, un 22,2 % más; 21 % en EE. UU. y Canadá, 24 % en Europa, 20 % en Asia-Pacífico y 27 % en el resto del mundo.",
+  "cifra_esperada": 200966000000.0,
+  "unidad": "USD",
+  "concept_xbrl": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "item_esperado": "7",
+  "ancla_texto": "In 2025, revenue increased by 21% in United States & Canada, 24% in Europe, 20% in Asia-Pacific, and 27% in Rest of World, in each case relative to 2024",
+  "ancla_inicio": 15526,
+  "ancla_fin": 15678,
+  "chunk_id_esperado": "META-2025-7-0009",
+  "herramienta_esperada": [
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "autor": "grupo-X"
+ },
+ "rep": 1,
+ "thread_id": "a2_retrieval-rep1-gX-020",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "Los ingresos de Meta pasaron de 164.501.000.000 USD en FY2024 a 200.966.000.000 USD en FY2025, lo que representa un crecimiento de 36.465.000.000 USD (+22,17%). Por geografía del usuario (Item 7, MD&A), los ingresos crecieron un 21% en Estados Unidos y Canadá, un 24% en Europa, un 20% en Asia-Pacífico y un 27% en el Resto del Mundo frente a 2024. Por dirección del cliente (Nota 2, en millones), los ingresos ascendieron en EE. UU. y Canadá a 78.866 $ (+24,77%), en Europa a 46.569 $ (+21,40%), en Asia-Pacífico a 53.817 $ (+19,57%) y en Resto del Mundo a 21.714 $ (+21,14%).",
+   "cifra": 200966000000.0,
+   "unidad": "USD",
+   "ticker": "META",
+   "ejercicio": 2025,
+   "fuente": "ambas",
+   "cita": "In 2025, revenue increased by 21% in United States & Canada, 24% in Europe, 20% in Asia-Pacific, and 27% in Rest of World, in each case relative to 2024.",
+   "chunk_id": "META-2025-7-0009"
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "search_filings",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "META",
+     "concept": "Revenues",
+     "fiscal_year": 2024
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "META",
+     "fiscal_year": 2025,
+     "concept": "Revenues"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "META",
+     "fiscal_year": 2024,
+     "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+     "ticker": "META"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "7",
+     "query": "revenue by user geography or regional breakdown growth",
+     "ticker": "META",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "ticker": "META",
+     "fiscal_year": 2025,
+     "item": "8",
+     "query": "Note 2 Revenue revenue disaggregated by geography United States"
+    }
+   }
+  ],
+  "n_llamadas": 7,
+  "tokens_in": 18651,
+  "tokens_out": 2231,
+  "coste_usd": 0.0223545,
+  "latencia_s": 36.932444099802524,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Cuánto crecieron los ingresos de Meta entre FY2024 y FY2025, y cómo se repartió ese crecimiento por regiones?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_15830",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1407,
+     "output_tokens": 71,
+     "total_tokens": 1478,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 61
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_15830",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "META",
+       "concept": "Revenues",
+       "fiscal_year": 2024
+      },
+      "id": "call_17695",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "META",
+       "fiscal_year": 2025,
+       "concept": "Revenues"
+      },
+      "id": "call_17697",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1725,
+     "output_tokens": 158,
+     "total_tokens": 1883,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 86
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "META no reportó 'Revenues' en FY2024. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, Liabilities, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, ResearchAndDevelopmentExpense, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_17695",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META no reportó 'Revenues' en FY2025. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, Liabilities, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, ResearchAndDevelopmentExpense, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_17697",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "META",
+       "fiscal_year": 2024,
+       "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      "id": "call_2205647",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+       "ticker": "META"
+      },
+      "id": "call_2205649",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2043,
+     "output_tokens": 144,
+     "total_tokens": 2187,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 56
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "META FY2024 · RevenueFromContractWithCustomerExcludingAssessedTax = 164,501,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_2205647",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2025 · RevenueFromContractWithCustomerExcludingAssessedTax = 200,966,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_2205649",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "7",
+       "query": "revenue by user geography or regional breakdown growth",
+       "ticker": "META",
+       "fiscal_year": 2025
+      },
+      "id": "call_78135",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2305,
+     "output_tokens": 221,
+     "total_tokens": 2526,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 176
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'net sales\" OR \"revenues\" by \"geographic region\" OR \"geographic area')\n\n[META-2025-7-0009] META FY2025 Item 7 (similitud 0.737)\nTrends in Our Revenue by User Geography\n\nWe calculate our revenue by user geography based on our estimate of the geography in which ad impressions are delivered, virtual and digital goods are purchased, or consumer hardware products are shipped. The geography of our users affects our revenue and financial results. Our revenue in regions such as United States & Canada and Europe is relatively higher primarily due to the size and maturity of those online and mobile advertising markets, and ad impression growth is primarily in geographies that monetize at lower rates, such as Asia-Pacific. In 2025, revenue increased by 21% in United States & Canada, 24% in Europe, 20% in Asia-Pacific, and 27% in Rest of World, in each case relative to 2024.\n\n-\n\nAd Revenue\t\tNon-Ad Revenue\n\nNote: Non-advertising revenue includes RL revenue generated from the delivery of consumer hardware products and FoA Other revenue, which consists of revenue from paid messaging from WhatsApp, Meta Verified subscriptions, net fees we receive from developers using our Payments infrastructure, and revenue from various other sources.\n\nOur revenue by user geography in the charts above is geographically apportioned based on our estimation of the geographic location of our users when they perform a revenue-generating activity. This allocation differs from our revenue disaggregated by geography disclosure in Note 2 — Revenue in our consolidated financial statements included in Part II, Item 8, \"Financial Statements and Supplemental Data\" where revenue is geographically apportioned based on the addresses of our customers.\n\n---\n\n[META-2025-7-0023] META FY2025 Item 7 (similitud 0.684)\nRevenue Seasonality\n\nRevenue is traditionally seasonally strong in the fourth quarter of each year due in part to seasonal holiday demand. We believe that this seasonality in both advertising revenue and RL consumer hardware sales affects our quarterly results, which generally reflect significant growth in revenue between the third and fourth quarters and a decline between the fourth and subsequent first quarters. For instance, our total revenue increased 17%, 19%, and 17% between the third and fourth quarters of 2025, 2024, and 2023, respectively, while total revenue for the first quarters of 2025, 2024, and 2023 declined 13%, 9%, and 11% compared to the fourth quarters of 2024, 2023, and 2022, respectively.\n\nForeign Exchange Impact on Revenue\n\nChanges in foreign exchange rates had an unfavorable impact on our revenue in the full year 2025 compared to the same period in 2024. To calculate revenue on a constant currency basis, we translated revenue using the prior year's monthly exchange rates for our settlement or billing currencies other than the U.S. dollar. Using these constant rates for full year 2025, our total revenue and advertising revenue would have been $201.38 billion and $196.60 billion, which were $418 million and $420 million higher than actual total revenue and advertising revenue, respectively.\n\n---\n\n[META-2025-7-0007] META FY2025 Item 7 (similitud 0.659)\nOther Business and Macroeconomic Conditions\n\nOther global and regional business, macroeconomic, and geopolitical conditions also have had, and we believe will continue to have, an impact on our user growth and engagement and advertising revenue. In particular, we believe advertising budgets have been pressured from time to time by factors such as inflation, economic policies and international trade, high interest rates, and related market uncertainty, which has led to reduced marketer spending. We are currently subject to increased business, macroeconomic, and geopolitical uncertainty, including as a result of volatility around international trade, which could impact our financial results in future periods.\n\nIn addition, competitive products and services have reduced some users' engagement with our products and services. We are investing in Reels and in AI initiatives across our products, including our AI-powered discovery engine to recommend relevant content, which we have already seen results in improved user engagement and monetization of our products. However, we continue to face competition from other products and services within certain demographics, in particular younger users. In addition, while Reels is growing in usage, it monetizes at a lower rate than our Feed and Stories products and we expect it will continue to monetize at a lower rate for the foreseeable future. We also have seen fluctuations and declines in the size of our active user base in one or more regions from time to time due to geopolitical conditions, which have adversely affected our user growth and engagement. These trends have adversely affected our advertising revenue and we expect will continue to adversely affect our advertising revenue in the foreseeable future.\n\nAlthough we regularly evaluate a variety of sources to understand trends in our advertising revenue, we do not have perfect visibility into the factors driving advertiser spending decisions and our assessments involve complex judgments about what is driving advertising decisions across a large and diversified advertiser base across the globe. Trends impacting advertising spend are also dynamic and interrelated. As a result, it is difficult to identify with precision which advertiser spending decisions are attributable to which trends, and we are unable to quantify the exact impact that each trend had on our advertising revenue during the periods presented.\n\n---\n\n[META-2025-7-0012] META FY2025 Item 7 (similitud 0.651)\nTrends in Our Ad Impressions and Average Price Per Ad\n\n•Ad Impressions. Our advertising revenue is generated by displaying ad products on Facebook, Instagram, Messenger, and third-party mobile applications. Impressions are considered delivered when an ad is displayed to a user.\n\nNote: Our ad impressions growth by user geography in the charts above is geographically apportioned based on our estimation of the geographic location of our users when an ad impression is delivered.\n\n•Average Price Per Ad. We calculate average price per ad as total advertising revenue divided by the number of ads delivered.\n\nNote: Our average price per ad growth by user geography in the charts above is geographically apportioned based on our estimation of the geographic location of our users when an ad impression is delivered.\n\nCritical Accounting Estimates\n\nOur consolidated financial statements are prepared in accordance with GAAP. The preparation of these consolidated financial statements requires us to make estimates and assumptions that affect the reported amounts of assets, liabilities, revenue, costs and expenses, and related disclosures. On an ongoing basis, we evaluate our accounting estimates based on historical experience and on various other assumptions that we believe are reasonable under the circumstances. The actual impact on our financial performance could differ from these estimates under different assumptions or conditions.\n\nAn accounting estimate is considered critical if both (i) the nature of the estimates or assumptions is material due to the levels of subjectivity and judgment involved, and (ii) the impact within a reasonable range of outcomes of the estimates and assumptions is material to our consolidated financial statements. We believe that the estimates and assumptions associated with loss contingencies, income taxes, and valuation of non-marketable equity investments, when applicable, have the greatest potential impact on our consolidated financial statements. Therefore, we consider these to be our critical accounting estimates. For further information on all of our significant accounting policies, see Note 1 — Summary of Significant Accounting Policies in the accompanying notes to the consolidated financial statements included in Part II, Item 8, \"Financial Statements and Supplementary Data\" of this Annual Report on Form 10-K.\n\n---\n\n[META-2025-7-0020] META FY2025 Item 7 (similitud 0.644)\nof revenue\t18\t\t\t18\t\t\t19\nResearch and development\t29\t\t\t27\t\t\t29\nMarketing and sales\t6\t\t\t7\t\t\t9\nGeneral and administrative\t6\t\t\t6\t\t\t8\nTotal costs and expenses\t59\t\t\t58\t\t\t65\nIncome from operations\t41\t\t\t42\t\t\t35\nInterest and other income, net\t1\t\t\t1\t\t\t1\nIncome before provision for income taxes\t43\t\t\t43\t\t\t35\nProvision for income taxes\t13\t\t\t5\t\t\t6\nNet income\t30\t%\t\t38\t%\t\t29\t%\n\n_________________________\n\n(1)Percentages have been rounded for presentation purposes and may differ from unrounded results.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_78135",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "ticker": "META",
+       "fiscal_year": 2025,
+       "item": "8",
+       "query": "Note 2 Revenue revenue disaggregated by geography United States"
+      },
+      "id": "call_2348793",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4344,
+     "output_tokens": 160,
+     "total_tokens": 4504,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 112
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'disaggregated revenue\" \"geographic region\" \"United States\" Note Revenue')\n\n[META-2025-8-0036] META FY2025 Item 8 (similitud 0.760)\nNote 2. Revenue\n\nRevenue disaggregated by revenue source and by segment consists of the following (in millions):\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\nAdvertising\t$\t196,175\t\t\t$\t160,633\t\t\t$\t131,948\nOther revenue\t2,584\t\t\t1,722\t\t\t1,058\nFamily of Apps\t198,759\t\t\t162,355\t\t\t133,006\nReality Labs\t2,207\t\t\t2,146\t\t\t1,896\nTotal revenue\t$\t200,966\t\t\t$\t164,501\t\t\t$\t134,902\n\nRevenue disaggregated by geography, based on the addresses of our customers, consists of the following (in millions):\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\nUnited States and Canada (1)\t$\t78,866\t\t\t$\t63,207\t\t\t$\t52,888\nEurope (2)\t46,569\t\t\t38,361\t\t\t31,210\nAsia-Pacific\t53,817\t\t\t45,009\t\t\t36,154\nRest of World (2)\t21,714\t\t\t17,924\t\t\t14,650\nTotal revenue\t$\t200,966\t\t\t$\t164,501\t\t\t$\t134,902\n\n_________________________\n\n(1)United States revenue was $74.78 billion, $59.73 billion, and $49.78 billion for the years ended December 31, 2025, 2024, and 2023, respectively.\n\n(2)Europe includes Russia and Turkey, and Rest of World includes Africa, Latin America, and the Middle East.\n\nDeferred revenue was $1.08 billion and $772 million as of December 31, 2025 and 2024, respectively. Our deferred revenue primarily relates to advertising prepayments and credits, as well as software updates and upgrades associated with RL hardware sales, most of which are expected to be realized in less than a year.\n\n---\n\n[META-2025-8-0087] META FY2025 Item 8 (similitud 0.657)\nthe remeasurement of unrecognized tax benefits. The Tax Court will review tax estimates submitted by both parties and determine the tax due in its forthcoming Tax Court decision. We will reassess any remeasurement of unrecognized tax benefits in the period in which the Tax Court decision is entered. At that time, we and the IRS will each have the option to file an appeal to the Ninth Circuit U.S. Court of Appeals.\n\nIn September 2025, we received a Statutory Notice of Deficiency (\"2017-2019 Notice\") from the IRS, asserting an additional $15.89 billion in tax, plus interest and penalties for our 2017 through 2019 tax years. This 2017-2019 Notice primarily relates to transfer pricing with our foreign subsidiaries and other international tax adjustments. The largest issue in the 2017-2019 Notice relates to the same underlying transfer pricing transaction that we litigated in the 2010 tax year trial and for which we received a Tax Court opinion in May 2025. The IRS' proposed adjustments do not represent a final determination and do not reflect offsets, including reduction in tax we would owe under the mandatory transition tax on accumulated foreign earnings, global intangible low-taxed income tax, and foreign-derived intangible income deduction from the 2017 Tax Cuts and Jobs Act. We do not agree with the IRS' position and filed a petition with the Tax Court in December 2025 to challenge the 2017-2019 Notice. As of December 31, 2025, we believe our accrual for unrecognized tax benefits is adequate.\n\nWe believe that adequate amounts have been reserved in accordance with ASC 740 for any adjustments to the provision for income taxes or other tax items that may ultimately result from these examinations. We have a number of years remaining that are subject to examination, of which the timing of the resolution, settlement, and closure of any audits is highly uncertain. If the tax authorities prevail in the assessment of additional tax due, the assessed tax, interest, and penalties, if any, could have a material adverse impact on our financial position, results of operations, and cash flows.\n\n---\n\n[META-2025-8-0085] META FY2025 Item 8 (similitud 0.655)\n882\t\t\t1,204\nDecreases related to settlements of prior year tax positions\t( 1,264 )\t\t\t( 9 )\t\t\t( 199 )\nDecreases related to lapses of statute of limitations\t( 49 )\t\t\t( 87 )\t\t\t( 1 )\nGross unrecognized tax benefits ‑ end of period\t$\t16,450\t\t\t$\t15,131\t\t\t$\t11,666\n\nThese unrecognized tax benefits were primarily accrued for the uncertainties with our research tax credits and transfer pricing with our foreign subsidiaries, which include licensing of intellectual property, providing services and other transactions. During all years presented, we recognized interest and penalties related to unrecognized tax benefits within the provision for income taxes on our consolidated statements of income. The amount of interest and penalties accrued as of December 31, 2025, 2024, and 2023 were $2.60 billion, $2.21 billion, and $1.48 billion, respectively.\n\nIf our gross unrecognized tax benefits of $16.45 billion as of December 31, 2025 were realized in a future period, this would result in a tax benefit of $11.25 billion within our provision of income taxes at such time.\n\nOur long-term income tax liabilities include $11.23 billion related to the uncertain tax positions and $9.78 billion related to deferred tax liabilities as of December 31, 2025.\n\nWe are subject to taxation in the United States and various other state and foreign jurisdictions. The material jurisdictions in which we are subject to potential examination include the United States and Ireland. Our 2014 through 2016 tax years are with the Internal Revenue Service (IRS) Independent Office of Appeals for certain unresolved issues. Our 2020 and subsequent tax years remain open to examination by the IRS. Our 2021 and subsequent tax years remain open to examination by the Irish Revenue Commissioners.\n\n---\n\n[META-2025-8-0031] META FY2025 Item 8 (similitud 0.639)\nForeign Currency\n\nGenerally, the functional currency of our international subsidiaries is the local currency. We translate the financial statements of these subsidiaries to U.S. dollars using month-end rates of exchange for assets and liabilities, and average rates of exchange for revenue, costs, and expenses. Translation gains and losses are recorded in accumulated other comprehensive income (loss) as a component of stockholders' equity. As of December 31, 2025, cumulative translation gains, net of tax was not material. As of December 31, 2024, cumulative translation losses, net of tax was $2.66 billion.\n\nForeign currency transaction gains and losses from transactions denominated in a currency other than the functional currency of the subsidiary involved are recorded within interest and other income (expense), net on our consolidated statements of income. Foreign currency transaction gains, net were $352 million for the year ended December 31, 2025 and foreign currency transaction losses, net were $690 million, and $366 million for the years ended December 31, 2024 and 2023, respectively.\n\n---\n\n[META-2025-8-0021] META FY2025 Item 8 (similitud 0.634)\nIncome Taxes\n\nWe are subject to income taxes in the United States and numerous foreign jurisdictions. Significant judgment is required in determining our provision for income taxes and income tax assets and liabilities, including evaluating uncertainties in the application of accounting principles and complex tax laws.\n\nWe record a provision for income taxes for the anticipated tax consequences of the reported results of operations using the asset and liability method. Under this method, we recognize deferred income tax assets and liabilities for the expected future consequences of temporary differences between the financial reporting and tax bases of assets and liabilities, as well as for loss and tax credit carryforwards. Deferred tax assets and liabilities are measured using the tax rates that are expected to apply to taxable income for the years in which those tax assets and liabilities are expected to be realized or settled. We recognize the deferred income tax effects of a change in tax rates in the period of the enactment.\n\nWe record a valuation allowance to reduce our deferred tax assets to the net amount that we believe is more likely than not to be realized. We consider all available evidence, both positive and negative, including historical levels of income, expectations and risks associated with estimates of future taxable income and ongoing tax planning strategies in assessing the need for a valuation allowance. In determining the valuation allowance, our accounting policy incorporates the expected impact of future years’ Corporate Alternative Minimum Tax in assessing the realizability of our deferred tax assets.\n\nWe recognize tax benefits from uncertain tax positions only if we believe that it is more likely than not that the tax position will be sustained on examination by the taxing authorities based on the technical merits of the position. We recognize interest and penalties related to uncertain tax positions as a component of the provision for income taxes.\n\nAdvertising Expense\n\nAdvertising costs are expensed when incurred and are included in marketing and sales expenses on our consolidated statements of income. We incurred advertising expenses of $2.09 billion, $2.06 billion, and $2.02 billion for the years ended December 31, 2025, 2024, and 2023, respectively.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_2348793",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "ejercicio": 2025,
+       "respuesta": "Los ingresos de Meta pasaron de 164.501.000.000 USD en FY2024 a 200.966.000.000 USD en FY2025, lo que representa un crecimiento de 36.465.000.000 USD (+22,17%). Por geografía del usuario (Item 7, MD&A), los ingresos crecieron un 21% en Estados Unidos y Canadá, un 24% en Europa, un 20% en Asia-Pacífico y un 27% en el Resto del Mundo frente a 2024. Por dirección del cliente (Nota 2, en millones), los ingresos ascendieron en EE. UU. y Canadá a 78.866 $ (+24,77%), en Europa a 46.569 $ (+21,40%), en Asia-Pacífico a 53.817 $ (+19,57%) y en Resto del Mundo a 21.714 $ (+21,14%).",
+       "cifra": 200966000000,
+       "unidad": "USD",
+       "fuente": "ambas",
+       "chunk_id": "META-2025-7-0009",
+       "ticker": "META",
+       "cita": "In 2025, revenue increased by 21% in United States & Canada, 24% in Europe, 20% in Asia-Pacific, and 27% in Rest of World, in each case relative to 2024."
+      },
+      "id": "call_2425174",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 6827,
+     "output_tokens": 1477,
+     "total_tokens": 8304,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 1080
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='Los ingresos de Meta pasaron de 164.501.000.000 USD en FY2024 a 200.966.000.000 USD en FY2025, lo que representa un crecimiento de 36.465.000.000 USD (+22,17%). Por geografía del usuario (Item 7, MD&A), los ingresos crecieron un 21% en Estados Unidos y Canadá, un 24% en Europa, un 20% en Asia-Pacífico y un 27% en el Resto del Mundo frente a 2024. Por dirección del cliente (Nota 2, en millones), los ingresos ascendieron en EE. UU. y Canadá a 78.866 $ (+24,77%), en Europa a 46.569 $ (+21,40%), en Asia-Pacífico a 53.817 $ (+19,57%) y en Resto del Mundo a 21.714 $ (+21,14%).' cifra=200966000000.0 unidad='USD' ticker='META' ejercicio=2025 fuente='ambas' cita='In 2025, revenue increased by 21% in United States & Canada, 24% in Europe, 20% in Asia-Pacific, and 27% in Rest of World, in each case relative to 2024.' chunk_id='META-2025-7-0009'",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_2425174",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a2_retrieval"
+ }
+}

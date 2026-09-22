@@ -1,0 +1,347 @@
+{
+ "item": {
+  "id": "gX-009",
+  "pregunta": "¿Qué obligaciones concretas dice Meta que le impone la DMA europea en FY2025?",
+  "familia": "extractiva",
+  "ticker": "META",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "Restricciones sobre la combinación de datos entre servicios, sobre fusiones y adquisiciones y sobre el diseño de producto.",
+  "cifra_esperada": null,
+  "unidad": null,
+  "concept_xbrl": null,
+  "item_esperado": "1A",
+  "ancla_texto": "For example, the DMA in the European Union imposes restrictions and requirements on companies like ours, including in areas such as the combination of data across services, mergers and acquisitions, and product design",
+  "ancla_inicio": 139080,
+  "ancla_fin": 139297,
+  "chunk_id_esperado": "META-2025-1A-0060",
+  "herramienta_esperada": [
+   "search_filings"
+  ],
+  "autor": "grupo-X"
+ },
+ "rep": 3,
+ "thread_id": "a2_retrieval-rep3-gX-009",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "En su informe 10-K de FY2025, Meta señala que la Ley de Mercados Digitales (DMA) de la Unión Europea impone restricciones y requisitos específicos a empresas designadas como guardianes de acceso (gatekeepers) en áreas que incluyen la combinación de datos entre servicios, las fusiones y adquisiciones, y el diseño de productos. Además, la normativa afecta a sus modelos de consentimiento y publicidad (como su modelo de suscripción sin anuncios y opciones de anuncios menos personalizados).",
+   "cifra": null,
+   "unidad": null,
+   "ticker": "META",
+   "ejercicio": 2025,
+   "fuente": "texto",
+   "cita": "For example, the DMA in the European Union imposes restrictions and requirements on companies like ours, including in areas such as the combination of data across services, mergers and acquisitions, and product design.",
+   "chunk_id": "META-2025-1A-0060"
+  },
+  "herramientas": [
+   "list_available",
+   "search_filings",
+   "search_filings",
+   "search_filings",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "fiscal_year": 2025,
+     "item": "1A",
+     "ticker": "META",
+     "k": 5,
+     "query": "Digital Markets Act DMA obligations gatekeeper"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "7",
+     "fiscal_year": 2025,
+     "k": 3,
+     "ticker": "META",
+     "query": "DMA Digital Markets Act"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "1A",
+     "query": "\"Digital Markets Act\"",
+     "ticker": "META",
+     "k": 5,
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "k": 3,
+     "item": "1A",
+     "query": "European Commission subscription for no ads model DMA",
+     "fiscal_year": 2025,
+     "ticker": "META"
+    }
+   }
+  ],
+  "n_llamadas": 5,
+  "tokens_in": 32957,
+  "tokens_out": 1696,
+  "coste_usd": 0.03107775,
+  "latencia_s": 68.73775359988213,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Qué obligaciones concretas dice Meta que le impone la DMA europea en FY2025?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_75891",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1397,
+     "output_tokens": 55,
+     "total_tokens": 1452,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 45
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_75891",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "fiscal_year": 2025,
+       "item": "1A",
+       "ticker": "META",
+       "k": 5,
+       "query": "Digital Markets Act DMA obligations gatekeeper"
+      },
+      "id": "call_54909",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1699,
+     "output_tokens": 113,
+     "total_tokens": 1812,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 64
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'Digital Markets Act\" gatekeeper obligations')\n\n[META-2025-1A-0061] META FY2025 Item 1A (similitud 0.737)\nunder the DMA will likely be subject to further interpretation and regulatory engagement. Pending or future proposals to modify competition laws\n\nin a number of jurisdictions could have similar effects. Further, the DSA, which started to apply to our business as of August 2023, imposes certain restrictions and requirements for our products and services, subjects us to increased compliance costs, and includes significant penalties for non-compliance. In the UK, the OSA establishes similar types of obligations. The interpretation and enforcement of the DMA, DSA, and OSA, as well as the imposition and amount of penalties for non-compliance, are subject to significant uncertainty. In addition, some countries, such as the UK, India, and Turkey, are considering or have passed legislation implementing data protection requirements, new competition requirements, or requiring local storage and processing of data or similar requirements that could require substantial changes to our products, increase the cost and complexity of delivering our services, cause us to cease the offering of our products and services in certain countries, and/or result in fines or other penalties. We are also subject to new legislation or regulatory decisions that restrict our ability to collect and use information about minors or also limit our advertising services or our ability to offer products and services to minors in certain jurisdictions. For example, several U.S. states, including Arkansas, California, Colorado, Florida, New York, Texas, and Utah, among others, have passed laws restricting our ability to offer services to minors without parental consent or otherwise limiting the services that we can provide to minors. While enforcement of a number of these statutes (or parts of them) has been enjoined or stayed as a result of legal challenges to them, it is possible that the decisions to enjoin these statutes may be overturned, the injunctive orders may expire, and certain statutes are coming into effect that may not be subject to injunctions. Should enforcement of one or more of these statutes not be enjoined, we may not be able to comply with certain of these statutes by their respective effective dates. We are facing similar challenges in other jurisdictions, including Europe, Latin America, and Asia-Pacific. For example, various EU member states are currently considering a range of legislation from mandatory age verification requirements to banning minor access to social media services. In addition, recent legislation in Australia imposes a social media ban for users under 16 years old, requiring certain social media companies to take reasonable steps to ensure under 16 year olds do not hold user accounts. As a\n\n---\n\n[META-2025-1A-0066] META FY2025 Item 1A (similitud 0.729)\nFTC consent order, the GDPR, U.S. state privacy laws, youth social media laws, the ePrivacy Directive, the DMA, the DSA, the OSA, and other regulatory and legislative privacy requirements require significant operational resources and modifications to our business practices, and any compliance failures may have a material adverse effect on our business, reputation, and financial results.\n\nWe are engaged in ongoing privacy compliance and oversight efforts, including in connection with our modified consent order with the FTC, requirements of the GDPR and UK GDPR, and other current and anticipated regulatory and legislative requirements around the world, such as U.S. state privacy laws, youth social media laws, the ePrivacy Directive,\n\nDMA, DSA, OSA, EU AI Act, the Korean Personal Information Protection Act, and the Indian Digital Personal Data Protection Act. In particular, we are maintaining a comprehensive privacy program in connection with the FTC consent order that includes substantial management and board of directors oversight, stringent operational requirements and reporting obligations, prohibitions against making misrepresentations relating to user data, a process to regularly certify our compliance with the privacy program to the FTC, and regular assessments of our privacy program by an independent third-party assessor, which has been and will continue to be challenging and costly to maintain and enhance. These compliance and oversight efforts are increasing demand on our systems and resources, and require significant new and ongoing investments, including investments in compliance processes, personnel, and technical infrastructure. We continually reallocate resources internally to assist with these efforts, and this has had, and will continue to have, an adverse impact on our other business initiatives. In addition, these efforts require substantial modifications to our business practices and make some practices such as product and ads development more difficult, time-consuming, and costly. As a result, we believe our ability to develop and launch new features, products, and services in a timely manner has been and will continue to be adversely affected. Further, our privacy compliance and oversight efforts have required, and we expect will continue to require, significant time and attention from our management and board of directors. The requirements of the FTC consent order and other privacy-related laws and regulations are complex and apply broadly to our business, and from time to time we notify relevant authorities of instances where we are not in full compliance with these requirements or otherwise discover privacy issues, and we expect to continue to do so as any such issues arise in the future. In addition, regulatory and legislative privacy requirements are constantly evolving and can be subject to\n\n---\n\n[META-2025-1A-0060] META FY2025 Item 1A (similitud 0.708)\ncompliance with requirements under the GDPR, DMA, and EU consumer laws. For example, in March 2024, the European Commission opened formal proceedings regarding the compliance of our \"subscription for no ads\" model with requirements under the DMA, and it issued preliminary findings in July 2024. In addition, the European Data Protection Board has published an opinion on the operation of such models under GDPR and European consumer protection organizations have raised concerns regarding our compliance with consumer protection laws. In response to these developments, in November 2024, we began offering users in the European Union, European Economic Area, and Switzerland who elect to continue using our services free-of-charge, supported by ads, an option to see less personalized ads (LPA), which are less relevant and effective than our premium ad offerings. In April 2025, the European Commission issued a final decision that our \"subscription for no ads\" model does not comply with such requirements. We made significant modifications to LPA since the European Commission issued its final decision. We have appealed the European Commission's decision but further modifications to our model may be imposed during the appeal process, which could result in a materially worse user experience for European users and a significant impact to our European business and revenue. These or any similar developments in the future may negatively impact our user growth and engagement, revenue, and financial results.\n\nSimilarly, there are a number of legislative proposals or recently enacted laws in the European Union, the United States, at both the federal and state level, as well as other jurisdictions that could impose new obligations or limitations in areas affecting our business. For example, the DMA in the European Union imposes restrictions and requirements on companies like ours, including in areas such as the combination of data across services, mergers and acquisitions, and product design. The DMA also includes significant penalties for non-compliance, and its key requirements are enforceable against designated gatekeeper companies as of March 2024. The DMA has caused, and may in the future cause, us to incur significant compliance costs and make changes to our products or business practices. The requirements under the DMA will likely be subject to further interpretation and regulatory engagement. Pending or future proposals to modify competition laws\n\nin a number of jurisdictions could have similar effects. Further, the DSA, which started to apply to our business as of August 2023, imposes certain restrictions and requirements for our products and services, subjects us to increased compliance costs, and includes significant penalties for non-compliance.\n\n---\n\n[META-2025-1A-0062] META FY2025 Item 1A (similitud 0.703)\n, Latin America, and Asia-Pacific. For example, various EU member states are currently considering a range of legislation from mandatory age verification requirements to banning minor access to social media services. In addition, recent legislation in Australia imposes a social media ban for users under 16 years old, requiring certain social media companies to take reasonable steps to ensure under 16 year olds do not hold user accounts. As a result of legislative proposals, new laws, and evolving interpretation of existing laws in Europe, Asia-Pacific, Latin America, and other jurisdictions, we are also, and expect to continue to be, subject to new requirements relating to allegedly fraudulent or illegal activities by third parties on our platform, which could continue to cause us to incur significant compliance costs or make changes to our products or business practices, and could subject us to additional fines and penalties or liability for losses to users or other third parties in such transactions. In addition, the Province of British Columbia has considered, and may in the future consider, a bill that would permit the government to recover public health-related costs potentially associated with providing goods and services in British Columbia, including potentially social media services.\n\nWe are also subject to disclosure, reporting, and diligence requirements regarding our social and environmental risks and initiatives. There has been increased focus on these initiatives by many regulators, investors, and other stakeholders and any actual or perceived failure by us to comply with applicable federal, state, local or international laws and regulations could result in legal and regulatory proceedings against us and materially and adversely affect our business, financial condition, and results of operations.\n\nThese laws and regulations, as well as any associated claims, inquiries, or investigations or any government actions, have led to, and may in the future lead to, unfavorable outcomes including increased compliance costs, changes to our products, loss of revenue, delays or impediments in the development of new products, negative publicity and reputational harm, increased operating costs, diversion of management time and attention, and remedies that harm our business, including fines, damages, or orders that we modify or cease existing business practices.\n\nWe have been and remain subject to regulatory and other government investigations, enforcement actions, and settlements, and we expect to continue to be subject to such proceedings and other inquiries in the future, which could cause us to incur substantial costs or require us to change our business practices in a manner materially adverse to our business.\n\nWe receive formal and informal inquiries from government authorities and regulators regarding our compliance with laws and regulations, many of which are evolving\n\n---\n\n[META-2025-1A-0001] META FY2025 Item 1A (similitud 0.698)\nRisks Related to Government Regulation and Enforcement\n\n•government restrictions on access to Facebook or our other products, or other actions that impair our ability to sell or deliver advertising, in their countries;\n\n•complex and evolving U.S. and foreign privacy, data use, data combination, data protection, content and content moderation, competition, youth, safety, consumer protection, advertising, and other laws and regulations, including the General Data Protection Regulation (GDPR), Digital Markets Act (DMA), Digital Services Act (DSA), UK Online Safety Act (OSA), Artificial Intelligence Act (EU AI Act), and the UK Digital Markets, Competition and Consumer Act (DMCC);\n\n•the impact of government investigations, enforcement actions, and settlements, including litigation and investigations by privacy, consumer protection, and competition authorities, among others;\n\n•our ability to comply with regulatory and legislative privacy requirements, including our consent order with the Federal Trade Commission (FTC);\n\nRisks Related to Data, Security, Platform Integrity, and Intellectual Property\n\n•the occurrence of security breaches, improper access to or disclosure of our data or user data, and other cyber incidents, as well as intentional misuse of our services and other undesirable activity on our platform;\n\n•our ability to obtain, maintain, protect, and enforce our intellectual property rights; and\n\nRisks Related to Ownership of Our Class A Common Stock\n\n•limitations on the ability of holders of our Class A Common Stock to influence corporate matters due to the dual class structure of our common stock and the control of a majority of the voting power of our outstanding capital stock by our founder, Chairman, and Chief Executive Officer (CEO).",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_54909",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "7",
+       "fiscal_year": 2025,
+       "k": 3,
+       "ticker": "META",
+       "query": "DMA Digital Markets Act"
+      },
+      "id": "call_2580792",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4372,
+     "output_tokens": 203,
+     "total_tokens": 4575,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 158
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'Digital Markets Act\" (\"DMA\") \"Item 1A\" \"Risk Factors\" \"European Union')\n\n[META-2025-7-0007] META FY2025 Item 7 (similitud 0.634)\nOther Business and Macroeconomic Conditions\n\nOther global and regional business, macroeconomic, and geopolitical conditions also have had, and we believe will continue to have, an impact on our user growth and engagement and advertising revenue. In particular, we believe advertising budgets have been pressured from time to time by factors such as inflation, economic policies and international trade, high interest rates, and related market uncertainty, which has led to reduced marketer spending. We are currently subject to increased business, macroeconomic, and geopolitical uncertainty, including as a result of volatility around international trade, which could impact our financial results in future periods.\n\nIn addition, competitive products and services have reduced some users' engagement with our products and services. We are investing in Reels and in AI initiatives across our products, including our AI-powered discovery engine to recommend relevant content, which we have already seen results in improved user engagement and monetization of our products. However, we continue to face competition from other products and services within certain demographics, in particular younger users. In addition, while Reels is growing in usage, it monetizes at a lower rate than our Feed and Stories products and we expect it will continue to monetize at a lower rate for the foreseeable future. We also have seen fluctuations and declines in the size of our active user base in one or more regions from time to time due to geopolitical conditions, which have adversely affected our user growth and engagement. These trends have adversely affected our advertising revenue and we expect will continue to adversely affect our advertising revenue in the foreseeable future.\n\nAlthough we regularly evaluate a variety of sources to understand trends in our advertising revenue, we do not have perfect visibility into the factors driving advertiser spending decisions and our assessments involve complex judgments about what is driving advertising decisions across a large and diversified advertiser base across the globe. Trends impacting advertising spend are also dynamic and interrelated. As a result, it is difficult to identify with precision which advertiser spending decisions are attributable to which trends, and we are unable to quantify the exact impact that each trend had on our advertising revenue during the periods presented.\n\n---\n\n[META-2025-7-0016] META FY2025 Item 7 (similitud 0.625)\nValuation of Non-marketable Equity Investments\n\nImpairment testing for non-marketable equity investments, including equity investments without readily determinable fair values accounted for using either the measurement alternative or the equity method, is performed at each reporting date to determine whether there are triggering events for impairment. Such qualitative assessment considers factors such as, but not limited to, the investee's financial condition and business outlook; industry and sector performance; regulatory, economic or technological environment; operational and financing cash flows; and other relevant events and factors affecting the investee. When indicators of impairment exist, we estimate the fair value of our non-marketable equity investments using the market approach and/or the income approach and recognize impairment loss in our consolidated statements of income if the estimated fair value is less than the carrying value. For equity method investments, an impairment loss is recognized when the impairment is considered other-than-temporary.\n\nIn addition, under the measurement alternative, determining whether another non-marketable equity investment of the same issuer is similar to the non-marketable equity investment we hold may require judgment in (a) assessment of differences in rights and obligations associated with the instruments such as voting rights, distribution rights and preferences, and conversion features, and (b) adjustments to the observable price for differences such as, but not limited to, rights and obligations, control premium, liquidity, or principal or most advantageous markets. The identification of observable transactions will depend on the timely reporting of these transactions from our investee companies, which may occur in a period subsequent to when the transactions take place. Therefore, our fair value adjustment for these observable transactions may occur in a period subsequent to when the transaction actually occurred. For additional information, see Note 5 — Non-Marketable Equity Investments of the accompanying notes to the consolidated financial statements included in Part II, Item 8, \"Financial Statements and Supplementary Data\" of this Annual Report on Form 10-K.\n\nChange in Accounting Estimate\n\nIn January 2025, we completed an assessment of the useful lives of property and equipment, which resulted in an increase in the estimated useful lives of most servers and network assets to 5.5 years, effective January 1, 2025. For additional information regarding the change in useful lives of our servers and network assets, see Note 1 — Summary of Significant Accounting Policies in the accompanying notes to the consolidated financial statements included in Part II, Item 8, \"Financial Statements and Supplementary Data\" of this Annual Report on Form 10-K.\n\n---\n\n[META-2025-7-0010] META FY2025 Item 7 (similitud 0.611)\nTrends in Our Family Metrics\n\nThe numbers for our key Family metrics, our DAP and average revenue per person (ARPP), do not include users on our other products unless they would otherwise qualify as DAP based on their other activities on our Family products.\n\nTrends in the number of people in our community affect our revenue and financial results by influencing the number of ads we are able to show, the value of our ads to marketers, as well as our expenses and capital expenditures. Substantially all of our daily active people (as defined below) access our Family products on mobile devices.\n\n•Daily Active People (DAP). We define a daily active person as a registered and logged-in user of Facebook, Instagram, Messenger, and/or WhatsApp (collectively, our \"Family\" of products) who visited at least one of these Family products through a mobile device application or using a web or mobile browser on a given day. We do not require people to use a common identifier or link their accounts to use multiple products in our Family, and therefore must seek to attribute multiple user accounts within and across products to individual people. Our calculations of DAP rely upon complex techniques, algorithms, and machine learning models that seek to estimate the underlying number of unique people using one or more of these products, including by matching user accounts within an individual product and across multiple products when we believe they are attributable to a single person, and counting such group of accounts as one person. As these techniques and models require significant judgment, are developed based on internal reviews of limited samples of user accounts, and are calibrated against user survey data, there is necessarily some margin of error in our estimates. We view DAP as a measure of engagement across our products. For additional information, see the section entitled \"Limitations of Key Metrics and Other Data\" in this Annual Report on Form 10-K.\n\n------\n\nNote: We report the numbers of DAP as specific amounts, but these numbers are estimates of the numbers of unique people using our products and are subject to statistical variances and errors. While we expect the error margin for these estimates to vary from period to period, we estimate that such margin generally will be approximately 3% of our worldwide DAP. At our scale, it is very difficult to attribute multiple user accounts within and across products to individual people, and it is possible that the actual numbers of unique people using our products may vary significantly from our estimates, potentially beyond our estimated error margins. For additional",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_2580792",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "1A",
+       "query": "\"Digital Markets Act\"",
+       "ticker": "META",
+       "k": 5,
+       "fiscal_year": 2025
+      },
+      "id": "call_2307212",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 6133,
+     "output_tokens": 87,
+     "total_tokens": 6220,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 40
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'Digital Markets Act')\n\n[META-2025-1A-0061] META FY2025 Item 1A (similitud 0.726)\nunder the DMA will likely be subject to further interpretation and regulatory engagement. Pending or future proposals to modify competition laws\n\nin a number of jurisdictions could have similar effects. Further, the DSA, which started to apply to our business as of August 2023, imposes certain restrictions and requirements for our products and services, subjects us to increased compliance costs, and includes significant penalties for non-compliance. In the UK, the OSA establishes similar types of obligations. The interpretation and enforcement of the DMA, DSA, and OSA, as well as the imposition and amount of penalties for non-compliance, are subject to significant uncertainty. In addition, some countries, such as the UK, India, and Turkey, are considering or have passed legislation implementing data protection requirements, new competition requirements, or requiring local storage and processing of data or similar requirements that could require substantial changes to our products, increase the cost and complexity of delivering our services, cause us to cease the offering of our products and services in certain countries, and/or result in fines or other penalties. We are also subject to new legislation or regulatory decisions that restrict our ability to collect and use information about minors or also limit our advertising services or our ability to offer products and services to minors in certain jurisdictions. For example, several U.S. states, including Arkansas, California, Colorado, Florida, New York, Texas, and Utah, among others, have passed laws restricting our ability to offer services to minors without parental consent or otherwise limiting the services that we can provide to minors. While enforcement of a number of these statutes (or parts of them) has been enjoined or stayed as a result of legal challenges to them, it is possible that the decisions to enjoin these statutes may be overturned, the injunctive orders may expire, and certain statutes are coming into effect that may not be subject to injunctions. Should enforcement of one or more of these statutes not be enjoined, we may not be able to comply with certain of these statutes by their respective effective dates. We are facing similar challenges in other jurisdictions, including Europe, Latin America, and Asia-Pacific. For example, various EU member states are currently considering a range of legislation from mandatory age verification requirements to banning minor access to social media services. In addition, recent legislation in Australia imposes a social media ban for users under 16 years old, requiring certain social media companies to take reasonable steps to ensure under 16 year olds do not hold user accounts. As a\n\n---\n\n[META-2025-1A-0060] META FY2025 Item 1A (similitud 0.723)\ncompliance with requirements under the GDPR, DMA, and EU consumer laws. For example, in March 2024, the European Commission opened formal proceedings regarding the compliance of our \"subscription for no ads\" model with requirements under the DMA, and it issued preliminary findings in July 2024. In addition, the European Data Protection Board has published an opinion on the operation of such models under GDPR and European consumer protection organizations have raised concerns regarding our compliance with consumer protection laws. In response to these developments, in November 2024, we began offering users in the European Union, European Economic Area, and Switzerland who elect to continue using our services free-of-charge, supported by ads, an option to see less personalized ads (LPA), which are less relevant and effective than our premium ad offerings. In April 2025, the European Commission issued a final decision that our \"subscription for no ads\" model does not comply with such requirements. We made significant modifications to LPA since the European Commission issued its final decision. We have appealed the European Commission's decision but further modifications to our model may be imposed during the appeal process, which could result in a materially worse user experience for European users and a significant impact to our European business and revenue. These or any similar developments in the future may negatively impact our user growth and engagement, revenue, and financial results.\n\nSimilarly, there are a number of legislative proposals or recently enacted laws in the European Union, the United States, at both the federal and state level, as well as other jurisdictions that could impose new obligations or limitations in areas affecting our business. For example, the DMA in the European Union imposes restrictions and requirements on companies like ours, including in areas such as the combination of data across services, mergers and acquisitions, and product design. The DMA also includes significant penalties for non-compliance, and its key requirements are enforceable against designated gatekeeper companies as of March 2024. The DMA has caused, and may in the future cause, us to incur significant compliance costs and make changes to our products or business practices. The requirements under the DMA will likely be subject to further interpretation and regulatory engagement. Pending or future proposals to modify competition laws\n\nin a number of jurisdictions could have similar effects. Further, the DSA, which started to apply to our business as of August 2023, imposes certain restrictions and requirements for our products and services, subjects us to increased compliance costs, and includes significant penalties for non-compliance.\n\n---\n\n[META-2025-1A-0001] META FY2025 Item 1A (similitud 0.711)\nRisks Related to Government Regulation and Enforcement\n\n•government restrictions on access to Facebook or our other products, or other actions that impair our ability to sell or deliver advertising, in their countries;\n\n•complex and evolving U.S. and foreign privacy, data use, data combination, data protection, content and content moderation, competition, youth, safety, consumer protection, advertising, and other laws and regulations, including the General Data Protection Regulation (GDPR), Digital Markets Act (DMA), Digital Services Act (DSA), UK Online Safety Act (OSA), Artificial Intelligence Act (EU AI Act), and the UK Digital Markets, Competition and Consumer Act (DMCC);\n\n•the impact of government investigations, enforcement actions, and settlements, including litigation and investigations by privacy, consumer protection, and competition authorities, among others;\n\n•our ability to comply with regulatory and legislative privacy requirements, including our consent order with the Federal Trade Commission (FTC);\n\nRisks Related to Data, Security, Platform Integrity, and Intellectual Property\n\n•the occurrence of security breaches, improper access to or disclosure of our data or user data, and other cyber incidents, as well as intentional misuse of our services and other undesirable activity on our platform;\n\n•our ability to obtain, maintain, protect, and enforce our intellectual property rights; and\n\nRisks Related to Ownership of Our Class A Common Stock\n\n•limitations on the ability of holders of our Class A Common Stock to influence corporate matters due to the dual class structure of our common stock and the control of a majority of the voting power of our outstanding capital stock by our founder, Chairman, and Chief Executive Officer (CEO).\n\n---\n\n[META-2025-1A-0070] META FY2025 Item 1A (similitud 0.688)\nor potentially significant penalties, including fines, service throttling, or advertising bans, for failure to remove certain types of content or follow certain processes. For example, we have been subject to fines and may in the future be subject to other penalties in connection with social media legislation in Turkey, and we have been subject to fines and service blocking and prohibition in Russia. Content-related legislation also has required us, and may require us in the future, to change our products or business practices, increase our costs, or otherwise impact our operations or our ability to provide services in certain geographies. For example, the European Copyright Directive requires certain online services to obtain authorizations for copyrighted content or to implement measures to prevent the availability of that content, which may require us to make substantial investments in compliance processes. Member states' laws implementing the European Copyright Directive may also require online platforms to pay for content. In addition, our products and services are subject to restrictions and requirements, and we are subject to increased compliance costs, and potential fines or other penalties in the event of non-compliance, as a result of the Digital Services Act in the European Union, which started to apply to our business as of August 2023, and other content-related legislative developments such as the Online Safety and Media Regulation Act in Ireland and the Online Safety Act in the United Kingdom. Certain countries and U.S. states have also implemented or proposed legislation that may require us to pay publishers for certain news content shared on our products. For example, as a result of such legislation in Canada, we have ended the availability of news content for Canadian users on Facebook and Instagram. In the United States, changes to the protections available under Section 230 or the First Amendment to the U.S. Constitution or new state or federal content-related legislation or investigations may increase our costs or require significant changes to our products, business practices, or operations, which could adversely affect user growth and engagement.\n\nAny of the foregoing events could adversely affect our business and financial results.\n\nPayment-related activities may subject us to additional regulatory requirements, regulatory actions, and other risks that could be costly and difficult to comply with or that could harm our business.\n\nSeveral of our products offer Payments functionality, including enabling our users to purchase tangible, virtual, and digital goods from merchants and developers that offer applications using our Payments infrastructure, send money to other users, and make donations to certain charitable organizations, among other activities. We are subject to a variety of laws and regulations in the United States, Europe\n\n---\n\n[META-2025-1A-0062] META FY2025 Item 1A (similitud 0.688)\n, Latin America, and Asia-Pacific. For example, various EU member states are currently considering a range of legislation from mandatory age verification requirements to banning minor access to social media services. In addition, recent legislation in Australia imposes a social media ban for users under 16 years old, requiring certain social media companies to take reasonable steps to ensure under 16 year olds do not hold user accounts. As a result of legislative proposals, new laws, and evolving interpretation of existing laws in Europe, Asia-Pacific, Latin America, and other jurisdictions, we are also, and expect to continue to be, subject to new requirements relating to allegedly fraudulent or illegal activities by third parties on our platform, which could continue to cause us to incur significant compliance costs or make changes to our products or business practices, and could subject us to additional fines and penalties or liability for losses to users or other third parties in such transactions. In addition, the Province of British Columbia has considered, and may in the future consider, a bill that would permit the government to recover public health-related costs potentially associated with providing goods and services in British Columbia, including potentially social media services.\n\nWe are also subject to disclosure, reporting, and diligence requirements regarding our social and environmental risks and initiatives. There has been increased focus on these initiatives by many regulators, investors, and other stakeholders and any actual or perceived failure by us to comply with applicable federal, state, local or international laws and regulations could result in legal and regulatory proceedings against us and materially and adversely affect our business, financial condition, and results of operations.\n\nThese laws and regulations, as well as any associated claims, inquiries, or investigations or any government actions, have led to, and may in the future lead to, unfavorable outcomes including increased compliance costs, changes to our products, loss of revenue, delays or impediments in the development of new products, negative publicity and reputational harm, increased operating costs, diversion of management time and attention, and remedies that harm our business, including fines, damages, or orders that we modify or cease existing business practices.\n\nWe have been and remain subject to regulatory and other government investigations, enforcement actions, and settlements, and we expect to continue to be subject to such proceedings and other inquiries in the future, which could cause us to incur substantial costs or require us to change our business practices in a manner materially adverse to our business.\n\nWe receive formal and informal inquiries from government authorities and regulators regarding our compliance with laws and regulations, many of which are evolving",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_2307212",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "k": 3,
+       "item": "1A",
+       "query": "European Commission subscription for no ads model DMA",
+       "fiscal_year": 2025,
+       "ticker": "META"
+      },
+      "id": "call_2516421",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 8785,
+     "output_tokens": 105,
+     "total_tokens": 8890,
+     "input_token_details": {
+      "cache_read": 3894,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 55
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'European Commission\" \"Digital Markets Act\" (\"subscription for no ads\" OR \"ad-free subscription\" OR \"pay or consent\")')\n\n[META-2025-1A-0010] META FY2025 Item 1A (similitud 0.756)\nchange the legal basis for behavioral advertising on Facebook and Instagram in the European Union, European Economic Area, and Switzerland from \"legitimate interests\" to \"consent,\" and in November 2023 we began offering users in the region a \"subscription for no ads\" alternative. We are engaging with regulators on our consent model, including regarding compliance with requirements under the GDPR, DMA, and EU consumer laws. For example, in March 2024, the European Commission opened formal proceedings regarding the compliance of our \"subscription for no ads\" model with requirements under the DMA, and it issued preliminary findings in July 2024. In addition, the European Data Protection Board has published an opinion on the operation of such models under GDPR and European consumer protection organizations have raised concerns regarding our compliance with consumer protection laws. In response to these developments, in November 2024, we began offering users in the European Union, European Economic Area, and Switzerland who elect to continue using our services free-of-charge, supported by ads, an option to see less personalized ads (LPA), which are less relevant and effective than our premium ad offerings. In April 2025, the European Commission issued a final decision that our \"subscription for no ads\" model does not comply with such requirements. We made significant modifications to LPA since the European Commission issued its final decision. We have appealed the European Commission's decision but further modifications to our model may be imposed during the appeal process, which could result in a materially worse user experience for European users and a significant impact to our European business and revenue.\n\nIn addition, mobile operating system and browser providers, such as Apple and Google, have implemented product changes and/or announced plans to limit the ability of websites and application developers to collect and use these signals to target and measure advertising. For example, in 2021, Apple made certain changes to its products and data use policies in connection with changes to its iOS operating system that reduce our and other iOS developers' ability to target and measure advertising, which has negatively impacted, and we expect will continue to negatively impact, the size of the budgets marketers are willing to commit to us and other advertising platforms. In addition, we have implemented, and may continue to implement, product changes that give users the ability to limit our use of such data signals to improve ads and other experiences on our products and services, including changes implemented in connection with the GDPR, ePrivacy Directive, DMA, and other regulatory frameworks.\n\nThese developments have limited\n\n---\n\n[META-2025-1A-0060] META FY2025 Item 1A (similitud 0.753)\ncompliance with requirements under the GDPR, DMA, and EU consumer laws. For example, in March 2024, the European Commission opened formal proceedings regarding the compliance of our \"subscription for no ads\" model with requirements under the DMA, and it issued preliminary findings in July 2024. In addition, the European Data Protection Board has published an opinion on the operation of such models under GDPR and European consumer protection organizations have raised concerns regarding our compliance with consumer protection laws. In response to these developments, in November 2024, we began offering users in the European Union, European Economic Area, and Switzerland who elect to continue using our services free-of-charge, supported by ads, an option to see less personalized ads (LPA), which are less relevant and effective than our premium ad offerings. In April 2025, the European Commission issued a final decision that our \"subscription for no ads\" model does not comply with such requirements. We made significant modifications to LPA since the European Commission issued its final decision. We have appealed the European Commission's decision but further modifications to our model may be imposed during the appeal process, which could result in a materially worse user experience for European users and a significant impact to our European business and revenue. These or any similar developments in the future may negatively impact our user growth and engagement, revenue, and financial results.\n\nSimilarly, there are a number of legislative proposals or recently enacted laws in the European Union, the United States, at both the federal and state level, as well as other jurisdictions that could impose new obligations or limitations in areas affecting our business. For example, the DMA in the European Union imposes restrictions and requirements on companies like ours, including in areas such as the combination of data across services, mergers and acquisitions, and product design. The DMA also includes significant penalties for non-compliance, and its key requirements are enforceable against designated gatekeeper companies as of March 2024. The DMA has caused, and may in the future cause, us to incur significant compliance costs and make changes to our products or business practices. The requirements under the DMA will likely be subject to further interpretation and regulatory engagement. Pending or future proposals to modify competition laws\n\nin a number of jurisdictions could have similar effects. Further, the DSA, which started to apply to our business as of August 2023, imposes certain restrictions and requirements for our products and services, subjects us to increased compliance costs, and includes significant penalties for non-compliance.\n\n---\n\n[META-2025-1A-0059] META FY2025 Item 1A (similitud 0.681)\nand other countries have enacted similar data protection regulations imposing data privacy-related requirements on products and services offered to users in their respective jurisdictions. The California Consumer Privacy Act, as amended by the California Privacy Rights Act, also establishes certain transparency rules and creates certain data privacy rights for users, including limitations on our use of certain sensitive personal information and more ability for users to control the purposes for which their data is shared with third parties. Other states have proposed or enacted similar comprehensive privacy laws that afford users with similar data privacy rights and controls. These laws and regulations are evolving and subject to interpretation, and resulting limitations on our advertising services, or reductions of advertising by marketers, have to some extent adversely affected, and will continue to adversely affect, our advertising business. Some states have also proposed or enacted laws specifically focused on whether and how a company can moderate content on its services, and/or on the privacy rights and controls for users under 18 years old and their parents or guardians. Like comprehensive privacy laws, these laws are evolving and subject to interpretation, and may restrict our ability to offer certain products and services provided to all or certain cohorts of users in those states, adversely affecting our advertising business. In Europe, evolving interpretation of the ePrivacy Directive's requirements regarding the use of cookies and similar technologies may lead to regulators imposing specific measures in the future which could directly impact our use of such technologies. In addition, the ePrivacy Directive and national implementation laws impose additional limitations on the use of data across messaging products and include significant penalties for non-compliance. Changes to our products or business practices as a result of these or similar developments have adversely affected, and may in the future adversely affect, our advertising business. For example, in response to regulatory developments in Europe, we announced plans to change the legal basis for behavioral advertising on Facebook and Instagram in the European Union, European Economic Area, and Switzerland from \"legitimate interests\" to \"consent,\" and in November 2023 we began offering users in the region a \"subscription for no ads\" alternative. We are engaging with regulators on our consent model, including regarding compliance with requirements under the GDPR, DMA, and EU consumer laws. For example, in March 2024, the European Commission opened formal proceedings regarding the compliance of our \"subscription for no ads\" model with requirements under the DMA, and it issued preliminary findings in July 2024. In addition, the European Data Protection Board has published an opinion on the operation of such models under GDPR and European",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_2516421",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "chunk_id": "META-2025-1A-0060",
+       "ejercicio": 2025,
+       "cita": "For example, the DMA in the European Union imposes restrictions and requirements on companies like ours, including in areas such as the combination of data across services, mergers and acquisitions, and product design.",
+       "cifra": null,
+       "fuente": "texto",
+       "ticker": "META",
+       "unidad": null,
+       "respuesta": "En su informe 10-K de FY2025, Meta señala que la Ley de Mercados Digitales (DMA) de la Unión Europea impone restricciones y requisitos específicos a empresas designadas como guardianes de acceso (gatekeepers) en áreas que incluyen la combinación de datos entre servicios, las fusiones y adquisiciones, y el diseño de productos. Además, la normativa afecta a sus modelos de consentimiento y publicidad (como su modelo de suscripción sin anuncios y opciones de anuncios menos personalizados)."
+      },
+      "id": "call_2257186",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 10571,
+     "output_tokens": 1133,
+     "total_tokens": 11704,
+     "input_token_details": {
+      "cache_read": 7829,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 916
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='En su informe 10-K de FY2025, Meta señala que la Ley de Mercados Digitales (DMA) de la Unión Europea impone restricciones y requisitos específicos a empresas designadas como guardianes de acceso (gatekeepers) en áreas que incluyen la combinación de datos entre servicios, las fusiones y adquisiciones, y el diseño de productos. Además, la normativa afecta a sus modelos de consentimiento y publicidad (como su modelo de suscripción sin anuncios y opciones de anuncios menos personalizados).' cifra=None unidad=None ticker='META' ejercicio=2025 fuente='texto' cita='For example, the DMA in the European Union imposes restrictions and requirements on companies like ours, including in areas such as the combination of data across services, mergers and acquisitions, and product design.' chunk_id='META-2025-1A-0060'",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_2257186",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a2_retrieval"
+ }
+}

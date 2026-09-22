@@ -1,0 +1,290 @@
+{
+ "item": {
+  "id": "gX-009",
+  "pregunta": "¿Qué obligaciones concretas dice Meta que le impone la DMA europea en FY2025?",
+  "familia": "extractiva",
+  "ticker": "META",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "Restricciones sobre la combinación de datos entre servicios, sobre fusiones y adquisiciones y sobre el diseño de producto.",
+  "cifra_esperada": null,
+  "unidad": null,
+  "concept_xbrl": null,
+  "item_esperado": "1A",
+  "ancla_texto": "For example, the DMA in the European Union imposes restrictions and requirements on companies like ours, including in areas such as the combination of data across services, mergers and acquisitions, and product design",
+  "ancla_inicio": 139080,
+  "ancla_fin": 139297,
+  "chunk_id_esperado": "META-2025-1A-0060",
+  "herramienta_esperada": [
+   "search_filings"
+  ],
+  "autor": "grupo-X"
+ },
+ "rep": 2,
+ "thread_id": "a4_comparativas-rep2-gX-009",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "En su informe 10-K para el ejercicio 2025, Meta señala que la Ley de Mercados Digitales (DMA) de la Unión Europea impone restricciones y requisitos específicos a empresas designadas como guardianes de acceso (gatekeepers) en áreas tales como la combinación de datos entre diferentes servicios, fusiones y adquisiciones, y el diseño de productos. Asimismo, detalla que la DMA afecta el uso de señales de datos para publicidad dirigida, derivando en procedimientos de la Comisión Europea contra su modelo de 'suscripción sin anuncios' y obligando a implementar modificaciones a sus productos y prácticas comerciales (como los anuncios menos personalizados o LPA).",
+   "cifra": null,
+   "unidad": null,
+   "ticker": "META",
+   "ejercicio": 2025,
+   "fuente": "texto",
+   "cita": "For example, the DMA in the European Union imposes restrictions and requirements on companies like ours, including in areas such as the combination of data across services, mergers and acquisitions, and product design.",
+   "chunk_id": "META-2025-1A-0060"
+  },
+  "herramientas": [
+   "list_available",
+   "search_filings",
+   "search_filings",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "query": "Digital Markets Act DMA obligations gatekeeper",
+     "item": "1A",
+     "fiscal_year": 2025,
+     "ticker": "META"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "7",
+     "query": "Digital Markets Act DMA",
+     "ticker": "META",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "1A",
+     "fiscal_year": 2025,
+     "ticker": "META",
+     "query": "combination of data across services mergers and acquisitions and product design"
+    }
+   }
+  ],
+  "n_llamadas": 4,
+  "tokens_in": 26225,
+  "tokens_out": 2007,
+  "coste_usd": 0.027195,
+  "latencia_s": 104.11924510030076,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Qué obligaciones concretas dice Meta que le impone la DMA europea en FY2025?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_105195",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1730,
+     "output_tokens": 53,
+     "total_tokens": 1783,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 43
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_105195",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "query": "Digital Markets Act DMA obligations gatekeeper",
+       "item": "1A",
+       "fiscal_year": 2025,
+       "ticker": "META"
+      },
+      "id": "call_195640",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2030,
+     "output_tokens": 150,
+     "total_tokens": 2180,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 105
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'Digital Markets Act\" gatekeeper obligations')\n\n[META-2025-1A-0001] META FY2025 Item 1A (similitud 0.032)\nRisks Related to Government Regulation and Enforcement\n\n•government restrictions on access to Facebook or our other products, or other actions that impair our ability to sell or deliver advertising, in their countries;\n\n•complex and evolving U.S. and foreign privacy, data use, data combination, data protection, content and content moderation, competition, youth, safety, consumer protection, advertising, and other laws and regulations, including the General Data Protection Regulation (GDPR), Digital Markets Act (DMA), Digital Services Act (DSA), UK Online Safety Act (OSA), Artificial Intelligence Act (EU AI Act), and the UK Digital Markets, Competition and Consumer Act (DMCC);\n\n•the impact of government investigations, enforcement actions, and settlements, including litigation and investigations by privacy, consumer protection, and competition authorities, among others;\n\n•our ability to comply with regulatory and legislative privacy requirements, including our consent order with the Federal Trade Commission (FTC);\n\nRisks Related to Data, Security, Platform Integrity, and Intellectual Property\n\n•the occurrence of security breaches, improper access to or disclosure of our data or user data, and other cyber incidents, as well as intentional misuse of our services and other undesirable activity on our platform;\n\n•our ability to obtain, maintain, protect, and enforce our intellectual property rights; and\n\nRisks Related to Ownership of Our Class A Common Stock\n\n•limitations on the ability of holders of our Class A Common Stock to influence corporate matters due to the dual class structure of our common stock and the control of a majority of the voting power of our outstanding capital stock by our founder, Chairman, and Chief Executive Officer (CEO).\n\n---\n\n[META-2025-1A-0066] META FY2025 Item 1A (similitud 0.032)\nFTC consent order, the GDPR, U.S. state privacy laws, youth social media laws, the ePrivacy Directive, the DMA, the DSA, the OSA, and other regulatory and legislative privacy requirements require significant operational resources and modifications to our business practices, and any compliance failures may have a material adverse effect on our business, reputation, and financial results.\n\nWe are engaged in ongoing privacy compliance and oversight efforts, including in connection with our modified consent order with the FTC, requirements of the GDPR and UK GDPR, and other current and anticipated regulatory and legislative requirements around the world, such as U.S. state privacy laws, youth social media laws, the ePrivacy Directive,\n\nDMA, DSA, OSA, EU AI Act, the Korean Personal Information Protection Act, and the Indian Digital Personal Data Protection Act. In particular, we are maintaining a comprehensive privacy program in connection with the FTC consent order that includes substantial management and board of directors oversight, stringent operational requirements and reporting obligations, prohibitions against making misrepresentations relating to user data, a process to regularly certify our compliance with the privacy program to the FTC, and regular assessments of our privacy program by an independent third-party assessor, which has been and will continue to be challenging and costly to maintain and enhance. These compliance and oversight efforts are increasing demand on our systems and resources, and require significant new and ongoing investments, including investments in compliance processes, personnel, and technical infrastructure. We continually reallocate resources internally to assist with these efforts, and this has had, and will continue to have, an adverse impact on our other business initiatives. In addition, these efforts require substantial modifications to our business practices and make some practices such as product and ads development more difficult, time-consuming, and costly. As a result, we believe our ability to develop and launch new features, products, and services in a timely manner has been and will continue to be adversely affected. Further, our privacy compliance and oversight efforts have required, and we expect will continue to require, significant time and attention from our management and board of directors. The requirements of the FTC consent order and other privacy-related laws and regulations are complex and apply broadly to our business, and from time to time we notify relevant authorities of instances where we are not in full compliance with these requirements or otherwise discover privacy issues, and we expect to continue to do so as any such issues arise in the future. In addition, regulatory and legislative privacy requirements are constantly evolving and can be subject to\n\n---\n\n[META-2025-1A-0060] META FY2025 Item 1A (similitud 0.031)\ncompliance with requirements under the GDPR, DMA, and EU consumer laws. For example, in March 2024, the European Commission opened formal proceedings regarding the compliance of our \"subscription for no ads\" model with requirements under the DMA, and it issued preliminary findings in July 2024. In addition, the European Data Protection Board has published an opinion on the operation of such models under GDPR and European consumer protection organizations have raised concerns regarding our compliance with consumer protection laws. In response to these developments, in November 2024, we began offering users in the European Union, European Economic Area, and Switzerland who elect to continue using our services free-of-charge, supported by ads, an option to see less personalized ads (LPA), which are less relevant and effective than our premium ad offerings. In April 2025, the European Commission issued a final decision that our \"subscription for no ads\" model does not comply with such requirements. We made significant modifications to LPA since the European Commission issued its final decision. We have appealed the European Commission's decision but further modifications to our model may be imposed during the appeal process, which could result in a materially worse user experience for European users and a significant impact to our European business and revenue. These or any similar developments in the future may negatively impact our user growth and engagement, revenue, and financial results.\n\nSimilarly, there are a number of legislative proposals or recently enacted laws in the European Union, the United States, at both the federal and state level, as well as other jurisdictions that could impose new obligations or limitations in areas affecting our business. For example, the DMA in the European Union imposes restrictions and requirements on companies like ours, including in areas such as the combination of data across services, mergers and acquisitions, and product design. The DMA also includes significant penalties for non-compliance, and its key requirements are enforceable against designated gatekeeper companies as of March 2024. The DMA has caused, and may in the future cause, us to incur significant compliance costs and make changes to our products or business practices. The requirements under the DMA will likely be subject to further interpretation and regulatory engagement. Pending or future proposals to modify competition laws\n\nin a number of jurisdictions could have similar effects. Further, the DSA, which started to apply to our business as of August 2023, imposes certain restrictions and requirements for our products and services, subjects us to increased compliance costs, and includes significant penalties for non-compliance.\n\n---\n\n[META-2025-1A-0070] META FY2025 Item 1A (similitud 0.031)\nor potentially significant penalties, including fines, service throttling, or advertising bans, for failure to remove certain types of content or follow certain processes. For example, we have been subject to fines and may in the future be subject to other penalties in connection with social media legislation in Turkey, and we have been subject to fines and service blocking and prohibition in Russia. Content-related legislation also has required us, and may require us in the future, to change our products or business practices, increase our costs, or otherwise impact our operations or our ability to provide services in certain geographies. For example, the European Copyright Directive requires certain online services to obtain authorizations for copyrighted content or to implement measures to prevent the availability of that content, which may require us to make substantial investments in compliance processes. Member states' laws implementing the European Copyright Directive may also require online platforms to pay for content. In addition, our products and services are subject to restrictions and requirements, and we are subject to increased compliance costs, and potential fines or other penalties in the event of non-compliance, as a result of the Digital Services Act in the European Union, which started to apply to our business as of August 2023, and other content-related legislative developments such as the Online Safety and Media Regulation Act in Ireland and the Online Safety Act in the United Kingdom. Certain countries and U.S. states have also implemented or proposed legislation that may require us to pay publishers for certain news content shared on our products. For example, as a result of such legislation in Canada, we have ended the availability of news content for Canadian users on Facebook and Instagram. In the United States, changes to the protections available under Section 230 or the First Amendment to the U.S. Constitution or new state or federal content-related legislation or investigations may increase our costs or require significant changes to our products, business practices, or operations, which could adversely affect user growth and engagement.\n\nAny of the foregoing events could adversely affect our business and financial results.\n\nPayment-related activities may subject us to additional regulatory requirements, regulatory actions, and other risks that could be costly and difficult to comply with or that could harm our business.\n\nSeveral of our products offer Payments functionality, including enabling our users to purchase tangible, virtual, and digital goods from merchants and developers that offer applications using our Payments infrastructure, send money to other users, and make donations to certain charitable organizations, among other activities. We are subject to a variety of laws and regulations in the United States, Europe\n\n---\n\n[META-2025-1A-0042] META FY2025 Item 1A (similitud 0.029)\n•compliance with statutory equity requirements and management of tax consequences; and\n\n•geopolitical events affecting us, our marketers or our industry, including trade disputes, armed conflicts, and\n\npandemics.\n\nIn addition, we must manage the potential conflicts between locally accepted business practices in any given jurisdiction and our obligations to comply with laws and regulations, including anti-corruption laws or regulations applicable to us, such as the U.S. Foreign Corrupt Practices Act and the U.K. Bribery Act 2010. We also must manage our obligations to comply with laws and regulations related to import and export controls, trade restrictions, and sanctions, including regulations established by the U.S. Office of Foreign Assets Control. Government agencies and authorities have a broad range of civil and criminal penalties they may seek to impose against companies for violations of anti-corruption laws or regulations, import and export controls, trade restrictions, sanctions, and other laws, rules, and regulations.\n\nIf we are unable to expand internationally and manage the complexity of our global operations successfully, our financial results could be adversely affected. We also may be required to or elect to cease or modify our operations or the offering of our products and services in certain regions, including as a result of the risks described above, which could adversely affect our business, user growth and engagement, and financial results.\n\nWe face design, manufacturing, and supply chain risks with respect to our consumer hardware products that, if not properly managed, could adversely impact our financial results.\n\nWe face a number of risks related to design, manufacturing, and supply chain management with respect to our consumer hardware products. For example, the consumer hardware products we sell from time to time have had, and in the future may have, quality issues resulting from the design or manufacture of the products, or from the software used in the products. Sometimes, these issues may be caused by components we purchase from other manufacturers or suppliers. Our brand and financial results could be adversely affected by any such quality issues, other failures to meet our customers' expectations, or findings of our consumer hardware products to be defective.\n\nWe rely on third parties to manufacture and manage the logistics of transporting and distributing our consumer hardware products, which subjects us to a number of risks. The manufacturing of our consumer hardware products depends on a small number of third parties, often with significant operations in a single region such as Asia. We have experienced, and may in the future experience, supply or labor shortages, strikes or other disruptions in logistics and",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_195640",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "7",
+       "query": "Digital Markets Act DMA",
+       "ticker": "META",
+       "fiscal_year": 2025
+      },
+      "id": "call_11124",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4753,
+     "output_tokens": 368,
+     "total_tokens": 5121,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 327
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'Digital Markets Act')\n\n[META-2025-7-0005] META FY2025 Item 7 (similitud 0.032)\nDevelopments in Advertising\n\nSubstantially all of our revenue is currently generated from advertising on Facebook and Instagram. We rely on targeting and measurement tools that incorporate data signals from user activity on websites and services that we do not control, as well as signals generated within our products, in order to deliver relevant and effective ads to our users. Our advertising revenue has been, and we expect will continue to be, adversely affected by reduced marketer spending as a result of limitations on our ad targeting and measurement tools arising from changes to the regulatory environment and third-party mobile operating systems and browsers.\n\nIn particular, legislative and regulatory developments such as the General Data Protection Regulation, including its evolving interpretation through decisions of the Court of Justice of the European Union, ePrivacy Directive, European Digital Services Act, Digital Markets Act, and U.S. state privacy laws have impacted our ability to use data signals in our ad products, and an increasing number of laws have been introduced limiting or prohibiting the provision of our services to younger users. We expect these and other developments will have further impact in the future. As a result, we have implemented, and we will continue to implement, whether voluntarily or otherwise, changes to our products and user data practices, which reduce our ability to effectively target and measure ads and may negatively impact our advertising revenue and user engagement. For example, in response to regulatory developments in Europe, we announced our plans to change the legal basis for behavioral advertising on Facebook and Instagram in the European Union, European Economic Area, and\n\nSwitzerland from \"legitimate interests\" to \"consent,\" and began offering users in the region a \"subscription for no ads\" alternative. We subsequently began offering users in the region who elect to continue using our services free-of-charge, supported by ads, an option to see less personalized ads, which are less relevant and effective than our premium ad offerings. We are engaging with regulators on our consent model. In addition, mobile operating system and browser providers, such as Apple and Google, have implemented product changes and/or announced plans to limit the ability of websites and application developers to collect and use these signals to target and measure advertising. For example, in 2021, Apple made certain changes to its products and data use policies in connection with changes to its iOS operating system that reduce our and other iOS developers' ability to target and measure advertising, which has negatively impacted, and we expect will continue to negatively impact, the size of the budgets marketers are willing to commit to us and\n\n---\n\n[META-2025-7-0008] META FY2025 Item 7 (similitud 0.031)\nInvestment Philosophy\n\nWe remain focused on operating efficiently while investing in significant opportunities. In 2025, 82% of our total costs and expenses were recognized in FoA and 18% were recognized in RL. Our FoA investments include expenses relating to headcount, data centers, and technical infrastructure as part of our efforts to develop our apps and our advertising services. These efforts include significant investments in AI initiatives, including generative AI and superintelligence, to, among other things, recommend relevant content across our products, enhance our advertising tools, develop new products, and develop new features for existing products. In particular, we expect our AI initiatives will require significantly increased investment in infrastructure.\n\nWe are also making significant investments in our RL efforts, including developing virtual and augmented reality devices, software for social platforms, neural interfaces, and other foundational technologies. Our RL investments include expenses relating to technology development across these efforts. Many of our RL investments are directed toward long-term, cutting-edge research and development for products that may only be fully realized in the next decade. In 2025, our RL segment reduced our overall operating profit by approximately $19.19 billion, and we expect our 2026 RL operating losses to remain similar to 2025. We expect this will be a complex, evolving, and long-term initiative, and our ability to support our RL efforts is dependent on generating sufficient profits from other areas of our business. We are investing now because we believe this will become the next computing platform and will unlock monetization opportunities for businesses, developers, and creators, including around advertising, hardware, and digital goods.\n\n---\n\n[META-2025-7-0003] META FY2025 Item 7 (similitud 0.030)\nequivalent payments were $5.32 billion for the year ended December 31, 2025.\n\n•Cash, cash equivalents, and marketable securities were $81.59 billion as of December 31, 2025.\n\n•Long-term debt was $58.74 billion as of December 31, 2025.\n\n•Effective tax rate was 30% for the year ended December 31, 2025. This includes the effects of the implementation of the One Big Beautiful Bill Act during the third quarter of 2025. Absent the valuation allowance charge as of the enactment date, our 2025 effective tax rate would have decreased by 17 percentage points to 13%.\n\n•Headcount was 78,865 as of December 31, 2025, an increase of 6% year-over-year.\n\n---\n\n[META-2025-7-0006] META FY2025 Item 7 (similitud 0.030)\nand use these signals to target and measure advertising. For example, in 2021, Apple made certain changes to its products and data use policies in connection with changes to its iOS operating system that reduce our and other iOS developers' ability to target and measure advertising, which has negatively impacted, and we expect will continue to negatively impact, the size of the budgets marketers are willing to commit to us and other advertising platforms.\n\nTo mitigate these developments, we are continually working to evolve our advertising systems to improve the performance of our ad products. We are developing privacy enhancing technologies to deliver relevant ads and measurement capabilities while reducing the amount of personal information we process, including by relying more on anonymized or aggregated third-party data. In addition, we are developing tools that enable marketers to share their data into our systems, as well as ad products that generate more valuable signals within our apps. More broadly, we also continue to innovate our advertising tools to help marketers prepare campaigns and connect with consumers, including developing growing formats such as Reels ads and our business messaging ad products. Across all of these efforts, we are making significant investments in artificial intelligence (AI), including generative AI, to improve our delivery, targeting, and measurement capabilities. Further, we are focused on driving onsite conversions in our business messaging ad products by developing new features and scaling existing features.\n\nWe are also engaging with others across our industry to explore the possibility of new open standards for the private and secure processing of data for advertising purposes. We believe our ongoing improvements to ad targeting and measurement are continuing to drive improved results for advertisers. However, we expect that some of these efforts will be long-term initiatives, and that the legislative, regulatory and platform developments described above will continue to adversely impact our advertising revenue for the foreseeable future.\n\nIn addition, we maintain advertising policies to protect the security and integrity of our platform and comply with global content, security, and integrity obligations. Our ongoing efforts to enhance enforcement against ads and marketers which violate our advertising policies adversely affect our revenue, and we expect that the continued enhancement of such efforts will have an impact on our revenue in the future, which may be material.\n\n---\n\n[META-2025-7-0002] META FY2025 Item 7 (similitud 0.029)\nConsolidated and Segment Results\n\nWe report our financial results for our two reportable segments: Family of Apps (FoA) and Reality Labs (RL). FoA includes Facebook, Instagram, Messenger, WhatsApp, and other services. RL includes our virtual and augmented reality related consumer hardware, software, and content.\n\nFamily of Apps\t\tReality Labs\t\tTotal\nYear Ended December 31,\t\t\t\tYear Ended December 31,\t\t\t\tYear Ended December 31,\n2025\t\t2024\t\t% change\t\t2025\t\t2024\t\t% change\t\t2025\t\t2024\t\t% change\n(in millions, except percentages)\nRevenue\t$\t198,759\t\t$\t162,355\t\t22%\t\t$\t2,207\t\t$\t2,146\t\t3%\t\t$\t200,966\t\t$\t164,501\t\t22%\nCosts and expenses\t96,290\t\t75,246\t\t28%\t\t21,400\t\t19,875\t\t8%\t\t117,690\t\t95,121\t\t24%\nIncome (loss) from operations\t$\t102,469\t\t$\t87,109\t\t18%\t\t$\t(19,193)\t\t$\t(17,729)\t\t(8)%\t\t$\t83,276\t\t$\t69,380\t\t20%\nOperating margin\t52\t%\t\t54\t%\t\t\t\t(870)\t%\t\t(826)\t%\t\t\t\t41\t%\t\t42\t%\n\n•Net income was $60.46 billion, with diluted earnings per share (EPS) of $23.49 for the year ended December 31, 2025.\n\n•Capital expenditures, including principal payments on finance leases, were $72.22 billion for the year ended December 31, 2025.\n\n•Share repurchases of our Class A common stock were $26.26 billion and total dividend and dividend equivalent payments were $5.32 billion for the year ended December 31, 2025.\n\n•Cash, cash equivalents, and marketable securities were $81.59 billion as of December 31, 2025.\n\n•Long-term debt was $58.74 billion as of December 31, 2025.\n\n•Effective tax rate was 30% for the year ended December",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_11124",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "1A",
+       "fiscal_year": 2025,
+       "ticker": "META",
+       "query": "combination of data across services mergers and acquisitions and product design"
+      },
+      "id": "call_365965",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 7382,
+     "output_tokens": 438,
+     "total_tokens": 7820,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 389
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: '\"business combinations\" \"mergers and acquisitions\" data integration \"product development\" Item 1A risk factors')\n\n[META-2025-1A-0000] META FY2025 Item 1A (similitud 0.033)\nItem 1A. Risk Factors\n\nCertain factors may have a material adverse effect on our business, financial condition, and results of operations. You should consider carefully the risks and uncertainties described below, in addition to other information contained in this Annual Report on Form 10-K, including our consolidated financial statements and related notes. The risks and uncertainties described below are not the only ones we face. Additional risks and uncertainties that we are unaware of, or that we currently believe are not material, may also become important factors that adversely affect our business. If any of the following risks actually occurs, our business, financial condition, results of operations, and future prospects could be materially and adversely affected. In that event, the trading price of our Class A common stock could decline, and you could lose part or all of your investment.\n\nSummary Risk Factors\n\nOur business is subject to a number of risks, including risks that may prevent us from achieving our business objectives or may adversely affect our business, financial condition, results of operations, cash flows, and prospects. These risks are discussed more fully below and include, but are not limited to, risks related to:\n\nRisks Related to Our Product Offerings\n\n•our ability to add and retain users and maintain levels of user engagement with our products;\n\n•the loss of, or reduction in spending by, our marketers;\n\n•reduced availability of data signals used by our ad targeting and measurement tools;\n\n•ineffective operation with mobile operating systems or changes in our relationships with mobile operating system partners;\n\n•failure of our new products, or changes to our existing products, to attract or retain users or generate revenue;\n\nRisks Related to Our Business Operations and Financial Results\n\n•our ability to compete effectively;\n\n•fluctuations in our financial results;\n\n•unfavorable media coverage and other risks affecting our ability to maintain and enhance our brands;\n\n•our ability to build, maintain, and scale our technical infrastructure, and risks associated with disruptions in our service, catastrophic events, and crises;\n\n•operating our business in multiple countries around the world;\n\n•litigation, including class action lawsuits;\n\n•acquisitions and our ability to successfully integrate our acquisitions;\n\n---\n\n[META-2025-1A-0047] META FY2025 Item 1A (similitud 0.032)\n, or other claims associated with the companies or assets we acquire that were not identified in advance, which may result in significant unanticipated costs. The effectiveness of our due diligence review and our ability to evaluate the results of such due diligence are dependent upon the accuracy and completeness of statements and disclosures made or actions taken by the companies we acquire or their representatives, as well as the limited amount of time in which acquisitions are executed. In addition, we may fail to accurately forecast the financial impact of an acquisition or other strategic transaction, including tax and accounting charges. Acquisitions or other strategic transactions may also result in our recording of significant additional expenses to our results of operations and recording of substantial finite-lived intangible assets on our balance sheet upon closing. Any of these factors may adversely affect our financial condition or results of operations.\n\nWe may not be able to successfully integrate our acquisitions, and we incur significant costs to integrate and support the companies we acquire.\n\nThe integration of acquisitions requires significant time and resources, particularly with respect to companies that have significant operations or that develop products where we do not have prior experience, and we may not manage these processes successfully. We have made, and may in the future make, substantial investments of resources to support our acquisitions, which can result in significant ongoing operating expenses and the diversion of resources and management attention from other areas of our business. We cannot assure you that these investments will be successful. If we fail to successfully integrate the companies we acquire, we may not realize the benefits expected from the transaction and our business may be harmed.\n\nWe have had, and may in the future have, exposure to greater than anticipated tax liabilities.\n\nOur tax obligations, including income and non-income taxes, are based in part on our corporate operating structure and intercompany arrangements, including the manner in which we operate our business, develop, value, manage, protect, and use our intellectual property, and the valuations of our intercompany transactions. The tax laws applicable to our business, including the laws of the United States and other jurisdictions, are subject to interpretation. Certain jurisdictions have applied novel or aggressive interpretations of their laws in an effort to raise additional tax revenue from companies such as Meta, and we may experience similar developments in the future. We are subject to regular review and audit by U.S. federal, state, and foreign tax authorities. Tax authorities may disagree with certain positions we have taken, including our methodologies for valuing developed technology or intercompany arrangements, and any adverse outcome of such a review or\n\n---\n\n[META-2025-1A-0030] META FY2025 Item 1A (similitud 0.030)\non our products, which could result in decreased revenue and adversely affect our business and financial results, and we have experienced such adverse effects to varying degrees from time to time.\n\nWe are subject to the risk of catastrophic events and crises, which may have a significant adverse impact on our business and operations.\n\nWe are subject to the risk of public health crises such as pandemics, earthquakes, adverse weather conditions, other natural disasters, terrorism, geopolitical conflict, other physical security threats, power loss, cyber-attacks, and other catastrophic events and crises. For example, the COVID-19 pandemic previously significantly impacted our business and results of operations. In particular, the pandemic led to volatility in the demand for and pricing of our advertising services at various points throughout the pandemic, and we may experience similar effects in the future as a result of other catastrophic events. Such events also expose our business, operations, and workforce to a variety of other risks, including: volatility in the size of our user base and user engagement; delays in product development or releases, or reductions in manufacturing production and sales of consumer hardware, as a result of inventory shortages, supply chain or labor shortages; significant volatility and disruption of global financial markets, which could cause fluctuations in currency exchange rates or negatively impact our ability to access capital in the future; illnesses to key employees, or a significant portion of our workforce, which may result in inefficiencies, delays, and disruptions in our business; and increased volatility and uncertainty in the financial projections we use as the basis for estimates used in our financial statements. Any of these developments may adversely affect our business, harm our reputation, or result in legal or regulatory actions against us.\n\nWe incur significant expenses in operating our business, and some of our investments, particularly our investments in our artificial intelligence initiatives as well as Reality Labs, have the effect of reducing our operating margin and profitability. If our investments are not successful longer-term, our business and financial performance will be harmed.\n\nWe incur significant expenses in operating our business, and we expect our expenses to continue to increase in the future as we continue to invest in new and unproven technologies, including AI and machine learning, as we broaden our user base, as users increase the amount and types of content they consume and the data they share with us, for example with respect to video, as we develop and implement new products, as we market new and existing products and promote our brands, as we continue to expand our technical infrastructure, and as we continue our efforts\n\n---\n\n[META-2025-1A-0025] META FY2025 Item 1A (similitud 0.030)\nability to compete effectively depends upon many factors both within and beyond our control, including:\n\n•the popularity, usefulness, ease of use, performance, and reliability of our products compared to our competitors' products;\n\n•the size and composition of our user base;\n\n•the engagement of users with our products and competing products;\n\n•our ability to attract and retain businesses who use our free or paid business and advertising services;\n\n•the timing and market acceptance of products, including developments and enhancements to our or our competitors' products;\n\n•our safety and security efforts and our ability to protect user data and to provide users with control over their data;\n\n•our ability to distribute our products to new and existing users;\n\n•our ability to monetize our products;\n\n•the frequency, size, format, quality, and relative prominence of the ads displayed by us or our competitors;\n\n•customer service and support efforts;\n\n•marketing and selling efforts, including our ability to measure the effectiveness of our ads and to provide marketers with a compelling return on their investments;\n\n•our ability to establish and maintain developers' interest in building applications that integrate with our products;\n\n•our ability to establish and maintain creator and publisher interest in integrating their content with our products;\n\n•changes mandated by legislation, regulatory authorities, or litigation, some of which may have a disproportionate effect on us;\n\n•acquisitions or consolidation within our industry, which may result in more formidable competitors;\n\n•our ability to attract, retain, and motivate talented employees, particularly specialized technical personnel including software engineers, designers, and product managers;\n\n---\n\n[META-2025-1A-0044] META FY2025 Item 1A (similitud 0.028)\npatterns, changes in consumer tastes with respect to our consumer hardware products, higher tariffs that increase consumer prices, and other factors. The demand for our products can also change significantly between the time inventory or components are ordered and the date of sale. While we endeavor to accurately predict these trends and avoid overstocking or understocking consumer hardware products we may sell, from time to time we have experienced difficulties in accurately predicting and meeting the consumer demand for our products. In addition, when we begin selling or manufacturing a new consumer hardware product or enter new international regions, it may be difficult to establish vendor relationships, determine appropriate product or component selection, and accurately forecast demand. The acquisition of certain types of inventory or components may require significant lead-time and prepayment and they may not be returnable.\n\nAny one of the foregoing factors may adversely affect our operating results.\n\nWe are involved in numerous class action lawsuits and other litigation matters that are expensive and time consuming, and, if resolved adversely, could harm our business, financial condition, or results of operations.\n\nWe are involved in numerous lawsuits, including stockholder derivative lawsuits and putative class action lawsuits, many of which claim statutory damages and/or seek significant changes to our business operations, and we anticipate that we will continue to be a target for numerous lawsuits in the future. Because of the scale of our user, advertiser, and developer base, the plaintiffs in class action cases filed against us typically claim enormous monetary damages even if the alleged per-user or entity harm is small or non-existent. In addition, we have faced, currently face, and will continue to face additional class action and other lawsuits based on claims related to advertising, antitrust, privacy, security, biometrics, content, algorithms, copyright, user well-being, younger users, employment, contingent workers, activities on our platform, consumer protection, unfair and deceptive trade practices, or product performance or other claims related to the use of consumer hardware and software, including virtual reality technology and products, which are new and unproven. For example, we are currently the subject of multiple putative class action suits in connection with our platform and user data practices and the misuse of certain data by a developer that shared such data with third parties in violation of our terms and policies; the disclosure of our earnings results for the second quarter of 2018; our acquisitions of Instagram and WhatsApp, as well as other alleged anticompetitive conduct; a former employee's allegations and release of internal company documents beginning in",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_365965",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "chunk_id": "META-2025-1A-0060",
+       "cita": "For example, the DMA in the European Union imposes restrictions and requirements on companies like ours, including in areas such as the combination of data across services, mergers and acquisitions, and product design.",
+       "cifra": null,
+       "respuesta": "En su informe 10-K para el ejercicio 2025, Meta señala que la Ley de Mercados Digitales (DMA) de la Unión Europea impone restricciones y requisitos específicos a empresas designadas como guardianes de acceso (gatekeepers) en áreas tales como la combinación de datos entre diferentes servicios, fusiones y adquisiciones, y el diseño de productos. Asimismo, detalla que la DMA afecta el uso de señales de datos para publicidad dirigida, derivando en procedimientos de la Comisión Europea contra su modelo de 'suscripción sin anuncios' y obligando a implementar modificaciones a sus productos y prácticas comerciales (como los anuncios menos personalizados o LPA).",
+       "ejercicio": 2025,
+       "ticker": "META",
+       "unidad": null,
+       "fuente": "texto"
+      },
+      "id": "call_113265",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 10330,
+     "output_tokens": 998,
+     "total_tokens": 11328,
+     "input_token_details": {
+      "cache_read": 3925,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 749
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta=\"En su informe 10-K para el ejercicio 2025, Meta señala que la Ley de Mercados Digitales (DMA) de la Unión Europea impone restricciones y requisitos específicos a empresas designadas como guardianes de acceso (gatekeepers) en áreas tales como la combinación de datos entre diferentes servicios, fusiones y adquisiciones, y el diseño de productos. Asimismo, detalla que la DMA afecta el uso de señales de datos para publicidad dirigida, derivando en procedimientos de la Comisión Europea contra su modelo de 'suscripción sin anuncios' y obligando a implementar modificaciones a sus productos y prácticas comerciales (como los anuncios menos personalizados o LPA).\" cifra=None unidad=None ticker='META' ejercicio=2025 fuente='texto' cita='For example, the DMA in the European Union imposes restrictions and requirements on companies like ours, including in areas such as the combination of data across services, mergers and acquisitions, and product design.' chunk_id='META-2025-1A-0060'",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_113265",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a4_comparativas"
+ }
+}
