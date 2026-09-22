@@ -1,0 +1,16 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Una sola copia extraída, en la raíz. Se regenera desde dataset/*.zip
+corpus/
+clase/**/corpus/
+
+# Ficheros de bloqueo de Office
+~$*
