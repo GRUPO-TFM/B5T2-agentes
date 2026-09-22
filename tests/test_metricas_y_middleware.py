@@ -85,3 +85,25 @@ def test_el_texto_del_10k_no_dispara_el_detector_de_limite():
     assert _limite_alcanzado([{"type": "tool",
                                "content": "Tool call limit exceeded. Do not call "
                                           "'search_filings' again."}]) is True
+
+
+def test_el_limite_no_cuenta_la_respuesta_estructurada():
+    """La salida estructurada viaja como tool call; no es una herramienta y no
+    debe gastar presupuesto. Con 8 de límite, contarla dejaba 6 reales."""
+    from agente.middleware import LimiteDeHerramientas
+    from langchain.agents.middleware import ToolCallLimitMiddleware
+    lim = LimiteDeHerramientas(run_limit=8, exit_behavior="continue")
+    assert lim._matches_tool_filter({"name": "search_filings", "args": {}, "id": "1"}) is True
+    assert lim._matches_tool_filter({"name": "RespuestaFinancieraEstricta", "args": {}, "id": "2"}) is False
+    assert lim._matches_tool_filter({"name": "RespuestaFinanciera", "args": {}, "id": "3"}) is False
+    # el de serie sí la cuenta: es exactamente lo que se corrige
+    assert ToolCallLimitMiddleware(run_limit=8)._matches_tool_filter(
+        {"name": "RespuestaFinancieraEstricta", "args": {}, "id": "2"}) is True
+
+
+def test_los_valores_por_accion_no_se_redondean_a_entero():
+    from agente.middleware import formatear_valor
+    assert formatear_valor(2.94, "USD/shares") == "2.94"
+    assert formatear_valor(11.93, "USD/shares") == "11.93"
+    assert formatear_valor(130_497_000_000, "USD") == "130,497,000,000"
+    assert formatear_valor(0.5, "pure") == "0.50"

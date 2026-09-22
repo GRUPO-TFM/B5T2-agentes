@@ -1,0 +1,321 @@
+{
+ "item": {
+  "id": "gX-016",
+  "pregunta": "El beneficio neto de Meta bajó entre FY2024 y FY2025 pese a subir el resultado de explotación: ¿cuánto bajó y por qué?",
+  "familia": "comparativa",
+  "ticker": "META",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "De 62.360 a 60.458 millones de dólares, un 3,0 % menos, por el salto del tipo impositivo efectivo del 12 % al 30 % (cargo por valuation allowance ligado al CAMT).",
+  "cifra_esperada": 60458000000.0,
+  "unidad": "USD",
+  "concept_xbrl": "NetIncomeLoss",
+  "item_esperado": "7",
+  "ancla_texto": "Absent the valuation allowance charge as of the enactment date, our 2025 effective tax rate would have decreased by 17 percentage points to 13%",
+  "ancla_inicio": 5180,
+  "ancla_fin": 5323,
+  "chunk_id_esperado": "META-2025-7-0003",
+  "herramienta_esperada": [
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "autor": "grupo-X"
+ },
+ "rep": 1,
+ "thread_id": "a1_guardrails-rep1-gX-016",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "El beneficio neto de Meta disminuyó en 1.902.000.000 USD (un 3,05%), situándose en 60.458.000.000 USD en FY2025 frente a los 62.360.000.000 USD de FY2024, a pesar de que el resultado de explotación creció de 69.380.000.000 USD a 83.276.000.000 USD. La caída en el beneficio neto se debió al aumento sustancial de la provisión por impuestos sobre beneficios, cuya tasa impositiva efectiva subió del 12% en 2024 al 30% en 2025. Este incremento fiscal fue consecuencia de la ley One Big Beautiful Bill Act (OBBBA) aprobada en julio de 2025, por la cual Meta registró un cargo impositivo de 15.930 millones de dólares en el tercer trimestre de 2025 (incluyendo una dotación de valoración de 14.030 millones contra sus activos por impuestos diferidos debido a la tributación mínima alternativa CAMT).",
+   "cifra": 60458000000.0,
+   "unidad": "USD",
+   "ticker": "META",
+   "ejercicio": 2025,
+   "fuente": "ambas",
+   "cita": "Our provision for income taxes in 2025 increased $17.17 billion or 207% compared to 2024, primarily due to an increase in the effective tax rate.",
+   "chunk_id": "META-2025-7-0028"
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "META",
+     "fiscal_year": 2024,
+     "concept": "NetIncomeLoss"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "META",
+     "fiscal_year": 2025,
+     "concept": "NetIncomeLoss"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "META",
+     "fiscal_year": 2024,
+     "concept": "OperatingIncomeLoss"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "META",
+     "concept": "OperatingIncomeLoss",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "query": "provision for income taxes net income effective tax rate 2025 2024",
+     "item": "7",
+     "ticker": "META",
+     "fiscal_year": 2025
+    }
+   }
+  ],
+  "n_llamadas": 6,
+  "tokens_in": 9881,
+  "tokens_out": 2042,
+  "coste_usd": 0.01506825,
+  "latencia_s": 26.519821899943054,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "El beneficio neto de Meta bajó entre FY2024 y FY2025 pese a subir el resultado de explotación: ¿cuánto bajó y por qué?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_1694002",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1412,
+     "output_tokens": 84,
+     "total_tokens": 1496,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 74
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_1694002",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "META",
+       "fiscal_year": 2024,
+       "concept": "NetIncomeLoss"
+      },
+      "id": "call_3101110",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "META",
+       "fiscal_year": 2025,
+       "concept": "NetIncomeLoss"
+      },
+      "id": "call_3101112",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "META",
+       "fiscal_year": 2024,
+       "concept": "OperatingIncomeLoss"
+      },
+      "id": "call_3101118",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "META",
+       "concept": "OperatingIncomeLoss",
+       "fiscal_year": 2025
+      },
+      "id": "call_3101120",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1743,
+     "output_tokens": 201,
+     "total_tokens": 1944,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 53
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "META FY2024 · NetIncomeLoss = 62,360,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_3101110",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2025 · NetIncomeLoss = 60,458,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_3101112",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2024 · OperatingIncomeLoss = 69,380,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_3101118",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2025 · OperatingIncomeLoss = 83,276,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_3101120",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "query": "provision for income taxes net income effective tax rate 2025 2024",
+       "item": "7",
+       "ticker": "META",
+       "fiscal_year": 2025
+      },
+      "id": "call_1855725",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2148,
+     "output_tokens": 308,
+     "total_tokens": 2456,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 252
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[META-2025-7-0028] META FY2025 Item 7 (similitud 0.850)\nProvision for income taxes\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\t\t2025 vs 2024 % change\t\t2024 vs 2023 % change\n(in millions, except percentages)\nProvision for income taxes\t$\t25,474\t\t\t$\t8,303\t\t\t$\t8,330\t\t\t207\t%\t\t—\t%\nEffective tax rate\t30\t%\t\t12\t%\t\t18\t%\n\nOn July 4, 2025, the One Big Beautiful Bill Act (OBBBA) was enacted, introducing several significant U.S. income tax provisions that reduced our U.S. federal cash tax payments for the remainder of 2025 and future years. The provisions include the immediate expensing of domestic research and development costs and certain capital expenditures beginning in 2025, as well as an enhanced deduction for foreign-derived intangible income effective in 2026. The benefits from these provisions are limited by the 15% Corporate Alternative Minimum Tax (CAMT). As a result, we recorded a $15.93 billion charge in the third quarter of 2025, of which $14.03 billion was a valuation allowance against our U.S. federal deferred tax assets as of the enactment date of OBBBA, and the remaining was mostly related to the reduction of the benefit of the foreign-derived intangible income deduction. In determining the valuation allowance, our accounting policy incorporates the expected impact of future years’ CAMT in assessing the realizability of our deferred tax assets.\n\nOur provision for income taxes in 2025 increased $17.17 billion or 207% compared to 2024, primarily due to an increase in the effective tax rate. Our effective tax rate in 2025 increased compared to 2024, mostly due to the effects of OBBBA.\n\nEffective Tax Rate Items. Our effective tax rate in the future will depend upon the proportion between the following items and income before provision for income taxes: the effects of changes in tax law, changes in valuation allowance due to the effects of CAMT, U.S. tax benefits from foreign-derived intangible income, tax effects from share-based compensation, research tax credit, tax effects from capital losses not expected to be utilized, settlement of tax contingency items, and tax effects of changes in our business.\n\nA number of countries have enacted legislation to implement the Organization for Economic Cooperation and Development’s 15% global minimum tax\n\n---\n\n[META-2025-7-0029] META FY2025 Item 7 (similitud 0.731)\ndue to the effects of CAMT, U.S. tax benefits from foreign-derived intangible income, tax effects from share-based compensation, research tax credit, tax effects from capital losses not expected to be utilized, settlement of tax contingency items, and tax effects of changes in our business.\n\nA number of countries have enacted legislation to implement the Organization for Economic Cooperation and Development’s 15% global minimum tax regime. These changes did not have a material impact on our consolidated financial statements for 2025. We continue to evaluate the impacts of proposed and enacted legislation with respect to the global minimum tax regime in the jurisdictions in which we operate. As additional jurisdictions enact legislation, transitional relief expires, and other provisions of the global minimum tax legislation become effective, our effective tax rate and cash tax payments could increase in future years.\n\nAbsent any changes to our tax landscape, we expect our effective tax rate for the full year 2026 to be in the range of 13-16%.\n\nUnrecognized Tax Benefits. As of December 31, 2025, we had net uncertain tax positions of $11.23 billion which was included in long-term income taxes on our consolidated balance sheets. These unrecognized tax benefits were predominantly accrued for uncertainties with our research tax credits and transfer pricing with our foreign subsidiaries, which include licensing of intellectual property, providing services and other transactions. The ultimate settlement of the liabilities will depend upon resolution of tax audits, litigation, or events that would otherwise change the assessment of such items.\n\nSee Note 14 — Income Taxes in the notes to the consolidated financial statements included in Part II, Item 8, \"Financial Statements and Supplementary Data\" of this Annual Report on Form 10-K for additional information regarding income tax contingencies.\n\n---\n\n[META-2025-7-0015] META FY2025 Item 7 (similitud 0.724)\nIncome Taxes\n\nWe are subject to income taxes in the United States and numerous foreign jurisdictions. Significant judgment is required in determining our provision for income taxes and income tax assets and liabilities, including evaluating uncertainties in the application of accounting principles and complex tax laws. Our actual and forecasted income (loss) before provision is subject to change due to economic, political and other conditions and significant judgment is required in determining our ability to recognize our net deferred tax assets.\n\nAs a result of certain U.S. income tax provisions of the One Big Beautiful Bill Act enacted in July 2025, we expect to incur Corporate Alternative Minimum Tax (CAMT) beginning in 2025. In assessing the realizability of our deferred tax assets and determining the need for a valuation allowance, our accounting policy incorporates the expected impact of future years' CAMT.\n\nWe recognize tax benefits from uncertain tax positions only if we believe that it is more likely than not that the tax position will be sustained on examination by the taxing authorities based on the technical merits of the position. These uncertain tax positions include our estimates related to uncertainties with our research and development tax credits that are based on an assessment of whether our available documentation corroborating the nature of our activities supporting the tax credits will be sufficient. Similarly, our estimates for transfer pricing have been developed based upon analyses of appropriate arms-length prices. Although we believe that we have adequately reserved for our uncertain tax positions (including net interest and penalties), we can provide no assurance that the final tax outcome of these matters will not be materially different, as significant judgment is required in evaluating and estimating our provision for income taxes. We make adjustments to these reserves in accordance with the income tax accounting guidance when facts and circumstances change, such as the closing of a tax audit or the refinement of an estimate. To the extent that the final tax outcome of these matters is different from the amounts recorded, such differences will affect the provision for income taxes in the period in which such determination is made, and could have a material impact on our financial condition and operating results. For additional information, see Note 14 — Income Taxes of the accompanying notes to the consolidated financial statements included in Part II, Item 8, \"Financial Statements and Supplementary Data\" of this Annual Report on Form 10-K.\n\n---\n\n[META-2025-7-0003] META FY2025 Item 7 (similitud 0.717)\nequivalent payments were $5.32 billion for the year ended December 31, 2025.\n\n•Cash, cash equivalents, and marketable securities were $81.59 billion as of December 31, 2025.\n\n•Long-term debt was $58.74 billion as of December 31, 2025.\n\n•Effective tax rate was 30% for the year ended December 31, 2025. This includes the effects of the implementation of the One Big Beautiful Bill Act during the third quarter of 2025. Absent the valuation allowance charge as of the enactment date, our 2025 effective tax rate would have decreased by 17 percentage points to 13%.\n\n•Headcount was 78,865 as of December 31, 2025, an increase of 6% year-over-year.\n\n---\n\n[META-2025-7-0027] META FY2025 Item 7 (similitud 0.709)\nInterest and other income, net\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\t\t2025 vs 2024 % change\t\t2024 vs 2023 % change\n(in millions, except percentages)\nInterest income\t$\t2,123\t\t\t$\t2,517\t\t\t$\t1,639\t\t\t(16)\t%\t\t54\t%\nInterest expense\t(1,165)\t\t\t(715)\t\t\t(446)\t\t\t(63)\t%\t\t(60)\t%\nForeign currency exchange gains (losses), net\t352\t\t\t(690)\t\t\t(366)\t\t\t151\t%\t\t(89)\t%\nOther income (expense), net\t1,346\t\t\t171\t\t\t(150)\t\t\tNM\t\t214\t%\nTotal interest and other income, net\t$\t2,656\t\t\t$\t1,283\t\t\t$\t677\t\t\t107\t%\t\t90\t%\n\n____________________________________\n\nNM - not meaningful\n\nInterest and other income, net in 2025 increased $1.37 billion, or 107% compared to 2024, due to an increase in other income (expense), net, related to the unrealized gains on our marketable and non-marketable equity investments. Foreign currency exchange gains, net from foreign currency transactions and remeasurement also contributed to the increase.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_1855725",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "unidad": "USD",
+       "cifra": 60458000000,
+       "ticker": "META",
+       "respuesta": "El beneficio neto de Meta disminuyó en 1.902.000.000 USD (un 3,05%), situándose en 60.458.000.000 USD en FY2025 frente a los 62.360.000.000 USD de FY2024, a pesar de que el resultado de explotación creció de 69.380.000.000 USD a 83.276.000.000 USD. La caída en el beneficio neto se debió al aumento sustancial de la provisión por impuestos sobre beneficios, cuya tasa impositiva efectiva subió del 12% en 2024 al 30% en 2025. Este incremento fiscal fue consecuencia de la ley One Big Beautiful Bill Act (OBBBA) aprobada en julio de 2025, por la cual Meta registró un cargo impositivo de 15.930 millones de dólares en el tercer trimestre de 2025 (incluyendo una dotación de valoración de 14.030 millones contra sus activos por impuestos diferidos debido a la tributación mínima alternativa CAMT).",
+       "ejercicio": 2025,
+       "cita": "Our provision for income taxes in 2025 increased $17.17 billion or 207% compared to 2024, primarily due to an increase in the effective tax rate.",
+       "fuente": "ambas",
+       "chunk_id": "META-2025-7-0028"
+      },
+      "id": "call_4347917",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4578,
+     "output_tokens": 1449,
+     "total_tokens": 6027,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 1044
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='El beneficio neto de Meta disminuyó en 1.902.000.000 USD (un 3,05%), situándose en 60.458.000.000 USD en FY2025 frente a los 62.360.000.000 USD de FY2024, a pesar de que el resultado de explotación creció de 69.380.000.000 USD a 83.276.000.000 USD. La caída en el beneficio neto se debió al aumento sustancial de la provisión por impuestos sobre beneficios, cuya tasa impositiva efectiva subió del 12% en 2024 al 30% en 2025. Este incremento fiscal fue consecuencia de la ley One Big Beautiful Bill Act (OBBBA) aprobada en julio de 2025, por la cual Meta registró un cargo impositivo de 15.930 millones de dólares en el tercer trimestre de 2025 (incluyendo una dotación de valoración de 14.030 millones contra sus activos por impuestos diferidos debido a la tributación mínima alternativa CAMT).' cifra=60458000000.0 unidad='USD' ticker='META' ejercicio=2025 fuente='ambas' cita='Our provision for income taxes in 2025 increased $17.17 billion or 207% compared to 2024, primarily due to an increase in the effective tax rate.' chunk_id='META-2025-7-0028'",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_4347917",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a1_guardrails"
+ }
+}

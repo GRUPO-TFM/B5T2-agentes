@@ -32,22 +32,51 @@ from langgraph.runtime import Runtime
 
 from agente.config import Arquitectura
 from agente.metricas import cuadra, normalizar
+from agente.resultado import NO_SON_HERRAMIENTAS
 
 MARCA_CIFRA = "VERIFICACIÓN AUTOMÁTICA DE CIFRA"
 MARCA_CITA = "VERIFICACIÓN AUTOMÁTICA DE CITA"
 
 
+def formatear_valor(valor: float, unidad: str | None = None) -> str:
+    """Los importes en dólares se leen mejor sin decimales; los valores POR
+    ACCIÓN, no: `EarningsPerShareDiluted = 2.94` formateado con `:,.0f` sale
+    «3», el modelo lo copia y el evaluador lo tumba (3/2,94 = +2 %, fuera de la
+    tolerancia del 1 %). Visto en gX-019 (NVDA, split 10:1)."""
+    if (unidad and "/" in unidad) or abs(valor) < 1000:
+        return f"{valor:,.2f}"
+    return f"{valor:,.0f}"
+
+
 # ---------------------------------------------------------------------------
 # 1. Límites — control de coste, no inteligencia. Es lo primero que se pone.
 # ---------------------------------------------------------------------------
+class LimiteDeHerramientas(ToolCallLimitMiddleware):
+    """Límite global que NO cuenta la llamada de salida estructurada.
+
+    `create_agent(response_format=…)` implementa la respuesta como un tool call
+    más (`RespuestaFinanciera`), y `ToolCallLimitMiddleware` sin `tool_name` lo
+    cuenta contra el presupuesto: con 8 configuradas, la respuesta y su
+    corrección se comen dos, y cuando el presupuesto está agotado la propia
+    respuesta recibe un «Tool call limit exceeded» (visto en gX-019 de A1; la
+    respuesta estructurada se capturó igual, pero de casualidad). La respuesta
+    no es una herramienta: no cuenta.
+    """
+
+    def _matches_tool_filter(self, tool_call) -> bool:     # noqa: ANN001  (langchain 1.3.x)
+        if tool_call["name"] in NO_SON_HERRAMIENTAS:
+            return False
+        return super()._matches_tool_filter(tool_call)
+
+
 def limites(arq: Arquitectura) -> list:
     """Los techos. `exit_behavior="continue"` bloquea la herramienta y deja que
     el modelo cierre: recibe un ToolMessage diciendo que la llamada fue
     bloqueada y tiene que responder con lo que tenga (el prompt le dice cómo:
     fuente='ninguna'). Con "end" no habría respuesta estructurada."""
     return [
-        ToolCallLimitMiddleware(run_limit=arq.max_llamadas,
-                                exit_behavior="continue"),
+        LimiteDeHerramientas(run_limit=arq.max_llamadas,
+                             exit_behavior="continue"),
         ToolCallLimitMiddleware(tool_name="read_section",
                                 run_limit=arq.max_read_section,
                                 exit_behavior="continue"),
@@ -100,7 +129,7 @@ def verificar_cifras_contra_xbrl(state: AgentState,
     if any(cuadra(float(r.cifra), float(v)) for v in hechos["value"]):
         return None                     # cuadra con algún hecho: todo bien
 
-    lista = "\n".join(f"  - {h.concept} = {h.value:,.0f} {h.unit}"
+    lista = "\n".join(f"  - {h.concept} = {formatear_valor(h.value, h.unit)} {h.unit}"
                       for h in hechos.itertuples())
     aviso = (
         f"[{MARCA_CIFRA}] Has afirmado cifra={r.cifra:,.2f} "

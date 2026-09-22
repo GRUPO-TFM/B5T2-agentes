@@ -87,7 +87,63 @@ el corte sea **neutro o favorable**: menos deriva, misma respuesta. Si en cambio
 gX-019 empeora en las tres repeticiones, el límite está mal calibrado y hay que
 subirlo a 10, no quitarlo. `limite_alcanzado` es la columna que lo dice.
 
-> Resultado: _(pendiente)_
+> **Resultado (medido el 2026-09-22, commit `aea6ec7`, 3 reps × 20, 5 filas con error del proveedor):**
+>
+> | métrica | baseline | A1 (60 filas) | A1 sin los 5 errores (55) | predicción |
+> |---|---|---|---|---|
+> | acierto | 61,7 % | 66,7 % | 72,7 % | 62-70 % ✔ (por arriba) |
+> | cifra | 50 % | 89,3 % | **100 %** | ≥ 6/8 en comparativas ✔ (8/8, en las tres reps) |
+> | cita | 52 % | 53,7 % | 60,5 % | plano ✔ |
+> | trayectoria | 83 % | 66,7 % | 72,7 % | plano ✘ **baja** |
+> | comparativas | 8,3 % | 37,5 % | 37,5 % | ≤ 25 % ✘ (mejor de lo previsto) |
+> | numéricas | 100 % | 94,4 % | 100 % | no bajar ✔ (el fallo es un error de red) |
+> | extractivas | 94,4 % | 77,8 % | 100 % | no bajar ✔ (los 4 fallos son errores de red) |
+> | coste / latencia / llamadas | 1,62 ¢ / 20,3 s / 3,95 | 1,39 ¢ / 16,7 s / 3,27 | — | subir ✘ **bajan** |
+>
+> **Tras reparar los 5 errores** (segunda pasada del bloque 3; 6 reintentos en total, gX-009 rep2 necesitó dos),
+> **A1 definitivo con 60 filas válidas: acierto 75,0 % · numéricas 100 % · extractivas 100 % · comparativas 37,5 % ·
+> cita 64,3 % · cifra 100 % · trayectoria 75,0 % · 1,41 ¢ · 17,2 s · 3,25 llamadas.** Las tres repeticiones dan
+> exactamente 0,75: el peldaño es estable. La causa del 400 quedó capturada en el `body` del reintento fallido:
+> «Gemini models require OpenRouter reasoning details to be preserved in each request … Upstream error: Corrupted
+> thought signature». Es el requisito de Gemini 3 de que las firmas de razonamiento vuelvan intactas en cada vuelta
+> de herramientas; no es determinista y el reintento en hilo nuevo lo resuelve (5/5).
+>
+> **Lo que salió como se predijo.** `cifra` pasa a 8/8 en comparativas en las tres repeticiones: la convención
+> del prompt bastó, era una convención y no una capacidad. El `acierto` global se mueve poco, como se dijo, porque
+> exige los tres evaluadores. gX-019 (split de NVDA) pasa de 2/3 a 3/3 con el límite mordiendo en 2 de 3 reps:
+> el corte fue favorable, como se predijo. Numéricas y extractivas no bajan por el agente: los 5 fallos son
+> `BadRequestResponseError: Provider returned error` (400 del proveedor), 0 en el baseline. Sin ellos, 100 % y 100 %.
+>
+> **Lo que salió mal, y por qué — tres hallazgos.**
+>
+> 1. **Trayectoria baja 83 → 73 % (sin errores) porque A1 hace al agente más tacaño.** gX-017 (AAPL) llamaba a
+>    `search_filings` en las 3 reps del baseline y en A1 en ninguna; gX-013 y gX-015 pierden la búsqueda ocasional.
+>    Causa: el prompt `HONESTO` empuja a cerrar («a la tercera, cierra», «responde con lo que tengas») y define
+>    `fuente='xbrl'` como respuesta legítima. Un guardrail contra el bucle infinito tiene como efecto secundario
+>    menos búsqueda de texto en comparativas. Esto es lo que A4 tiene que revertir (paso 3: buscar el MD&A).
+>    Efecto secundario real, medido, y es el hallazgo más valioso del peldaño.
+> 2. **Coste y latencia bajan en vez de subir.** Los verificadores se dispararon 4 veces en 60 (3 de cifra, todas en
+>    gX-019; 1 de cita), así que su coste es ~0; mientras, el agente busca menos (punto 1) y gX-019 dejó de derivar.
+>    La predicción asumía verificadores frecuentes; no lo son.
+> 3. **Comparativas 3/8 en vez de ≤ 2/8**: gX-020 (META por regiones) pasa a citar literalmente sin que el
+>    verificador se dispare. Lo arregló la línea del prompt «`cita`: una frase LITERAL … copiada tal cual», no el
+>    middleware. El prompt hizo el trabajo que se le había asignado al verificador.
+>
+> **Dos bugs encontrados en las trazas de gX-019:**
+> - `get_xbrl_fact` formatea con `:,.0f` y devuelve «EarningsPerShareDiluted = 3 USD/shares» para 2,94 (y 12 para
+>   11,93). El modelo copia el 3, el verificador lo rechaza (3/2,94 = +2 %), y el modelo recupera 2,94 del texto del
+>   Item 8. El verificador tapó un bug de la herramienta. Afecta a cualquier concepto por acción; en el golden solo a
+>   gX-019, pero el hold-out puede traer más. Corregido en el verificador (`formatear_valor`); la corrección en
+>   `herramientas.py` (fichero de Diego) se aplica a partir de A2 y se deja anotada.
+> - `ToolCallLimitMiddleware` global contaba la llamada de salida estructurada como una herramienta: con 8, la
+>   respuesta y su corrección gastaban dos, y con el presupuesto agotado la propia respuesta recibía un «Tool call
+>   limit exceeded». Corregido con `LimiteDeHerramientas`. En A1 solo tocó a gX-019 y la respuesta se capturó igual,
+>   así que la medición se mantiene; no se repite A1 por esto.
+>
+> **Los 5 errores del proveedor** (gX-009 ×2, gX-010 ×2, gX-005 ×1; no deterministas — cada pregunta también
+> tiene reps buenas). El harness solo guardó «Provider returned error» y no el `body` con el error real de Google;
+> corregido: ahora se guarda entero, se reintenta una vez en un hilo nuevo y una segunda pasada repara solo las
+> filas con error, contando el reintento como instrumentación (`reintentos_proveedor`).
 
 ---
 

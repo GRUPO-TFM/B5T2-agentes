@@ -159,3 +159,97 @@ def test_la_instrumentacion_se_recalcula_al_puntuar(tmp_path, monkeypatch):
     fila = interfaz.puntuar("baseline", 11, con_recall=False).set_index("id").loc["gX-001"]
     assert fila["limite_alcanzado"] == False      # recalculado de los mensajes  # noqa: E712
     assert fila["reintentos_esquema"] == 0
+
+
+# ---------------------------------------------------------------------------
+# Errores del proveedor: se reintentan, se guardan enteros y se reparan solos
+# ---------------------------------------------------------------------------
+class _ErrorProveedor(Exception):
+    """Imita `openrouter.errors.OpenRouterError`: trae status_code y body."""
+    def __init__(self, status_code, body):
+        super().__init__("Provider returned error")
+        self.status_code = status_code
+        self.body = body
+
+
+def _responder_que_falla(veces, codigo=400):
+    """Falla `veces` veces y luego responde. Apunta los thread_id que recibió."""
+    estado = {"llamadas": 0, "hilos": []}
+
+    def fn(pregunta, thread_id=None, arquitectura="baseline", modelo="test"):
+        estado["llamadas"] += 1
+        estado["hilos"].append(thread_id)
+        if estado["llamadas"] <= veces:
+            raise _ErrorProveedor(codigo, '{"error":{"message":"Provider returned error",'
+                                          '"metadata":{"raw":"upstream says no"}}}')
+        return _responder_falso(pregunta, thread_id, arquitectura, modelo)
+    fn.estado = estado
+    return fn
+
+
+def test_un_400_del_proveedor_se_reintenta_en_un_hilo_nuevo(tmp_path, monkeypatch):
+    monkeypatch.setattr(interfaz, "dir_resultados", lambda: tmp_path / "resultados")
+    monkeypatch.setattr(interfaz.time, "sleep", lambda s: None)
+    ruta = interfaz.raiz_repo() / "data" / "golden_set.jsonl"
+    fn = _responder_que_falla(veces=1)
+
+    carpeta = interfaz.ejecutar(ruta, "baseline", 1, responder_fn=fn, solo_ids=["gX-001"], verbose=False)
+    reg = json.loads((carpeta / "gX-001.json").read_text(encoding="utf-8"))
+
+    assert fn.estado["llamadas"] == 2
+    # el reintento NO reutiliza el hilo: reanudar un checkpoint a medias
+    # metería la pregunta dos veces en la misma conversación
+    assert fn.estado["hilos"] == ["baseline-rep1-gX-001", "baseline-rep1-gX-001-intento2"]
+    assert "resultado" in reg and "error" not in reg
+    assert reg["thread_id"] == "baseline-rep1-gX-001-intento2"
+    # el error se guarda ENTERO: el body es lo único que dice qué pasó de verdad
+    assert len(reg["intentos_fallidos"]) == 1
+    assert reg["intentos_fallidos"][0]["status_code"] == 400
+    assert "upstream says no" in reg["intentos_fallidos"][0]["body"]
+
+    tabla = interfaz.puntuar("baseline", 1, con_recall=False).set_index("id")
+    assert tabla.loc["gX-001", "reintentos_proveedor"] == 1
+    assert tabla.loc["gX-001", "acierto"] == True                      # noqa: E712
+
+
+def test_un_401_no_se_reintenta(tmp_path, monkeypatch):
+    monkeypatch.setattr(interfaz, "dir_resultados", lambda: tmp_path / "resultados")
+    ruta = interfaz.raiz_repo() / "data" / "golden_set.jsonl"
+    fn = _responder_que_falla(veces=5, codigo=401)        # clave mala: repetir no arregla nada
+
+    carpeta = interfaz.ejecutar(ruta, "baseline", 1, responder_fn=fn, solo_ids=["gX-001"], verbose=False)
+    reg = json.loads((carpeta / "gX-001.json").read_text(encoding="utf-8"))
+    assert fn.estado["llamadas"] == 1
+    assert "error" in reg and "resultado" not in reg
+    assert reg["intentos_fallidos"][0]["status_code"] == 401
+
+
+def test_un_fichero_con_error_se_repara_al_volver_a_pasar(tmp_path, monkeypatch):
+    monkeypatch.setattr(interfaz, "dir_resultados", lambda: tmp_path / "resultados")
+    monkeypatch.setattr(interfaz.time, "sleep", lambda s: None)
+    ruta = interfaz.raiz_repo() / "data" / "golden_set.jsonl"
+
+    # Pasada 1: falla dos veces seguidas → se agota el reintento y queda el error
+    fn = _responder_que_falla(veces=2)
+    carpeta = interfaz.ejecutar(ruta, "baseline", 1, responder_fn=fn, solo_ids=["gX-001"], verbose=False)
+    reg = json.loads((carpeta / "gX-001.json").read_text(encoding="utf-8"))
+    assert "error" in reg and len(reg["intentos_fallidos"]) == 2
+    assert interfaz.puntuar("baseline", 1, con_recall=False).set_index("id").loc["gX-001", "acierto"] == False  # noqa: E712
+
+    # Pasada 2 (volver a ejecutar el bloque 3): el fichero con error se repite
+    # solo, en un hilo que no se haya usado, y conserva el historial de errores
+    fn2 = _responder_que_falla(veces=0)
+    interfaz.ejecutar(ruta, "baseline", 1, responder_fn=fn2, solo_ids=["gX-001"], verbose=False)
+    reg = json.loads((carpeta / "gX-001.json").read_text(encoding="utf-8"))
+    assert fn2.estado["hilos"] == ["baseline-rep1-gX-001-intento3"]
+    assert "resultado" in reg and "error" not in reg
+    assert len(reg["intentos_fallidos"]) == 2
+    tabla = interfaz.puntuar("baseline", 1, con_recall=False).set_index("id")
+    assert tabla.loc["gX-001", "reintentos_proveedor"] == 2
+    assert tabla.loc["gX-001", "acierto"] == True                      # noqa: E712
+
+    # Con reintentar_errores=False se respeta el fichero tal cual
+    fn3 = _responder_que_falla(veces=0)
+    interfaz.ejecutar(ruta, "baseline", 1, responder_fn=fn3, solo_ids=["gX-001"],
+                      reintentar_errores=False, verbose=False)
+    assert fn3.estado["llamadas"] == 0

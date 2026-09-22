@@ -167,15 +167,54 @@ def _commit_actual() -> str:
 # ---------------------------------------------------------------------------
 # ejecutar — la única función que gasta API
 # ---------------------------------------------------------------------------
+# Un 400/429/5xx del proveedor NO es el agente fallando: es la red. Si se cuenta
+# como fallo, la tabla mezcla dos cosas que no tienen nada que ver. Por eso se
+# reintenta UNA vez (en un hilo nuevo, para no reanudar un checkpoint a medias)
+# y se apunta el reintento como instrumentación (`reintentos_proveedor`).
+# 401/402/403 (clave, crédito) no se reintentan: repetir no arregla nada.
+REINTENTOS_PROVEEDOR = 1
+_CODIGOS_REINTENTABLES = {400, 408, 409, 425, 429, 500, 502, 503, 504, 529}
+
+
+def _describir_error(e: Exception) -> dict:
+    """Todo lo que la excepción sepa. El `body` de OpenRouter lleva dentro el
+    error real del proveedor (Google), que es lo que hay que leer para
+    diagnosticar: `str(e)` se queda en «Provider returned error»."""
+    d = {"tipo": type(e).__name__, "texto": f"{type(e).__name__}: {e}"}
+    codigo = getattr(e, "status_code", None)
+    if codigo is not None:
+        d["status_code"] = codigo
+    cuerpo = getattr(e, "body", None)
+    if cuerpo:
+        d["body"] = str(cuerpo)[:3000]
+    return d
+
+
+def _es_reintentable(e: Exception) -> bool:
+    return getattr(e, "status_code", None) in _CODIGOS_REINTENTABLES
+
+
+def _solo_error(destino: Path) -> dict | None:
+    """El registro guardado si es un error sin resultado; None si es válido."""
+    try:
+        reg = json.loads(destino.read_text(encoding="utf-8"))
+    except Exception:                                       # noqa: BLE001
+        return {"error": "fichero ilegible"}
+    return reg if "resultado" not in reg else None
+
+
 def ejecutar(ruta_jsonl: str | Path, arq: str | Arquitectura = "final", rep: int = 1, *,
              modelo: str = MODELO, solo_ids: list[str] | None = None,
              solo_familia: str | None = None,
-             forzar: bool = False, responder_fn=None, verbose: bool = True) -> Path:
+             forzar: bool = False, reintentar_errores: bool = True,
+             responder_fn=None, verbose: bool = True) -> Path:
     """Corre el agente sobre el JSONL y guarda UN JSON crudo por pregunta.
 
     Idempotente: si `crudo/<id>.json` ya existe y no se pide `forzar`, se salta.
-    Así una ejecución cortada se relanza y sigue donde estaba, y las que dieron
-    excepción se pueden repetir solas con `solo_ids`.
+    Así una ejecución cortada se relanza y sigue donde estaba. Excepción: un
+    JSON que solo contiene `error` (sin `resultado`) se REPITE al volver a
+    pasar, salvo `reintentar_errores=False`; los errores anteriores se conservan
+    en `intentos_fallidos` para que nada se pierda.
 
     `responder_fn` permite inyectar un responder falso (tests) o el de otro.
     """
@@ -204,29 +243,59 @@ def ejecutar(ruta_jsonl: str | Path, arq: str | Arquitectura = "final", rep: int
 
     for i, item in enumerate(preguntas, 1):
         destino = carpeta / f"{item['id']}.json"
+        intentos: list[dict] = []                    # errores previos + de esta pasada
         if destino.is_file() and not forzar:
+            previo = _solo_error(destino) if reintentar_errores else None
+            if previo is None:
+                if verbose:
+                    print(f"  [{i}/{len(preguntas)}] {item['id']} · ya existe, salto", flush=True)
+                continue
+            intentos = list(previo.get("intentos_fallidos") or [])
+            if previo.get("error") and not any(x.get("texto") == previo["error"] for x in intentos):
+                intentos.append({"texto": previo["error"]})
             if verbose:
-                print(f"  [{i}/{len(preguntas)}] {item['id']} · ya existe, salto", flush=True)
-            continue
-        if verbose:
+                print(f"  [{i}/{len(preguntas)}] {item['id']} · tenía error, se repite …",
+                      end=" ", flush=True)
+        elif verbose:
             print(f"  [{i}/{len(preguntas)}] {item['id']} …", end=" ", flush=True)
-        thread_id = f"{a.nombre}-rep{rep}-{item['id']}"     # la rep DENTRO del hilo
-        registro: dict = {"item": item, "rep": rep, "thread_id": thread_id}
-        try:
-            r = fn(item["pregunta"], thread_id=thread_id, arquitectura=a.nombre, modelo=modelo)
-            registro["resultado"] = normalizar_resultado(
-                r, modelo=modelo, arquitectura=a.nombre,
-                coste_usd=r.get("coste_usd"), latencia_s=r.get("latencia_s"))
-            if verbose:
-                sr = registro["resultado"]["structured_response"] or {}
-                print(f"{registro['resultado']['latencia_s']:.1f}s · "
-                      f"{registro['resultado']['coste_usd']*100:.2f}¢ · "
-                      f"{registro['resultado']['n_llamadas']} llamadas · fuente={sr.get('fuente')}",
-                      flush=True)
-        except Exception as e:                      # noqa: BLE001 — se registra, no se pierde la fila
-            registro["error"] = f"{type(e).__name__}: {e}"
-            if verbose:
-                print(f"ERROR {registro['error'][:80]}", flush=True)
+
+        base_hilo = f"{a.nombre}-rep{rep}-{item['id']}"     # la rep DENTRO del hilo
+        registro: dict = {"item": item, "rep": rep, "thread_id": base_hilo}
+        # Los intentos ya gastados (de pasadas anteriores) cuentan para el hilo:
+        # así el hilo del reintento nunca coincide con uno que ya se usó.
+        gastados = len(intentos)
+        for intento in range(1, REINTENTOS_PROVEEDOR + 2):
+            n_hilo = gastados + intento
+            thread_id = base_hilo if n_hilo == 1 else f"{base_hilo}-intento{n_hilo}"
+            registro["thread_id"] = thread_id
+            try:
+                r = fn(item["pregunta"], thread_id=thread_id, arquitectura=a.nombre, modelo=modelo)
+                registro["resultado"] = normalizar_resultado(
+                    r, modelo=modelo, arquitectura=a.nombre,
+                    coste_usd=r.get("coste_usd"), latencia_s=r.get("latencia_s"))
+                registro.pop("error", None)
+                if verbose:
+                    sr = registro["resultado"]["structured_response"] or {}
+                    print(f"{registro['resultado']['latencia_s']:.1f}s · "
+                          f"{registro['resultado']['coste_usd']*100:.2f}¢ · "
+                          f"{registro['resultado']['n_llamadas']} llamadas · "
+                          f"fuente={sr.get('fuente')}", flush=True)
+                break
+            except Exception as e:                  # noqa: BLE001 — se registra, no se pierde la fila
+                detalle = _describir_error(e)
+                intentos.append(detalle)
+                if intento <= REINTENTOS_PROVEEDOR and _es_reintentable(e):
+                    if verbose:
+                        print(f"error del proveedor ({detalle.get('status_code')}), "
+                              f"reintento …", end=" ", flush=True)
+                    time.sleep(2.0 * intento)
+                    continue
+                registro["error"] = detalle["texto"]
+                if verbose:
+                    print(f"ERROR {registro['error'][:80]}", flush=True)
+                break
+        if intentos:
+            registro["intentos_fallidos"] = intentos
         destino.write_text(json.dumps(registro, ensure_ascii=False, indent=1, default=str),
                            encoding="utf-8")
     return carpeta
@@ -239,6 +308,9 @@ def _fila(registro: dict, arq: Arquitectura, con_recall: bool) -> dict:
     item = registro["item"]
     fila = {"id": item.get("id"), "familia": item.get("familia"), "ticker": item.get("ticker"),
             "arquitectura": arq.nombre, "rep": registro.get("rep")}
+    # Reintentos por error del proveedor (400/429/5xx): instrumentación, no
+    # veredicto. Una arquitectura que provoca más 400 que otra es un hallazgo.
+    fila["reintentos_proveedor"] = len(registro.get("intentos_fallidos") or [])
     if "error" in registro:
         fila["error"] = registro["error"]
         for nombre in EVALUADORES:
@@ -343,6 +415,8 @@ def resumir(tabla: pd.DataFrame, etiqueta: str) -> dict:
         "% fuente=ninguna": (float((tabla.get("fuente") == "ninguna").mean())
                              if "fuente" in tabla else float("nan")),
         "errores": int(tabla["error"].notna().sum()) if "error" in tabla else 0,
+        "reintentos proveedor": int(tabla["reintentos_proveedor"].sum())
+                                if "reintentos_proveedor" in tabla else 0,
         # Cuántas veces actuó cada guardrail. Uno que nunca salta no aportó nada
         # y se dice con el dato, sin gastar una ablación.
         "% corrigió cifra": _tasa(tabla, "corrigio_cifra"),

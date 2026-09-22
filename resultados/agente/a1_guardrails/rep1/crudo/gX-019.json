@@ -1,0 +1,573 @@
+{
+ "item": {
+  "id": "gX-019",
+  "pregunta": "El BPA diluido de NVIDIA pasó de 11,93 en FY2024 a 2,94 en FY2025: ¿significa eso que ganó menos por acción?",
+  "familia": "comparativa",
+  "ticker": "NVDA",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "No: en junio de 2024 hubo un split diez por uno. Ajustado, el BPA diluido pasa de 1,19 a 2,94 dólares, un 146 % más.",
+  "cifra_esperada": 2.94,
+  "unidad": "USD/shares",
+  "concept_xbrl": "EarningsPerShareDiluted",
+  "item_esperado": "8",
+  "ancla_texto": "In June 2024, we executed a ten-for-one stock split of our common stock.",
+  "ancla_inicio": 19266,
+  "ancla_fin": 19338,
+  "chunk_id_esperado": "NVDA-2025-8-0015",
+  "herramienta_esperada": [
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "autor": "grupo-X"
+ },
+ "rep": 1,
+ "thread_id": "a1_guardrails-rep1-gX-019",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "No, no significa que haya ganado menos por acción. NVIDIA llevó a cabo un desdoblamiento de acciones (stock split) de 10 por 1 durante el ejercicio FY2025. Al ajustar retrospectivamente las cifras del ejercicio previo para hacerlas comparables, el BPA diluido pasó de 1,19 USD en FY2024 a 2,94 USD en FY2025, lo que representa un crecimiento significativo de las ganancias por acción (y el beneficio neto total creció de 29.760 a 72.880 millones de dólares). La cifra de 11,93 USD corresponde a la reportada originalmente antes de dicho split de 10 por 1.",
+   "cifra": 2.94,
+   "unidad": "USD/shares",
+   "ticker": "NVDA",
+   "ejercicio": 2025,
+   "fuente": "ambas",
+   "cita": "Diluted (2)\t$\t2.94\t\t\t$\t1.19\t\t\t$\t0.17",
+   "chunk_id": "NVDA-2025-8-0032"
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "search_filings",
+   "search_filings",
+   "search_filings",
+   "search_filings",
+   "search_filings",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2024,
+     "ticker": "NVDA",
+     "concept": "EarningsPerShareDiluted"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "concept": "EarningsPerShareDiluted",
+     "ticker": "NVDA"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "8",
+     "fiscal_year": 2025,
+     "ticker": "NVDA",
+     "query": "ten-for-one stock split retroactive basis earnings per share"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "query": "ten-for-one forward stock split Note",
+     "fiscal_year": 2025,
+     "ticker": "NVDA",
+     "item": "8"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "ticker": "NVDA",
+     "query": "stock split June 2024 ten-for-one",
+     "item": "8",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "query": "\"stock split\"",
+     "item": "8",
+     "ticker": "NVDA",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "8",
+     "query": "\"Note 4\" \"Net Income Per Share\"",
+     "ticker": "NVDA",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "fiscal_year": 2025,
+     "item": "7",
+     "ticker": "NVDA",
+     "query": "ten-for-one forward stock split earnings per share"
+    }
+   }
+  ],
+  "n_llamadas": 9,
+  "tokens_in": 90013,
+  "tokens_out": 3556,
+  "coste_usd": 0.08084475,
+  "latencia_s": 44.66214249981567,
+  "limite_alcanzado": true,
+  "correcciones": [
+   "VERIFICACIÓN AUTOMÁTICA DE CIFRA"
+  ],
+  "reintentos_esquema": 1,
+  "messages": [
+   {
+    "type": "human",
+    "content": "El BPA diluido de NVIDIA pasó de 11,93 en FY2024 a 2,94 en FY2025: ¿significa eso que ganó menos por acción?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_143596",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1419,
+     "output_tokens": 142,
+     "total_tokens": 1561,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 132
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_143596",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2024,
+       "ticker": "NVDA",
+       "concept": "EarningsPerShareDiluted"
+      },
+      "id": "call_4416622",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "concept": "EarningsPerShareDiluted",
+       "ticker": "NVDA"
+      },
+      "id": "call_4416626",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1808,
+     "output_tokens": 109,
+     "total_tokens": 1917,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 29
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "NVDA FY2024 · EarningsPerShareDiluted = 12 USD/shares (cierre de ejercicio 2024-01-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_4416622",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "NVDA FY2025 · EarningsPerShareDiluted = 3 USD/shares (cierre de ejercicio 2025-01-26, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_4416626",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "8",
+       "fiscal_year": 2025,
+       "ticker": "NVDA",
+       "query": "ten-for-one stock split retroactive basis earnings per share"
+      },
+      "id": "call_3478175",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2004,
+     "output_tokens": 107,
+     "total_tokens": 2111,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 57
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[NVDA-2025-8-0032] NVDA FY2025 Item 8 (similitud 0.722)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\tJan 29, 2023\n(In millions, except per share data)\nNumerator:\nNet income\t$\t72,880\t\t\t$\t29,760\t\t\t$\t4,368\nDenominator:\nBasic weighted average shares\t24,555\t\t\t24,690\t\t\t24,870\nDilutive impact of outstanding equity awards\t249\t\t\t250\t\t\t200\nDiluted weighted average shares\t24,804\t\t\t24,940\t\t\t25,070\nNet income per share:\nBasic (1)\t$\t2.97\t\t\t$\t1.21\t\t\t$\t0.18\nDiluted (2)\t$\t2.94\t\t\t$\t1.19\t\t\t$\t0.17\nAnti-dilutive equity awards excluded from diluted net income per share\t51\t\t\t150\t\t\t400\n\n(1) Net income divided by basic weighted average shares.\n\n(2) Net income divided by diluted weighted average shares.\n\nNote 5 - Goodwill\n\nAs of January 26, 2025, the total carrying amount of goodwill was $5.2 billion, consisting of goodwill balances allocated to our Compute & Networking and Graphics reporting units of $4.8 billion and $370 million, respectively. As of January 28, 2024, the total carrying amount of goodwill was $4.4 billion, consisting of goodwill balances allocated to our Compute & Networking and Graphics reporting units of $4.1 billion and $370 million, respectively. Goodwill increased by $758 million in fiscal year 2025 from acquisitions and was allocated to our Compute & Networking reporting unit. During the fourth quarters of fiscal years 2025, 2024, and 2023, we completed our annual qualitative impairment tests and concluded that goodwill was not impaired.\n\n---\n\n[NVDA-2025-8-0010] NVDA FY2025 Item 8 (similitud 0.708)\nConsolidated Statements of Shareholders' Equity\n\nCommon Stock Outstanding\t\tAdditional Paid-in\t\tAccumulated Other Comprehensive\t\tRetained\t\tTotal Shareholders'\nShares\t\tAmount\t\tCapital\t\tIncome (Loss)\t\tEarnings\t\tEquity\n(In millions, except per share data)\nBalances as of Jan 30, 2022\t25,064\t\t\t$\t26\t\t\t$\t10,362\t\t\t$\t( 11 )\t\t\t$\t16,235\t\t\t$\t26,612\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t4,368\t\t\t4,368\nOther comprehensive loss\t—\t\t\t—\t\t\t—\t\t\t( 32 )\t\t\t—\t\t\t( 32 )\nIssuance of common stock from stock plans\t312\t\t\t—\t\t\t355\t\t\t—\t\t\t—\t\t\t355\nTax withholding related to vesting of restricted stock units\t( 82 )\t\t\t—\t\t\t( 1,475 )\t\t\t—\t\t\t—\t\t\t( 1,475 )\nShares repurchased\t( 633 )\t\t\t( 1 )\t\t\t( 4 )\t\t\t—\t\t\t( 10,034 )\t\t\t( 10,039 )\nCash dividends declared and paid ($ 0.016 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 398 )\t\t\t( 398 )\nStock-based compensation\t—\t\t\t—\t\t\t2,710\t\t\t—\t\t\t—\t\t\t2,710\nBalances as of Jan 29, 2023\t24,661\t\t\t25\t\t\t11,948\t\t\t( 43 )\t\t\t10,171\t\t\t22,101\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t29,760\t\t\t29,760\nOther comprehensive income\t—\t\t\t—\t\t\t—\t\t\t70\t\t\t—\t\t\t70\nIssuance of common stock from stock plans\t265\t\t\t—\t\t\t403\t\t\t—\t\t\t—\t\t\t403\nTax withholding related to vesting of restricted stock units\t( 72 )\t\t\t—\t\t\t( 2,783 )\t\t\t—\t\t\t—\t\t\t( 2,783 )\nShares repurchased\t( 211 )\t\t\t—\t\t\t(\n\n---\n\n[NVDA-2025-8-0011] NVDA FY2025 Item 8 (similitud 0.705)\nance of common stock from stock plans\t265\t\t\t—\t\t\t403\t\t\t—\t\t\t—\t\t\t403\nTax withholding related to vesting of restricted stock units\t( 72 )\t\t\t—\t\t\t( 2,783 )\t\t\t—\t\t\t—\t\t\t( 2,783 )\nShares repurchased\t( 211 )\t\t\t—\t\t\t( 27 )\t\t\t—\t\t\t( 9,719 )\t\t\t( 9,746 )\nCash dividends declared and paid ($ 0.016 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 395 )\t\t\t( 395 )\nStock-based compensation\t—\t\t\t—\t\t\t3,568\t\t\t—\t\t\t—\t\t\t3,568\nBalances as of Jan 28, 2024\t24,643\t\t\t25\t\t\t13,109\t\t\t27\t\t\t29,817\t\t\t42,978\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t72,880\t\t\t72,880\nOther comprehensive income\t—\t\t\t—\t\t\t—\t\t\t1\t\t\t—\t\t\t1\nIssuance of common stock from stock plans\t203\t\t\t—\t\t\t490\t\t\t—\t\t\t—\t\t\t490\nTax withholding related to vesting of restricted stock units\t( 59 )\t\t\t—\t\t\t( 6,930 )\t\t\t—\t\t\t—\t\t\t( 6,930 )\nShares repurchased\t( 310 )\t\t\t( 1 )\t\t\t( 189 )\t\t\t—\t\t\t( 33,825 )\t\t\t( 34,015 )\nCash dividends declared and paid ($ 0.034 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 834 )\t\t\t( 834 )\nStock-based compensation\t—\t\t\t—\t\t\t4,757\t\t\t—\t\t\t—\t\t\t4,757\nBalances as of Jan 26, 2025\t24,477\t\t\t$\t24\t\t\t$\t11,237\t\t\t$\t28\t\t\t$\t68,038\t\t\t$\t79,327\n\nSee accompanying Notes to the Consolidated Financial Statements.\n\nNVIDIA Corporation and Subsidiaries\n\nConsolidated Statements of Cash Flows\n\n(In millions)\n\n---\n\n[NVDA-2025-8-0007] NVDA FY2025 Item 8 (similitud 0.701)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\tJan 29, 2023\nNet income\t$\t72,880\t\t\t$\t29,760\t\t\t$\t4,368\nOther comprehensive income (loss), net of tax\nAvailable-for-sale securities:\nNet change in unrealized gain (loss)\t1\t\t\t80\t\t\t( 31 )\nReclassification adjustments for net realized gain included in net income\t—\t\t\t—\t\t\t1\nNet change in unrealized gain (loss)\t1\t\t\t80\t\t\t( 30 )\nCash flow hedges:\nNet change in unrealized gain\t21\t\t\t38\t\t\t47\nReclassification adjustments for net realized loss included in net income\t( 21 )\t\t\t( 48 )\t\t\t( 49 )\nNet change in unrealized loss\t—\t\t\t( 10 )\t\t\t( 2 )\nOther comprehensive income (loss), net of tax\t1\t\t\t70\t\t\t( 32 )\nTotal comprehensive income\t$\t72,881\t\t\t$\t29,830\t\t\t$\t4,336\n\nSee accompanying Notes to the Consolidated Financial Statements.\n\nNVIDIA Corporation and Subsidiaries\n\nConsolidated Balance Sheets\n\n---\n\n[NVDA-2025-8-0013] NVDA FY2025 Item 8 (similitud 0.696)\n-marketable equity securities\t171\t\t\t1\t\t\t8\nPurchases of marketable securities\t( 26,575 )\t\t\t( 18,211 )\t\t\t( 11,897 )\nPurchases related to property and equipment and intangible assets\t( 3,236 )\t\t\t( 1,069 )\t\t\t( 1,833 )\nPurchases of non-marketable equity securities\t( 1,486 )\t\t\t( 862 )\t\t\t( 85 )\nAcquisitions, net of cash acquired\t( 1,007 )\t\t\t( 83 )\t\t\t( 49 )\nOther\t22\t\t\t( 124 )\t\t\t—\nNet cash provided by (used in) investing activities\t( 20,421 )\t\t\t( 10,566 )\t\t\t7,375\nCash flows from financing activities:\nProceeds related to employee stock plans\t490\t\t\t403\t\t\t355\nPayments related to repurchases of common stock\t( 33,706 )\t\t\t( 9,533 )\t\t\t( 10,039 )\nPayments related to tax on restricted stock units\t( 6,930 )\t\t\t( 2,783 )\t\t\t( 1,475 )\nRepayment of debt\t( 1,250 )\t\t\t( 1,250 )\t\t\t—\nDividends paid\t( 834 )\t\t\t( 395 )\t\t\t( 398 )\nPrincipal payments on property and equipment and intangible assets\t( 129 )\t\t\t( 74 )\t\t\t( 58 )\nOther\t—\t\t\t( 1 )\t\t\t( 2 )\nNet cash used in financing activities\t( 42,359 )\t\t\t( 13,633 )\t\t\t( 11,617 )\nChange in cash and cash equivalents\t1,309\t\t\t3,891\t\t\t1,399\nCash and cash equivalents at beginning of period\t7,280\t\t\t3,389\t\t\t1,990\nCash and cash equivalents at end of period\t$\t8,589\t\t\t$\t7,280\t\t\t$\t3,389\nSupplemental disclosures of cash flow information:\nCash paid for income taxes, net\t$\t15,118\t\t\t$\t6,549\t\t\t$\t1,404\nCash paid for interest\t$\t246\t\t\t$\t252\t\t\t$\t254",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_3478175",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "query": "ten-for-one forward stock split Note",
+       "fiscal_year": 2025,
+       "ticker": "NVDA",
+       "item": "8"
+      },
+      "id": "call_1738907",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4656,
+     "output_tokens": 214,
+     "total_tokens": 4870,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 167
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[NVDA-2025-8-0045] NVDA FY2025 Item 8 (similitud 0.685)\nNote 10 - Derivative Financial Instruments\n\nWe utilize foreign currency forward contracts to mitigate the impact of foreign currency exchange rate movements on our operating expenses. The foreign currency forward contracts for operating expenses are designated as accounting hedges. Gains or losses on the contracts are recorded in accumulated other comprehensive income or loss and reclassified to operating expense when the related operating expenses are recognized in earnings. In fiscal years 2025 and 2024, the impact of foreign currency forward contracts designated as accounting hedges on other comprehensive income or loss was not significant and all such instruments were determined to be highly effective.\n\nWe also entered into foreign currency forward contracts mitigating the impact of foreign currency movements on monetary assets and liabilities. For our foreign currency contracts for assets and liabilities, the change in fair value of these non-designated contracts was recorded in other income or expense and offsets the change in fair value of the hedged foreign currency denominated monetary assets and liabilities, which was also recorded in other income or expense.\n\nThe table below presents the notional value of our foreign currency contracts outstanding:\n\nJan 26, 2025\t\tJan 28, 2024\n(In millions)\nDesignated as accounting hedges\t$\t1,424\t\t\t$\t1,168\nNot designated as accounting hedges\t$\t1,297\t\t\t$\t597\n\nThe unrealized gains and losses or fair value of our foreign currency contracts were not significant as of January 26, 2025 and January 28, 2024.\n\nAs of January 26, 2025, all foreign currency contracts mature within 18 months. The expected realized gains and losses deferred into accumulated other comprehensive income or loss related to foreign currency forward contracts within the next twelve months were not significant.\n\nNVIDIA Corporation and Subsidiaries\n\nNotes to the Consolidated Financial Statements\n\n(Continued)\n\nNote 11 - Debt\n\n---\n\n[NVDA-2025-8-0013] NVDA FY2025 Item 8 (similitud 0.663)\n-marketable equity securities\t171\t\t\t1\t\t\t8\nPurchases of marketable securities\t( 26,575 )\t\t\t( 18,211 )\t\t\t( 11,897 )\nPurchases related to property and equipment and intangible assets\t( 3,236 )\t\t\t( 1,069 )\t\t\t( 1,833 )\nPurchases of non-marketable equity securities\t( 1,486 )\t\t\t( 862 )\t\t\t( 85 )\nAcquisitions, net of cash acquired\t( 1,007 )\t\t\t( 83 )\t\t\t( 49 )\nOther\t22\t\t\t( 124 )\t\t\t—\nNet cash provided by (used in) investing activities\t( 20,421 )\t\t\t( 10,566 )\t\t\t7,375\nCash flows from financing activities:\nProceeds related to employee stock plans\t490\t\t\t403\t\t\t355\nPayments related to repurchases of common stock\t( 33,706 )\t\t\t( 9,533 )\t\t\t( 10,039 )\nPayments related to tax on restricted stock units\t( 6,930 )\t\t\t( 2,783 )\t\t\t( 1,475 )\nRepayment of debt\t( 1,250 )\t\t\t( 1,250 )\t\t\t—\nDividends paid\t( 834 )\t\t\t( 395 )\t\t\t( 398 )\nPrincipal payments on property and equipment and intangible assets\t( 129 )\t\t\t( 74 )\t\t\t( 58 )\nOther\t—\t\t\t( 1 )\t\t\t( 2 )\nNet cash used in financing activities\t( 42,359 )\t\t\t( 13,633 )\t\t\t( 11,617 )\nChange in cash and cash equivalents\t1,309\t\t\t3,891\t\t\t1,399\nCash and cash equivalents at beginning of period\t7,280\t\t\t3,389\t\t\t1,990\nCash and cash equivalents at end of period\t$\t8,589\t\t\t$\t7,280\t\t\t$\t3,389\nSupplemental disclosures of cash flow information:\nCash paid for income taxes, net\t$\t15,118\t\t\t$\t6,549\t\t\t$\t1,404\nCash paid for interest\t$\t246\t\t\t$\t252\t\t\t$\t254\n\n---\n\n[NVDA-2025-8-0021] NVDA FY2025 Item 8 (similitud 0.656)\nCash and Cash Equivalents and Marketable Securities\n\nWe consider all highly liquid investments that are readily convertible into cash and have an original maturity of three months or less at the time of purchase to be cash equivalents. Marketable securities consist of highly liquid debt investments with maturities of greater than three months when purchased and publicly-held equity securities. We classify these investments as current based on the nature of the investments and their availability for use in current operations.\n\nWe classify our cash equivalents and marketable debt securities at the date of acquisition as available-for-sale. These available-for-sale debt securities are reported at fair value with the related unrealized gains and losses included in accumulated other comprehensive income or loss, a component of shareholders’ equity, net of tax. The fair value of interest-bearing debt securities includes accrued interest. Realized gains and losses on the sale of marketable securities are determined using the specific-identification method and recorded in the Other income (expense), net, section of our Consolidated Statements of Income.\n\nAvailable-for-sale debt securities are subject to impairment review. If the estimated fair value of available-for-sale debt securities is less than its amortized cost basis, we determine if the difference, if any, is caused by expected credit losses and write-down the amortized cost basis of the securities if it is more likely than not we will be required or we intend to\n\nNVIDIA Corporation and Subsidiaries\n\nNotes to the Consolidated Financial Statements\n\n(Continued)\n\nsell the securities before recovery of its amortized cost basis. Allowances for credit losses and write-downs are recognized in the Other income (expense), net section of our Consolidated Statements of Income.\n\nPublicly-held equity securities have readily determinable fair values with changes in fair value recorded in Other income (expense), net.\n\n---\n\n[NVDA-2025-8-0011] NVDA FY2025 Item 8 (similitud 0.656)\nance of common stock from stock plans\t265\t\t\t—\t\t\t403\t\t\t—\t\t\t—\t\t\t403\nTax withholding related to vesting of restricted stock units\t( 72 )\t\t\t—\t\t\t( 2,783 )\t\t\t—\t\t\t—\t\t\t( 2,783 )\nShares repurchased\t( 211 )\t\t\t—\t\t\t( 27 )\t\t\t—\t\t\t( 9,719 )\t\t\t( 9,746 )\nCash dividends declared and paid ($ 0.016 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 395 )\t\t\t( 395 )\nStock-based compensation\t—\t\t\t—\t\t\t3,568\t\t\t—\t\t\t—\t\t\t3,568\nBalances as of Jan 28, 2024\t24,643\t\t\t25\t\t\t13,109\t\t\t27\t\t\t29,817\t\t\t42,978\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t72,880\t\t\t72,880\nOther comprehensive income\t—\t\t\t—\t\t\t—\t\t\t1\t\t\t—\t\t\t1\nIssuance of common stock from stock plans\t203\t\t\t—\t\t\t490\t\t\t—\t\t\t—\t\t\t490\nTax withholding related to vesting of restricted stock units\t( 59 )\t\t\t—\t\t\t( 6,930 )\t\t\t—\t\t\t—\t\t\t( 6,930 )\nShares repurchased\t( 310 )\t\t\t( 1 )\t\t\t( 189 )\t\t\t—\t\t\t( 33,825 )\t\t\t( 34,015 )\nCash dividends declared and paid ($ 0.034 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 834 )\t\t\t( 834 )\nStock-based compensation\t—\t\t\t—\t\t\t4,757\t\t\t—\t\t\t—\t\t\t4,757\nBalances as of Jan 26, 2025\t24,477\t\t\t$\t24\t\t\t$\t11,237\t\t\t$\t28\t\t\t$\t68,038\t\t\t$\t79,327\n\nSee accompanying Notes to the Consolidated Financial Statements.\n\nNVIDIA Corporation and Subsidiaries\n\nConsolidated Statements of Cash Flows\n\n(In millions)\n\n---\n\n[NVDA-2025-8-0010] NVDA FY2025 Item 8 (similitud 0.655)\nConsolidated Statements of Shareholders' Equity\n\nCommon Stock Outstanding\t\tAdditional Paid-in\t\tAccumulated Other Comprehensive\t\tRetained\t\tTotal Shareholders'\nShares\t\tAmount\t\tCapital\t\tIncome (Loss)\t\tEarnings\t\tEquity\n(In millions, except per share data)\nBalances as of Jan 30, 2022\t25,064\t\t\t$\t26\t\t\t$\t10,362\t\t\t$\t( 11 )\t\t\t$\t16,235\t\t\t$\t26,612\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t4,368\t\t\t4,368\nOther comprehensive loss\t—\t\t\t—\t\t\t—\t\t\t( 32 )\t\t\t—\t\t\t( 32 )\nIssuance of common stock from stock plans\t312\t\t\t—\t\t\t355\t\t\t—\t\t\t—\t\t\t355\nTax withholding related to vesting of restricted stock units\t( 82 )\t\t\t—\t\t\t( 1,475 )\t\t\t—\t\t\t—\t\t\t( 1,475 )\nShares repurchased\t( 633 )\t\t\t( 1 )\t\t\t( 4 )\t\t\t—\t\t\t( 10,034 )\t\t\t( 10,039 )\nCash dividends declared and paid ($ 0.016 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 398 )\t\t\t( 398 )\nStock-based compensation\t—\t\t\t—\t\t\t2,710\t\t\t—\t\t\t—\t\t\t2,710\nBalances as of Jan 29, 2023\t24,661\t\t\t25\t\t\t11,948\t\t\t( 43 )\t\t\t10,171\t\t\t22,101\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t29,760\t\t\t29,760\nOther comprehensive income\t—\t\t\t—\t\t\t—\t\t\t70\t\t\t—\t\t\t70\nIssuance of common stock from stock plans\t265\t\t\t—\t\t\t403\t\t\t—\t\t\t—\t\t\t403\nTax withholding related to vesting of restricted stock units\t( 72 )\t\t\t—\t\t\t( 2,783 )\t\t\t—\t\t\t—\t\t\t( 2,783 )\nShares repurchased\t( 211 )\t\t\t—\t\t\t(",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_1738907",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "ticker": "NVDA",
+       "query": "stock split June 2024 ten-for-one",
+       "item": "8",
+       "fiscal_year": 2025
+      },
+      "id": "call_2005568",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 7451,
+     "output_tokens": 70,
+     "total_tokens": 7521,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 19
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[NVDA-2025-8-0060] NVDA FY2025 Item 8 (similitud 0.641)\nNote 14 - Shareholders’ Equity\n\nCapital Return Program\n\nOn August 26, 2024, our Board of Directors approved an additional $50 billion to our share repurchase authorization, without expiration. In fiscal years 2025 and 2024, we repurchased 310 million and 210 million shares of our common stock for $34.0 billion and $9.7 billion, respectively. As of January 26, 2025, we were authorized, subject to certain specifications, to repurchase up to $38.7 billion of our common stock. Our share repurchase program aims to offset dilution from shares issued to employees while maintaining adequate liquidity to meet our operating requirements. We may pursue additional share repurchases as we weigh market factors and other investment opportunities.\n\nFrom January 27, 2025 through February 21, 2025, we repurchased 29 million shares for $3.7 billion pursuant to a pre-established trading plan.\n\nNVIDIA Corporation and Subsidiaries\n\nNotes to the Consolidated Financial Statements\n\n(Continued)\n\nIn fiscal years 2025, 2024, and 2023, we paid cash dividends to our shareholders of $834 million, $395 million, and $398 million, respectively. The payment of future cash dividends is subject to our Board of Directors' continuing determination that the declaration of dividends is in the best interests of our shareholders.\n\nNote 15 - Employee Retirement Plans\n\nWe provide tax-qualified defined contribution plans to eligible employees in the U.S. and certain other countries. Our contribution expense for fiscal years 2025, 2024, and 2023 was $314 million, $255 million, and $227 million, respectively.\n\n---\n\n[NVDA-2025-8-0010] NVDA FY2025 Item 8 (similitud 0.639)\nConsolidated Statements of Shareholders' Equity\n\nCommon Stock Outstanding\t\tAdditional Paid-in\t\tAccumulated Other Comprehensive\t\tRetained\t\tTotal Shareholders'\nShares\t\tAmount\t\tCapital\t\tIncome (Loss)\t\tEarnings\t\tEquity\n(In millions, except per share data)\nBalances as of Jan 30, 2022\t25,064\t\t\t$\t26\t\t\t$\t10,362\t\t\t$\t( 11 )\t\t\t$\t16,235\t\t\t$\t26,612\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t4,368\t\t\t4,368\nOther comprehensive loss\t—\t\t\t—\t\t\t—\t\t\t( 32 )\t\t\t—\t\t\t( 32 )\nIssuance of common stock from stock plans\t312\t\t\t—\t\t\t355\t\t\t—\t\t\t—\t\t\t355\nTax withholding related to vesting of restricted stock units\t( 82 )\t\t\t—\t\t\t( 1,475 )\t\t\t—\t\t\t—\t\t\t( 1,475 )\nShares repurchased\t( 633 )\t\t\t( 1 )\t\t\t( 4 )\t\t\t—\t\t\t( 10,034 )\t\t\t( 10,039 )\nCash dividends declared and paid ($ 0.016 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 398 )\t\t\t( 398 )\nStock-based compensation\t—\t\t\t—\t\t\t2,710\t\t\t—\t\t\t—\t\t\t2,710\nBalances as of Jan 29, 2023\t24,661\t\t\t25\t\t\t11,948\t\t\t( 43 )\t\t\t10,171\t\t\t22,101\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t29,760\t\t\t29,760\nOther comprehensive income\t—\t\t\t—\t\t\t—\t\t\t70\t\t\t—\t\t\t70\nIssuance of common stock from stock plans\t265\t\t\t—\t\t\t403\t\t\t—\t\t\t—\t\t\t403\nTax withholding related to vesting of restricted stock units\t( 72 )\t\t\t—\t\t\t( 2,783 )\t\t\t—\t\t\t—\t\t\t( 2,783 )\nShares repurchased\t( 211 )\t\t\t—\t\t\t(\n\n---\n\n[NVDA-2025-8-0032] NVDA FY2025 Item 8 (similitud 0.638)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\tJan 29, 2023\n(In millions, except per share data)\nNumerator:\nNet income\t$\t72,880\t\t\t$\t29,760\t\t\t$\t4,368\nDenominator:\nBasic weighted average shares\t24,555\t\t\t24,690\t\t\t24,870\nDilutive impact of outstanding equity awards\t249\t\t\t250\t\t\t200\nDiluted weighted average shares\t24,804\t\t\t24,940\t\t\t25,070\nNet income per share:\nBasic (1)\t$\t2.97\t\t\t$\t1.21\t\t\t$\t0.18\nDiluted (2)\t$\t2.94\t\t\t$\t1.19\t\t\t$\t0.17\nAnti-dilutive equity awards excluded from diluted net income per share\t51\t\t\t150\t\t\t400\n\n(1) Net income divided by basic weighted average shares.\n\n(2) Net income divided by diluted weighted average shares.\n\nNote 5 - Goodwill\n\nAs of January 26, 2025, the total carrying amount of goodwill was $5.2 billion, consisting of goodwill balances allocated to our Compute & Networking and Graphics reporting units of $4.8 billion and $370 million, respectively. As of January 28, 2024, the total carrying amount of goodwill was $4.4 billion, consisting of goodwill balances allocated to our Compute & Networking and Graphics reporting units of $4.1 billion and $370 million, respectively. Goodwill increased by $758 million in fiscal year 2025 from acquisitions and was allocated to our Compute & Networking reporting unit. During the fourth quarters of fiscal years 2025, 2024, and 2023, we completed our annual qualitative impairment tests and concluded that goodwill was not impaired.\n\n---\n\n[NVDA-2025-8-0012] NVDA FY2025 Item 8 (similitud 0.637)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\tJan 29, 2023\nCash flows from operating activities:\nNet income\t$\t72,880\t\t\t$\t29,760\t\t\t$\t4,368\nAdjustments to reconcile net income to net cash provided by operating activities:\nStock-based compensation expense\t4,737\t\t\t3,549\t\t\t2,709\nDepreciation and amortization\t1,864\t\t\t1,508\t\t\t1,544\nDeferred income taxes\t( 4,477 )\t\t\t( 2,489 )\t\t\t( 2,164 )\n(Gains) losses on non-marketable equity securities and publicly-held equity securities, net\t( 1,030 )\t\t\t( 238 )\t\t\t45\nAcquisition termination cost\t—\t\t\t—\t\t\t1,353\nOther\t( 502 )\t\t\t( 278 )\t\t\t( 7 )\nChanges in operating assets and liabilities, net of acquisitions:\nAccounts receivable\t( 13,063 )\t\t\t( 6,172 )\t\t\t822\nInventories\t( 4,781 )\t\t\t( 98 )\t\t\t( 2,554 )\nPrepaid expenses and other assets\t( 395 )\t\t\t( 1,522 )\t\t\t( 1,517 )\nAccounts payable\t3,357\t\t\t1,531\t\t\t( 551 )\nAccrued and other current liabilities\t4,278\t\t\t2,025\t\t\t1,341\nOther long-term liabilities\t1,221\t\t\t514\t\t\t252\nNet cash provided by operating activities\t64,089\t\t\t28,090\t\t\t5,641\nCash flows from investing activities:\nProceeds from maturities of marketable securities\t11,195\t\t\t9,732\t\t\t19,425\nProceeds from sales of marketable securities\t495\t\t\t50\t\t\t1,806\nProceeds from sales of non-marketable equity securities\t171\t\t\t1\t\t\t8\nPurchases of marketable securities\t( 26,575 )\t\t\t( 18,211 )\t\t\t( 11,897 )\nPurchases related to property and equipment and intangible assets\t( 3,236 )\t\t\t( 1,069 )\t\t\t( 1,833 )\nPurchases of non\n\n---\n\n[NVDA-2025-8-0008] NVDA FY2025 Item 8 (similitud 0.637)\n(In millions, except par value)\n\nJan 26, 2025\t\tJan 28, 2024\nAssets\nCurrent assets:\nCash and cash equivalents\t$\t8,589\t\t\t$\t7,280\nMarketable securities\t34,621\t\t\t18,704\nAccounts receivable, net\t23,065\t\t\t9,999\nInventories\t10,080\t\t\t5,282\nPrepaid expenses and other current assets\t3,771\t\t\t3,080\nTotal current assets\t80,126\t\t\t44,345\nProperty and equipment, net\t6,283\t\t\t3,914\nOperating lease assets\t1,793\t\t\t1,346\nGoodwill\t5,188\t\t\t4,430\nIntangible assets, net\t807\t\t\t1,112\nDeferred income tax assets\t10,979\t\t\t6,081\nOther assets\t6,425\t\t\t4,500\nTotal assets\t$\t111,601\t\t\t$\t65,728\nLiabilities and Shareholders' Equity\nCurrent liabilities:\nAccounts payable\t$\t6,310\t\t\t$\t2,699\nAccrued and other current liabilities\t11,737\t\t\t6,682\nShort-term debt\t—\t\t\t1,250\nTotal current liabilities\t18,047\t\t\t10,631\nLong-term debt\t8,463\t\t\t8,459\nLong-term operating lease liabilities\t1,519\t\t\t1,119\nOther long-term liabilities\t4,245\t\t\t2,541\nTotal liabilities\t32,274\t\t\t22,750\nCommitments and contingencies - see Note 12\t—\t\t\t—\nShareholders’ equity:\nPreferred stock, $ 0.001 par value; 20 shares authorized; none issued\t—\t\t\t—\nCommon stock, $ 0.001 par value; 80,000 shares authorized; 24,477 shares issued and outstanding as of January 26, 2025; 24,643 shares issued and outstanding as of January 28, 2024\t24\t\t\t25\nAdditional paid-in capital\t11,237\t\t\t13,109\nAccumulated other comprehensive income\t28\t\t\t27\nRetained earnings\t68,038\t\t\t29,817\nTotal shareholders' equity\t79,327\t\t\t42,978\nTotal liabilities and shareholders' equity\t$",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_2005568",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "query": "\"stock split\"",
+       "item": "8",
+       "ticker": "NVDA",
+       "fiscal_year": 2025
+      },
+      "id": "call_168352",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 10288,
+     "output_tokens": 79,
+     "total_tokens": 10367,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 37
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[NVDA-2025-8-0013] NVDA FY2025 Item 8 (similitud 0.680)\n-marketable equity securities\t171\t\t\t1\t\t\t8\nPurchases of marketable securities\t( 26,575 )\t\t\t( 18,211 )\t\t\t( 11,897 )\nPurchases related to property and equipment and intangible assets\t( 3,236 )\t\t\t( 1,069 )\t\t\t( 1,833 )\nPurchases of non-marketable equity securities\t( 1,486 )\t\t\t( 862 )\t\t\t( 85 )\nAcquisitions, net of cash acquired\t( 1,007 )\t\t\t( 83 )\t\t\t( 49 )\nOther\t22\t\t\t( 124 )\t\t\t—\nNet cash provided by (used in) investing activities\t( 20,421 )\t\t\t( 10,566 )\t\t\t7,375\nCash flows from financing activities:\nProceeds related to employee stock plans\t490\t\t\t403\t\t\t355\nPayments related to repurchases of common stock\t( 33,706 )\t\t\t( 9,533 )\t\t\t( 10,039 )\nPayments related to tax on restricted stock units\t( 6,930 )\t\t\t( 2,783 )\t\t\t( 1,475 )\nRepayment of debt\t( 1,250 )\t\t\t( 1,250 )\t\t\t—\nDividends paid\t( 834 )\t\t\t( 395 )\t\t\t( 398 )\nPrincipal payments on property and equipment and intangible assets\t( 129 )\t\t\t( 74 )\t\t\t( 58 )\nOther\t—\t\t\t( 1 )\t\t\t( 2 )\nNet cash used in financing activities\t( 42,359 )\t\t\t( 13,633 )\t\t\t( 11,617 )\nChange in cash and cash equivalents\t1,309\t\t\t3,891\t\t\t1,399\nCash and cash equivalents at beginning of period\t7,280\t\t\t3,389\t\t\t1,990\nCash and cash equivalents at end of period\t$\t8,589\t\t\t$\t7,280\t\t\t$\t3,389\nSupplemental disclosures of cash flow information:\nCash paid for income taxes, net\t$\t15,118\t\t\t$\t6,549\t\t\t$\t1,404\nCash paid for interest\t$\t246\t\t\t$\t252\t\t\t$\t254\n\n---\n\n[NVDA-2025-8-0010] NVDA FY2025 Item 8 (similitud 0.674)\nConsolidated Statements of Shareholders' Equity\n\nCommon Stock Outstanding\t\tAdditional Paid-in\t\tAccumulated Other Comprehensive\t\tRetained\t\tTotal Shareholders'\nShares\t\tAmount\t\tCapital\t\tIncome (Loss)\t\tEarnings\t\tEquity\n(In millions, except per share data)\nBalances as of Jan 30, 2022\t25,064\t\t\t$\t26\t\t\t$\t10,362\t\t\t$\t( 11 )\t\t\t$\t16,235\t\t\t$\t26,612\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t4,368\t\t\t4,368\nOther comprehensive loss\t—\t\t\t—\t\t\t—\t\t\t( 32 )\t\t\t—\t\t\t( 32 )\nIssuance of common stock from stock plans\t312\t\t\t—\t\t\t355\t\t\t—\t\t\t—\t\t\t355\nTax withholding related to vesting of restricted stock units\t( 82 )\t\t\t—\t\t\t( 1,475 )\t\t\t—\t\t\t—\t\t\t( 1,475 )\nShares repurchased\t( 633 )\t\t\t( 1 )\t\t\t( 4 )\t\t\t—\t\t\t( 10,034 )\t\t\t( 10,039 )\nCash dividends declared and paid ($ 0.016 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 398 )\t\t\t( 398 )\nStock-based compensation\t—\t\t\t—\t\t\t2,710\t\t\t—\t\t\t—\t\t\t2,710\nBalances as of Jan 29, 2023\t24,661\t\t\t25\t\t\t11,948\t\t\t( 43 )\t\t\t10,171\t\t\t22,101\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t29,760\t\t\t29,760\nOther comprehensive income\t—\t\t\t—\t\t\t—\t\t\t70\t\t\t—\t\t\t70\nIssuance of common stock from stock plans\t265\t\t\t—\t\t\t403\t\t\t—\t\t\t—\t\t\t403\nTax withholding related to vesting of restricted stock units\t( 72 )\t\t\t—\t\t\t( 2,783 )\t\t\t—\t\t\t—\t\t\t( 2,783 )\nShares repurchased\t( 211 )\t\t\t—\t\t\t(\n\n---\n\n[NVDA-2025-8-0011] NVDA FY2025 Item 8 (similitud 0.668)\nance of common stock from stock plans\t265\t\t\t—\t\t\t403\t\t\t—\t\t\t—\t\t\t403\nTax withholding related to vesting of restricted stock units\t( 72 )\t\t\t—\t\t\t( 2,783 )\t\t\t—\t\t\t—\t\t\t( 2,783 )\nShares repurchased\t( 211 )\t\t\t—\t\t\t( 27 )\t\t\t—\t\t\t( 9,719 )\t\t\t( 9,746 )\nCash dividends declared and paid ($ 0.016 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 395 )\t\t\t( 395 )\nStock-based compensation\t—\t\t\t—\t\t\t3,568\t\t\t—\t\t\t—\t\t\t3,568\nBalances as of Jan 28, 2024\t24,643\t\t\t25\t\t\t13,109\t\t\t27\t\t\t29,817\t\t\t42,978\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t72,880\t\t\t72,880\nOther comprehensive income\t—\t\t\t—\t\t\t—\t\t\t1\t\t\t—\t\t\t1\nIssuance of common stock from stock plans\t203\t\t\t—\t\t\t490\t\t\t—\t\t\t—\t\t\t490\nTax withholding related to vesting of restricted stock units\t( 59 )\t\t\t—\t\t\t( 6,930 )\t\t\t—\t\t\t—\t\t\t( 6,930 )\nShares repurchased\t( 310 )\t\t\t( 1 )\t\t\t( 189 )\t\t\t—\t\t\t( 33,825 )\t\t\t( 34,015 )\nCash dividends declared and paid ($ 0.034 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 834 )\t\t\t( 834 )\nStock-based compensation\t—\t\t\t—\t\t\t4,757\t\t\t—\t\t\t—\t\t\t4,757\nBalances as of Jan 26, 2025\t24,477\t\t\t$\t24\t\t\t$\t11,237\t\t\t$\t28\t\t\t$\t68,038\t\t\t$\t79,327\n\nSee accompanying Notes to the Consolidated Financial Statements.\n\nNVIDIA Corporation and Subsidiaries\n\nConsolidated Statements of Cash Flows\n\n(In millions)\n\n---\n\n[NVDA-2025-8-0021] NVDA FY2025 Item 8 (similitud 0.656)\nCash and Cash Equivalents and Marketable Securities\n\nWe consider all highly liquid investments that are readily convertible into cash and have an original maturity of three months or less at the time of purchase to be cash equivalents. Marketable securities consist of highly liquid debt investments with maturities of greater than three months when purchased and publicly-held equity securities. We classify these investments as current based on the nature of the investments and their availability for use in current operations.\n\nWe classify our cash equivalents and marketable debt securities at the date of acquisition as available-for-sale. These available-for-sale debt securities are reported at fair value with the related unrealized gains and losses included in accumulated other comprehensive income or loss, a component of shareholders’ equity, net of tax. The fair value of interest-bearing debt securities includes accrued interest. Realized gains and losses on the sale of marketable securities are determined using the specific-identification method and recorded in the Other income (expense), net, section of our Consolidated Statements of Income.\n\nAvailable-for-sale debt securities are subject to impairment review. If the estimated fair value of available-for-sale debt securities is less than its amortized cost basis, we determine if the difference, if any, is caused by expected credit losses and write-down the amortized cost basis of the securities if it is more likely than not we will be required or we intend to\n\nNVIDIA Corporation and Subsidiaries\n\nNotes to the Consolidated Financial Statements\n\n(Continued)\n\nsell the securities before recovery of its amortized cost basis. Allowances for credit losses and write-downs are recognized in the Other income (expense), net section of our Consolidated Statements of Income.\n\nPublicly-held equity securities have readily determinable fair values with changes in fair value recorded in Other income (expense), net.\n\n---\n\n[NVDA-2025-8-0026] NVDA FY2025 Item 8 (similitud 0.642)\nBusiness Combination\n\nWe allocate the fair value of the purchase price of an acquisition to the tangible assets acquired, liabilities assumed, and intangible assets acquired, based on their estimated fair values. The excess of the fair value of the purchase price over the fair values of these net tangible and intangible assets acquired is recorded as goodwill. Management’s estimates of fair value are based upon assumptions believed to be reasonable, but our estimates and assumptions are inherently uncertain and subject to refinement. The estimates and assumptions used in valuing intangible assets include, but are not limited to, the amount and timing of projected future cash flows, discount rate used to determine the present value of these cash flows and asset lives. These estimates are inherently uncertain and, therefore, actual results may differ from the estimates made. As a result, during the measurement period of up to one year from the acquisition date, we may record adjustments to the assets acquired and liabilities assumed with the corresponding offset to goodwill. Upon the measurement period's conclusion or final determination of the fair value of the purchase price of an acquisition, whichever comes first, any subsequent adjustments are recorded to our Consolidated Statements of Income.\n\nAcquisition-related expenses are recognized separately from the business combination and expensed as incurred.\n\nNon-Marketable Equity Securities\n\nNon-marketable equity securities consist of investments in privately-held companies that do not have a readily determinable fair value. These investments are measured at cost minus impairment, if any, and are adjusted for changes resulting from observable price changes in orderly transactions for an identical or similar investment in the same issuer, or the measurement alternative. Fair value is based upon observable inputs in an inactive market and the valuation requires our judgment due to the absence of market prices and inherent lack of liquidity. All gains and losses on these investments, realized and unrealized, are recognized in other income (expense), net on our Consolidated Statements of Income.\n\nWe assess whether an impairment loss has occurred on our investments in non-marketable equity securities, accounted for under the measurement alternative based on quantitative and qualitative factors. If any impairment is identified for non-marketable equity securities, we write down the investment to its fair value and record the corresponding charge through other income (expense), net on our Consolidated Statements of Income.\n\nNVIDIA Corporation and Subsidiaries\n\nNotes to the Consolidated Financial Statements\n\n(Continued)\n\nRecently Issued Accounting Pronouncements",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_168352",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "8",
+       "query": "\"Note 4\" \"Net Income Per Share\"",
+       "ticker": "NVDA",
+       "fiscal_year": 2025
+      },
+      "id": "call_1657201",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 13019,
+     "output_tokens": 100,
+     "total_tokens": 13119,
+     "input_token_details": {
+      "cache_read": 3934,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 51
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[NVDA-2025-8-0032] NVDA FY2025 Item 8 (similitud 0.715)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\tJan 29, 2023\n(In millions, except per share data)\nNumerator:\nNet income\t$\t72,880\t\t\t$\t29,760\t\t\t$\t4,368\nDenominator:\nBasic weighted average shares\t24,555\t\t\t24,690\t\t\t24,870\nDilutive impact of outstanding equity awards\t249\t\t\t250\t\t\t200\nDiluted weighted average shares\t24,804\t\t\t24,940\t\t\t25,070\nNet income per share:\nBasic (1)\t$\t2.97\t\t\t$\t1.21\t\t\t$\t0.18\nDiluted (2)\t$\t2.94\t\t\t$\t1.19\t\t\t$\t0.17\nAnti-dilutive equity awards excluded from diluted net income per share\t51\t\t\t150\t\t\t400\n\n(1) Net income divided by basic weighted average shares.\n\n(2) Net income divided by diluted weighted average shares.\n\nNote 5 - Goodwill\n\nAs of January 26, 2025, the total carrying amount of goodwill was $5.2 billion, consisting of goodwill balances allocated to our Compute & Networking and Graphics reporting units of $4.8 billion and $370 million, respectively. As of January 28, 2024, the total carrying amount of goodwill was $4.4 billion, consisting of goodwill balances allocated to our Compute & Networking and Graphics reporting units of $4.1 billion and $370 million, respectively. Goodwill increased by $758 million in fiscal year 2025 from acquisitions and was allocated to our Compute & Networking reporting unit. During the fourth quarters of fiscal years 2025, 2024, and 2023, we completed our annual qualitative impairment tests and concluded that goodwill was not impaired.\n\n---\n\n[NVDA-2025-8-0012] NVDA FY2025 Item 8 (similitud 0.696)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\tJan 29, 2023\nCash flows from operating activities:\nNet income\t$\t72,880\t\t\t$\t29,760\t\t\t$\t4,368\nAdjustments to reconcile net income to net cash provided by operating activities:\nStock-based compensation expense\t4,737\t\t\t3,549\t\t\t2,709\nDepreciation and amortization\t1,864\t\t\t1,508\t\t\t1,544\nDeferred income taxes\t( 4,477 )\t\t\t( 2,489 )\t\t\t( 2,164 )\n(Gains) losses on non-marketable equity securities and publicly-held equity securities, net\t( 1,030 )\t\t\t( 238 )\t\t\t45\nAcquisition termination cost\t—\t\t\t—\t\t\t1,353\nOther\t( 502 )\t\t\t( 278 )\t\t\t( 7 )\nChanges in operating assets and liabilities, net of acquisitions:\nAccounts receivable\t( 13,063 )\t\t\t( 6,172 )\t\t\t822\nInventories\t( 4,781 )\t\t\t( 98 )\t\t\t( 2,554 )\nPrepaid expenses and other assets\t( 395 )\t\t\t( 1,522 )\t\t\t( 1,517 )\nAccounts payable\t3,357\t\t\t1,531\t\t\t( 551 )\nAccrued and other current liabilities\t4,278\t\t\t2,025\t\t\t1,341\nOther long-term liabilities\t1,221\t\t\t514\t\t\t252\nNet cash provided by operating activities\t64,089\t\t\t28,090\t\t\t5,641\nCash flows from investing activities:\nProceeds from maturities of marketable securities\t11,195\t\t\t9,732\t\t\t19,425\nProceeds from sales of marketable securities\t495\t\t\t50\t\t\t1,806\nProceeds from sales of non-marketable equity securities\t171\t\t\t1\t\t\t8\nPurchases of marketable securities\t( 26,575 )\t\t\t( 18,211 )\t\t\t( 11,897 )\nPurchases related to property and equipment and intangible assets\t( 3,236 )\t\t\t( 1,069 )\t\t\t( 1,833 )\nPurchases of non\n\n---\n\n[NVDA-2025-8-0069] NVDA FY2025 Item 8 (similitud 0.681)\n6\n4.6*\t\tDescription of Securities\n4.7\t\tOfficers’ Certificate, dated as of March 31, 2020\t\t8-K\t\t4.2\t\t3/31/2020\n4.8\t\tForm of 2030 Note\t\t8-K\t\tAnnex A-1 to Exhibit 4.2\t\t3/31/2020\n4.9\t\tForm of 2040 Note\t\t8-K\t\tAnnex B-1 to Exhibit 4.2\t\t3/31/2020\n4.10\t\tForm of 2050 Note\t\t8-K\t\tAnnex C-1 to Exhibit 4.2\t\t3/31/2020\n4.11\t\tForm of 2060 Note\t\t8-K\t\tAnnex D-1 to Exhibit 4.2\t\t3/31/2020\n4.12\t\tOfficers' Certificate, dated as of June 16, 2021\t\t8-K\t\t4.2\t\t6/16/2021\n4.13\t\tForm of 2023 Note\t\t8-K\t\tAnnex A-1 to Exhibit 4.2\t\t6/16/2021\n4.14\t\tForm of 2024 Note\t\t8-K\t\tAnnex B-1 to Exhibit 4.2\t\t6/16/2021\n4.15\t\tForm of 2028 Note\t\t8-K\t\tAnnex C-1 to Exhibit 4.2\t\t6/16/2021\n4.16\t\tForm of 2031 Note\t\t8-K\t\tAnnex D-1 to Exhibit 4.2\t\t6/16/2021\n10.1\t\tForm of Indemnity Agreement between NVIDIA Corporation and each of its directors and officers\t\t8-K\t\t10.1\t\t3/7/2006\n10.2+\t\tAmended and Restated 2007 Equity Incentive Plan\t\t10-Q\t\t10.1\t\t8/28/2024\n10.3+\t\tAmended and Restated 2007 Equity Incentive Plan - Non-Employee Director Deferred Restricted Stock Unit Grant Notice and Deferred Restricted Stock Unit Agreement (2016)\n\n---\n\n[NVDA-2025-8-0007] NVDA FY2025 Item 8 (similitud 0.679)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\tJan 29, 2023\nNet income\t$\t72,880\t\t\t$\t29,760\t\t\t$\t4,368\nOther comprehensive income (loss), net of tax\nAvailable-for-sale securities:\nNet change in unrealized gain (loss)\t1\t\t\t80\t\t\t( 31 )\nReclassification adjustments for net realized gain included in net income\t—\t\t\t—\t\t\t1\nNet change in unrealized gain (loss)\t1\t\t\t80\t\t\t( 30 )\nCash flow hedges:\nNet change in unrealized gain\t21\t\t\t38\t\t\t47\nReclassification adjustments for net realized loss included in net income\t( 21 )\t\t\t( 48 )\t\t\t( 49 )\nNet change in unrealized loss\t—\t\t\t( 10 )\t\t\t( 2 )\nOther comprehensive income (loss), net of tax\t1\t\t\t70\t\t\t( 32 )\nTotal comprehensive income\t$\t72,881\t\t\t$\t29,830\t\t\t$\t4,336\n\nSee accompanying Notes to the Consolidated Financial Statements.\n\nNVIDIA Corporation and Subsidiaries\n\nConsolidated Balance Sheets\n\n---\n\n[NVDA-2025-8-0008] NVDA FY2025 Item 8 (similitud 0.677)\n(In millions, except par value)\n\nJan 26, 2025\t\tJan 28, 2024\nAssets\nCurrent assets:\nCash and cash equivalents\t$\t8,589\t\t\t$\t7,280\nMarketable securities\t34,621\t\t\t18,704\nAccounts receivable, net\t23,065\t\t\t9,999\nInventories\t10,080\t\t\t5,282\nPrepaid expenses and other current assets\t3,771\t\t\t3,080\nTotal current assets\t80,126\t\t\t44,345\nProperty and equipment, net\t6,283\t\t\t3,914\nOperating lease assets\t1,793\t\t\t1,346\nGoodwill\t5,188\t\t\t4,430\nIntangible assets, net\t807\t\t\t1,112\nDeferred income tax assets\t10,979\t\t\t6,081\nOther assets\t6,425\t\t\t4,500\nTotal assets\t$\t111,601\t\t\t$\t65,728\nLiabilities and Shareholders' Equity\nCurrent liabilities:\nAccounts payable\t$\t6,310\t\t\t$\t2,699\nAccrued and other current liabilities\t11,737\t\t\t6,682\nShort-term debt\t—\t\t\t1,250\nTotal current liabilities\t18,047\t\t\t10,631\nLong-term debt\t8,463\t\t\t8,459\nLong-term operating lease liabilities\t1,519\t\t\t1,119\nOther long-term liabilities\t4,245\t\t\t2,541\nTotal liabilities\t32,274\t\t\t22,750\nCommitments and contingencies - see Note 12\t—\t\t\t—\nShareholders’ equity:\nPreferred stock, $ 0.001 par value; 20 shares authorized; none issued\t—\t\t\t—\nCommon stock, $ 0.001 par value; 80,000 shares authorized; 24,477 shares issued and outstanding as of January 26, 2025; 24,643 shares issued and outstanding as of January 28, 2024\t24\t\t\t25\nAdditional paid-in capital\t11,237\t\t\t13,109\nAccumulated other comprehensive income\t28\t\t\t27\nRetained earnings\t68,038\t\t\t29,817\nTotal shareholders' equity\t79,327\t\t\t42,978\nTotal liabilities and shareholders' equity\t$",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_1657201",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "fiscal_year": 2025,
+       "item": "7",
+       "ticker": "NVDA",
+       "query": "ten-for-one forward stock split earnings per share"
+      },
+      "id": "call_1657223",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 15782,
+     "output_tokens": 71,
+     "total_tokens": 15853,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 22
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Tool call limit exceeded. Do not make additional tool calls.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_1657223",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "respuesta": "No, no significa que haya ganado menos por acción. NVIDIA ejecutó un desdoblamiento de acciones (stock split) de 10 por 1 durante el ejercicio. Al ajustar retrospectivamente el ejercicio anterior para hacer la cifra comparable tras el split, el BPA diluido pasó de 1,19 USD en FY2024 a 2,94 USD en FY2025, lo que representa un fuerte crecimiento del beneficio por acción (el beneficio neto total aumentó de 29.760 a 72.880 millones de dólares). La cifra de 11,93 USD corresponde a la medición previa al split (equivalente a 1,19 USD post-split).",
+       "cita": "Diluted (2)\t$\t2.94\t\t\t$\t1.19\t\t\t$\t0.17",
+       "chunk_id": "NVDA-2025-8-0032",
+       "ejercicio": 2025,
+       "unidad": "USD/shares",
+       "cifra": 3,
+       "ticker": "NVDA",
+       "fuente": "ambas"
+      },
+      "id": "call_1861325",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 15857,
+     "output_tokens": 1245,
+     "total_tokens": 17102,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 987
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='No, no significa que haya ganado menos por acción. NVIDIA ejecutó un desdoblamiento de acciones (stock split) de 10 por 1 durante el ejercicio. Al ajustar retrospectivamente el ejercicio anterior para hacer la cifra comparable tras el split, el BPA diluido pasó de 1,19 USD en FY2024 a 2,94 USD en FY2025, lo que representa un fuerte crecimiento del beneficio por acción (el beneficio neto total aumentó de 29.760 a 72.880 millones de dólares). La cifra de 11,93 USD corresponde a la medición previa al split (equivalente a 1,19 USD post-split).' cifra=3.0 unidad='USD/shares' ticker='NVDA' ejercicio=2025 fuente='ambas' cita='Diluted (2)\\t$\\t2.94\\t\\t\\t$\\t1.19\\t\\t\\t$\\t0.17' chunk_id='NVDA-2025-8-0032'",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_1861325",
+    "usage_metadata": null
+   },
+   {
+    "type": "human",
+    "content": "[VERIFICACIÓN AUTOMÁTICA DE CIFRA] Has afirmado cifra=3.00 (USD/shares) para NVDA FY2025, pero NINGÚN hecho XBRL de esa compañía y ejercicio coincide (tolerancia 1 %). Los hechos reportados son:\n  - Assets = 111,601,000,000 USD\n  - CashAndCashEquivalentsAtCarryingValue = 8,589,000,000 USD\n  - EarningsPerShareBasic = 3 USD/shares\n  - EarningsPerShareDiluted = 3 USD/shares\n  - GrossProfit = 97,858,000,000 USD\n  - Liabilities = 32,274,000,000 USD\n  - NetCashProvidedByUsedInOperatingActivities = 64,089,000,000 USD\n  - NetIncomeLoss = 72,880,000,000 USD\n  - OperatingIncomeLoss = 81,453,000,000 USD\n  - ResearchAndDevelopmentExpense = 12,914,000,000 USD\n  - Revenues = 130,497,000,000 USD\n  - StockholdersEquity = 79,327,000,000 USD\n\nCorrige la respuesta: usa exactamente uno de esos valores obtenido con get_xbrl_fact (la cifra del ejercicio preguntado; si la pregunta es una variación, pon en `cifra` el valor del ejercicio más reciente y explica la variación en `respuesta`). Si el dato que te piden no está en esa lista, responde fuente='ninguna' con cifra=null. No estimes ni redondees a otra magnitud.",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "respuesta": "No, no significa que haya ganado menos por acción. NVIDIA llevó a cabo un desdoblamiento de acciones (stock split) de 10 por 1 durante el ejercicio FY2025. Al ajustar retrospectivamente las cifras del ejercicio previo para hacerlas comparables, el BPA diluido pasó de 1,19 USD en FY2024 a 2,94 USD en FY2025, lo que representa un crecimiento significativo de las ganancias por acción (y el beneficio neto total creció de 29.760 a 72.880 millones de dólares). La cifra de 11,93 USD corresponde a la reportada originalmente antes de dicho split de 10 por 1.",
+       "ticker": "NVDA",
+       "fuente": "ambas",
+       "chunk_id": "NVDA-2025-8-0032",
+       "cita": "Diluted (2)\t$\t2.94\t\t\t$\t1.19\t\t\t$\t0.17",
+       "ejercicio": 2025,
+       "cifra": 2.94,
+       "unidad": "USD/shares"
+      },
+      "id": "call_1598024",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 17729,
+     "output_tokens": 1419,
+     "total_tokens": 19148,
+     "input_token_details": {
+      "cache_read": 11851,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 1153
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='No, no significa que haya ganado menos por acción. NVIDIA llevó a cabo un desdoblamiento de acciones (stock split) de 10 por 1 durante el ejercicio FY2025. Al ajustar retrospectivamente las cifras del ejercicio previo para hacerlas comparables, el BPA diluido pasó de 1,19 USD en FY2024 a 2,94 USD en FY2025, lo que representa un crecimiento significativo de las ganancias por acción (y el beneficio neto total creció de 29.760 a 72.880 millones de dólares). La cifra de 11,93 USD corresponde a la reportada originalmente antes de dicho split de 10 por 1.' cifra=2.94 unidad='USD/shares' ticker='NVDA' ejercicio=2025 fuente='ambas' cita='Diluted (2)\\t$\\t2.94\\t\\t\\t$\\t1.19\\t\\t\\t$\\t0.17' chunk_id='NVDA-2025-8-0032'",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_1598024",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "Tool call limit exceeded. Do not make additional tool calls.",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_1598024",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a1_guardrails"
+ }
+}
