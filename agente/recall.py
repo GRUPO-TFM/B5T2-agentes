@@ -163,8 +163,13 @@ def reescribir_consulta(consulta: str, modelo: str = MODELO) -> str:
         return cache[clave]["consulta"]
     from langchain.chat_models import init_chat_model
     modelo_llm = init_chat_model(modelo, temperature=0)
-    nueva = modelo_llm.invoke([{"role": "system", "content": INSTRUCCION_REESCRITURA_CONSULTA},
-                               {"role": "user", "content": consulta}]).text.strip().strip('"')
+    bruto = modelo_llm.invoke([{"role": "system", "content": INSTRUCCION_REESCRITURA_CONSULTA},
+                               {"role": "user", "content": consulta}]).text.strip()
+    # `.strip('"')` a secas se come las comillas legítimas de una consulta con
+    # frases exactas (`"net sales" growth` -> `net sales" growth`). Solo se
+    # quitan si envuelven la consulta entera y no hay más dentro.
+    nueva = bruto[1:-1] if (len(bruto) > 1 and bruto[0] == bruto[-1] == '"'
+                            and '"' not in bruto[1:-1]) else bruto
     cache[clave] = {"pregunta": consulta, "consulta": nueva or consulta, "modelo": modelo}
     ruta.parent.mkdir(parents=True, exist_ok=True)
     ruta.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
