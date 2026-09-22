@@ -328,4 +328,54 @@ que no se lo hayamos pedido, sino que el modelo prefiere cerrar con XBRL porque
 el prompt honesto de A1 le dio permiso — y entonces la ablación que toca es
 quitar de `HONESTO` la línea de «a la tercera, cierra» y medir solo eso.
 
-> Resultado: _(pendiente)_
+> **Resultado (medido el 2026-09-22, 3 reps × 20, 0 errores de proveedor, 0,91 $ y 49 min):**
+>
+> | métrica | A2 | **A4** | predicción |
+> |---|---|---|---|
+> | acierto | 75,0 % | **96,7 %** (0,95 / 1,00 / 0,95) | 87,5-100 % ✔ |
+> | comparativas | 37,5 % | **95,8 %** | 75-100 % ✔ |
+> | cita | 64,3 % | **95,2 %** | ≥ 85 % ✔ |
+> | trayectoria | 76,7 % | **100 %** | ≥ 95 % ✔ |
+> | cifra | 100 % | 97,6 % | — |
+> | numéricas · extractivas | 100 · 100 | 100 · 94,4 | no bajar ✘ (una repetición) |
+> | coste · latencia | 1,44 ¢ · 29,4 s | 1,52 ¢ · **49,2 s** | ~2,0 ¢ y ~40 s (coste sobreestimado) |
+>
+> **La predicción se cumple entera, y el mecanismo es el que se dijo.** Las cinco
+> comparativas mudas empiezan a buscar y aciertan: gX-013, gX-014, gX-015 y
+> gX-017 pasan de 0/3 a **3/3**, gX-018 a 2/3. En las comparativas, `fuente`
+> pasa de **15 `xbrl` + 9 `ambas`** a **23 `ambas` y ningún `xbrl`**, y las
+> búsquedas por pregunta de 1,12 a 1,67. El paso 3 del prompt hizo exactamente
+> lo que se le pidió, y el ancla estaba donde decía la tabla de posiciones.
+>
+> Con esto, **la lectura de toda la escalera queda cerrada**: el agujero del
+> baseline eran las comparativas, y tenía dos causas independientes —la
+> convención de `cifra` (arreglada en A1, `cifra` 50 % → 100 %) y que el agente
+> no buscaba texto (arreglada en A4, `trayectoria` 75 % → 100 %)—. A2 y A3 no
+> mueven el acierto porque atacaban una tercera causa que en este golden set no
+> existía: el retrieval nunca fue el cuello de botella.
+>
+> **Los dos únicos fallos de 60, y son el mismo fallo.** gX-009 rep1 (extractiva)
+> y gX-018 rep3 (comparativa) terminan con `structured_response: null`: el modelo
+> emite un turno vacío —sin texto y sin tool call— y `create_agent` cierra sin
+> salida estructurada. No es un error de red (no hay excepción), ni un límite
+> alcanzado (5 y 6 vueltas de modelo frente al techo de 10), ni un problema de
+> retrieval (los fragmentos correctos estaban delante). Es el modelo gastando el
+> turno en razonamiento y no produciendo nada. Ocurre en el **3,3 %** de las
+> invocaciones y el harness lo cuenta honestamente como fallo.
+>
+> Es un modo de fallo que hay que cerrar antes del día 24: una pregunta ciega que
+> caiga aquí se pierde entera. Con 10 preguntas y una tasa del 3,3 %, la
+> probabilidad de perder al menos una es del **28 %**. **Corregido el mismo día:**
+> `ejecutar` reintenta una vez en un hilo nuevo cuando no hay
+> `structured_response`, con la misma mecánica que el 400 del proveedor y
+> columnas propias (`reintentos_vacios`, `% sin respuesta`) para no mezclar las
+> dos causas. Si el turno vacío persiste, la fila se guarda vacía y cuenta como
+> fallo: el reintento no puede servir para esconder nada. Y solo se repara lo
+> que no dejó respuesta — una respuesta equivocada nunca se repite, porque eso
+> sería re-tirar el dado hasta que salga bien.
+>
+> **Defecto cosmético detectado:** con el híbrido, `formatear_fragmentos` imprime
+> «similitud 0.032» porque el campo `puntuacion` lleva la suma RRF
+> (≈ 1/(60+1) + 1/(60+1)), no un coseno. No afecta al ranking ni a ninguna
+> métrica, pero la etiqueta miente y el modelo la lee. Renombrar a «score» en el
+> texto del fragmento cuando `hibrido=True`.

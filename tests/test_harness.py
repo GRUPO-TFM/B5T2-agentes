@@ -253,3 +253,101 @@ def test_un_fichero_con_error_se_repara_al_volver_a_pasar(tmp_path, monkeypatch)
     interfaz.ejecutar(ruta, "baseline", 1, responder_fn=fn3, solo_ids=["gX-001"],
                       reintentar_errores=False, verbose=False)
     assert fn3.estado["llamadas"] == 0
+
+
+# ---------------------------------------------------------------------------
+# Turno vacío: el modelo cierra sin structured_response (2 de 60 en A4)
+# ---------------------------------------------------------------------------
+def _responder_vacio(veces):
+    """Devuelve `structured_response=None` las primeras `veces` invocaciones."""
+    estado = {"llamadas": 0, "hilos": []}
+
+    def fn(pregunta, thread_id=None, arquitectura="baseline", modelo="test"):
+        estado["llamadas"] += 1
+        estado["hilos"].append(thread_id)
+        r = _responder_falso(pregunta, thread_id, arquitectura, modelo)
+        if estado["llamadas"] <= veces:
+            r = {**r, "structured_response": None}
+        return r
+    fn.estado = estado
+    return fn
+
+
+def test_un_turno_vacio_se_reintenta_en_un_hilo_nuevo(tmp_path, monkeypatch):
+    monkeypatch.setattr(interfaz, "dir_resultados", lambda: tmp_path / "resultados")
+    monkeypatch.setattr(interfaz.time, "sleep", lambda s: None)
+    ruta = interfaz.raiz_repo() / "data" / "golden_set.jsonl"
+    fn = _responder_vacio(veces=1)
+
+    carpeta = interfaz.ejecutar(ruta, "baseline", 1, responder_fn=fn, solo_ids=["gX-001"], verbose=False)
+    reg = json.loads((carpeta / "gX-001.json").read_text(encoding="utf-8"))
+
+    assert fn.estado["llamadas"] == 2
+    assert fn.estado["hilos"] == ["baseline-rep1-gX-001", "baseline-rep1-gX-001-intento2"]
+    assert reg["resultado"]["structured_response"] is not None
+    assert [x["tipo"] for x in reg["intentos_fallidos"]] == [interfaz.MARCA_SIN_RESPUESTA]
+
+    tabla = interfaz.puntuar("baseline", 1, con_recall=False).set_index("id")
+    assert tabla.loc["gX-001", "reintentos_vacios"] == 1
+    assert tabla.loc["gX-001", "reintentos_proveedor"] == 0      # no fue culpa de la red
+    assert tabla.loc["gX-001", "acierto"] == True                                  # noqa: E712
+
+
+def test_si_el_turno_vacio_persiste_se_guarda_como_fallo(tmp_path, monkeypatch):
+    """Agotado el reintento, la fila se guarda VACÍA: es un fallo real y la
+    tabla tiene que verlo, no esconderlo."""
+    monkeypatch.setattr(interfaz, "dir_resultados", lambda: tmp_path / "resultados")
+    monkeypatch.setattr(interfaz.time, "sleep", lambda s: None)
+    ruta = interfaz.raiz_repo() / "data" / "golden_set.jsonl"
+    fn = _responder_vacio(veces=99)
+
+    carpeta = interfaz.ejecutar(ruta, "baseline", 1, responder_fn=fn, solo_ids=["gX-001"],
+                                reintentar_errores=False, verbose=False)
+    reg = json.loads((carpeta / "gX-001.json").read_text(encoding="utf-8"))
+    assert fn.estado["llamadas"] == 2                     # 1 + 1 reintento, no más
+    assert reg["resultado"]["structured_response"] is None
+    assert "error" not in reg                             # no hubo excepción
+
+    tabla = interfaz.puntuar("baseline", 1, con_recall=False).set_index("id")
+    assert tabla.loc["gX-001", "sin_respuesta"] == True                            # noqa: E712
+    assert tabla.loc["gX-001", "acierto"] == False                                 # noqa: E712
+    assert tabla.loc["gX-001", "reintentos_vacios"] == 2
+
+
+def test_una_fila_sin_respuesta_se_repara_al_volver_a_pasar(tmp_path, monkeypatch):
+    """Es lo que permite reparar las 2 filas de A4 sin repetir las otras 58."""
+    monkeypatch.setattr(interfaz, "dir_resultados", lambda: tmp_path / "resultados")
+    monkeypatch.setattr(interfaz.time, "sleep", lambda s: None)
+    ruta = interfaz.raiz_repo() / "data" / "golden_set.jsonl"
+
+    fn = _responder_vacio(veces=99)
+    carpeta = interfaz.ejecutar(ruta, "baseline", 1, responder_fn=fn, solo_ids=["gX-001"],
+                                reintentar_errores=False, verbose=False)
+    assert json.loads((carpeta / "gX-001.json").read_text(encoding="utf-8"))[
+        "resultado"]["structured_response"] is None
+
+    fn2 = _responder_vacio(veces=0)
+    interfaz.ejecutar(ruta, "baseline", 1, responder_fn=fn2, solo_ids=["gX-001"], verbose=False)
+    reg = json.loads((carpeta / "gX-001.json").read_text(encoding="utf-8"))
+    assert fn2.estado["hilos"] == ["baseline-rep1-gX-001-intento3"]   # hilo nunca usado
+    assert reg["resultado"]["structured_response"] is not None
+    assert len(reg["intentos_fallidos"]) == 2                          # historial conservado
+
+    tabla = interfaz.puntuar("baseline", 1, con_recall=False).set_index("id")
+    assert tabla.loc["gX-001", "acierto"] == True                                  # noqa: E712
+
+
+def test_una_respuesta_equivocada_no_se_repite(tmp_path, monkeypatch):
+    """Sólo se repara lo que no dejó respuesta. Una respuesta MALA es una
+    medición: repetirla sería re-tirar el dado hasta que salga bien."""
+    monkeypatch.setattr(interfaz, "dir_resultados", lambda: tmp_path / "resultados")
+    ruta = interfaz.raiz_repo() / "data" / "golden_set.jsonl"
+    # gX-002 es AAPL; el responder falso siempre contesta la cifra de NVDA -> falla
+    carpeta = interfaz.ejecutar(ruta, "baseline", 1, responder_fn=_responder_falso,
+                                solo_ids=["gX-002"], verbose=False)
+    assert interfaz.puntuar("baseline", 1, con_recall=False).set_index("id").loc[
+        "gX-002", "cifra"] == False                                                # noqa: E712
+    antes = (carpeta / "gX-002.json").stat().st_mtime_ns
+    interfaz.ejecutar(ruta, "baseline", 1, responder_fn=_responder_falso,
+                      solo_ids=["gX-002"], verbose=False)
+    assert (carpeta / "gX-002.json").stat().st_mtime_ns == antes       # no se tocó

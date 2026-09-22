@@ -187,6 +187,15 @@ def _commit_actual() -> str:
 REINTENTOS_PROVEEDOR = 1
 _CODIGOS_REINTENTABLES = {400, 408, 409, 425, 429, 500, 502, 503, 504, 529}
 
+# El modelo puede cerrar la invocación con un turno VACÍO —sin texto y sin tool
+# call— y entonces `create_agent` termina sin `structured_response`: la pregunta
+# se pierde entera, sin excepción que lo avise. Medido en A4: 2 de 60 (3,3 %).
+# No es red ni límite ni retrieval; es el modelo gastando el turno en razonar.
+# Se trata igual que un 400: un reintento en un hilo nuevo.
+MARCA_SIN_RESPUESTA = "SinRespuestaEstructurada"
+_AVISO_SIN_RESPUESTA = ("el modelo cerró la invocación sin salida estructurada "
+                        "(turno vacío, sin texto ni llamada a herramienta)")
+
 
 def _describir_error(e: Exception) -> dict:
     """Todo lo que la excepción sepa. El `body` de OpenRouter lleva dentro el
@@ -206,13 +215,21 @@ def _es_reintentable(e: Exception) -> bool:
     return getattr(e, "status_code", None) in _CODIGOS_REINTENTABLES
 
 
-def _solo_error(destino: Path) -> dict | None:
-    """El registro guardado si es un error sin resultado; None si es válido."""
+def _reparable(destino: Path) -> dict | None:
+    """El registro guardado si hay que repetirlo; None si es bueno.
+
+    Se repite lo que no dejó respuesta: una excepción (no hay `resultado`) o un
+    turno vacío (hay `resultado` pero sin `structured_response`). Una respuesta
+    equivocada NO es reparable: eso es una medición, y se respeta."""
     try:
         reg = json.loads(destino.read_text(encoding="utf-8"))
     except Exception:                                       # noqa: BLE001
         return {"error": "fichero ilegible"}
-    return reg if "resultado" not in reg else None
+    if "resultado" not in reg:
+        return reg
+    if not (reg["resultado"] or {}).get("structured_response"):
+        return reg
+    return None
 
 
 def ejecutar(ruta_jsonl: str | Path, arq: str | Arquitectura = "final", rep: int = 1, *,
@@ -223,10 +240,11 @@ def ejecutar(ruta_jsonl: str | Path, arq: str | Arquitectura = "final", rep: int
     """Corre el agente sobre el JSONL y guarda UN JSON crudo por pregunta.
 
     Idempotente: si `crudo/<id>.json` ya existe y no se pide `forzar`, se salta.
-    Así una ejecución cortada se relanza y sigue donde estaba. Excepción: un
-    JSON que solo contiene `error` (sin `resultado`) se REPITE al volver a
-    pasar, salvo `reintentar_errores=False`; los errores anteriores se conservan
-    en `intentos_fallidos` para que nada se pierda.
+    Excepción: un JSON que no dejó respuesta —porque hubo excepción o porque el
+    modelo cerró con un turno vacío— se REPITE al volver a pasar, salvo
+    `reintentar_errores=False`; los fallos anteriores se conservan en
+    `intentos_fallidos` para que nada se pierda. Una respuesta EQUIVOCADA no se
+    repite nunca: eso es una medición.
 
     `responder_fn` permite inyectar un responder falso (tests) o el de otro.
     """
@@ -257,7 +275,7 @@ def ejecutar(ruta_jsonl: str | Path, arq: str | Arquitectura = "final", rep: int
         destino = carpeta / f"{item['id']}.json"
         intentos: list[dict] = []                    # errores previos + de esta pasada
         if destino.is_file() and not forzar:
-            previo = _solo_error(destino) if reintentar_errores else None
+            previo = _reparable(destino) if reintentar_errores else None
             if previo is None:
                 if verbose:
                     print(f"  [{i}/{len(preguntas)}] {item['id']} · ya existe, salto", flush=True)
@@ -286,6 +304,22 @@ def ejecutar(ruta_jsonl: str | Path, arq: str | Arquitectura = "final", rep: int
                     r, modelo=modelo, arquitectura=a.nombre,
                     coste_usd=r.get("coste_usd"), latencia_s=r.get("latencia_s"))
                 registro.pop("error", None)
+                if not registro["resultado"].get("structured_response"):
+                    # Turno vacío: no hay nada que puntuar. Se reintenta.
+                    intentos.append({"tipo": MARCA_SIN_RESPUESTA,
+                                     "texto": f"{MARCA_SIN_RESPUESTA}: {_AVISO_SIN_RESPUESTA}"})
+                    if intento <= REINTENTOS_PROVEEDOR:
+                        if verbose:
+                            print("sin respuesta estructurada, reintento …",
+                                  end=" ", flush=True)
+                        registro.pop("resultado", None)
+                        time.sleep(1.0)
+                        continue
+                    # Agotado: se GUARDA el resultado vacío tal cual. Es un fallo
+                    # real y la tabla tiene que verlo, no esconderlo.
+                    if verbose:
+                        print(f"SIN RESPUESTA tras {intento} intentos", flush=True)
+                    break
                 if verbose:
                     sr = registro["resultado"]["structured_response"] or {}
                     print(f"{registro['resultado']['latencia_s']:.1f}s · "
@@ -337,7 +371,10 @@ def _fila(registro: dict, arq: Arquitectura, con_recall: bool) -> dict:
             "arquitectura": arq.nombre, "rep": registro.get("rep")}
     # Reintentos por error del proveedor (400/429/5xx): instrumentación, no
     # veredicto. Una arquitectura que provoca más 400 que otra es un hallazgo.
-    fila["reintentos_proveedor"] = len(registro.get("intentos_fallidos") or [])
+    _fallidos = registro.get("intentos_fallidos") or []
+    fila["reintentos_vacios"] = sum(1 for x in _fallidos
+                                    if x.get("tipo") == MARCA_SIN_RESPUESTA)
+    fila["reintentos_proveedor"] = len(_fallidos) - fila["reintentos_vacios"]
     if "error" in registro:
         fila["error"] = registro["error"]
         for nombre in EVALUADORES:
@@ -447,6 +484,9 @@ def resumir(tabla: pd.DataFrame, etiqueta: str) -> dict:
         "errores": int(tabla["error"].notna().sum()) if "error" in tabla else 0,
         "reintentos proveedor": int(tabla["reintentos_proveedor"].sum())
                                 if "reintentos_proveedor" in tabla else 0,
+        "reintentos por respuesta vacía": int(tabla["reintentos_vacios"].sum())
+                                          if "reintentos_vacios" in tabla else 0,
+        "% sin respuesta": _tasa(tabla, "sin_respuesta"),
         # Cuántas veces actuó cada guardrail. Uno que nunca salta no aportó nada
         # y se dice con el dato, sin gastar una ablación.
         "% corrigió cifra": _tasa(tabla, "corrigio_cifra"),
