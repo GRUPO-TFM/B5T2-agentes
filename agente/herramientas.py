@@ -1,4 +1,10 @@
-"""Las cuatro herramientas. Las firmas son contrato: no se cambian."""
+"""Las cuatro herramientas. Las firmas son contrato: no se cambian.
+
+Lo que SÍ cambia entre arquitecturas es lo que hay detrás de `search_filings`:
+`construir_herramientas(reescritura=…, hibrido=…, k=…)` enchufa el retrieval
+de cada peldaño sin tocar la firma que ve el modelo. Con los valores por
+defecto es exactamente el agente del día 10.
+"""
 
 from __future__ import annotations
 
@@ -8,10 +14,30 @@ from agente.corpus import cargar_secciones, cargar_xbrl
 from agente.retrieval import buscar, formatear_fragmentos
 
 
-def construir_herramientas() -> list:
-    """Las cuatro @tool del día 10, con los docstrings que ya funcionaban."""
+def formatear_valor(valor: float, unidad: str | None = None) -> str:
+    """Importes en dólares sin decimales; valores POR ACCIÓN (y en general
+    < 1000) con dos. Con `:,.0f` a secas, `EarningsPerShareDiluted = 2.94`
+    salía «3», el modelo lo copiaba y el evaluador lo tumbaba (3/2,94 = +2 %).
+    Visto en gX-019 (NVDA, split 10:1) al medir A1."""
+    if (unidad and "/" in unidad) or abs(valor) < 1000:
+        return f"{valor:,.2f}"
+    return f"{valor:,.0f}"
+
+
+def construir_herramientas(*, reescritura: bool = False, hibrido: bool = False,
+                           k: int = 5) -> list:
+    """Las cuatro @tool del día 10, con los docstrings que ya funcionaban.
+
+    Args:
+        reescritura: la consulta de `search_filings` pasa antes por una llamada
+            barata al modelo que la reescribe con el vocabulario del 10-K
+            (cacheada en disco). El modelo ve qué consulta se usó de verdad.
+        hibrido: fusión RRF del orden denso y el orden BM25 en vez de solo denso.
+        k: fragmentos por defecto cuando el modelo no pide otra cosa.
+    """
     secciones = cargar_secciones()
     xbrl = cargar_xbrl()
+    k_defecto = k
 
     @tool
     def list_available() -> str:
@@ -72,13 +98,14 @@ def construir_herramientas() -> list:
             return (f"{ticker} no reportó '{concept}' en FY{fiscal_year}. "
                     f"Conceptos disponibles: {', '.join(disponibles)}")
         f = filas.iloc[0]
-        return (f"{ticker} FY{fiscal_year} · {concept} = {f.value:,.0f} {f.unit} "
+        return (f"{ticker} FY{fiscal_year} · {concept} = "
+                f"{formatear_valor(f.value, f.unit)} {f.unit} "
                 f"(cierre de ejercicio {f.period_end}, según el {f.form})")
 
     @tool
     def search_filings(query: str, ticker: str | None = None,
                        fiscal_year: int | None = None,
-                       item: str | None = None, k: int = 5) -> str:
+                       item: str | None = None, k: int = k_defecto) -> str:
         """Busca fragmentos de texto relevantes en los informes 10-K del corpus.
 
         Úsala para preguntas cualitativas: riesgos, estrategia, litigios,
@@ -95,10 +122,27 @@ def construir_herramientas() -> list:
 
         Devuelve k fragmentos, cada uno con su chunk_id para poder citarlo.
         """
-        return formatear_fragmentos(
-            buscar(query, ticker=ticker, fiscal_year=fiscal_year,
-                   item=item, k=k)
-        )
+        # El valor por defecto de la firma ya es el k de la arquitectura (LangChain
+        # lo rellena antes de llegar aquí); el `or` cubre un k=0 del modelo.
+        k = k or k_defecto
+        consulta = query
+        if reescritura:
+            from agente.recall import reescribir_consulta
+            consulta = reescribir_consulta(query)
+        if hibrido:
+            from agente.recall import hibrido as buscar_hibrido
+            fragmentos = buscar_hibrido(consulta, ticker=ticker, fiscal_year=fiscal_year,
+                                        item=item, k=k)
+        else:
+            fragmentos = buscar(consulta, ticker=ticker, fiscal_year=fiscal_year,
+                                item=item, k=k)
+        texto = formatear_fragmentos(fragmentos)
+        if consulta != query:
+            # Se deja constancia en el ToolMessage: así la traza guarda la
+            # consulta real y la instrumentación puede contar cuántas veces
+            # la reescritura cambió algo.
+            texto = f"(consulta reescrita: {consulta!r})\n\n{texto}"
+        return texto
 
     @tool
     def read_section(ticker: str, fiscal_year: int, item: str) -> str:

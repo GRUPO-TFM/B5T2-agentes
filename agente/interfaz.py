@@ -75,7 +75,8 @@ def _embeddings_en_cache() -> bool:
     return any((base / "hub").glob(f"{_MODELO_EMBEDDINGS_CACHE}*"))
 
 
-def calentar(*, offline_si_cacheado: bool = True, verbose: bool = True) -> bool:
+def calentar(*, offline_si_cacheado: bool = True, hibrido: bool = False,
+             verbose: bool = True) -> bool:
     """Carga el índice y el codificador ANTES de empezar a cronometrar.
 
     Idempotente y barata a partir de la segunda vez (`_indice` tiene lru_cache).
@@ -100,9 +101,20 @@ def calentar(*, offline_si_cacheado: bool = True, verbose: bool = True) -> bool:
             print(f"  aviso: no se pudo precargar el retrieval ({type(e).__name__}: "
                   f"{e}). La primera búsqueda pagará la carga.", flush=True)
         return False
+    if hibrido:
+        # El índice BM25 se construye en la primera búsqueda híbrida: también
+        # fuera del cronómetro, por la misma razón que el FAISS.
+        try:
+            from agente.recall import _bm25
+            _bm25()
+        except Exception as e:                              # noqa: BLE001
+            if verbose:
+                print(f"  aviso: no se pudo precargar BM25 ({type(e).__name__}: {e}).",
+                      flush=True)
     if verbose:
         print(f"  retrieval precargado: {indice.ntotal} vectores, "
-              f"{len(meta)} fragmentos ({time.perf_counter() - comienzo:.1f} s)", flush=True)
+              f"{len(meta)} fragmentos{' + BM25' if hibrido else ''} "
+              f"({time.perf_counter() - comienzo:.1f} s)", flush=True)
     return True
 
 
@@ -239,7 +251,7 @@ def ejecutar(ruta_jsonl: str | Path, arq: str | Arquitectura = "final", rep: int
     # Fuera del bucle a propósito: la carga del codificador no debe caer dentro
     # de la latencia de ninguna pregunta. Ver `calentar()`.
     if responder_fn is None:
-        calentar(verbose=verbose)
+        calentar(hibrido=a.hibrido, verbose=verbose)
 
     for i, item in enumerate(preguntas, 1):
         destino = carpeta / f"{item['id']}.json"
@@ -304,6 +316,21 @@ def ejecutar(ruta_jsonl: str | Path, arq: str | Arquitectura = "final", rep: int
 # ---------------------------------------------------------------------------
 # puntuar — sin API
 # ---------------------------------------------------------------------------
+_PREFIJO_REESCRITA = "(consulta reescrita:"
+
+
+def _busquedas_reescritas(mensajes) -> int:
+    n = 0
+    for m in mensajes:
+        tipo = m.get("type") if isinstance(m, dict) else type(m).__name__
+        nombre = m.get("name") if isinstance(m, dict) else getattr(m, "name", None)
+        contenido = m.get("content") if isinstance(m, dict) else getattr(m, "content", "")
+        if tipo in ("tool", "ToolMessage") and nombre == "search_filings" \
+                and isinstance(contenido, str) and contenido.startswith(_PREFIJO_REESCRITA):
+            n += 1
+    return n
+
+
 def _fila(registro: dict, arq: Arquitectura, con_recall: bool) -> dict:
     item = registro["item"]
     fila = {"id": item.get("id"), "familia": item.get("familia"), "ticker": item.get("ticker"),
@@ -357,6 +384,9 @@ def _fila(registro: dict, arq: Arquitectura, con_recall: bool) -> dict:
         "busquedas_con_ticker": sum(1 for c in busquedas if c["args"].get("ticker")),
         "busquedas_con_item": sum(1 for c in busquedas if c["args"].get("item")),
         "uso_read_section": any(c["name"] == "read_section" for c in llamadas),
+        # a2: cuántas búsquedas cambió de verdad la reescritura (lo deja escrito
+        # el propio ToolMessage de search_filings)
+        "busquedas_reescritas": _busquedas_reescritas(mensajes),
     })
     veredictos = {nombre: ev(item, r) for nombre, ev in EVALUADORES.items()}
     fila.update(veredictos)
@@ -423,6 +453,8 @@ def resumir(tabla: pd.DataFrame, etiqueta: str) -> dict:
         "% corrigió cita": _tasa(tabla, "corrigio_cita"),
         "reintentos esquema": _tasa(tabla, "reintentos_esquema"),
         "% límite alcanzado": _tasa(tabla, "limite_alcanzado"),
+        "% búsquedas reescritas": (tabla["busquedas_reescritas"].sum() / max(tabla["n_busquedas"].sum(), 1))
+                                  if "busquedas_reescritas" in tabla else 0.0,
         "% búsquedas con ticker": (
             float(tabla["busquedas_con_ticker"].sum() / tabla["n_busquedas"].sum())
             if "n_busquedas" in tabla and tabla["n_busquedas"].sum() else float("nan")),

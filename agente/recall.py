@@ -145,6 +145,32 @@ def reescribir(pregunta: str, clave: str | None = None, modelo: str = MODELO) ->
     return consulta
 
 
+INSTRUCCION_REESCRITURA_CONSULTA = """Reescribe esta consulta de búsqueda para un índice de
+informes 10-K de la SEC en INGLÉS. Mantén el sentido; usa el vocabulario literal que
+usan los propios informes (Item 1A risk factors, MD&A, "net sales", "operating cash
+flow", "stock split", "geographic region"). Si ya está bien, devuélvela tal cual.
+Devuelve SOLO la consulta, sin comillas ni explicación."""
+
+
+def reescribir_consulta(consulta: str, modelo: str = MODELO) -> str:
+    """Reescritura de la CONSULTA que manda el modelo (no de la pregunta del
+    golden): es lo que usa `search_filings` en a2_retrieval. Misma caché en
+    disco, con prefijo `agente:` para no mezclarse con las del recall."""
+    ruta = _ruta_cache()
+    cache = json.loads(ruta.read_text(encoding="utf-8")) if ruta.is_file() else {}
+    clave = f"agente:{consulta}"
+    if clave in cache:
+        return cache[clave]["consulta"]
+    from langchain.chat_models import init_chat_model
+    modelo_llm = init_chat_model(modelo, temperature=0)
+    nueva = modelo_llm.invoke([{"role": "system", "content": INSTRUCCION_REESCRITURA_CONSULTA},
+                               {"role": "user", "content": consulta}]).text.strip().strip('"')
+    cache[clave] = {"pregunta": consulta, "consulta": nueva or consulta, "modelo": modelo}
+    ruta.parent.mkdir(parents=True, exist_ok=True)
+    ruta.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
+    return nueva or consulta
+
+
 # ---------------------------------------------------------------------------
 # Configuraciones: item del golden -> fragmentos ordenados
 # ---------------------------------------------------------------------------
@@ -212,4 +238,95 @@ def medir_recall(configs: dict[str, Config] | None = None, *,
         carpeta.mkdir(parents=True, exist_ok=True)
         tabla.to_csv(carpeta / "recall_por_config.csv", index=False)
         pd.DataFrame(posiciones).to_csv(carpeta / "posiciones.csv", index=False)
+    return tabla
+
+
+# ---------------------------------------------------------------------------
+# Recall sobre las consultas REALES del agente (leídas de las trazas)
+# ---------------------------------------------------------------------------
+# La tabla del §4.4 mide el retriever con la pregunta del golden en español.
+# Pero el agente NO manda esa pregunta: manda su propia consulta, casi siempre
+# ya en inglés y con filtros. Lo que importa para el agente es: con las
+# consultas que de verdad hizo, ¿habría visto el ancla con otro retriever?
+# Esto lo mide sin gastar API (salvo la reescritura, cacheada).
+
+def consultas_del_agente(arq: str | Arquitectura) -> dict[str, list[dict]]:
+    """id del golden -> lista de {query, ticker, fiscal_year, item, rep} con
+    todas las llamadas a search_filings que hizo esa arquitectura."""
+    from agente.interfaz import dir_arquitectura
+    a = arquitectura(arq)
+    salida: dict[str, list[dict]] = {}
+    for carpeta in sorted(dir_arquitectura(a).glob("rep*/crudo")):
+        for f in sorted(carpeta.glob("*.json")):
+            reg = json.loads(f.read_text(encoding="utf-8"))
+            r = reg.get("resultado") or {}
+            for c in r.get("llamadas", []):
+                if c.get("name") != "search_filings":
+                    continue
+                args = c.get("args") or {}
+                salida.setdefault(reg["item"]["id"], []).append({
+                    "query": args.get("query", ""), "ticker": args.get("ticker"),
+                    "fiscal_year": args.get("fiscal_year"), "item": args.get("item"),
+                    "rep": reg.get("rep"),
+                })
+    return salida
+
+
+def _buscador(reescrita: bool, hibrida: bool):
+    def fn(consulta: str, **filtros) -> list[dict]:
+        q = reescribir_consulta(consulta) if reescrita else consulta
+        return hibrido(q, **filtros) if hibrida else con_filtros(q, **filtros)
+    return fn
+
+
+CONFIGS_AGENTE = {
+    "denso + filtros del agente":      _buscador(False, False),
+    "+ híbrido BM25":                  _buscador(False, True),
+    "+ reescritura":                   _buscador(True, False),
+    "reescritura + híbrido":           _buscador(True, True),
+}
+
+
+def recall_de_trazas(arq_origen: str | Arquitectura = "a1_guardrails", *,
+                     configs: dict | None = None, ruta_jsonl: str | Path = "data/golden_set.jsonl",
+                     k: int = K, escribir: bool = True, verbose: bool = True) -> pd.DataFrame:
+    """Para cada pregunta con ancla en la que el agente buscó: ¿alguna de SUS
+    búsquedas (con SUS filtros) habría puesto el ancla en el top-k con cada
+    retriever? Una fila por configuración; `posiciones_trazas.csv` con la
+    mejor posición del ancla por pregunta y configuración."""
+    from agente.interfaz import leer_golden
+    golden = {g["id"]: g for g in leer_golden(ruta_jsonl) if g.get("ancla_texto")}
+    consultas = consultas_del_agente(arq_origen)
+    ids = [i for i in golden if i in consultas]
+    configs = configs or CONFIGS_AGENTE
+    filas, posiciones = [], []
+    for nombre, fn in configs.items():
+        aciertos = 0
+        for id_ in ids:
+            it = golden[id_]
+            mejor = None
+            for c in consultas[id_]:
+                if not c["query"]:
+                    continue
+                ordenados = fn(c["query"], ticker=c["ticker"], fiscal_year=c["fiscal_year"],
+                               item=c["item"])
+                pos = posicion_del_ancla(it, ordenados)
+                if pos is not None and (mejor is None or pos < mejor):
+                    mejor = pos
+            ok = mejor is not None and mejor <= k
+            aciertos += ok
+            posiciones.append({"config": nombre, "id": id_, "familia": it["familia"],
+                               "n_busquedas": len(consultas[id_]), f"recall@{k}": ok,
+                               "mejor_pos_ancla": mejor})
+        filas.append({"configuración": nombre, f"recall@{k}": aciertos / max(len(ids), 1),
+                      "aciertos": f"{aciertos}/{len(ids)}"})
+        if verbose:
+            print(f"  {nombre:<32} {aciertos}/{len(ids)}", flush=True)
+    tabla = pd.DataFrame(filas)
+    if escribir:
+        carpeta = raiz_repo() / "resultados" / "retrieval"
+        carpeta.mkdir(parents=True, exist_ok=True)
+        tabla.to_csv(carpeta / f"recall_trazas_{arquitectura(arq_origen).nombre}.csv", index=False)
+        pd.DataFrame(posiciones).to_csv(
+            carpeta / f"posiciones_trazas_{arquitectura(arq_origen).nombre}.csv", index=False)
     return tabla

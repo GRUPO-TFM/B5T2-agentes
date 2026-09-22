@@ -31,21 +31,12 @@ from langchain.agents.middleware import (
 from langgraph.runtime import Runtime
 
 from agente.config import Arquitectura
+from agente.herramientas import formatear_valor
 from agente.metricas import cuadra, normalizar
 from agente.resultado import NO_SON_HERRAMIENTAS
 
 MARCA_CIFRA = "VERIFICACIÓN AUTOMÁTICA DE CIFRA"
 MARCA_CITA = "VERIFICACIÓN AUTOMÁTICA DE CITA"
-
-
-def formatear_valor(valor: float, unidad: str | None = None) -> str:
-    """Los importes en dólares se leen mejor sin decimales; los valores POR
-    ACCIÓN, no: `EarningsPerShareDiluted = 2.94` formateado con `:,.0f` sale
-    «3», el modelo lo copia y el evaluador lo tumba (3/2,94 = +2 %, fuera de la
-    tolerancia del 1 %). Visto en gX-019 (NVDA, split 10:1)."""
-    if (unidad and "/" in unidad) or abs(valor) < 1000:
-        return f"{valor:,.2f}"
-    return f"{valor:,.0f}"
 
 
 # ---------------------------------------------------------------------------

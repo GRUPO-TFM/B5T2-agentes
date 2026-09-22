@@ -26,15 +26,10 @@ SYSTEM = PROMPTS["base"]        # compatibilidad con el nombre anterior
 
 
 def _herramientas(arq: Arquitectura) -> list:
-    """Las cuatro herramientas. Cuando el retrieval mejorado (híbrido,
-    reescritura) entre en `agente/retrieval.py`, se le pasan aquí las opciones
-    de la arquitectura; hoy `construir_herramientas()` no acepta argumentos y
-    los niveles a2/a3 usan el retrieval denso con filtros del día 10."""
-    try:
-        return construir_herramientas(reescritura=arq.reescritura,
-                                      hibrido=arq.hibrido, k=arq.k)
-    except TypeError:               # firma antigua, sin opciones
-        return construir_herramientas()
+    """Las cuatro herramientas con el retrieval del peldaño detrás de
+    `search_filings`. Con el baseline, los tres valores están apagados."""
+    return construir_herramientas(reescritura=arq.reescritura,
+                                  hibrido=arq.hibrido, k=arq.k)
 
 
 @functools.lru_cache(maxsize=8)

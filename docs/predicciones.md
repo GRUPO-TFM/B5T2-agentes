@@ -147,13 +147,49 @@ subirlo a 10, no quitarlo. `limite_alcanzado` es la columna que lo dice.
 
 ---
 
-## A2 · `a2_retrieval` — corrección de una predicción anterior
+## A2 · `a2_retrieval` (predicho el 2026-09-22, tras A1, antes de ejecutar)
+
+Qué añade sobre A1: `forzar_filtros` (rellena ticker/año/item en `search_filings`
+si el modelo los olvida) y `reescritura` (la consulta del modelo pasa por una
+llamada barata que la reescribe con el vocabulario del 10-K, cacheada). Entre A1
+y A2 cambia además una herramienta: `get_xbrl_fact` deja de redondear los valores
+por acción (bug 8 del registro de errores); afecta solo a gX-019.
+
+### Primero, una corrección de una predicción anterior
 
 En el diseño inicial se afirmó que la ganancia de A2 vendría de **forzar los
 filtros de metadatos**. Los datos del baseline lo desmienten: de las 81 búsquedas
 ejecutadas, **el 100 % ya llevaba `ticker` y el 94 % ya llevaba `item`**. El margen
-de `forzar_filtros` es casi nulo. La ganancia de A2, si la hay, tiene que venir de
-la **reescritura de la consulta a inglés**, que en la tabla de recall sube de 7/14
-a 9/14 por sí sola.
+de `forzar_filtros` es casi nulo. Queda anotado como error de predicción.
 
-Queda anotado como error de predicción, no corregido a posteriori.
+### Y una sospecha que cambia la predicción
+
+La tabla de recall del §4.4 mide el retriever con la **pregunta del golden en
+español**, y ahí la reescritura sube de 7/14 a 9/14. Pero el agente no manda esa
+pregunta: manda **su propia consulta**, y el prompt base ya le dice «el corpus está
+en inglés: escribe las consultas en inglés». Las trazas lo confirman: «ten-for-one
+stock split retroactive basis earnings per share», «revenue by geographic region
+United States Europe Asia-Pacific». **El modelo ya es el reescritor.** La mejora
+que la tabla atribuye a la reescritura ya está dentro del baseline del agente.
+
+Y más: en A1, de las preguntas en las que el agente buscó texto, el evaluador de
+cita pasa en **todas** (6/6 extractivas, 3/3 comparativas que buscaron). En el golden
+set no queda ningún fallo de retrieval que arreglar del lado del agente.
+
+**Predicción principal: A2 no mueve el acierto** (75 % ± el ruido de 2 preguntas).
+`cifra`, `cita` y `trayectoria` planas. Numéricas y extractivas al 100 %.
+
+**Predicción de coste: sube.** Cada búsqueda paga una llamada extra de reescritura
+la primera vez (después va de caché): +0,1 a +0,3 ¢ por pregunta y +1 a +3 s.
+
+**Instrumentación que lo dirá:** `% búsquedas reescritas` (cuántas veces la
+reescritura cambió algo en la consulta del modelo; si es < 30 %, el modelo ya
+escribía consultas de 10-K) y `recall_de_trazas` (con las consultas reales del
+agente, ¿otro retriever habría visto el ancla? — predicción: denso y reescrito
+empatan; el híbrido, si acaso, +1).
+
+Si A2 no mueve nada, no es un peldaño fallido: es la diapositiva «lo que mejora
+el retriever no siempre mejora al agente, porque el agente ya hace parte del
+trabajo del retriever». Y la tabla del §4.4 sigue siendo válida para lo que mide.
+
+> Resultado: _(pendiente)_
