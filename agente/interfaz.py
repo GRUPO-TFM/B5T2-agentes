@@ -263,6 +263,10 @@ def ejecutar(ruta_jsonl: str | Path, arq: str | Arquitectura = "final", rep: int
               "golden_set": str(ruta_jsonl), "fecha": datetime.now().isoformat(timespec="seconds")}
     (dir_arquitectura(a) / "config.json").write_text(
         json.dumps(config, ensure_ascii=False, indent=2), encoding="utf-8")
+    # `config.json` solo guarda la ÚLTIMA pasada. El historial guarda todas:
+    # es lo que permite reconciliar resultados hechos en días y commits distintos.
+    with open(dir_arquitectura(a) / "config_historial.jsonl", "a", encoding="utf-8") as f:
+        f.write(json.dumps({**config, "rep": rep}, ensure_ascii=False) + "\n")
 
     preguntas = leer_golden(ruta_jsonl)
     if solo_ids:
@@ -297,7 +301,9 @@ def ejecutar(ruta_jsonl: str | Path, arq: str | Arquitectura = "final", rep: int
             print(f"  [{i}/{len(preguntas)}] {item['id']} …", end=" ", flush=True)
 
         base_hilo = f"{a.nombre}-rep{rep}-{item['id']}"     # la rep DENTRO del hilo
-        registro: dict = {"item": item, "rep": rep, "thread_id": base_hilo}
+        registro: dict = {"item": item, "rep": rep, "thread_id": base_hilo,
+                          "commit": config["commit"],
+                          "fecha": datetime.now().isoformat(timespec="seconds")}
         # Los intentos ya gastados (de pasadas anteriores) cuentan para el hilo:
         # así el hilo del reintento nunca coincide con uno que ya se usó.
         gastados = len(intentos)
@@ -450,15 +456,41 @@ def _fila(registro: dict, arq: Arquitectura, con_recall: bool) -> dict:
     return fila
 
 
+def _items_actuales(golden: str | Path | None) -> dict[str, dict] | None:
+    return {g["id"]: g for g in leer_golden(golden)} if golden else None
+
+
 def puntuar(arq: str | Arquitectura = "final", rep: int = 1, *,
-            con_recall: bool = True) -> pd.DataFrame:
-    """Lee `crudo/`, aplica los evaluadores y escribe `tabla.csv`."""
+            con_recall: bool = True, golden: str | Path | None = None) -> pd.DataFrame:
+    """Lee `crudo/`, aplica los evaluadores y escribe `tabla.csv`.
+
+    Cada JSON crudo guarda el ítem del golden TAL COMO ERA al ejecutar. Si el
+    golden ha cambiado después (p. ej. el v2 del adversario añadió
+    `cifras_aceptables`), sin `golden` se puntúa con la versión vieja. Con
+    `golden`, se puntúa con la actual: los criterios de evaluación se
+    actualizan, pero si cambió la PREGUNTA la respuesta ya no le corresponde y
+    la fila sale marcada `obsoleta` (hay que repetirla con `forzar=True`).
+    Los ids que ya no están en el golden no se puntúan."""
     a = arquitectura(arq)
     carpeta = dir_rep(a, rep) / "crudo"
     ficheros = sorted(carpeta.glob("*.json"))
     if not ficheros:
         raise FileNotFoundError(f"No hay crudo en {carpeta}. Ejecuta primero.")
-    filas = [_fila(json.loads(f.read_text(encoding="utf-8")), a, con_recall) for f in ficheros]
+    actuales = _items_actuales(golden)
+    filas = []
+    for f in ficheros:
+        registro = json.loads(f.read_text(encoding="utf-8"))
+        obsoleta = False
+        if actuales is not None:
+            nuevo = actuales.get(registro["item"].get("id"))
+            if nuevo is None:
+                continue
+            obsoleta = nuevo.get("pregunta") != registro["item"].get("pregunta")
+            if not obsoleta:
+                registro["item"] = nuevo
+        fila = _fila(registro, a, con_recall)
+        fila["obsoleta"] = obsoleta
+        filas.append(fila)
     tabla = pd.DataFrame(filas)
     tabla.to_csv(dir_rep(a, rep) / "tabla.csv", index=False)
     return tabla

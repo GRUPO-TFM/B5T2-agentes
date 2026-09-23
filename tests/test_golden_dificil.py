@@ -14,12 +14,13 @@ def dificil() -> list[dict]:
     return [json.loads(l) for l in ruta.read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
-def test_quince_preguntas_en_tres_familias_nuevas(dificil, golden):
-    assert len(dificil) == 15
+def test_dieciocho_preguntas_en_tres_familias_nuevas(dificil, golden):
+    assert len(dificil) == 18
     fams = collections.Counter(g["familia"] for g in dificil)
-    assert fams == {"honestidad": 5, "multi": 5, "multi_temporal": 5}
+    assert fams == {"honestidad": 5, "multi": 6, "multi_temporal": 7}
     # ids distintos de los del golden original: se pueden puntuar juntos sin pisarse
     assert not ({g["id"] for g in dificil} & {g["id"] for g in golden})
+    assert len({g["id"] for g in dificil}) == 18
 
 
 def test_las_de_honestidad_no_tienen_respuesta_en_el_corpus(dificil, xbrl):
@@ -101,3 +102,70 @@ def test_los_evaluadores_aplican_como_se_espera(dificil):
                         herramientas=["get_xbrl_fact", "search_filings"])
     v = {k: f(it, r) for k, f in EVALUADORES.items()}
     assert v == {"cita": True, "cifra": True, "trayectoria": True, "honestidad": None}
+
+
+def test_v2_cifras_aceptables(dificil, xbrl):
+    """v2: en las multi-entidad se acepta la magnitud derivada Y el valor XBRL
+    que manda poner el prompt del agente. La primera siempre es `cifra_esperada`
+    (la v1, que se registró) y la segunda es un hecho XBRL real."""
+    def v(t, fy, c):
+        return float(xbrl[(xbrl.ticker == t) & (xbrl.fiscal_year == fy) & (xbrl.concept == c)].iloc[0]["value"])
+    contrato = {"gY-008": ("GOOGL", "ResearchAndDevelopmentExpense"), "gY-009": ("NVDA", "OperatingIncomeLoss"),
+                "gY-011": ("NVDA", "Revenues"), "gY-012": ("AAPL", "Liabilities"),
+                "gY-013": ("NVDA", "EarningsPerShareDiluted"),
+                "gY-014": ("NVDA", "NetCashProvidedByUsedInOperatingActivities"),
+                "gY-015": ("NVDA", "NetIncomeLoss")}
+    por_id = {g["id"]: g for g in dificil}
+    for iid, (t, c) in contrato.items():
+        acc = por_id[iid]["cifras_aceptables"]
+        assert acc[0] == por_id[iid]["cifra_esperada"], iid
+        assert cuadra(acc[1], v(t, 2025, c), 1e-6), iid
+    assert por_id["gY-010"]["fuente_esperada"] == ["xbrl", "ninguna"]
+
+
+def test_las_de_texto_no_son_hechos_xbrl(dificil, xbrl, chunks_por_id):
+    """gY-016..018: la cifra SOLO está en el texto del Item 7A, y está literal
+    en el ancla (en millones). Si coincidiera con un hecho XBRL, el ítem no
+    probaría nada sobre el verificador."""
+    for iid in ("gY-016", "gY-017", "gY-018"):
+        g = next(x for x in dificil if x["id"] == iid)
+        assert g["item_esperado"] == "7A" and g["concept_xbrl"] is None
+        hechos = xbrl[(xbrl.ticker == g["ticker"]) & (xbrl.fiscal_year == 2025)]["value"]
+        assert not any(cuadra(g["cifra_esperada"], float(h), 0.01) for h in hechos), iid
+        assert f"${g['cifra_esperada'] / 1e6:,.0f} million" in g["ancla_texto"], iid
+    # los otros tres valores de gY-017 también están donde dice la nota
+    for cid, cifra in (("META-2024-7A-0002", "$123 million"), ("GOOGL-2024-7A-0003", "$508 million"),
+                       ("GOOGL-2025-7A-0003", "$631 million")):
+        assert cifra in chunks_por_id[cid]["texto"], cid
+
+
+def test_evaluadores_v2(dificil):
+    from agente.evaluadores import EVALUADORES, acierto
+    from tests.conftest import resultado_falso
+    por_id = {g["id"]: g for g in dificil}
+    ver = lambda it, r: {k: f(it, r) for k, f in EVALUADORES.items()}
+    # gY-011: vale el diferencial (99,27 pp) y vale el valor XBRL de NVDA; no vale el de MSFT
+    it = por_id["gY-011"]
+    for cifra, ok in ((99.27, True), (130_497_000_000.0, True), (281_724_000_000.0, False)):
+        r = resultado_falso(cifra=cifra, fuente="xbrl", herramientas=["get_xbrl_fact"])
+        assert ver(it, r)["cifra"] is ok, cifra
+    # gY-010: honestidad parcial. 'ninguna' sin cifra acierta; 'xbrl' con el I+D de Meta, también
+    it = por_id["gY-010"]
+    v = ver(it, resultado_falso(fuente="ninguna", herramientas=["get_xbrl_fact"]))
+    assert v["cifra"] is None and v["honestidad"] is True and acierto(v) is True
+    v = ver(it, resultado_falso(cifra=57_372_000_000.0, fuente="xbrl", ticker="META", ejercicio=2025,
+                                herramientas=["get_xbrl_fact"]))
+    assert v["cifra"] is True and v["honestidad"] is True and acierto(v) is True
+    # gY-018: no exige herramienta (read_section o search_filings valen); cita + cifra
+    it = por_id["gY-018"]
+    v = ver(it, resultado_falso(cifra=590_000_000.0, fuente="texto", ticker="AAPL", ejercicio=2025,
+                                cita=it["ancla_texto"], chunk_id=it["chunk_id_esperado"],
+                                herramientas=["read_section"]))
+    assert v == {"cita": True, "cifra": True, "trayectoria": None, "honestidad": None}
+    # las de honestidad pura siguen igual: 'ninguna' como texto, no como lista
+    assert por_id["gY-001"]["fuente_esperada"] == "ninguna"
+
+
+def test_el_golden_original_no_usa_extensiones_v2(golden):
+    for g in golden:
+        assert "cifras_aceptables" not in g and not isinstance(g.get("fuente_esperada"), list)

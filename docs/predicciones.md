@@ -429,4 +429,82 @@ esquema mono-entidad, qué bloquea el límite de 8, y si la honestidad aguanta
 cuando la cifra prohibida está a la vista en el texto. Cada uno de esos tres es
 una decisión de diseño de A5, y ninguno se puede tomar sin estos datos.
 
+> **Resultado (23-sep, 1 rep, golden v1): 46,7 % (7/15).** Honestidad 5/5,
+> multi 2/5, multi_temporal 0/5; latencia 36 s (no 70); 1,65 ¢.
+>
+> - **Acerté el número por la razón equivocada.** De los 8 fallos, **5 son
+>   del golden, no del agente**: gY-008, 009, 011, 013 y 014 tienen el
+>   razonamiento correcto en `respuesta` (99,27 pp; 146,44 % frente a 22,70 %;
+>   128,16 %…) y ponen en `cifra` el valor XBRL de la ganadora. Es exactamente
+>   lo que manda el prompt desde A1 («`cifra` = valor del ejercicio más
+>   reciente; la variación va en `respuesta`»), alineado con el golden del
+>   profesor. El golden adversario pedía otra convención que el agente nunca
+>   recibió. Error de diseño mío: no contrasté la convención con el prompt.
+> - El mecanismo tampoco fue el predicho: el verificador no llegó a actuar
+>   (`% corrigió cifra` = 0 %); lo hizo el prompt antes.
+> - **2 fallos reales, los predichos**: gY-012 y gY-015 agotan el límite de 8.
+>   El modelo ya pide los datos en paralelo (6 llamadas por turno en gY-015):
+>   el problema es que el límite cuenta llamadas, no turnos.
+> - **1 etiqueta discutible**: gY-010 responde bien en el texto pero marca
+>   `fuente='ninguna'` en todo. Honestidad de más, no de menos.
+> - La trampa de gY-002 no llegó a probarse: el agente no buscó en texto.
+> - Latencia: 25 s de media sin búsquedas de texto, 59 s con ellas.
+>
+> **Re-puntuado con el golden v2** (mismos JSON crudos, sin volver a llamar al
+> agente): **86,7 % (13/15)**. Los dos fallos que quedan son los del límite.
+
+---
+
+## Golden adversario v2 (18 preguntas) · la escalera entera
+
+**Qué cambia en el golden (v2).** Se registra aparte y el 46,7 % de arriba se
+mantiene como el resultado v1:
+
+- `cifras_aceptables` en las 7 preguntas multi-entidad con magnitud derivada:
+  vale la magnitud (el diferencial, el margen…) **o** el valor XBRL de la
+  ganadora, que es lo que manda el prompt. Se aceptan las dos porque las dos
+  son defendibles; lo que no se acepta es una cifra de la compañía perdedora.
+- gY-010 acepta `fuente` `xbrl` o `ninguna` (honestidad parcial).
+- **Tres preguntas nuevas con la cifra SOLO en texto (Item 7A)**, que el golden
+  original no tiene (allí toda cifra es un hecho XBRL):
+  - gY-016 · multi · Alphabet frente a Meta, pérdida ante −10 % en acciones
+    cotizadas (631 M frente a 599 M).
+  - gY-017 · multi_temporal · la misma magnitud, 2 compañías × 2 ejercicios
+    (Meta 123 → 599 M; Alphabet 508 → 631 M): cuatro búsquedas.
+  - gY-018 · multi_temporal · Apple, las dos medidas de riesgo del Item 7A
+    (VaR de divisas 538 → 590 M; sensibilidad a +100 pb 2.755 → 2.416 M).
+    Pensada para `read_section`, sin exigirla: `search_filings` con item='7A'
+    es igual de válido y la trayectoria no debe castigar al agente eficiente.
+
+**La hipótesis que prueban las tres nuevas.** El verificador de cifras de A1
+compara **toda** `cifra` con los hechos XBRL de esa compañía y ejercicio, aunque
+`fuente='texto'`. 631 M no es un hecho XBRL de GOOGL, así que lo rechazará y le
+dirá al modelo que use un valor XBRL o `fuente='ninguna'`. Es un bug latente que
+el golden original no puede ver. Si se confirma, afecta a cualquier pregunta a
+ciegas de clase con una cifra del MD&A o del 7A.
+
+**Predicciones (1 repetición, 18 preguntas; cada pregunta = 5,6 pp):**
+
+| | acierto | honestidad (5) | multi (6) | multi_temporal (7) | texto 016-018 |
+|---|---|---|---|---|---|
+| baseline | 45-65 % | 2-4 | 3-5 | 2-4 | 2-3 |
+| a1_guardrails | 60-75 % | 4-5 | 4-5 | 3-4 | 0-2 |
+| a2_retrieval | ≈ a1 (±1 pregunta) | | | | |
+| a3_hibrido | ≈ a2 (±1 pregunta) | | | | |
+| a4_comparativas | 70-85 % | 5 | 5-6 | 4-5 | 1-2 |
+
+Razonamiento:
+
+- **baseline**: sin límites (gY-012 y gY-015 pueden completarse) y sin
+  verificador (las tres de texto no se sabotean), pero sin el prompt de
+  honestidad. Espero que calcule el margen bruto de Amazon desde el texto
+  (gY-001) o dé el FY2023 de NVIDIA. Puede **ganar a A1-A4 en las de límite y
+  en las de texto**: sería la prueba de que dos guardrails de A1 tienen coste.
+- **a1**: la honestidad sube; gY-012 y gY-015 caen por el límite; en 016-018
+  el verificador salta (`corrigió cifra` = True) y predigo que el modelo cede
+  en al menos una.
+- **a2/a3**: el cambio es de retrieval y aquí solo 4 preguntas dependen de él.
+  Diferencias de ±1 pregunta son ruido.
+- **a4**: 13/15 re-puntuado + 1-2 de las nuevas.
+
 > Resultado: _(pendiente)_

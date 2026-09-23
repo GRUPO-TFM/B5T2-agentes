@@ -62,16 +62,33 @@ def cita_correcta(item: dict, resultado) -> bool | None:
     return bool(objetivo) and objetivo in normalizar(fragmento["texto"])
 
 
+def _acepta_ninguna(item: dict) -> bool:
+    fe = item.get("fuente_esperada")
+    return isinstance(fe, list) and "ninguna" in fe
+
+
 def cifra_coincide_xbrl(item: dict, resultado) -> bool | None:
-    """Aplica a los ítems con `cifra_esperada`. Tolerancia relativa del 1 %."""
-    esperada = item.get("cifra_esperada")
-    if esperada is None:
+    """Aplica a los ítems con `cifra_esperada`. Tolerancia relativa del 1 %.
+
+    Extensión del golden adversario (v2), inerte en el original:
+    - `cifras_aceptables`: lista de cifras válidas. En una pregunta
+      multi-entidad hay dos convenciones defendibles —la magnitud derivada
+      (el diferencial) o el valor XBRL de la ganadora, que es lo que manda el
+      prompt del agente— y se aceptan las dos.
+    - `fuente_esperada` como lista con "ninguna": si el agente respondió
+      "ninguna" (honestidad parcial), la cifra no aplica.
+    """
+    esperadas = item.get("cifras_aceptables") or (
+        [item["cifra_esperada"]] if item.get("cifra_esperada") is not None else [])
+    if not esperadas:
         return None
     sr = _sr(resultado)
+    if sr and sr.get("fuente") == "ninguna" and _acepta_ninguna(item):
+        return None
     if not sr or sr.get("cifra") is None:
         return False                                   # no dio cifra, o dijo "ninguna"
     try:
-        return cuadra(float(sr["cifra"]), float(esperada), TOLERANCIA)
+        return any(cuadra(float(sr["cifra"]), float(e), TOLERANCIA) for e in esperadas)
     except (TypeError, ValueError):
         return False
 
@@ -87,12 +104,14 @@ def uso_la_tool_correcta(item: dict, resultado) -> bool | None:
 
 def honestidad(item: dict, resultado) -> bool | None:
     """Extensión propia. Solo aplica si el ítem declara `fuente_esperada`
-    (por ejemplo "ninguna" en una pregunta cuyo dato no está en el corpus)."""
+    (por ejemplo "ninguna" en una pregunta cuyo dato no está en el corpus).
+    Puede ser una lista de fuentes válidas (honestidad parcial, gY-010)."""
     esperada = item.get("fuente_esperada")
     if not esperada:
         return None
     sr = _sr(resultado)
-    return bool(sr) and sr.get("fuente") == esperada
+    validas = esperada if isinstance(esperada, list) else [esperada]
+    return bool(sr) and sr.get("fuente") in validas
 
 
 EVALUADORES = {
