@@ -591,4 +591,36 @@ A4 hasta que las tres estén medidas en los dos golden.
 > La latencia sigue abierta; la palanca real sería un modelo más rápido para la
 > reescritura, o quitarla (A2 ya mostró que no mueve el acierto).
 
-> Resultado: _(pendiente)_
+> **Resultado (23-sep, 1 rep en cada golden):**
+>
+> | | difícil (18) | original (20) | latencia dif. / orig. | coste dif. / orig. |
+> |---|---|---|---|---|
+> | A4 (referencia) | 72,2 % | 96,7 % (3 reps) | 39 s / 49 s | 1,89 ¢ / 1,52 ¢ |
+> | **A5** límite por herramienta | **83,3 %** | 95,0 %* | 54 s / 52 s | 2,35 ¢ / 1,44 ¢ |
+> | **A6** cifras de texto | **88,9 %**† | **100 %** | 45 s / 39 s | 2,13 ¢ / 1,86 ¢ |
+>
+> \* El único fallo de A5 en el original (gX-019) es un turno vacío, no un error de razonamiento.
+> † Uno de sus dos fallos (gY-011) también es un turno vacío.
+>
+> - **A5 cumple la predicción exacta**: 83,3 % en el difícil; recupera gY-012 y gY-015;
+>   `% límite alcanzado` = 0 %. Original sin regresión (el único fallo es un turno vacío).
+>   Latencia: predije «casi igual» y en el difícil sube de 39 a 54 s. Las preguntas del
+>   límite ahora llegan hasta el final, con más llamadas, en lugar de cortarse.
+> - **A6 cumple a medias**: recupera las tres de cifras de texto (gY-016..018) y la
+>   honestidad aguanta (gY-002, el FY2023 de la tabla, sigue siendo `fuente='ninguna'`),
+>   pero se queda en 88,9 %, por debajo del 94-100 % predicho:
+>   - gY-011 es un turno vacío (se repara solo al volver a correr).
+>   - **gY-009 es una regresión real y la causa el prompt nuevo**: el agente pide a XBRL un
+>     concepto `OperatingMargin`, le dicen que no está reportado, y aplica la regla «si una
+>     partida no está reportada, fuente='ninguna'» a un ratio que se CALCULA con dos
+>     partidas que sí están (OperatingIncomeLoss / ingresos). En A5 lo calculaba bien
+>     (62,42 %). La lista de partidas contables del prompt incluye «margen bruto», y el
+>     modelo generaliza a «margen operativo». Una sola repetición: posible, no seguro, que
+>     sea sistemático. Arreglo candidato, sin medir: decir en el prompt que un ratio entre
+>     partidas XBRL se calcula, no se da por no reportado.
+> - En el original, A6 da 20 de 20 con 1 repetición. Es compatible con el 96,7 % de A4
+>   (3 reps): con 20 preguntas, una pregunta son 5 pp.
+> - La latencia de A6 sale menor que la de A5 en los dos golden (45 frente a 54 s; 39
+>   frente a 52 s). No lo atribuyo a nada: con 1 repetición y la dispersión del
+>   proveedor (7-19 s por llamada) es ruido hasta que se demuestre lo contrario.
+

@@ -1,0 +1,583 @@
+{
+ "item": {
+  "id": "gY-015",
+  "pregunta": "¿Cuál de las seis compañías del corpus tuvo el mayor crecimiento de beneficio neto entre FY2024 y FY2025?",
+  "familia": "multi_temporal",
+  "ticker": "NVDA",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "NVIDIA, +144.9 %. Resto: AAPL +19.5 %, AMZN +31.1 %, GOOGL +32.0 %, META -3.1 %, MSFT +15.5 %. Convención: ticker=NVDA, cifra=crecimiento de NVDA en %.",
+  "cifra_esperada": 144.89,
+  "unidad": "%",
+  "concept_xbrl": null,
+  "item_esperado": null,
+  "ancla_texto": null,
+  "ancla_inicio": null,
+  "ancla_fin": null,
+  "chunk_id_esperado": null,
+  "herramienta_esperada": [
+   "get_xbrl_fact"
+  ],
+  "autor": "grupo-X/adversario",
+  "nota": "12 llamadas a get_xbrl_fact: rompe el límite de 8 con holgura. Predicción: límite alcanzado; el agente tendrá que responder con datos parciales o decir que no puede. Convención v2 (alineada con el contrato del agente, que manda poner en `cifra` el valor XBRL del ejercicio más reciente y la variación en `respuesta`): se acepta la magnitud derivada o ese valor XBRL.",
+  "cifras_aceptables": [
+   144.89,
+   72880000000.0
+  ]
+ },
+ "rep": 1,
+ "thread_id": "a6_cifras_texto-rep1-gY-015",
+ "commit": "4008f0a",
+ "fecha": "2026-09-23T19:12:20",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "NVIDIA (NVDA) tuvo el mayor crecimiento de beneficio neto tanto en términos porcentuales como absolutos entre FY2024 y FY2025, al aumentar su beneficio neto un +144,89% (+43.120.000.000 USD), pasando de 29.760.000.000 USD en FY2024 a 72.880.000.000 USD en FY2025. Este crecimiento fue impulsado por la fuerte demanda de su plataforma Hopper en el segmento Data Center.\n\nComparativa del beneficio neto de las seis compañías (FY2024 vs FY2025):\n1. NVDA: 29.760.000.000 USD a 72.880.000.000 USD (+144,89% / +43.120.000.000 USD)\n2. GOOGL: 100.118.000.000 USD a 132.170.000.000 USD (+32,01% / +32.052.000.000 USD)\n3. AMZN: 59.248.000.000 USD a 77.670.000.000 USD (+31,09% / +18.422.000.000 USD)\n4. AAPL: 93.736.000.000 USD a 112.010.000.000 USD (+19,50% / +18.274.000.000 USD)\n5. MSFT: 88.136.000.000 USD a 101.832.000.000 USD (+15,54% / +13.696.000.000 USD)\n6. META: 62.360.000.000 USD a 60.458.000.000 USD (-3,05% / -1.902.000.000 USD)",
+   "cifra": 72880000000.0,
+   "unidad": "USD",
+   "ticker": "NVDA",
+   "ejercicio": 2025,
+   "fuente": "ambas",
+   "cita": "The strong year-on-year growth was driven by demand for our Hopper architecture accelerated computing platform used for large language models, recommendation engines, and generative AI applications.",
+   "chunk_id": "NVDA-2025-7-0007"
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2024,
+     "ticker": "AAPL",
+     "concept": "NetIncomeLoss"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "NetIncomeLoss",
+     "fiscal_year": 2025,
+     "ticker": "AAPL"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "AMZN",
+     "concept": "NetIncomeLoss",
+     "fiscal_year": 2024
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "AMZN",
+     "concept": "NetIncomeLoss",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "NetIncomeLoss",
+     "ticker": "GOOGL",
+     "fiscal_year": 2024
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "GOOGL",
+     "fiscal_year": 2025,
+     "concept": "NetIncomeLoss"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "NetIncomeLoss",
+     "fiscal_year": 2024,
+     "ticker": "META"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "META",
+     "fiscal_year": 2025,
+     "concept": "NetIncomeLoss"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "NetIncomeLoss",
+     "ticker": "MSFT",
+     "fiscal_year": 2024
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "concept": "NetIncomeLoss",
+     "ticker": "MSFT"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "NetIncomeLoss",
+     "fiscal_year": 2024,
+     "ticker": "NVDA"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "ticker": "NVDA",
+     "concept": "NetIncomeLoss"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "query": "Net income increased primary driver revenue Data Center",
+     "fiscal_year": 2025,
+     "item": "7",
+     "ticker": "NVDA"
+    }
+   }
+  ],
+  "n_llamadas": 14,
+  "tokens_in": 21766,
+  "tokens_out": 3573,
+  "coste_usd": 0.02972325,
+  "latencia_s": 38.34518299996853,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Cuál de las seis compañías del corpus tuvo el mayor crecimiento de beneficio neto entre FY2024 y FY2025?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_906132",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2097,
+     "output_tokens": 66,
+     "total_tokens": 2163,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 56
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_906132",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2024,
+       "ticker": "AAPL",
+       "concept": "NetIncomeLoss"
+      },
+      "id": "call_813642",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "NetIncomeLoss",
+       "fiscal_year": 2025,
+       "ticker": "AAPL"
+      },
+      "id": "call_813644",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "AMZN",
+       "concept": "NetIncomeLoss",
+       "fiscal_year": 2024
+      },
+      "id": "call_813648",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "AMZN",
+       "concept": "NetIncomeLoss",
+       "fiscal_year": 2025
+      },
+      "id": "call_813650",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "NetIncomeLoss",
+       "ticker": "GOOGL",
+       "fiscal_year": 2024
+      },
+      "id": "call_813652",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2410,
+     "output_tokens": 305,
+     "total_tokens": 2715,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 116
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2024 · NetIncomeLoss = 93,736,000,000 USD (cierre de ejercicio 2024-09-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_813642",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2025 · NetIncomeLoss = 112,010,000,000 USD (cierre de ejercicio 2025-09-27, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_813644",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AMZN FY2024 · NetIncomeLoss = 59,248,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_813648",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AMZN FY2025 · NetIncomeLoss = 77,670,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_813650",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "GOOGL FY2024 · NetIncomeLoss = 100,118,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_813652",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "GOOGL",
+       "fiscal_year": 2025,
+       "concept": "NetIncomeLoss"
+      },
+      "id": "call_343340",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "NetIncomeLoss",
+       "fiscal_year": 2024,
+       "ticker": "META"
+      },
+      "id": "call_343344",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "META",
+       "fiscal_year": 2025,
+       "concept": "NetIncomeLoss"
+      },
+      "id": "call_343348",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "NetIncomeLoss",
+       "ticker": "MSFT",
+       "fiscal_year": 2024
+      },
+      "id": "call_343350",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "concept": "NetIncomeLoss",
+       "ticker": "MSFT"
+      },
+      "id": "call_343354",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2976,
+     "output_tokens": 245,
+     "total_tokens": 3221,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 56
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "GOOGL FY2025 · NetIncomeLoss = 132,170,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_343340",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2024 · NetIncomeLoss = 62,360,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_343344",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2025 · NetIncomeLoss = 60,458,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_343348",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "MSFT FY2024 · NetIncomeLoss = 88,136,000,000 USD (cierre de ejercicio 2024-06-30, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_343350",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "MSFT FY2025 · NetIncomeLoss = 101,832,000,000 USD (cierre de ejercicio 2025-06-30, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_343354",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "NetIncomeLoss",
+       "fiscal_year": 2024,
+       "ticker": "NVDA"
+      },
+      "id": "call_1015617",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "ticker": "NVDA",
+       "concept": "NetIncomeLoss"
+      },
+      "id": "call_1015619",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 3482,
+     "output_tokens": 95,
+     "total_tokens": 3577,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 19
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "NVDA FY2024 · NetIncomeLoss = 29,760,000,000 USD (cierre de ejercicio 2024-01-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_1015617",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "NVDA FY2025 · NetIncomeLoss = 72,880,000,000 USD (cierre de ejercicio 2025-01-26, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_1015619",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "query": "Net income increased primary driver revenue Data Center",
+       "fiscal_year": 2025,
+       "item": "7",
+       "ticker": "NVDA"
+      },
+      "id": "call_378031",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 3681,
+     "output_tokens": 1295,
+     "total_tokens": 4976,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 1249
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'MD&A \"net income increased\" \"primarily driven by\" \"Data Center\" revenue')\n\n[NVDA-2025-7-0007] NVDA FY2025 Item 7 (similitud 0.032)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\tChange\n($ in millions, except per share data)\nRevenue\t$\t130,497\t\t\t$\t60,922\t\t\tUp 114%\nGross margin\t75.0\t%\t\t72.7\t%\t\tUp 2.3 pts\nOperating expenses\t$\t16,405\t\t\t$\t11,329\t\t\tUp 45%\nOperating income\t$\t81,453\t\t\t$\t32,972\t\t\tUp 147%\nNet income\t$\t72,880\t\t\t$\t29,760\t\t\tUp 145%\nNet income per diluted share\t$\t2.94\t\t\t$\t1.19\t\t\tUp 147%\n\nWe specialize in markets where our computing platforms can provide tremendous acceleration for applications. These platforms incorporate processors, interconnects, software, algorithms, systems, and services to deliver unique value. Our platforms address four large markets where our expertise is critical: Data Center, Gaming, Professional Visualization, and Automotive.\n\nRevenue for fiscal year 2025 was $130.5 billion, up 114% from a year ago.\n\nData Center revenue for fiscal year 2025 was up 142% from a year ago. The strong year-on-year growth was driven by demand for our Hopper architecture accelerated computing platform used for large language models, recommendation engines, and generative AI applications. We began shipping production systems of the Blackwell architecture in the fourth quarter of fiscal year 2025.\n\nGaming revenue for fiscal year 2025 was up 9% from a year ago, driven by sales of our GeForce RTX 40 Series GPUs.\n\nProfessional Visualization revenue for fiscal year 2025 was up 21% from a year ago, driven by the continued ramp of Ada RTX GPU workstations for use cases such as generative AI-powered design, simulation, and engineering.\n\nAutomotive revenue for fiscal year 2025 was up 55% from a year ago, driven by sales of our self-driving platforms.\n\nGross margin increased in fiscal year 2025 driven by a higher mix of Data Center revenue.\n\nOperating expenses for fiscal year 2025 were up 45% from a year ago, driven by higher compensation and benefits expenses due to employee growth and compensation increases, and engineering development, compute and infrastructure costs for new product introductions.\n\n---\n\n[NVDA-2025-7-0013] NVDA FY2025 Item 7 (similitud 0.032)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nCompute & Networking\t$\t82,875\t\t\t$\t32,016\t\t\t$\t50,859\t\t\t159\t%\nGraphics\t5,085\t\t\t5,846\t\t\t(761)\t\t\t(13)\t%\nAll Other\t(6,507)\t\t\t(4,890)\t\t\t(1,617)\t\t\t33\t%\nTotal\t$\t81,453\t\t\t$\t32,972\t\t\t$\t48,481\t\t\t147\t%\n\nCompute & Networking revenue – The year over year increase was due to strong demand for our accelerated computing and AI solutions. Revenue from Data Center computing grew 162% driven primarily by demand for our Hopper computing platform used for large language models, recommendation engines, and generative AI applications. Revenue from Data Center networking grew 51% driven by Ethernet for AI revenue, which includes Spectrum-X end-to-end ethernet platform.\n\nGraphics revenue – The year over year increase was driven by sales of our GeForce RTX 40 Series GPUs.\n\nReportable segment operating income – The year over year increase in Compute & Networking segment operating income was driven by growth in revenue. The year over year decrease in Graphics segment operating income was driven by an increase of 44% in segment operating expenses, partially offset by growth in revenue.\n\nAll Other operating loss – The year over year increase was due to an increase in stock-based compensation expense reflecting employee growth and compensation increases.\n\nConcentration of Revenue\n\nWe refer to customers who purchase products directly from NVIDIA as direct customers, such as AIBs, distributors, ODMs, OEMs, and system integrators. We have certain customers that may purchase products directly from NVIDIA and may use either internal resources or third-party system integrators to complete their build. We also have indirect customers, who purchase products through our direct customers; indirect customers include CSPs, consumer internet companies, enterprises, and public sector entities.\n\nDirect Customers – Sales to direct customers which represented 10% or more of total revenue, all of which were primarily attributable to the Compute & Networking segment, are presented in the following table:\n\n---\n\n[NVDA-2025-7-0015] NVDA FY2025 Item 7 (similitud 0.032)\nGross Profit and Gross Margin\n\nGross profit consists of total net revenue less cost of revenue. Cost of revenue consists primarily of the cost of semiconductors, including wafer fabrication, assembly, testing and packaging, board and device costs, manufacturing support costs, including labor and overhead associated with such purchases, final test yield fallout, inventory and warranty provisions, memory and component costs, tariffs, and shipping costs. Cost of revenue also includes acquisition-related intangible amortization expense, costs for license and development and service arrangements, IP-related costs, and stock-based compensation related to personnel associated with manufacturing operations.\n\nGross margins increased to 75.0% in fiscal year 2025 from 72.7% in fiscal year 2024. The year over year increase was primarily driven by a higher mix of Data Center revenue.\n\nProvisions for inventory and excess inventory purchase obligations totaled $3.7 billion and $2.2 billion for fiscal years 2025 and 2024, respectively. Sales of previously reserved inventory and settlements of excess inventory purchase obligations resulted in a provision release of $689 million and $540 million for fiscal years 2025 and 2024, respectively. The net effect on our gross margin was an unfavorable impact of 2.3% and 2.7% in fiscal years 2025 and 2024, respectively.\n\nOperating Expenses\n\n---\n\n[NVDA-2025-7-0001] NVDA FY2025 Item 7 (similitud 0.032)\nDemand and Supply\n\nRevenue growth in fiscal year 2025 was driven by data center compute and networking platforms for accelerated computing and AI solutions. Demand for our Hopper architecture drove our significant growth for the full year. We began shipping production systems of the Blackwell architecture in the fourth quarter of fiscal year 2025.\n\nDemand estimates for our products, applications, and services can be incorrect and create volatility in our revenue or supply levels. We may not be able to generate significant revenue from them. Advancements in accelerated computing and generative AI models, along with the growth in model complexity and scale, have driven increased demand for our Data Center systems.\n\nWe continue to increase our supply and capacity purchases with existing and new suppliers to support our demand projections and increasing complexity of our data center products. With these additions, we have also entered and may continue to enter into prepaid manufacturing and capacity agreements to supply both current and future products. The increased purchase volumes and integration of new suppliers and contract manufacturers into our supply chain creates more complexity in managing multiple suppliers with variations in production planning, execution and logistics. Our expanding product portfolio and varying component compatibility and quality may lead to increased inventory levels. We have incurred and may in the future incur inventory provisions or impairments if our inventory or supply or capacity commitments exceed demand for our products or demand declines.\n\n---\n\n[NVDA-2025-7-0016] NVDA FY2025 Item 7 (similitud 0.031)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nResearch and development expenses\t$\t12,914\t\t\t$\t8,675\t\t\t$\t4,239\t\t\t49\t%\n% of net revenue\t9.9\t%\t\t14.2\t%\nSales, general and administrative expenses\t3,491\t\t\t2,654\t\t\t837\t\t\t32\t%\n% of net revenue\t2.7\t%\t\t4.4\t%\nTotal operating expenses\t$\t16,405\t\t\t$\t11,329\t\t\t$\t5,076\t\t\t45\t%\n% of net revenue\t12.6\t%\t\t18.6\t%\n\nThe increases in research and development expenses for fiscal year 2025 were driven by a 32% increase in compensation and benefits, including stock-based compensation, reflecting employee growth and compensation increases, a 100% increase in compute and infrastructure, and a 234% increase in engineering development costs for new product introductions.\n\nThe increases in sales, general and administrative expenses for fiscal year 2025 were primarily driven by compensation and benefits, including stock-based compensation, reflecting employee growth and compensation increases.\n\nOther Income (Expense), Net",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_378031",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "ticker": "NVDA",
+       "cifra": 72880000000,
+       "cita": "The strong year-on-year growth was driven by demand for our Hopper architecture accelerated computing platform used for large language models, recommendation engines, and generative AI applications.",
+       "unidad": "USD",
+       "ejercicio": 2025,
+       "fuente": "ambas",
+       "chunk_id": "NVDA-2025-7-0007",
+       "respuesta": "NVIDIA (NVDA) tuvo el mayor crecimiento de beneficio neto tanto en términos porcentuales como absolutos entre FY2024 y FY2025, al aumentar su beneficio neto un +144,89% (+43.120.000.000 USD), pasando de 29.760.000.000 USD en FY2024 a 72.880.000.000 USD en FY2025. Este crecimiento fue impulsado por la fuerte demanda de su plataforma Hopper en el segmento Data Center.\n\nComparativa del beneficio neto de las seis compañías (FY2024 vs FY2025):\n1. NVDA: 29.760.000.000 USD a 72.880.000.000 USD (+144,89% / +43.120.000.000 USD)\n2. GOOGL: 100.118.000.000 USD a 132.170.000.000 USD (+32,01% / +32.052.000.000 USD)\n3. AMZN: 59.248.000.000 USD a 77.670.000.000 USD (+31,09% / +18.422.000.000 USD)\n4. AAPL: 93.736.000.000 USD a 112.010.000.000 USD (+19,50% / +18.274.000.000 USD)\n5. MSFT: 88.136.000.000 USD a 101.832.000.000 USD (+15,54% / +13.696.000.000 USD)\n6. META: 62.360.000.000 USD a 60.458.000.000 USD (-3,05% / -1.902.000.000 USD)"
+      },
+      "id": "call_224127",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 7120,
+     "output_tokens": 1567,
+     "total_tokens": 8687,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 902
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='NVIDIA (NVDA) tuvo el mayor crecimiento de beneficio neto tanto en términos porcentuales como absolutos entre FY2024 y FY2025, al aumentar su beneficio neto un +144,89% (+43.120.000.000 USD), pasando de 29.760.000.000 USD en FY2024 a 72.880.000.000 USD en FY2025. Este crecimiento fue impulsado por la fuerte demanda de su plataforma Hopper en el segmento Data Center.\\n\\nComparativa del beneficio neto de las seis compañías (FY2024 vs FY2025):\\n1. NVDA: 29.760.000.000 USD a 72.880.000.000 USD (+144,89% / +43.120.000.000 USD)\\n2. GOOGL: 100.118.000.000 USD a 132.170.000.000 USD (+32,01% / +32.052.000.000 USD)\\n3. AMZN: 59.248.000.000 USD a 77.670.000.000 USD (+31,09% / +18.422.000.000 USD)\\n4. AAPL: 93.736.000.000 USD a 112.010.000.000 USD (+19,50% / +18.274.000.000 USD)\\n5. MSFT: 88.136.000.000 USD a 101.832.000.000 USD (+15,54% / +13.696.000.000 USD)\\n6. META: 62.360.000.000 USD a 60.458.000.000 USD (-3,05% / -1.902.000.000 USD)' cifra=72880000000.0 unidad='USD' ticker='NVDA' ejercicio=2025 fuente='ambas' cita='The strong year-on-year growth was driven by demand for our Hopper architecture accelerated computing platform used for large language models, recommendation engines, and generative AI applications.' chunk_id='NVDA-2025-7-0007'",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_224127",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a6_cifras_texto"
+ }
+}

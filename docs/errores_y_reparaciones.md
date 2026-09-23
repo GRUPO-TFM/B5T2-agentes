@@ -50,6 +50,7 @@ Leyenda de categorías:
 | 30 | agente (abierto) | ninguna arquitectura tiene contrato para una cifra que sale del TEXTO: A1-A4 responden bien en prosa y citan el fragmento exacto, pero dejan `cifra=null` porque el prompt dice que `cifra` solo sale de `get_xbrl_fact`; el baseline da la cifra en millones (476 en vez de 476.000.000). Además, el verificador compararía una cifra de texto con XBRL y la rechazaría (bug latente, tapado por el prompt) | golden difícil v2, gY-016..018: 0/3 en las cinco arquitecturas, `cita` 100 %, `corrigió cifra` 0 % | propuesta: el prompt permite `cifra` de texto con `fuente='texto'` y en unidades (631 millones → 631.000.000); el verificador se salta `fuente='texto'` y comprueba en su lugar que el número está en la cita |
 | 31 | predicción | «el baseline se inventará el margen bruto de Amazon» | trazas del baseline en gY-001 y gY-010: responde honesto en prosa, pero etiqueta `fuente='texto'`/`'ambas'` | lo que A1 mejora en honestidad es la ETIQUETA, no el comportamiento: el modelo no inventa ni sin guardrails |
 | 32 | predicción | «la reescritura con razonamiento mínimo bajará la latencia un 20-30 %» | prueba de humo antes de ejecutar: 12,9 s de media con `minimal` frente a 12,8 s la normal (3 + 3 llamadas en caliente, 7-19 s de dispersión en ambas) | peldaño descartado sin gastar la ejecución; queda como `x_reescritura_rapida`. Lección: medir la pieza aislada (una llamada) antes de pagar la escalera entera (38 preguntas) |
+| 33 | agente (abierto) | A6 rompe gY-009 (margen operativo NVDA frente a AAPL), que A5 acertaba: pide a XBRL `OperatingMargin`, le dicen que no está reportado y responde `fuente='ninguna'` en vez de calcular OperatingIncomeLoss / ingresos | golden difícil v2, A6 frente a A5, traza de gY-009 | causa probable, el prompt de cifras de texto: su lista de partidas contables «no reportadas → ninguna» incluye «margen bruto» y el modelo generaliza a los ratios. Arreglo candidato sin medir: decir que un ratio entre partidas XBRL se calcula. 1 repetición: por confirmar |
 
 ---
 
@@ -134,6 +135,56 @@ trazas y explicar algo que no sabíamos:
 - que el prompt hizo el trabajo que se le había asignado al middleware (16).
 
 Ninguna de las cuatro habría salido de una tabla que solo dijera «A1: 75 %».
+
+---
+
+### 32 · La reescritura «rápida» que no era más rápida (predicción)
+
+**Qué se probó.** A partir de A2 cada búsqueda pasa antes por una llamada al
+modelo que reescribe la consulta con el vocabulario del 10-K. Ayuda al recall
+(50 → 64 %, y 86 % con el híbrido), pero cuesta tiempo: en A2 la latencia subió
+un 72 %. La hipótesis era que ese tiempo es el modelo *pensando*, y que con el
+razonamiento al mínimo (`reasoning={"effort": "minimal"}`) la misma reescritura
+saldría casi gratis.
+
+**Cómo se midió, y por qué así.** Antes de pagar una escalera entera (38
+preguntas, ~20 minutos), una prueba de humo: 3 reescrituras con `minimal` y 3
+normales, en caliente, con consultas nuevas para que no las sirviera la caché.
+
+| | 1 | 2 | 3 | media |
+|---|---|---|---|---|
+| `minimal` | 12,0 s | 7,3 s | 19,5 s | 12,9 s |
+| normal | 14,5 s | 9,0 s | 15,0 s | 12,8 s |
+
+**Qué enseña.** El proveedor acepta `minimal`, pero no cambia nada: la variación
+dentro de cada fila (7-19 s) es mayor que la diferencia entre filas. Lo que cuesta
+es la ida y vuelta al proveedor, no el razonamiento. Y el recall no podía mejorar:
+es la misma reescritura con menos razonamiento, así que en el mejor caso empata.
+
+**Qué se hizo.** El peldaño sale de la escalera (queda definido como
+`x_reescritura_rapida`, sin registrar, con sus tests) y la reescritura normal se
+mantiene en todas las arquitecturas nuevas. La predicción queda refutada en
+`predicciones.md` con fecha ANTES de ejecutar. Lección de método: **medir la pieza
+aislada antes de pagar la escalera entera.** Palancas reales para la latencia, sin
+probar todavía: un modelo más rápido solo para la reescritura, o quitarla (A2 ya
+mostró que no mueve el acierto).
+
+---
+
+## Lo que probamos y no funcionó (para la diapositiva)
+
+| # | lo que probamos | lo que esperábamos | lo que pasó |
+|---|---|---|---|
+| 13 | forzar filtros de metadatos en `search_filings` (A2) | subir el recall | sin margen: el modelo ya ponía ticker en el 100 % de las búsquedas e item en el 94 % |
+| — | reescritura de consultas (A2) | subir el acierto | subió el recall del buscador (50 → 64 %), pero el acierto no se movió ni una pregunta (75 % → 75 %) y la latencia subió un 72 % |
+| — | híbrido BM25 + denso (A3) | subir el acierto | el recall del buscador sí (86 %), el acierto no: en el golden difícil queda como A2 (un turno vacío aparte), porque las preguntas que fallaban no llegaban a buscar o fallaban por otra causa |
+| 14 | «a la tercera, cierra» en el prompt honesto (A1) | cortar bucles sin coste | el agente se volvió tacaño con el texto: trayectoria 83 → 75 % |
+| 27 | golden adversario v1 con la magnitud derivada en `cifra` | medir capacidad multi-entidad | medía una convención que el agente nunca recibió: 46,7 % oficial, 86,7 % con el contrato real |
+| 29 | herramienta XBRL por lotes para ahorrar turnos | bajar latencia en preguntas de seis compañías | innecesaria: el modelo ya pide 6 datos por turno; el problema era el límite, no los turnos |
+| 32 | reescritura con razonamiento `minimal` | −20-30 % de latencia | 12,9 s frente a 12,8 s: el tiempo es la ida y vuelta, no el razonamiento |
+
+Ninguna de estas es un fracaso del proyecto: cada una se midió, se explicó y
+cambió la siguiente decisión.
 
 ---
 

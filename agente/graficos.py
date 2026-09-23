@@ -28,15 +28,18 @@ import pandas as pd
 
 from agente import interfaz, lotes
 
+# Cada etiqueta dice QUÉ AÑADE ese peldaño al anterior (la escalera es acumulativa).
 ETIQUETAS = {
     "baseline": "baseline",
-    "a1_guardrails": "A1\nguardrails",
-    "a2_retrieval": "A2\nretrieval",
-    "a3_hibrido": "A3\nhíbrido",
-    "a4_comparativas": "A4\ncomparativas",
-    "a5_limites": "A5\nlímites",
-    "a6_cifras_texto": "A6\ncifras texto",
+    "a1_guardrails": "A1\n+guardrails",
+    "a2_retrieval": "A2\n+reescritura",
+    "a3_hibrido": "A3\n+híbrido",
+    "a4_comparativas": "A4\n+comparativas",
+    "a5_limites": "A5\n+límite por\nherramienta",
+    "a6_cifras_texto": "A6\n+cifras\nde texto",
 }
+# Dónde empieza la segunda escalera (23-sep), para separarla en la figura.
+PRIMERA_DE_LA_SEGUNDA = "a5_limites"
 METRICAS = [  # (columna de resumir(), título del panel, formato, escala)
     ("acierto", "Acierto", "{:.0%}", 1.0),
     ("recall@5", "Recall@5 del retriever · golden original (14 anclas)", "{:.0%}", 1.0),
@@ -45,7 +48,7 @@ METRICAS = [  # (columna de resumir(), título del panel, formato, escala)
 ]
 # Paleta categórica validada (skill dataviz, modo claro): slot 1 azul, slot 2 naranja.
 COLOR = {"original": "#2a78d6", "dificil": "#eb6834"}
-NOMBRE = {"original": "Golden original (20 preg. × 3 reps)",
+NOMBRE = {"original": "Golden original (20 preg.; 3 reps hasta A4, 1 rep en A5-A6)",
           "dificil": "Golden difícil v2 (18 preg. × 1 rep)"}
 SUPERFICIE, TINTA, TINTA_2, REJILLA = "#fcfcfb", "#0b0b0b", "#52514e", "#e6e5e1"
 
@@ -97,7 +100,7 @@ def dibujar(df: pd.DataFrame, salida) -> None:
                          "axes.edgecolor": REJILLA, "axes.labelcolor": TINTA_2,
                          "xtick.color": TINTA_2, "ytick.color": TINTA_2,
                          "text.color": TINTA})
-    fig, ejes = plt.subplots(2, 2, figsize=(11.5, 7.6), facecolor=SUPERFICIE)
+    fig, ejes = plt.subplots(2, 2, figsize=(13.5, 8.4), facecolor=SUPERFICIE)
     x = {n: i for i, n in enumerate(lotes.ORDEN)}
 
     for ax, (col, titulo, fmt, _) in zip(ejes.flat, METRICAS):
@@ -150,7 +153,9 @@ def dibujar(df: pd.DataFrame, salida) -> None:
                 abajo = v_otra is not None and pd.notna(v_otra) and v_otra > ys[i]
                 ax.annotate(fmt.format(ys[i]), (xs[i], ys[i]), textcoords="offset points",
                             xytext=(0, -15 if abajo else 9), ha="center", fontsize=8.5, color=TINTA_2)
-        ax.set_xticks(range(len(lotes.ORDEN)), [ETIQUETAS[n] for n in lotes.ORDEN], fontsize=8.5)
+        ax.set_xticks(range(len(lotes.ORDEN)), [ETIQUETAS.get(n, n) for n in lotes.ORDEN], fontsize=8)
+        if PRIMERA_DE_LA_SEGUNDA in x:
+            ax.axvline(x[PRIMERA_DE_LA_SEGUNDA] - .5, color=REJILLA, lw=1.2, zorder=0)
         ax.set_xlim(-.4, len(lotes.ORDEN) - .6)
         ax.grid(axis="y", color=REJILLA, lw=1)
         ax.set_axisbelow(True)
@@ -170,6 +175,14 @@ def dibujar(df: pd.DataFrame, salida) -> None:
         ejes.flat[0].annotate("A3 no ejecutada\nen el original", (x["a3_hibrido"], ejes.flat[0].get_ylim()[0]),
                               textcoords="offset points", xytext=(0, 8), ha="center",
                               fontsize=7.5, color=TINTA_2)
+    if PRIMERA_DE_LA_SEGUNDA in x:
+        # en el panel de recall: es el que tiene hueco arriba junto al corte
+        ax_r = ejes.flat[1]
+        corte = x[PRIMERA_DE_LA_SEGUNDA] - .5
+        for xx, txt, ha in ((corte - .1, "← 1ª escalera · 22-sep", "right"),
+                            (corte + .1, "2ª escalera · 23-sep →", "left")):
+            ax_r.text(xx, .97, txt, transform=ax_r.get_xaxis_transform(), ha=ha, va="top",
+                      fontsize=7.5, color=TINTA_2)
     rr = df[(df.metrica == "recall@5") & (df.fuente == "retriever")]
     if not rr.empty:
         ejes.flat[1].text(0.99, 0.04, "○ medido solo con el retriever (sin ejecutar el agente)",
@@ -179,11 +192,11 @@ def dibujar(df: pd.DataFrame, salida) -> None:
     fig.legend(handles=[Line2D([], [], color=COLOR[g], lw=2, marker="o", markersize=7,
                                markeredgecolor=SUPERFICIE, label=NOMBRE[g]) for g in lotes.GOLDENS],
                loc="upper left", bbox_to_anchor=(0.055, 0.935), ncol=2, frameon=False, fontsize=9)
-    fig.suptitle("La escalera de arquitecturas: qué cuesta cada mejora",
+    fig.suptitle("La escalera de arquitecturas: qué aporta y qué cuesta cada cambio",
                  x=0.055, y=0.985, ha="left", fontsize=13.5, fontweight="bold")
-    fig.text(0.055, 0.015, "Media de las repeticiones; la barra vertical es el rango mín-máx entre "
-             "repeticiones; el punteado salva un peldaño no medido. Sin llamadas a la API: "
-             "todo sale de las tablas guardadas.",
+    fig.text(0.055, 0.015, "Cada peldaño añade lo que dice su etiqueta al anterior. Media de las "
+             "repeticiones; la barra vertical es el rango mín-máx entre repeticiones; el punteado "
+             "salva un peldaño no medido. Sin llamadas a la API: todo sale de las tablas guardadas.",
              fontsize=7.5, color=TINTA_2)
     fig.tight_layout(rect=(0.04, 0.03, 1, 0.9), h_pad=2.2, w_pad=2.5)
     fig.savefig(salida, dpi=200, facecolor=SUPERFICIE)

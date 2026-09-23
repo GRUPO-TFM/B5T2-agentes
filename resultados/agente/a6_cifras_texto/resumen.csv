@@ -1,0 +1,2 @@
+versión,acierto,cita,cifra,trayectoria,recall@5,coste medio (¢),latencia media (s),llamadas/pregunta,% fuente=ninguna,errores,reintentos proveedor,reintentos por respuesta vacía,% sin respuesta,% corrigió cifra,% corrigió cita,reintentos esquema,% límite alcanzado,% búsquedas reescritas,% búsquedas con ticker,acierto numerica,acierto extractiva,acierto comparativa,honestidad
+a6_cifras_texto rep1,1.0,1.0,1.0,1.0,0.8571428571428571,1.8587475000000002,39.35407750001177,3.2,0.0,0,0,1,0.0,0.0,0.0,0.0,0.0,0.782608695652174,1.0,1.0,1.0,1.0,
