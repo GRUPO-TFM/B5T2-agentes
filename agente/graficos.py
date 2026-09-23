@@ -2,9 +2,11 @@
 
     uv run --with matplotlib python -m agente.graficos
 
-Sin API: lee las `tabla.csv` que deja `puntuar()` (ejecuta antes
+Lee las `tabla.csv` que deja `puntuar()` (ejecuta antes
 `python -m agente.lotes reconciliar` para que estén al día) y escribe
 `docs/figuras/escalera_arquitecturas.png` y su tabla `.csv` al lado.
+El recall que falte se calcula desde el retriever; una reescritura no cacheada
+puede requerir una llamada al modelo.
 
 Decisiones de la figura:
 - Cuatro paneles, UNA magnitud por panel y un solo eje en cada uno. Coste y
@@ -13,10 +15,9 @@ Decisiones de la figura:
 - Dos series, una por golden set. No se promedian: el original es la
   regresión (3 repeticiones, con la banda mín-máx) y el difícil mide
   capacidad (1 repetición, sin banda: no hay varianza que enseñar).
-- Recall@5 solo en el golden original: es una propiedad del RETRIEVER sobre
-  las 14 anclas con los filtros del golden, no del agente. Si una arquitectura
-  no se ejecutó con el agente (A3 en el original), se calcula igual desde el
-  retriever, porque no depende de que el agente haya corrido.
+- Recall@5 usa las anclas de cada golden (14 en el original, 4 en el difícil).
+  Es una propiedad del RETRIEVER, no del agente. Si una arquitectura no se
+  ejecutó con el agente, se calcula igual desde el retriever.
 - matplotlib no es dependencia del paquete (no hace falta el día 24): se trae
   con `--with matplotlib` solo para dibujar.
 """
@@ -42,7 +43,7 @@ ETIQUETAS = {
 PRIMERA_DE_LA_SEGUNDA = "a5_limites"
 METRICAS = [  # (columna de resumir(), título del panel, formato, escala)
     ("acierto", "Acierto", "{:.0%}", 1.0),
-    ("recall@5", "Recall@5 del retriever · golden original (14 anclas)", "{:.0%}", 1.0),
+    ("recall@5", "Recall@5 del retriever (14 anclas original · 4 difícil)", "{:.0%}", 1.0),
     ("coste medio (¢)", "Coste por pregunta (¢)", "{:.2f}", 1.0),
     ("latencia media (s)", "Latencia por pregunta (s)", "{:.0f}", 1.0),
 ]
@@ -53,18 +54,22 @@ NOMBRE = {"original": "Golden original (20 preg.; 3 reps hasta A4, 1 rep en A5-A
 SUPERFICIE, TINTA, TINTA_2, REJILLA = "#fcfcfb", "#0b0b0b", "#52514e", "#e6e5e1"
 
 
-def _recall_retriever(nombre: str) -> float | None:
-    """Recall@5 del retriever de una arquitectura sobre las anclas del golden
-    original, sin agente. Necesita el codificador (en el PC, no en la nube)."""
+def _recall_retriever(nombre: str, golden: str = "original") -> float:
+    """Recall@5 del retriever sobre las anclas de un golden, sin agente.
+
+    Necesita el codificador local. La reescritura de consultas puede necesitar
+    una llamada al modelo si la pregunta aún no está en la caché.
+    """
+    from agente.metricas import acierta
+    from agente.recall import recuperar_para
+    arq = interfaz.arquitectura(nombre)
+    items = [g for g in interfaz.leer_golden(lotes.GOLDENS[golden][0]) if g.get("ancla_texto")]
+    if not items:
+        raise ValueError(f"El golden {golden} no tiene anclas para medir recall@5")
     try:
-        from agente.metricas import acierta
-        from agente.recall import recuperar_para
-        arq = interfaz.arquitectura(nombre)
-        items = [g for g in interfaz.leer_golden(lotes.GOLDENS["original"][0]) if g.get("ancla_texto")]
         return sum(acierta(g, recuperar_para(g, arq, k=None)[:arq.k]) for g in items) / len(items)
-    except Exception as e:                                          # noqa: BLE001
-        print(f"  (recall de {nombre} sin agente no calculable aquí: {type(e).__name__})")
-        return None
+    except Exception as e:
+        raise RuntimeError(f"No se pudo medir recall@5 de {nombre} en {golden}") from e
 
 
 def datos() -> pd.DataFrame:
@@ -78,11 +83,9 @@ def datos() -> pd.DataFrame:
                 for col, *_ in METRICAS:
                     v = res[col].dropna() if col in res else pd.Series(dtype=float)
                     fuente = "agente"
-                    if v.empty and col == "recall@5" and golden == "original":
-                        r = _recall_retriever(nombre)
-                        v, fuente = (pd.Series([r]) if r is not None else v), "retriever"
-                    if col == "recall@5" and golden != "original":
-                        continue
+                    if v.empty and col == "recall@5":
+                        r = _recall_retriever(nombre, golden)
+                        v, fuente = pd.Series([r]), "retriever"
                     filas.append({"golden": golden, "arquitectura": nombre, "metrica": col,
                                   "media": v.mean() if len(v) else None,
                                   "min": v.min() if len(v) else None,
@@ -181,11 +184,11 @@ def dibujar(df: pd.DataFrame, salida) -> None:
         corte = x[PRIMERA_DE_LA_SEGUNDA] - .5
         for xx, txt, ha in ((corte - .1, "← 1ª escalera · 22-sep", "right"),
                             (corte + .1, "2ª escalera · 23-sep →", "left")):
-            ax_r.text(xx, .97, txt, transform=ax_r.get_xaxis_transform(), ha=ha, va="top",
+            ax_r.text(xx, .84, txt, transform=ax_r.get_xaxis_transform(), ha=ha, va="top",
                       fontsize=7.5, color=TINTA_2)
     rr = df[(df.metrica == "recall@5") & (df.fuente == "retriever")]
     if not rr.empty:
-        ejes.flat[1].text(0.99, 0.04, "○ medido solo con el retriever (sin ejecutar el agente)",
+        ejes.flat[1].text(0.99, 0.04, "○ recall calculado directamente con el retriever",
                           transform=ejes.flat[1].transAxes, ha="right", fontsize=7.5, color=TINTA_2)
 
     from matplotlib.lines import Line2D
@@ -195,8 +198,8 @@ def dibujar(df: pd.DataFrame, salida) -> None:
     fig.suptitle("La escalera de arquitecturas: qué aporta y qué cuesta cada cambio",
                  x=0.055, y=0.985, ha="left", fontsize=13.5, fontweight="bold")
     fig.text(0.055, 0.015, "Cada peldaño añade lo que dice su etiqueta al anterior. Media de las "
-             "repeticiones; la barra vertical es el rango mín-máx entre repeticiones; el punteado "
-             "salva un peldaño no medido. Sin llamadas a la API: todo sale de las tablas guardadas.",
+             "repeticiones; la barra vertical es el rango mín-máx. "
+             "Recall difícil: 4 anclas, cada acierto vale 25 puntos.",
              fontsize=7.5, color=TINTA_2)
     fig.tight_layout(rect=(0.04, 0.03, 1, 0.9), h_pad=2.2, w_pad=2.5)
     fig.savefig(salida, dpi=200, facecolor=SUPERFICIE)
@@ -211,6 +214,10 @@ def main() -> None:
     carpeta = interfaz.raiz_repo() / "docs" / "figuras"
     carpeta.mkdir(parents=True, exist_ok=True)
     df = datos()
+    incompletas = df[df["media"].isna()]
+    if not incompletas.empty:
+        detalle = incompletas[["golden", "arquitectura", "metrica"]].to_dict("records")
+        raise RuntimeError(f"La figura tendría métricas sin medir: {detalle}")
     df.to_csv(carpeta / "escalera_arquitecturas.csv", index=False)
     dibujar(df, carpeta / "escalera_arquitecturas.png")
     ancho = df.pivot_table(index="arquitectura", columns=["golden", "metrica"], values="media").reindex(lotes.ORDEN)

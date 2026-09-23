@@ -1,0 +1,194 @@
+{
+ "item": {
+  "id": "gX-008",
+  "pregunta": "¿Qué demanda antimonopolio del DOJ menciona Alphabet en sus factores de riesgo de FY2025?",
+  "familia": "extractiva",
+  "ticker": "GOOGL",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "Una demanda del DOJ y varios fiscales generales estatales sobre sus prácticas de Búsqueda y de publicidad en Búsqueda.",
+  "cifra_esperada": null,
+  "unidad": null,
+  "concept_xbrl": null,
+  "item_esperado": "1A",
+  "ancla_texto": "For example, the DOJ and a number of state Attorneys General filed a lawsuit concerning our Search and Search advertising practices and our compliance with US antitrust laws.",
+  "ancla_inicio": 58086,
+  "ancla_fin": 58260,
+  "chunk_id_esperado": "GOOGL-2025-1A-0025",
+  "herramienta_esperada": [
+   "search_filings"
+  ],
+  "autor": "grupo-X"
+ },
+ "rep": 1,
+ "thread_id": "a3_hibrido-rep1-gX-008",
+ "commit": "13b37d8",
+ "fecha": "2026-09-23T22:43:09",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "En sus factores de riesgo de FY2025, Alphabet detalla dos demandas antimonopolio principales iniciadas por el Departamento de Justicia (DOJ) de EE. UU. junto con fiscales generales estatales:\n\n1. Demanda sobre búsqueda y publicidad en búsquedas (Search and Search advertising) en el Tribunal de Distrito de Columbia, donde en agosto de 2024 el tribunal falló contra Google y en diciembre de 2025 emitió una sentencia final que impone restricciones a la distribución de sus servicios y exige compartir ciertos datos de búsqueda con competidores (fallo apelado a principios de 2026).\n2. Demanda sobre tecnología publicitaria (ad tech) presentada en enero de 2023 en el Distrito Este de Virginia, en la cual el tribunal emitió un fallo mixto en abril de 2025 determinando que las herramientas para editores (publisher tools) excluían indebidamente a competidores; el DOJ solicitó medidas correctivas estructurales y Alphabet espera la sentencia final de remedios.",
+   "cifra": null,
+   "unidad": null,
+   "ticker": "GOOGL",
+   "ejercicio": 2025,
+   "fuente": "texto",
+   "cita": "In January 2023, the DOJ and a number of state Attorneys General sued in the Eastern District of Virginia alleging similar antitrust violations relating to our advertising technology.",
+   "chunk_id": "GOOGL-2025-1A-0026"
+  },
+  "herramientas": [
+   "list_available",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "1A",
+     "ticker": "GOOGL",
+     "fiscal_year": 2025,
+     "query": "DOJ Department of Justice antitrust lawsuit search ad tech"
+    }
+   }
+  ],
+  "n_llamadas": 2,
+  "tokens_in": 7705,
+  "tokens_out": 1783,
+  "coste_usd": 0.012465,
+  "latencia_s": 14.898762400000123,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Qué demanda antimonopolio del DOJ menciona Alphabet en sus factores de riesgo de FY2025?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_819912",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1399,
+     "output_tokens": 73,
+     "total_tokens": 1472,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 63
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_819912",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "1A",
+       "ticker": "GOOGL",
+       "fiscal_year": 2025,
+       "query": "DOJ Department of Justice antitrust lawsuit search ad tech"
+      },
+      "id": "call_300770",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1719,
+     "output_tokens": 90,
+     "total_tokens": 1809,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 40
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'Department of Justice\" antitrust lawsuit OR litigation \"search\" \"advertising technology')\n\n[GOOGL-2025-1A-0025] GOOGL FY2025 Item 1A (similitud 0.033)\naction and legal liability, including under specific legislation regulating AI, as well as new applications of existing data protection, cybersecurity, privacy, intellectual property, and other laws.\n\nFurther, we are subject to evolving laws, regulations, policies, and international accords relating to matters beyond our core products and services, including environmental sustainability, climate change, human capital, and employment matters. In response, we have implemented robust programs and initiatives and adopted reporting frameworks and principles that may require considerable investments. For instance, AI's energy and water demands have made efforts to reduce our emissions more complex and challenging across every level. We cannot guarantee that our initiatives will be fully realized on the timelines we expect or at all, and projects that are completed as planned may not achieve the results we anticipate.\n\nWe are and may continue to be subject to claims, lawsuits, regulatory and government inquiries and investigations, enforcement actions, consent orders, and other forms of regulatory scrutiny and legal liability, including competition matters, that could harm our business, reputation, financial condition, and operating results.\n\nWe are subject to claims, lawsuits, regulatory and government inquiries and investigations, other proceedings, and orders involving competition, intellectual property, data privacy and security, tax and related compliance, labor and employment, commercial disputes, content generated by our users, goods and services offered by advertisers or publishers using our platforms, design of our products and services, personal injury and other tort and nuisance theories, consumer protection claims, including how we moderate content on our platforms, AI, and other matters.\n\nThe US Department of Justice (DOJ), various states, and other plaintiffs have filed, and may continue to file in the future, several antitrust lawsuits about aspects of our business, including our advertising technologies and practices, the operation and distribution of Google Search, and the operation and distribution of Android operating system and Play Store. If we are unsuccessful in these lawsuits, we could face significant expenses to implement the remedies, and such costs and alterations could harm our business, reputation, financial condition, and operating results.\n\n18.\n\nTable of Contents\tAlphabet Inc.\n\nFor example, the DOJ and a number of state Attorneys General filed a lawsuit concerning our Search and Search advertising practices and our compliance with US antitrust laws. In August 2024, the US District Court for the District of Columbia ruled against Google, and in December 2025, entered a final judgment requiring remedies, which, among other things, imposes restrictions on how we distribute our services and requires us to\n\n---\n\n[GOOGL-2025-1A-0026] GOOGL FY2025 Item 1A (similitud 0.033)\nthe DOJ and a number of state Attorneys General filed a lawsuit concerning our Search and Search advertising practices and our compliance with US antitrust laws. In August 2024, the US District Court for the District of Columbia ruled against Google, and in December 2025, entered a final judgment requiring remedies, which, among other things, imposes restrictions on how we distribute our services and requires us to share certain search data with and offer syndication services to certain competitors. In January 2026, we appealed the final judgment and moved to pause implementation of certain remedies. In February 2026, the DOJ and state Attorneys General also appealed.\n\nFurthermore, in December 2020, a number of state Attorneys General, led by the Texas Attorney General, filed a lawsuit in the US District Court for the Eastern District of Texas concerning our advertising technology and our compliance with US antitrust laws and other laws. In January 2023, the DOJ and a number of state Attorneys General sued in the Eastern District of Virginia alleging similar antitrust violations relating to our advertising technology. In April 2025, the presiding judge issued a mixed decision in the DOJ case against us, ruling that neither our advertiser tools nor the DoubleClick and AdMeld acquisitions were anticompetitive, but that our publisher tools unfairly excluded rivals. A separate proceeding to determine remedies, the range of which varies widely, took place in September 2025 with the parties presenting differing remedy proposals. The DOJ's remedy proposal includes structural remedies that could harm our business. Closing arguments were held in November 2025, and we are awaiting a final judgment. After that judgment, we plan to appeal the adverse portion of the April 2025 decision and potentially aspects of the remedies decision. A trial in the state Attorneys General case in the Eastern District of Texas will take place after a decision on remedies is issued in the DOJ advertising technology case, and could result in remedies that could harm our business, reputation, financial condition, and operating results.\n\nIn addition to these regulatory proceedings, private individual and collective actions that overlap with claims pursued by regulators are pending in the US and in several other jurisdictions. Adverse results in these or similar future lawsuits may include awards of monetary damages and remedies that could harm our business, reputation, financial condition, and operating results.\n\nOther regulatory agencies in the US and around the world, including competition enforcers, consumer protection agencies, and data protection authorities, have challenged and may continue\n\n---\n\n[GOOGL-2025-1A-0024] GOOGL FY2025 Item 1A (similitud 0.030)\nbeing challenged before courts in the EU, which could harm some aspects of our business.\n\n•Content moderation: Various laws covering content moderation and removal, and related disclosure obligations, such as the EU's Digital Services Act, Florida's Senate Bill 7072 and Texas' House Bill 20, and laws and proposed legislation in Singapore, Australia, and the United Kingdom (UK) that impose penalties for failure to remove certain types of content or require disclosure of information about the operation of our services and algorithms, which may make it harder for services like Google Search and YouTube to detect and limit low-quality, deceptive, or harmful content, or, on the other hand, may impinge on the rights of free expression and access to content. Additionally, new regulations apply to online child safety, including access and content restrictions as well as other limitations for minors, which may also conflict with rights of free expression and access to information. These regulations could result in our having to modify our products and services and monitor minors' experiences on our products and services.\n\n•Consumer protection: Consumer protection laws, including the EU's New Deal for Consumers, which could result in monetary penalties and create a range of new compliance obligations.\n\nIn addition, the applicability and scope of these and other laws and regulations, as interpreted by courts, regulators, or administrative bodies, remain uncertain and could be interpreted in ways that harm our business. For example, we rely on statutory safe harbors, like those set forth in the Digital Millennium Copyright Act and Section 230 of the Communications Decency Act in the US and the Digital Services Act in Europe, to protect against liability for various linking, caching, ranking, recommending, and hosting activities. Legislation or court rulings affecting these safe harbors may harm us and may impose significant operational challenges. There are legislative proposals and pending litigation in the US, EU, and around the world that could diminish or eliminate safe harbor protection for websites and online platforms. Our development, use, and commercialization of AI products and services (including our implementation of AI in our offerings and internal systems) could subject us to regulatory action and legal liability, including under specific legislation regulating AI, as well as new applications of existing data protection, cybersecurity, privacy, intellectual property, and other laws.\n\nFurther, we are subject to evolving laws, regulations, policies, and international accords relating to matters beyond our core products and services, including environmental sustainability, climate change, human capital, and employment matters. In response, we have implemented\n\n---\n\n[GOOGL-2025-1A-0015] GOOGL FY2025 Item 1A (similitud 0.030)\navailable or may only be available with limited functionality for our users or our advertisers on these devices as a result. Some manufacturers may also elect not to include our products on their devices.\n\nIt is hard to predict the challenges we may encounter in adapting our products and services and developing competitive new products and services. We expect to continue to devote significant resources to creating and supporting products and services across multiple platforms and devices. Failing to attract and retain a substantial number of device manufacturers, suppliers, distributors, developers, and users, or failing to develop products and technologies that work well on new devices and platforms, could harm our business, financial condition, and operating results and ability to capture future business opportunities.\n\nProblematic content on our platforms, including low-quality user-generated content, web spam, content farms, and other violations of our guidelines could affect the quality of our services, which could harm our reputation and deter our current and potential users from using our products and services.\n\nWe, like others in the industry, face violations of our content guidelines across our platforms, including sophisticated attempts by bad actors to manipulate our hosting and advertising systems to fraudulently generate revenues, or to otherwise generate traffic that does not represent genuine user interest or intent. While we invest\n\n14.\n\nTable of Contents\tAlphabet Inc.\n\nsignificantly in efforts to promote high-quality and relevant results and to detect and prevent low-quality content and invalid traffic, we have been unable and may continue to be unable to detect and prevent all such abuses or promote uniformly high-quality content. Increased use of AI in our offerings and internal systems may create new instances of problematic content and increased potential for misuse and abuse.\n\nMany websites violate or attempt to violate our guidelines, including by seeking to inappropriately rank higher in search results than our search engine's assessment of their relevance and utility would rank them. Such efforts have affected, and may continue to affect, the quality of content on our platforms and lead them to display false, misleading, or undesirable content. Although English-language web spam in our search results has been reduced, and web spam in most other languages is limited, we expect web spammers will continue to seek inappropriate ways to improve their rankings. Although we continue to invest in and deploy proprietary technology to detect and prevent web spam on our platforms and to evolve our policies to address emerging threats, there is no guarantee that our technology and policy enforcement will always be successful, and our users may have negative experiences that make them less likely to use our platforms. We face\n\n---\n\n[GOOGL-2025-1A-0001] GOOGL FY2025 Item 1A (similitud 0.030)\nRisks Specific to our Company\n\nWe generate a significant portion of our revenues from advertising. Reduced spending by advertisers, a loss of partners, shifts in online advertising, new and evolving advertising formats, or new or existing technologies that block ads online or affect our ability to personalize ads could harm our business.\n\nWe generated more than 70% of total revenues from online advertising in 2025. Many of our advertisers, companies that distribute our products and services, digital publishers, and content providers can terminate their contracts with us at any time. These partners may not continue to do business with us if we do not create more value (such as increased numbers of users or customers, new sales leads, increased brand awareness, or more effective monetization) than their available alternatives.\n\nWe believe AI is quickly reshaping the advertising industry, including how ads are delivered online, and we and our competitors are constantly adjusting to meet this shift and provide new and evolving advertising formats. There is no assurance that we will adapt effectively and competitively to meet this shift, and that such advertising formats, strategies, and offerings will be successful.\n\nChanges to our advertising policies and data privacy practices, as well as changes to other companies' advertising or data privacy practices have in the past, and may in the future, affect the advertising services that we are able to provide. In addition, technologies have been developed that make personalized ads more difficult, or that block the display of ads altogether, and some providers of online services have integrated technologies that could impair the availability and functionality of third-party digital advertising. Failing to provide superior value or deliver advertisements effectively and competitively could harm our business, reputation, financial condition, and operating results.\n\nExpenditures by advertisers tend to correlate with overall economic conditions. Adverse macroeconomic conditions have affected, and may in the future affect, the demand for advertising, resulting in fluctuations in the amounts our advertisers spend on advertising, which could harm our financial condition and operating results.\n\nOur increasing investment in new businesses, products, services, and technologies is inherently risky, and could divert management attention and harm our business, financial condition, and operating results.\n\nWe have invested and expect to expand our investment in new businesses, products, services, and technologies in a wide range of industries beyond online advertising. The investments that we are making across our businesses — such as building AI-optimized infrastructure, including our custom TPUs, and integrating AI capabilities into new and existing products and services — reflect our ongoing efforts to innovate and",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_300770",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "unidad": null,
+       "fuente": "texto",
+       "ticker": "GOOGL",
+       "ejercicio": 2025,
+       "respuesta": "En sus factores de riesgo de FY2025, Alphabet detalla dos demandas antimonopolio principales iniciadas por el Departamento de Justicia (DOJ) de EE. UU. junto con fiscales generales estatales:\n\n1. Demanda sobre búsqueda y publicidad en búsquedas (Search and Search advertising) en el Tribunal de Distrito de Columbia, donde en agosto de 2024 el tribunal falló contra Google y en diciembre de 2025 emitió una sentencia final que impone restricciones a la distribución de sus servicios y exige compartir ciertos datos de búsqueda con competidores (fallo apelado a principios de 2026).\n2. Demanda sobre tecnología publicitaria (ad tech) presentada en enero de 2023 en el Distrito Este de Virginia, en la cual el tribunal emitió un fallo mixto en abril de 2025 determinando que las herramientas para editores (publisher tools) excluían indebidamente a competidores; el DOJ solicitó medidas correctivas estructurales y Alphabet espera la sentencia final de remedios.",
+       "chunk_id": "GOOGL-2025-1A-0026",
+       "cifra": null,
+       "cita": "In January 2023, the DOJ and a number of state Attorneys General sued in the Eastern District of Virginia alleging similar antitrust violations relating to our advertising technology."
+      },
+      "id": "call_1179572",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4587,
+     "output_tokens": 1620,
+     "total_tokens": 6207,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 1286
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='En sus factores de riesgo de FY2025, Alphabet detalla dos demandas antimonopolio principales iniciadas por el Departamento de Justicia (DOJ) de EE. UU. junto con fiscales generales estatales:\\n\\n1. Demanda sobre búsqueda y publicidad en búsquedas (Search and Search advertising) en el Tribunal de Distrito de Columbia, donde en agosto de 2024 el tribunal falló contra Google y en diciembre de 2025 emitió una sentencia final que impone restricciones a la distribución de sus servicios y exige compartir ciertos datos de búsqueda con competidores (fallo apelado a principios de 2026).\\n2. Demanda sobre tecnología publicitaria (ad tech) presentada en enero de 2023 en el Distrito Este de Virginia, en la cual el tribunal emitió un fallo mixto en abril de 2025 determinando que las herramientas para editores (publisher tools) excluían indebidamente a competidores; el DOJ solicitó medidas correctivas estructurales y Alphabet espera la sentencia final de remedios.' cifra=None unidad=None ticker='GOOGL' ejercicio=2025 fuente='texto' cita='In January 2023, the DOJ and a number of state Attorneys General sued in the Eastern District of Virginia alleging similar antitrust violations relating to our advertising technology.' chunk_id='GOOGL-2025-1A-0026'",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_1179572",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a3_hibrido"
+ }
+}

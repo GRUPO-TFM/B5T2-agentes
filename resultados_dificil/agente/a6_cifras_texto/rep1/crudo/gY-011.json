@@ -25,12 +25,21 @@
   ]
  },
  "rep": 1,
- "thread_id": "a6_cifras_texto-rep1-gY-011-intento2",
- "commit": "4008f0a",
- "fecha": "2026-09-23T19:05:13",
+ "thread_id": "a6_cifras_texto-rep1-gY-011-intento3",
+ "commit": "13b37d8",
+ "fecha": "2026-09-23T23:10:01",
  "resultado": {
   "_normalizado": true,
-  "structured_response": null,
+  "structured_response": {
+   "respuesta": "Entre FY2024 y FY2025, el diferencial de crecimiento de ingresos entre NVIDIA y Microsoft fue de aproximadamente 99.27 puntos porcentuales a favor de NVIDIA:\n\n- NVIDIA (Revenues): pasó de 60,922,000,000 USD en FY2024 a 130,497,000,000 USD en FY2025, lo que representa un aumento absoluto de 69,575,000,000 USD (+114.20%).\n- Microsoft (RevenueFromContractWithCustomerExcludingAssessedTax): pasó de 245,122,000,000 USD en FY2024 a 281,724,000,000 USD en FY2025, lo que representa un aumento absoluto de 36,602,000,000 USD (+14.93%).\n\nDiferencial: 114.20% - 14.93% = +99.27 puntos porcentuales.",
+   "cifra": 130497000000.0,
+   "unidad": "USD",
+   "ticker": "NVDA",
+   "ejercicio": 2025,
+   "fuente": "xbrl",
+   "cita": null,
+   "chunk_id": null
+  },
   "herramientas": [
    "list_available",
    "get_xbrl_fact",
@@ -38,7 +47,7 @@
    "get_xbrl_fact",
    "get_xbrl_fact",
    "get_xbrl_fact",
-   "get_xbrl_fact",
+   "search_filings",
    "search_filings",
    "search_filings"
   ],
@@ -51,56 +60,59 @@
     "name": "get_xbrl_fact",
     "args": {
      "concept": "Revenues",
-     "fiscal_year": 2024,
-     "ticker": "NVDA"
+     "ticker": "NVDA",
+     "fiscal_year": 2024
     }
    },
    {
     "name": "get_xbrl_fact",
     "args": {
      "fiscal_year": 2025,
+     "ticker": "NVDA",
+     "concept": "Revenues"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
      "concept": "Revenues",
-     "ticker": "NVDA"
+     "ticker": "MSFT",
+     "fiscal_year": 2024
     }
    },
    {
     "name": "get_xbrl_fact",
     "args": {
      "fiscal_year": 2024,
-     "ticker": "MSFT",
-     "concept": "Revenues"
-    }
-   },
-   {
-    "name": "get_xbrl_fact",
-    "args": {
-     "ticker": "MSFT",
-     "fiscal_year": 2025,
-     "concept": "Revenues"
-    }
-   },
-   {
-    "name": "get_xbrl_fact",
-    "args": {
      "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
-     "fiscal_year": 2024,
      "ticker": "MSFT"
     }
    },
    {
     "name": "get_xbrl_fact",
     "args": {
-     "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
      "ticker": "MSFT",
-     "fiscal_year": 2025
+     "fiscal_year": 2025,
+     "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
     }
    },
    {
     "name": "search_filings",
     "args": {
+     "k": 2,
      "fiscal_year": 2025,
      "item": "7",
-     "query": "revenue increased Compute Networking Data Center",
+     "query": "revenue growth fiscal 2025 2024",
+     "ticker": "NVDA"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "k": 2,
+     "fiscal_year": 2025,
+     "item": "7",
+     "query": "Compute & Networking revenue increased Data Center",
      "ticker": "NVDA"
     }
    },
@@ -108,18 +120,18 @@
     "name": "search_filings",
     "args": {
      "fiscal_year": 2025,
-     "ticker": "NVDA",
-     "query": "revenue increased 114%",
-     "k": 3,
-     "item": "7"
+     "ticker": "MSFT",
+     "item": "7",
+     "k": 2,
+     "query": "Revenue increased percentage FY2025 fiscal year 2025"
     }
    }
   ],
   "n_llamadas": 9,
-  "tokens_in": 14826,
-  "tokens_out": 1682,
-  "coste_usd": 0.017427,
-  "latencia_s": 70.40476140007377,
+  "tokens_in": 36622,
+  "tokens_out": 2973,
+  "coste_usd": 0.03861525,
+  "latencia_s": 93.13234630000079,
   "limite_alcanzado": false,
   "correcciones": [],
   "reintentos_esquema": 0,
@@ -139,7 +151,7 @@
      {
       "name": "list_available",
       "args": {},
-      "id": "call_1071576",
+      "id": "call_301500",
       "type": "tool_call"
      }
     ],
@@ -147,14 +159,14 @@
     "tool_call_id": null,
     "usage_metadata": {
      "input_tokens": 2095,
-     "output_tokens": 63,
-     "total_tokens": 2158,
+     "output_tokens": 66,
+     "total_tokens": 2161,
      "input_token_details": {
       "cache_read": 0,
       "cache_creation": 0
      },
      "output_token_details": {
-      "reasoning": 53
+      "reasoning": 56
      }
     }
    },
@@ -163,7 +175,7 @@
     "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
     "tool_calls": null,
     "name": "list_available",
-    "tool_call_id": "call_1071576",
+    "tool_call_id": "call_301500",
     "usage_metadata": null
    },
    {
@@ -174,55 +186,25 @@
       "name": "get_xbrl_fact",
       "args": {
        "concept": "Revenues",
-       "fiscal_year": 2024,
-       "ticker": "NVDA"
+       "ticker": "NVDA",
+       "fiscal_year": 2024
       },
-      "id": "call_778873",
-      "type": "tool_call"
-     },
-     {
-      "name": "get_xbrl_fact",
-      "args": {
-       "fiscal_year": 2025,
-       "concept": "Revenues",
-       "ticker": "NVDA"
-      },
-      "id": "call_778881",
-      "type": "tool_call"
-     },
-     {
-      "name": "get_xbrl_fact",
-      "args": {
-       "fiscal_year": 2024,
-       "ticker": "MSFT",
-       "concept": "Revenues"
-      },
-      "id": "call_778883",
-      "type": "tool_call"
-     },
-     {
-      "name": "get_xbrl_fact",
-      "args": {
-       "ticker": "MSFT",
-       "fiscal_year": 2025,
-       "concept": "Revenues"
-      },
-      "id": "call_778885",
+      "id": "call_1286118",
       "type": "tool_call"
      }
     ],
     "name": null,
     "tool_call_id": null,
     "usage_metadata": {
-     "input_tokens": 2405,
-     "output_tokens": 228,
-     "total_tokens": 2633,
+     "input_tokens": 2408,
+     "output_tokens": 112,
+     "total_tokens": 2520,
      "input_token_details": {
       "cache_read": 0,
       "cache_creation": 0
      },
      "output_token_details": {
-      "reasoning": 80
+      "reasoning": 75
      }
     }
    },
@@ -231,31 +213,7 @@
     "content": "NVDA FY2024 · Revenues = 60,922,000,000 USD (cierre de ejercicio 2024-01-28, según el 10-K)",
     "tool_calls": null,
     "name": "get_xbrl_fact",
-    "tool_call_id": "call_778873",
-    "usage_metadata": null
-   },
-   {
-    "type": "tool",
-    "content": "NVDA FY2025 · Revenues = 130,497,000,000 USD (cierre de ejercicio 2025-01-26, según el 10-K)",
-    "tool_calls": null,
-    "name": "get_xbrl_fact",
-    "tool_call_id": "call_778881",
-    "usage_metadata": null
-   },
-   {
-    "type": "tool",
-    "content": "MSFT no reportó 'Revenues' en FY2024. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, GrossProfit, Liabilities, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, ResearchAndDevelopmentExpense, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
-    "tool_calls": null,
-    "name": "get_xbrl_fact",
-    "tool_call_id": "call_778883",
-    "usage_metadata": null
-   },
-   {
-    "type": "tool",
-    "content": "MSFT no reportó 'Revenues' en FY2025. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, GrossProfit, Liabilities, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, ResearchAndDevelopmentExpense, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
-    "tool_calls": null,
-    "name": "get_xbrl_fact",
-    "tool_call_id": "call_778885",
+    "tool_call_id": "call_1286118",
     "usage_metadata": null
    },
    {
@@ -265,36 +223,102 @@
      {
       "name": "get_xbrl_fact",
       "args": {
-       "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
-       "fiscal_year": 2024,
-       "ticker": "MSFT"
+       "fiscal_year": 2025,
+       "ticker": "NVDA",
+       "concept": "Revenues"
       },
-      "id": "call_973868",
-      "type": "tool_call"
-     },
-     {
-      "name": "get_xbrl_fact",
-      "args": {
-       "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
-       "ticker": "MSFT",
-       "fiscal_year": 2025
-      },
-      "id": "call_973880",
+      "id": "call_1274496",
       "type": "tool_call"
      }
     ],
     "name": null,
     "tool_call_id": null,
     "usage_metadata": {
-     "input_tokens": 2902,
-     "output_tokens": 139,
-     "total_tokens": 3041,
+     "input_tokens": 2570,
+     "output_tokens": 46,
+     "total_tokens": 2616,
      "input_token_details": {
       "cache_read": 0,
       "cache_creation": 0
      },
      "output_token_details": {
-      "reasoning": 49
+      "reasoning": 9
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "NVDA FY2025 · Revenues = 130,497,000,000 USD (cierre de ejercicio 2025-01-26, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_1274496",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "Revenues",
+       "ticker": "MSFT",
+       "fiscal_year": 2024
+      },
+      "id": "call_218599",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2667,
+     "output_tokens": 55,
+     "total_tokens": 2722,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 18
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "MSFT no reportó 'Revenues' en FY2024. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, GrossProfit, Liabilities, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, ResearchAndDevelopmentExpense, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_218599",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2024,
+       "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+       "ticker": "MSFT"
+      },
+      "id": "call_1427121",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2806,
+     "output_tokens": 79,
+     "total_tokens": 2885,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 34
      }
     }
    },
@@ -303,15 +327,45 @@
     "content": "MSFT FY2024 · RevenueFromContractWithCustomerExcludingAssessedTax = 245,122,000,000 USD (cierre de ejercicio 2024-06-30, según el 10-K)",
     "tool_calls": null,
     "name": "get_xbrl_fact",
-    "tool_call_id": "call_973868",
+    "tool_call_id": "call_1427121",
     "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "MSFT",
+       "fiscal_year": 2025,
+       "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      "id": "call_1256845",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2945,
+     "output_tokens": 54,
+     "total_tokens": 2999,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 9
+     }
+    }
    },
    {
     "type": "tool",
     "content": "MSFT FY2025 · RevenueFromContractWithCustomerExcludingAssessedTax = 281,724,000,000 USD (cierre de ejercicio 2025-06-30, según el 10-K)",
     "tool_calls": null,
     "name": "get_xbrl_fact",
-    "tool_call_id": "call_973880",
+    "tool_call_id": "call_1256845",
     "usage_metadata": null
    },
    {
@@ -321,36 +375,77 @@
      {
       "name": "search_filings",
       "args": {
+       "k": 2,
        "fiscal_year": 2025,
        "item": "7",
-       "query": "revenue increased Compute Networking Data Center",
+       "query": "revenue growth fiscal 2025 2024",
        "ticker": "NVDA"
       },
-      "id": "call_762775",
+      "id": "call_1212773",
       "type": "tool_call"
      }
     ],
     "name": null,
     "tool_call_id": null,
     "usage_metadata": {
-     "input_tokens": 3161,
-     "output_tokens": 1013,
-     "total_tokens": 4174,
+     "input_tokens": 3059,
+     "output_tokens": 956,
+     "total_tokens": 4015,
      "input_token_details": {
       "cache_read": 0,
       "cache_creation": 0
      },
      "output_token_details": {
-      "reasoning": 969
+      "reasoning": 901
      }
     }
    },
    {
     "type": "tool",
-    "content": "(consulta reescrita: 'MD&A \"Data Center\" (\"Compute and Networking\" OR \"Compute\") (\"revenue increased\" OR \"net sales increased\")')\n\n[NVDA-2025-7-0013] NVDA FY2025 Item 7 (similitud 0.033)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nCompute & Networking\t$\t82,875\t\t\t$\t32,016\t\t\t$\t50,859\t\t\t159\t%\nGraphics\t5,085\t\t\t5,846\t\t\t(761)\t\t\t(13)\t%\nAll Other\t(6,507)\t\t\t(4,890)\t\t\t(1,617)\t\t\t33\t%\nTotal\t$\t81,453\t\t\t$\t32,972\t\t\t$\t48,481\t\t\t147\t%\n\nCompute & Networking revenue – The year over year increase was due to strong demand for our accelerated computing and AI solutions. Revenue from Data Center computing grew 162% driven primarily by demand for our Hopper computing platform used for large language models, recommendation engines, and generative AI applications. Revenue from Data Center networking grew 51% driven by Ethernet for AI revenue, which includes Spectrum-X end-to-end ethernet platform.\n\nGraphics revenue – The year over year increase was driven by sales of our GeForce RTX 40 Series GPUs.\n\nReportable segment operating income – The year over year increase in Compute & Networking segment operating income was driven by growth in revenue. The year over year decrease in Graphics segment operating income was driven by an increase of 44% in segment operating expenses, partially offset by growth in revenue.\n\nAll Other operating loss – The year over year increase was due to an increase in stock-based compensation expense reflecting employee growth and compensation increases.\n\nConcentration of Revenue\n\nWe refer to customers who purchase products directly from NVIDIA as direct customers, such as AIBs, distributors, ODMs, OEMs, and system integrators. We have certain customers that may purchase products directly from NVIDIA and may use either internal resources or third-party system integrators to complete their build. We also have indirect customers, who purchase products through our direct customers; indirect customers include CSPs, consumer internet companies, enterprises, and public sector entities.\n\nDirect Customers – Sales to direct customers which represented 10% or more of total revenue, all of which were primarily attributable to the Compute & Networking segment, are presented in the following table:\n\n---\n\n[NVDA-2025-7-0001] NVDA FY2025 Item 7 (similitud 0.032)\nDemand and Supply\n\nRevenue growth in fiscal year 2025 was driven by data center compute and networking platforms for accelerated computing and AI solutions. Demand for our Hopper architecture drove our significant growth for the full year. We began shipping production systems of the Blackwell architecture in the fourth quarter of fiscal year 2025.\n\nDemand estimates for our products, applications, and services can be incorrect and create volatility in our revenue or supply levels. We may not be able to generate significant revenue from them. Advancements in accelerated computing and generative AI models, along with the growth in model complexity and scale, have driven increased demand for our Data Center systems.\n\nWe continue to increase our supply and capacity purchases with existing and new suppliers to support our demand projections and increasing complexity of our data center products. With these additions, we have also entered and may continue to enter into prepaid manufacturing and capacity agreements to supply both current and future products. The increased purchase volumes and integration of new suppliers and contract manufacturers into our supply chain creates more complexity in managing multiple suppliers with variations in production planning, execution and logistics. Our expanding product portfolio and varying component compatibility and quality may lead to increased inventory levels. We have incurred and may in the future incur inventory provisions or impairments if our inventory or supply or capacity commitments exceed demand for our products or demand declines.\n\n---\n\n[NVDA-2025-7-0007] NVDA FY2025 Item 7 (similitud 0.032)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\tChange\n($ in millions, except per share data)\nRevenue\t$\t130,497\t\t\t$\t60,922\t\t\tUp 114%\nGross margin\t75.0\t%\t\t72.7\t%\t\tUp 2.3 pts\nOperating expenses\t$\t16,405\t\t\t$\t11,329\t\t\tUp 45%\nOperating income\t$\t81,453\t\t\t$\t32,972\t\t\tUp 147%\nNet income\t$\t72,880\t\t\t$\t29,760\t\t\tUp 145%\nNet income per diluted share\t$\t2.94\t\t\t$\t1.19\t\t\tUp 147%\n\nWe specialize in markets where our computing platforms can provide tremendous acceleration for applications. These platforms incorporate processors, interconnects, software, algorithms, systems, and services to deliver unique value. Our platforms address four large markets where our expertise is critical: Data Center, Gaming, Professional Visualization, and Automotive.\n\nRevenue for fiscal year 2025 was $130.5 billion, up 114% from a year ago.\n\nData Center revenue for fiscal year 2025 was up 142% from a year ago. The strong year-on-year growth was driven by demand for our Hopper architecture accelerated computing platform used for large language models, recommendation engines, and generative AI applications. We began shipping production systems of the Blackwell architecture in the fourth quarter of fiscal year 2025.\n\nGaming revenue for fiscal year 2025 was up 9% from a year ago, driven by sales of our GeForce RTX 40 Series GPUs.\n\nProfessional Visualization revenue for fiscal year 2025 was up 21% from a year ago, driven by the continued ramp of Ada RTX GPU workstations for use cases such as generative AI-powered design, simulation, and engineering.\n\nAutomotive revenue for fiscal year 2025 was up 55% from a year ago, driven by sales of our self-driving platforms.\n\nGross margin increased in fiscal year 2025 driven by a higher mix of Data Center revenue.\n\nOperating expenses for fiscal year 2025 were up 45% from a year ago, driven by higher compensation and benefits expenses due to employee growth and compensation increases, and engineering development, compute and infrastructure costs for new product introductions.\n\n---\n\n[NVDA-2025-7-0002] NVDA FY2025 Item 7 (similitud 0.031)\nProduct Transitions and New Product Introductions\n\nProduct transitions are complex and we often ship both new and prior architecture products simultaneously as our channel partners prepare to ship and support new products. We are generally in various stages of transitioning the architectures of our Data Center, Gaming, Professional Visualization, and Automotive products. The computing industry is experiencing a broader and faster launch cadence of accelerated computing platforms to meet a growing and diverse set of AI opportunities. We have introduced a new product and architecture cadence of our Data Center solutions where we seek to complete new computing solutions each year and provide a greater variety of Data Center offerings. The increased frequency of these transitions and the larger number of products and product configurations may magnify the challenges associated with managing our supply and demand which may further create volatility in our revenue. The increased frequency and complexity of newly introduced products could result in quality or production issues that could increase inventory provisions, warranty, or other costs or result in product delays. We incur significant engineering development resources for new products, and changes to our product roadmap may impact our ability to develop other products or adequately manage our supply chain cost. Customers may delay purchasing existing products as we increase the frequency of new products or may not be able to adopt our new products as fast as forecasted, both impacting the timing of our revenue and supply chain cost. While we have managed prior product transitions and have sold multiple product architectures at the same time, these transitions are difficult, may impair our ability to predict demand and impact our supply mix, and may cause us to incur additional costs.\n\n---\n\n[NVDA-2025-7-0014] NVDA FY2025 Item 7 (similitud 0.030)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\nDirect Customer A\t12\t%\t\t*\nDirect Customer B\t11\t%\t\t13\t%\nDirect Customer C\t11\t%\t\t*\n\n* Less than 10% of total revenue.\n\nNo customer represented 10% or more of total revenue for fiscal year 2023.\n\nIndirect Customers – Indirect customer revenue is an estimation based upon multiple factors including customer purchase order information, product specifications, internal sales data, and other sources. Actual indirect customer revenue may differ from our estimates. For fiscal year 2025, an indirect customer which primarily purchases our products through system integrators and distributors, including through Direct Customer B, is estimated to represent 10% or more of total revenue, attributable to the Compute & Networking segment.\n\nWe have experienced periods where we receive a significant amount of our revenue from a limited number of customers, and this trend may continue.\n\nRevenue by geographic region is designated based on the billing location even if the revenue may be attributable to indirect customers in a different location. Revenue from sales to customers outside of the United States accounted for 53% and 56% of total revenue for fiscal years 2025 and 2024, respectively.",
+    "content": "(consulta reescrita: 'MD&A \"net sales\" OR \"total revenues\" increase fiscal 2025 2024')\n\n[NVDA-2025-7-0016] NVDA FY2025 Item 7 (similitud 0.033)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nResearch and development expenses\t$\t12,914\t\t\t$\t8,675\t\t\t$\t4,239\t\t\t49\t%\n% of net revenue\t9.9\t%\t\t14.2\t%\nSales, general and administrative expenses\t3,491\t\t\t2,654\t\t\t837\t\t\t32\t%\n% of net revenue\t2.7\t%\t\t4.4\t%\nTotal operating expenses\t$\t16,405\t\t\t$\t11,329\t\t\t$\t5,076\t\t\t45\t%\n% of net revenue\t12.6\t%\t\t18.6\t%\n\nThe increases in research and development expenses for fiscal year 2025 were driven by a 32% increase in compensation and benefits, including stock-based compensation, reflecting employee growth and compensation increases, a 100% increase in compute and infrastructure, and a 234% increase in engineering development costs for new product introductions.\n\nThe increases in sales, general and administrative expenses for fiscal year 2025 were primarily driven by compensation and benefits, including stock-based compensation, reflecting employee growth and compensation increases.\n\nOther Income (Expense), Net\n\n---\n\n[NVDA-2025-7-0012] NVDA FY2025 Item 7 (similitud 0.032)\nResults of Operations\n\nA discussion regarding our financial condition and results of operations for fiscal year 2025 compared to fiscal year 2024 is presented below. A discussion regarding our financial condition and results of operations for fiscal year 2024 compared to fiscal year 2023 can be found under Item 7 in our Annual Report on Form 10-K for the fiscal year ended January 28, 2024, filed with the SEC on February 21, 2024, which is available free of charge on the SEC’s website at http://www.sec.gov and at our investor relations website, http://investor.nvidia.com.\n\nThe following table sets forth, for the periods indicated, certain items in our Consolidated Statements of Income expressed as a percentage of revenue.\n\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\nRevenue\t100.0\t%\t\t100.0\t%\nCost of revenue\t25.0\t\t\t27.3\nGross profit\t75.0\t\t\t72.7\nOperating expenses\nResearch and development\t9.9\t\t\t14.2\nSales, general and administrative\t2.7\t\t\t4.4\nTotal operating expenses\t12.6\t\t\t18.6\nOperating income\t62.4\t\t\t54.1\nInterest income\t1.4\t\t\t1.4\nInterest expense\t(0.2)\t\t\t(0.4)\nOther, net\t0.8\t\t\t0.4\nOther income (expense), net\t2.0\t\t\t1.4\nIncome before income tax\t64.4\t\t\t55.5\nIncome tax expense\t8.6\t\t\t6.6\nNet income\t55.8\t%\t\t48.9\t%\n\nReportable Segments\n\nRevenue by Reportable Segments\n\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nCompute & Networking\t$\t116,193\t\t\t$\t47,405\t\t\t$\t68,788\t\t\t145\t%\nGraphics\t14,304\t\t\t13,517\t\t\t787\t\t\t6\t%\nTotal\t$\t130,497\t\t\t$\t60,922\t\t\t$\t69,575\t\t\t114\t%\n\nOperating Income by Reportable Segments",
     "tool_calls": null,
     "name": "search_filings",
-    "tool_call_id": "call_762775",
+    "tool_call_id": "call_1212773",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "k": 2,
+       "fiscal_year": 2025,
+       "item": "7",
+       "query": "Compute & Networking revenue increased Data Center",
+       "ticker": "NVDA"
+      },
+      "id": "call_1262622",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4975,
+     "output_tokens": 105,
+     "total_tokens": 5080,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 56
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'MD&A \"Compute & Networking\" segment revenue increased \"Data Center\"')\n\n[NVDA-2025-7-0013] NVDA FY2025 Item 7 (similitud 0.033)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nCompute & Networking\t$\t82,875\t\t\t$\t32,016\t\t\t$\t50,859\t\t\t159\t%\nGraphics\t5,085\t\t\t5,846\t\t\t(761)\t\t\t(13)\t%\nAll Other\t(6,507)\t\t\t(4,890)\t\t\t(1,617)\t\t\t33\t%\nTotal\t$\t81,453\t\t\t$\t32,972\t\t\t$\t48,481\t\t\t147\t%\n\nCompute & Networking revenue – The year over year increase was due to strong demand for our accelerated computing and AI solutions. Revenue from Data Center computing grew 162% driven primarily by demand for our Hopper computing platform used for large language models, recommendation engines, and generative AI applications. Revenue from Data Center networking grew 51% driven by Ethernet for AI revenue, which includes Spectrum-X end-to-end ethernet platform.\n\nGraphics revenue – The year over year increase was driven by sales of our GeForce RTX 40 Series GPUs.\n\nReportable segment operating income – The year over year increase in Compute & Networking segment operating income was driven by growth in revenue. The year over year decrease in Graphics segment operating income was driven by an increase of 44% in segment operating expenses, partially offset by growth in revenue.\n\nAll Other operating loss – The year over year increase was due to an increase in stock-based compensation expense reflecting employee growth and compensation increases.\n\nConcentration of Revenue\n\nWe refer to customers who purchase products directly from NVIDIA as direct customers, such as AIBs, distributors, ODMs, OEMs, and system integrators. We have certain customers that may purchase products directly from NVIDIA and may use either internal resources or third-party system integrators to complete their build. We also have indirect customers, who purchase products through our direct customers; indirect customers include CSPs, consumer internet companies, enterprises, and public sector entities.\n\nDirect Customers – Sales to direct customers which represented 10% or more of total revenue, all of which were primarily attributable to the Compute & Networking segment, are presented in the following table:\n\n---\n\n[NVDA-2025-7-0001] NVDA FY2025 Item 7 (similitud 0.032)\nDemand and Supply\n\nRevenue growth in fiscal year 2025 was driven by data center compute and networking platforms for accelerated computing and AI solutions. Demand for our Hopper architecture drove our significant growth for the full year. We began shipping production systems of the Blackwell architecture in the fourth quarter of fiscal year 2025.\n\nDemand estimates for our products, applications, and services can be incorrect and create volatility in our revenue or supply levels. We may not be able to generate significant revenue from them. Advancements in accelerated computing and generative AI models, along with the growth in model complexity and scale, have driven increased demand for our Data Center systems.\n\nWe continue to increase our supply and capacity purchases with existing and new suppliers to support our demand projections and increasing complexity of our data center products. With these additions, we have also entered and may continue to enter into prepaid manufacturing and capacity agreements to supply both current and future products. The increased purchase volumes and integration of new suppliers and contract manufacturers into our supply chain creates more complexity in managing multiple suppliers with variations in production planning, execution and logistics. Our expanding product portfolio and varying component compatibility and quality may lead to increased inventory levels. We have incurred and may in the future incur inventory provisions or impairments if our inventory or supply or capacity commitments exceed demand for our products or demand declines.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_1262622",
     "usage_metadata": null
    },
    {
@@ -361,56 +456,80 @@
       "name": "search_filings",
       "args": {
        "fiscal_year": 2025,
-       "ticker": "NVDA",
-       "query": "revenue increased 114%",
-       "k": 3,
-       "item": "7"
+       "ticker": "MSFT",
+       "item": "7",
+       "k": 2,
+       "query": "Revenue increased percentage FY2025 fiscal year 2025"
       },
-      "id": "call_316055",
+      "id": "call_440431",
       "type": "tool_call"
      }
     ],
     "name": null,
     "tool_call_id": null,
     "usage_metadata": {
-     "input_tokens": 4263,
-     "output_tokens": 239,
-     "total_tokens": 4502,
+     "input_tokens": 5942,
+     "output_tokens": 77,
+     "total_tokens": 6019,
      "input_token_details": {
       "cache_read": 0,
       "cache_creation": 0
      },
      "output_token_details": {
-      "reasoning": 190
+      "reasoning": 20
      }
     }
    },
    {
     "type": "tool",
-    "content": "(consulta reescrita: '(\"revenue increased\" OR \"revenues increased\" OR \"net sales increased\") AND (\"114%\" OR \"114 percent\")')\n\n[NVDA-2025-7-0015] NVDA FY2025 Item 7 (similitud 0.031)\nGross Profit and Gross Margin\n\nGross profit consists of total net revenue less cost of revenue. Cost of revenue consists primarily of the cost of semiconductors, including wafer fabrication, assembly, testing and packaging, board and device costs, manufacturing support costs, including labor and overhead associated with such purchases, final test yield fallout, inventory and warranty provisions, memory and component costs, tariffs, and shipping costs. Cost of revenue also includes acquisition-related intangible amortization expense, costs for license and development and service arrangements, IP-related costs, and stock-based compensation related to personnel associated with manufacturing operations.\n\nGross margins increased to 75.0% in fiscal year 2025 from 72.7% in fiscal year 2024. The year over year increase was primarily driven by a higher mix of Data Center revenue.\n\nProvisions for inventory and excess inventory purchase obligations totaled $3.7 billion and $2.2 billion for fiscal years 2025 and 2024, respectively. Sales of previously reserved inventory and settlements of excess inventory purchase obligations resulted in a provision release of $689 million and $540 million for fiscal years 2025 and 2024, respectively. The net effect on our gross margin was an unfavorable impact of 2.3% and 2.7% in fiscal years 2025 and 2024, respectively.\n\nOperating Expenses\n\n---\n\n[NVDA-2025-7-0001] NVDA FY2025 Item 7 (similitud 0.031)\nDemand and Supply\n\nRevenue growth in fiscal year 2025 was driven by data center compute and networking platforms for accelerated computing and AI solutions. Demand for our Hopper architecture drove our significant growth for the full year. We began shipping production systems of the Blackwell architecture in the fourth quarter of fiscal year 2025.\n\nDemand estimates for our products, applications, and services can be incorrect and create volatility in our revenue or supply levels. We may not be able to generate significant revenue from them. Advancements in accelerated computing and generative AI models, along with the growth in model complexity and scale, have driven increased demand for our Data Center systems.\n\nWe continue to increase our supply and capacity purchases with existing and new suppliers to support our demand projections and increasing complexity of our data center products. With these additions, we have also entered and may continue to enter into prepaid manufacturing and capacity agreements to supply both current and future products. The increased purchase volumes and integration of new suppliers and contract manufacturers into our supply chain creates more complexity in managing multiple suppliers with variations in production planning, execution and logistics. Our expanding product portfolio and varying component compatibility and quality may lead to increased inventory levels. We have incurred and may in the future incur inventory provisions or impairments if our inventory or supply or capacity commitments exceed demand for our products or demand declines.\n\n---\n\n[NVDA-2025-7-0014] NVDA FY2025 Item 7 (similitud 0.031)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\nDirect Customer A\t12\t%\t\t*\nDirect Customer B\t11\t%\t\t13\t%\nDirect Customer C\t11\t%\t\t*\n\n* Less than 10% of total revenue.\n\nNo customer represented 10% or more of total revenue for fiscal year 2023.\n\nIndirect Customers – Indirect customer revenue is an estimation based upon multiple factors including customer purchase order information, product specifications, internal sales data, and other sources. Actual indirect customer revenue may differ from our estimates. For fiscal year 2025, an indirect customer which primarily purchases our products through system integrators and distributors, including through Direct Customer B, is estimated to represent 10% or more of total revenue, attributable to the Compute & Networking segment.\n\nWe have experienced periods where we receive a significant amount of our revenue from a limited number of customers, and this trend may continue.\n\nRevenue by geographic region is designated based on the billing location even if the revenue may be attributable to indirect customers in a different location. Revenue from sales to customers outside of the United States accounted for 53% and 56% of total revenue for fiscal years 2025 and 2024, respectively.",
+    "content": "(consulta reescrita: '\"net sales\" OR \"total revenue\" increased percentage \"fiscal 2025\" OR \"fiscal year 2025\" MD&A')\n\n[MSFT-2025-7-0011] MSFT FY2025 Item 7 (similitud 0.032)\nResearch and Development\n\n(In millions, except percentages)\t\t2025\t\t\t2024\t\t\tPercentage Change\nResearch and development\t\t$\t32,488\t\t\t$\t29,510\t\t\t\t10%\nAs a percent of revenue\t\t\t12%\t\t\t\t12%\t\t\t\t0ppt\n\nResearch and development expenses include payroll, employee benefits, stock-based compensation expense, and other headcount-related expenses associated with product development. Research and development expenses also include technology development costs, including AI training and other infrastructure costs, third-party development and programming costs, and the amortization of purchased software code and services content.\n\n\n\nFiscal Year 2025 Compared with Fiscal Year 2024\n\nResearch and development expenses increased $3.0 billion or 10% driven by investments in cloud and AI engineering and Gaming, including the impact of the Activision Blizzard acquisition.\n\nSales and Marketing\n\n(In millions, except percentages)\t\t2025\t\t\t2024\t\t\tPercentage Change\nSales and marketing\t\t$\t25,654\t\t\t$\t24,456\t\t\t\t5%\nAs a percent of revenue\t\t\t9%\t\t\t\t10%\t\t\t\t(1)ppt\n\nSales and marketing expenses include payroll, employee benefits, stock-based compensation expense, and other headcount-related expenses associated with sales and marketing personnel, and the costs of advertising, promotions, trade shows, seminars, and other programs.\n\nFiscal Year 2025 Compared with Fiscal Year 2024\n\nSales and marketing expenses increased $1.2 billion or 5% driven by investments in commercial sales and Gaming, including the impact of the Activision Blizzard acquisition.\n\nGeneral and Administrative\n\n(In millions, except percentages)\t\t2025\t\t\t2024\t\t\tPercentage Change\nGeneral and administrative\t\t$\t7,223\t\t\t$\t7,609\t\t\t\t(5)%\nAs a percent of revenue\t\t\t3%\t\t\t\t3%\t\t\t\t0ppt\n\nGeneral and administrative expenses include payroll, employee benefits, stock-based compensation expense, employee severance expense incurred as part of a corporate program, and other headcount-related expenses associated with finance, legal, facilities, certain human resources and other administrative personnel, certain taxes, and legal and other administrative fees.\n\nFiscal Year 2025 Compared with Fiscal Year 2024\n\nGeneral and administrative expenses decreased $386 million or 5% driven by Gaming, including the impact of the Activision Blizzard acquisition.\n\n---\n\n[MSFT-2025-7-0005] MSFT FY2025 Item 7 (similitud 0.032)\nSeasonality\n\nOur revenue fluctuates quarterly and is generally higher in the fourth quarter of our fiscal year. Fourth quarter revenue is driven by a higher volume of multi-year contracts executed during the period.\n\nReportable Segments\n\nWe report our financial performance based on the following segments: Productivity and Business Processes, Intelligent Cloud, and More Personal Computing. The segment amounts included in MD&A are presented on a basis consistent with our internal management reporting.\n\nIn August 2024, we announced changes to the composition of our segments. These changes align our segments with how we currently manage our business, most notably bringing the commercial components of Microsoft 365 together in the Productivity and Business Processes segment. Beginning in fiscal year 2025, the information that our chief operating decision maker is regularly provided and reviews for purposes of allocating resources and assessing performance reflects these segment changes. Prior period segment information has been recast to conform to the way we internally manage and monitor our business during fiscal year 2025.\n\nAdditional information on our reportable segments is contained in Note 18 – Segment Information and Geographic Data of the Notes to Financial Statements (Part II, Item 8 of this Form 10-K).\n\n\n\nMetrics\n\nWe use metrics in assessing the performance of our business and to make informed decisions regarding the allocation of resources. We disclose metrics to enable investors to evaluate progress against our ambitions, provide transparency into performance trends, and reflect the continued evolution of our products and services. Our commercial and other business metrics are fundamentally connected based on how customers use our products and services. The metrics are disclosed in the MD&A or the Notes to Financial Statements (Part II, Item 8 of this Form 10-K). Financial metrics are calculated based on financial results prepared in accordance with accounting principles generally accepted in the United States of America (“GAAP”), and growth comparisons relate to the corresponding period of last fiscal year.\n\nIn the first quarter of fiscal year 2025, we made updates to our metrics in connection with the segment changes described above. These changes align our metrics with how we manage and monitor certain businesses. The key change was bringing the commercial components of Microsoft 365 together and creating a new Microsoft 365 Commercial cloud revenue growth metric. Other changes include combining Windows OEM and Devices into a single revenue growth metric that brings revenue from PC market-driven businesses together, as well as elevating our cloud revenue growth metrics to align to our strategic focus on cloud growth.",
     "tool_calls": null,
     "name": "search_filings",
-    "tool_call_id": "call_316055",
+    "tool_call_id": "call_440431",
     "usage_metadata": null
    },
    {
     "type": "ai",
     "content": "",
-    "tool_calls": [],
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "unidad": "USD",
+       "chunk_id": null,
+       "ticker": "NVDA",
+       "fuente": "xbrl",
+       "cita": null,
+       "cifra": 130497000000,
+       "respuesta": "Entre FY2024 y FY2025, el diferencial de crecimiento de ingresos entre NVIDIA y Microsoft fue de aproximadamente 99.27 puntos porcentuales a favor de NVIDIA:\n\n- NVIDIA (Revenues): pasó de 60,922,000,000 USD en FY2024 a 130,497,000,000 USD en FY2025, lo que representa un aumento absoluto de 69,575,000,000 USD (+114.20%).\n- Microsoft (RevenueFromContractWithCustomerExcludingAssessedTax): pasó de 245,122,000,000 USD en FY2024 a 281,724,000,000 USD en FY2025, lo que representa un aumento absoluto de 36,602,000,000 USD (+14.93%).\n\nDiferencial: 114.20% - 14.93% = +99.27 puntos porcentuales.",
+       "ejercicio": 2025
+      },
+      "id": "call_1041130",
+      "type": "tool_call"
+     }
+    ],
     "name": null,
     "tool_call_id": null,
     "usage_metadata": {
-     "input_tokens": 0,
-     "output_tokens": 0,
-     "total_tokens": 0,
+     "input_tokens": 7155,
+     "output_tokens": 1423,
+     "total_tokens": 8578,
      "input_token_details": {
-      "cache_read": 0,
+      "cache_read": 3781,
       "cache_creation": 0
      },
      "output_token_details": {
-      "reasoning": 0
+      "reasoning": 1093
      }
     }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='Entre FY2024 y FY2025, el diferencial de crecimiento de ingresos entre NVIDIA y Microsoft fue de aproximadamente 99.27 puntos porcentuales a favor de NVIDIA:\\n\\n- NVIDIA (Revenues): pasó de 60,922,000,000 USD en FY2024 a 130,497,000,000 USD en FY2025, lo que representa un aumento absoluto de 69,575,000,000 USD (+114.20%).\\n- Microsoft (RevenueFromContractWithCustomerExcludingAssessedTax): pasó de 245,122,000,000 USD en FY2024 a 281,724,000,000 USD en FY2025, lo que representa un aumento absoluto de 36,602,000,000 USD (+14.93%).\\n\\nDiferencial: 114.20% - 14.93% = +99.27 puntos porcentuales.' cifra=130497000000.0 unidad='USD' ticker='NVDA' ejercicio=2025 fuente='xbrl' cita=None chunk_id=None",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_1041130",
+    "usage_metadata": null
    }
   ],
   "modelo": "openrouter:google/gemini-3.8-flash",

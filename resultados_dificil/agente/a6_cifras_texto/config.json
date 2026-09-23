@@ -19,7 +19,7 @@
   "k": 5,
   "descripcion": "+ contrato para cifras que solo están en el texto (fuente='texto', unidades completas, la cifra dentro de la cita) y un verificador que las comprueba contra la cita en vez de contra XBRL. Ataca gY-016..018.",
   "modelo": "openrouter:google/gemini-3.8-flash",
-  "commit": "4008f0a",
+  "commit": "13b37d8",
   "golden_set": "data/golden_set_dificil.jsonl",
-  "fecha": "2026-09-23T18:59:01"
+  "fecha": "2026-09-23T23:09:55"
 }
