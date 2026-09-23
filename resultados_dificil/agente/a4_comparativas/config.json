@@ -1,0 +1,20 @@
+{
+  "nombre": "a4_comparativas",
+  "limites": true,
+  "max_llamadas": 8,
+  "max_read_section": 1,
+  "max_vueltas_modelo": 10,
+  "verificador_cifras": true,
+  "verificador_cita": true,
+  "esquema_estricto": true,
+  "prompt": "comparativas",
+  "filtros_forzados": true,
+  "reescritura": true,
+  "hibrido": true,
+  "k": 5,
+  "descripcion": "+ procedimiento explícito de comparativas y conceptos por acción (splits).",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "commit": "1e19c11",
+  "golden_set": "data/golden_set_dificil.jsonl",
+  "fecha": "2026-09-23T17:36:37"
+}

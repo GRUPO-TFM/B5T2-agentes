@@ -1,8 +1,12 @@
-"""Un solo agente, con interruptor de mejoras.
+"""Un solo agente, con la arquitectura como parámetro.
 
-`construir_agente(mejoras=False)` es el del día 10. `mejoras=True` le
-añadirá middleware y retrieval mejorado; hoy el interruptor existe y no
-cambia el comportamiento, para que baseline y final sean el mismo código.
+`construir_agente("baseline")` es el agente del día 10. `construir_agente("a1_guardrails")`
+es el mismo código con los guardrails enchufados, y así hasta `"final"`. Ver
+`agente/config.py` para lo que enciende cada nivel.
+
+Todo lo que cambia entre niveles pasa por aquí: prompt, esquema, middleware y
+las opciones del retrieval. Nada más. Así baseline y final son el mismo código
+y la comparación del informe no arrastra diferencias accidentales.
 """
 
 from __future__ import annotations
@@ -12,36 +16,46 @@ import functools
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 
-from agente.esquema import RespuestaFinanciera
+from agente.config import MODELO, Arquitectura, arquitectura
+from agente.esquema import RespuestaFinanciera, RespuestaFinancieraEstricta
 from agente.herramientas import construir_herramientas
-from agente.middleware import middlewares_mejoras
+from agente.middleware import middlewares_para
+from agente.prompts import PROMPTS
 
-MODELO = "openrouter:google/gemini-3.8-flash"
-
-SYSTEM = """Eres un analista financiero que responde preguntas sobre informes
-10-K usando ÚNICAMENTE las herramientas disponibles.
-
-Reglas:
-- Para cualquier CIFRA, usa get_xbrl_fact. Nunca leas un número de la prosa.
-- Para riesgos, estrategia o comentarios de la dirección, usa search_filings.
-- Si no sabes si una compañía o un ejercicio están en el corpus, empieza por
-  list_available.
-- El corpus está en inglés: escribe las consultas de búsqueda en inglés.
-- Cita el chunk_id del fragmento en el que te apoyes.
-- Si el dato no está en el corpus, dilo. No lo estimes.
-"""
+SYSTEM = PROMPTS["base"]        # compatibilidad con el nombre anterior
 
 
-@functools.lru_cache(maxsize=4)
-def construir_agente(modelo: str = MODELO, mejoras: bool = False):
-    """El agente del día 10 (`mejoras=False`) o el sistema final."""
+def _herramientas(arq: Arquitectura) -> list:
+    """Las cuatro herramientas con el retrieval del peldaño detrás de
+    `search_filings`. Con el baseline, los tres valores están apagados."""
+    return construir_herramientas(reescritura=arq.reescritura,
+                                  hibrido=arq.hibrido, k=arq.k,
+                                  reescritura_rapida=arq.reescritura_rapida)
+
+
+@functools.lru_cache(maxsize=8)
+def _construir(modelo: str, nombre: str):
+    arq = arquitectura(nombre)
+    esquema = RespuestaFinancieraEstricta if arq.esquema_estricto else RespuestaFinanciera
     kwargs: dict = {
         "model": modelo,
-        "tools": construir_herramientas(),
-        "system_prompt": SYSTEM,
-        "response_format": RespuestaFinanciera,
+        "tools": _herramientas(arq),
+        "system_prompt": PROMPTS[arq.prompt],
+        "response_format": esquema,
         "checkpointer": InMemorySaver(),
     }
-    if mejoras:
-        kwargs["middleware"] = middlewares_mejoras()
+    middleware = middlewares_para(arq)
+    if middleware:
+        kwargs["middleware"] = middleware
     return create_agent(**kwargs)
+
+
+def construir_agente(modelo: str = MODELO,
+                     mejoras: bool | None = None,
+                     arquitectura: str | Arquitectura = "baseline"):
+    """El agente de una arquitectura. `mejoras=True` es un alias de "final"
+    que se mantiene por compatibilidad con el código anterior."""
+    if mejoras is True:
+        arquitectura = "final"
+    nombre = arquitectura if isinstance(arquitectura, str) else arquitectura.nombre
+    return _construir(modelo, nombre)

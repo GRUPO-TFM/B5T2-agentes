@@ -1,0 +1,328 @@
+{
+ "item": {
+  "id": "gX-014",
+  "pregunta": "¿Cuánto aumentó el beneficio neto de NVIDIA entre FY2024 y FY2025?",
+  "familia": "comparativa",
+  "ticker": "NVDA",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "De 29.760 a 72.880 millones de dólares, un 144,9 % más.",
+  "cifra_esperada": 72880000000.0,
+  "unidad": "USD",
+  "concept_xbrl": "NetIncomeLoss",
+  "item_esperado": "7",
+  "ancla_texto": "Data Center revenue for fiscal year 2025 was up 142% from a year ago.",
+  "ancla_inicio": 12888,
+  "ancla_fin": 12957,
+  "chunk_id_esperado": "NVDA-2025-7-0007",
+  "herramienta_esperada": [
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "autor": "grupo-X"
+ },
+ "rep": 1,
+ "thread_id": "a6_cifras_texto-rep1-gX-014",
+ "commit": "4008f0a",
+ "fecha": "2026-09-23T19:41:34",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "El beneficio neto (NetIncomeLoss) de NVIDIA aumentó en 43.120.000.000 USD (un incremento del 144,89%), pasando de 29.760.000.000 USD en el ejercicio fiscal 2024 (FY2024) a 72.880.000.000 USD en el ejercicio fiscal 2025 (FY2025). Este fuerte crecimiento se vio impulsado principalmente por el aumento en los ingresos del segmento Data Center y la demanda de la arquitectura Hopper para aplicaciones de inteligencia artificial acelerada y modelos de lenguaje.",
+   "cifra": 72880000000.0,
+   "unidad": "USD",
+   "ticker": "NVDA",
+   "ejercicio": 2025,
+   "fuente": "ambas",
+   "cita": "Gross margin increased in fiscal year 2025 driven by a higher mix of Data Center revenue.",
+   "chunk_id": "NVDA-2025-7-0007"
+  },
+  "herramientas": [
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "search_filings",
+   "search_filings",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "NetIncomeLoss",
+     "ticker": "NVDA",
+     "fiscal_year": 2024
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "concept": "NetIncomeLoss",
+     "ticker": "NVDA"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "fiscal_year": 2025,
+     "ticker": "NVDA",
+     "query": "Net income increased fiscal year 2025 compared to 2024",
+     "item": "7"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "ticker": "NVDA",
+     "query": "Net income fiscal year 2025 72,880 29,760",
+     "fiscal_year": 2025,
+     "item": "7"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "7",
+     "ticker": "NVDA",
+     "query": "net income revenue growth drivers data center",
+     "fiscal_year": 2025
+    }
+   }
+  ],
+  "n_llamadas": 5,
+  "tokens_in": 15868,
+  "tokens_out": 2036,
+  "coste_usd": 0.019536,
+  "latencia_s": 87.4466107999906,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Cuánto aumentó el beneficio neto de NVIDIA entre FY2024 y FY2025?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "NetIncomeLoss",
+       "ticker": "NVDA",
+       "fiscal_year": 2024
+      },
+      "id": "call_934154",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "concept": "NetIncomeLoss",
+       "ticker": "NVDA"
+      },
+      "id": "call_934162",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2090,
+     "output_tokens": 213,
+     "total_tokens": 2303,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 137
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "NVDA FY2024 · NetIncomeLoss = 29,760,000,000 USD (cierre de ejercicio 2024-01-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_934154",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "NVDA FY2025 · NetIncomeLoss = 72,880,000,000 USD (cierre de ejercicio 2025-01-26, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_934162",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "fiscal_year": 2025,
+       "ticker": "NVDA",
+       "query": "Net income increased fiscal year 2025 compared to 2024",
+       "item": "7"
+      },
+      "id": "call_742501",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2407,
+     "output_tokens": 318,
+     "total_tokens": 2725,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 263
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'Item 7 MD&A \"net income increased\" \"fiscal year ended\" 2025 compared to 2024')\n\n[NVDA-2025-7-0012] NVDA FY2025 Item 7 (similitud 0.032)\nResults of Operations\n\nA discussion regarding our financial condition and results of operations for fiscal year 2025 compared to fiscal year 2024 is presented below. A discussion regarding our financial condition and results of operations for fiscal year 2024 compared to fiscal year 2023 can be found under Item 7 in our Annual Report on Form 10-K for the fiscal year ended January 28, 2024, filed with the SEC on February 21, 2024, which is available free of charge on the SEC’s website at http://www.sec.gov and at our investor relations website, http://investor.nvidia.com.\n\nThe following table sets forth, for the periods indicated, certain items in our Consolidated Statements of Income expressed as a percentage of revenue.\n\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\nRevenue\t100.0\t%\t\t100.0\t%\nCost of revenue\t25.0\t\t\t27.3\nGross profit\t75.0\t\t\t72.7\nOperating expenses\nResearch and development\t9.9\t\t\t14.2\nSales, general and administrative\t2.7\t\t\t4.4\nTotal operating expenses\t12.6\t\t\t18.6\nOperating income\t62.4\t\t\t54.1\nInterest income\t1.4\t\t\t1.4\nInterest expense\t(0.2)\t\t\t(0.4)\nOther, net\t0.8\t\t\t0.4\nOther income (expense), net\t2.0\t\t\t1.4\nIncome before income tax\t64.4\t\t\t55.5\nIncome tax expense\t8.6\t\t\t6.6\nNet income\t55.8\t%\t\t48.9\t%\n\nReportable Segments\n\nRevenue by Reportable Segments\n\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nCompute & Networking\t$\t116,193\t\t\t$\t47,405\t\t\t$\t68,788\t\t\t145\t%\nGraphics\t14,304\t\t\t13,517\t\t\t787\t\t\t6\t%\nTotal\t$\t130,497\t\t\t$\t60,922\t\t\t$\t69,575\t\t\t114\t%\n\nOperating Income by Reportable Segments\n\n---\n\n[NVDA-2025-7-0017] NVDA FY2025 Item 7 (similitud 0.032)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\n($ in millions)\nInterest income\t$\t1,786\t\t\t$\t866\t\t\t$\t920\nInterest expense\t(247)\t\t\t(257)\t\t\t10\nOther, net\t1,034\t\t\t237\t\t\t797\nOther income (expense), net\t$\t2,573\t\t\t$\t846\t\t\t$\t1,727\n\nThe increase in interest income was primarily due to growth in cash, cash equivalents, and marketable securities.\n\nInterest expense is comprised of coupon interest and debt discount amortization related to our notes.\n\nOther, net consists of realized or unrealized gains and losses from investments in non-marketable equity securities, publicly-held equity securities, and the impact of changes in foreign currency rates. The change in Other, net, compared to fiscal year 2024, was primarily driven by an increase in fair value of our non-marketable equity securities and publicly-held equity securities. Refer to Note 8 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for additional information regarding our non-marketable equity securities.\n\n---\n\n[NVDA-2025-7-0019] NVDA FY2025 Item 7 (similitud 0.032)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\n(In millions)\nNet cash provided by operating activities\t$\t64,089\t\t\t$\t28,090\nNet cash used in investing activities\t$\t(20,421)\t\t\t$\t(10,566)\nNet cash used in financing activities\t$\t(42,359)\t\t\t$\t(13,633)\n\nOur investment policy requires the purchase of highly-rated fixed income securities, the diversification of investment types and credit exposures, and certain maturity limits on our portfolio.\n\nCash provided by operating activities increased in fiscal year 2025 compared to fiscal year 2024, due to growth in revenue.\n\nCash used in investing activities increased in fiscal year 2025 compared to fiscal year 2024, primarily driven by net purchases of marketable securities, and purchase of land, property and equipment.\n\nCash used in financing activities increased in fiscal year 2025 compared to fiscal year 2024, mainly due to higher share repurchases and higher tax payments related to RSUs.\n\n---\n\n[NVDA-2025-7-0018] NVDA FY2025 Item 7 (similitud 0.032)\nIncome Taxes\n\nIncome tax expense was $11.1 billion and $4.1 billion for fiscal years 2025 and 2024, respectively. Income tax as a percentage of income before income tax was an expense of 13.3% and 12.0% for fiscal years 2025 and 2024, respectively.\n\nThe effective tax rate increased primarily due to higher pre-tax income and a prior year discrete benefit due to an audit resolution.\n\nOur effective tax rates for fiscal years 2025 and 2024 were lower than the U.S. federal statutory rate of 21% due primarily to tax benefits from the FDII deduction, stock-based compensation, the U.S. federal research tax credit, and income earned in jurisdictions that are subject to taxes at rates lower than the U.S. federal statutory tax rate. Our effective tax rate for fiscal year 2024 was additionally benefited by the audit resolution.\n\nGiven our current and possible future earnings, we believe that we may release the valuation allowance associated with certain state deferred tax assets in the near term, which would decrease our income tax expense for the period the release is recorded. The timing and amount of the valuation allowance release could vary based on our assessment of all available information.\n\nRefer to Note 13 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for additional information.\n\nLiquidity and Capital Resources\n\nJan 26, 2025\t\tJan 28, 2024\n(In millions)\nCash and cash equivalents\t$\t8,589\t\t\t$\t7,280\nMarketable securities\t34,621\t\t\t18,704\nCash, cash equivalents, and marketable securities\t$\t43,210\t\t\t$\t25,984\n\n---\n\n[NVDA-2025-7-0016] NVDA FY2025 Item 7 (similitud 0.031)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nResearch and development expenses\t$\t12,914\t\t\t$\t8,675\t\t\t$\t4,239\t\t\t49\t%\n% of net revenue\t9.9\t%\t\t14.2\t%\nSales, general and administrative expenses\t3,491\t\t\t2,654\t\t\t837\t\t\t32\t%\n% of net revenue\t2.7\t%\t\t4.4\t%\nTotal operating expenses\t$\t16,405\t\t\t$\t11,329\t\t\t$\t5,076\t\t\t45\t%\n% of net revenue\t12.6\t%\t\t18.6\t%\n\nThe increases in research and development expenses for fiscal year 2025 were driven by a 32% increase in compensation and benefits, including stock-based compensation, reflecting employee growth and compensation increases, a 100% increase in compute and infrastructure, and a 234% increase in engineering development costs for new product introductions.\n\nThe increases in sales, general and administrative expenses for fiscal year 2025 were primarily driven by compensation and benefits, including stock-based compensation, reflecting employee growth and compensation increases.\n\nOther Income (Expense), Net",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_742501",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "ticker": "NVDA",
+       "query": "Net income fiscal year 2025 72,880 29,760",
+       "fiscal_year": 2025,
+       "item": "7"
+      },
+      "id": "call_981436",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2820,
+     "output_tokens": 115,
+     "total_tokens": 2935,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 54
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: '\"Consolidated Statements of Operations\" \"net income\" \"fiscal year ended\" 2025 \"72,880\" \"29,760\"')\n\n[NVDA-2025-7-0012] NVDA FY2025 Item 7 (similitud 0.033)\nResults of Operations\n\nA discussion regarding our financial condition and results of operations for fiscal year 2025 compared to fiscal year 2024 is presented below. A discussion regarding our financial condition and results of operations for fiscal year 2024 compared to fiscal year 2023 can be found under Item 7 in our Annual Report on Form 10-K for the fiscal year ended January 28, 2024, filed with the SEC on February 21, 2024, which is available free of charge on the SEC’s website at http://www.sec.gov and at our investor relations website, http://investor.nvidia.com.\n\nThe following table sets forth, for the periods indicated, certain items in our Consolidated Statements of Income expressed as a percentage of revenue.\n\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\nRevenue\t100.0\t%\t\t100.0\t%\nCost of revenue\t25.0\t\t\t27.3\nGross profit\t75.0\t\t\t72.7\nOperating expenses\nResearch and development\t9.9\t\t\t14.2\nSales, general and administrative\t2.7\t\t\t4.4\nTotal operating expenses\t12.6\t\t\t18.6\nOperating income\t62.4\t\t\t54.1\nInterest income\t1.4\t\t\t1.4\nInterest expense\t(0.2)\t\t\t(0.4)\nOther, net\t0.8\t\t\t0.4\nOther income (expense), net\t2.0\t\t\t1.4\nIncome before income tax\t64.4\t\t\t55.5\nIncome tax expense\t8.6\t\t\t6.6\nNet income\t55.8\t%\t\t48.9\t%\n\nReportable Segments\n\nRevenue by Reportable Segments\n\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nCompute & Networking\t$\t116,193\t\t\t$\t47,405\t\t\t$\t68,788\t\t\t145\t%\nGraphics\t14,304\t\t\t13,517\t\t\t787\t\t\t6\t%\nTotal\t$\t130,497\t\t\t$\t60,922\t\t\t$\t69,575\t\t\t114\t%\n\nOperating Income by Reportable Segments\n\n---\n\n[NVDA-2025-7-0019] NVDA FY2025 Item 7 (similitud 0.032)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\n(In millions)\nNet cash provided by operating activities\t$\t64,089\t\t\t$\t28,090\nNet cash used in investing activities\t$\t(20,421)\t\t\t$\t(10,566)\nNet cash used in financing activities\t$\t(42,359)\t\t\t$\t(13,633)\n\nOur investment policy requires the purchase of highly-rated fixed income securities, the diversification of investment types and credit exposures, and certain maturity limits on our portfolio.\n\nCash provided by operating activities increased in fiscal year 2025 compared to fiscal year 2024, due to growth in revenue.\n\nCash used in investing activities increased in fiscal year 2025 compared to fiscal year 2024, primarily driven by net purchases of marketable securities, and purchase of land, property and equipment.\n\nCash used in financing activities increased in fiscal year 2025 compared to fiscal year 2024, mainly due to higher share repurchases and higher tax payments related to RSUs.\n\n---\n\n[NVDA-2025-7-0022] NVDA FY2025 Item 7 (similitud 0.032)\nMaterial Cash Requirements and Other Obligations\n\nFor a description of our long-term debt, purchase obligations, and operating lease obligations, refer to Note 11, Note 12, and Note 17 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K, respectively.\n\nDuring fiscal year 2025 and fiscal year 2024, we spent $3.4 billion and $1.1 billion on capital expenditures, respectively. We expect to increase capital expenditures in fiscal year 2026 relative to fiscal year 2025 to support the future growth of our business.\n\nUnrecognized tax benefits of $2.2 billion, which includes related interest and penalties of $251 million, were recorded in non-current income tax payable at the end of fiscal year 2025. We are unable to estimate the timing of any potential tax liability, interest payments, or penalties in individual years due to uncertainties in the underlying income tax positions and the timing of the effective settlement of such tax positions. Refer to Note 13 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for further information.\n\nClimate Change\n\nTo date, there has been no material impact to our results of operations associated with global sustainability regulations, compliance, costs from sourcing renewable energy or climate-related business trends.\n\nAdoption of New and Recently Issued Accounting Pronouncements\n\nRefer to Note 1 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for a discussion of adoption of new and recently issued accounting pronouncements.\n\n---\n\n[NVDA-2025-7-0007] NVDA FY2025 Item 7 (similitud 0.031)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\tChange\n($ in millions, except per share data)\nRevenue\t$\t130,497\t\t\t$\t60,922\t\t\tUp 114%\nGross margin\t75.0\t%\t\t72.7\t%\t\tUp 2.3 pts\nOperating expenses\t$\t16,405\t\t\t$\t11,329\t\t\tUp 45%\nOperating income\t$\t81,453\t\t\t$\t32,972\t\t\tUp 147%\nNet income\t$\t72,880\t\t\t$\t29,760\t\t\tUp 145%\nNet income per diluted share\t$\t2.94\t\t\t$\t1.19\t\t\tUp 147%\n\nWe specialize in markets where our computing platforms can provide tremendous acceleration for applications. These platforms incorporate processors, interconnects, software, algorithms, systems, and services to deliver unique value. Our platforms address four large markets where our expertise is critical: Data Center, Gaming, Professional Visualization, and Automotive.\n\nRevenue for fiscal year 2025 was $130.5 billion, up 114% from a year ago.\n\nData Center revenue for fiscal year 2025 was up 142% from a year ago. The strong year-on-year growth was driven by demand for our Hopper architecture accelerated computing platform used for large language models, recommendation engines, and generative AI applications. We began shipping production systems of the Blackwell architecture in the fourth quarter of fiscal year 2025.\n\nGaming revenue for fiscal year 2025 was up 9% from a year ago, driven by sales of our GeForce RTX 40 Series GPUs.\n\nProfessional Visualization revenue for fiscal year 2025 was up 21% from a year ago, driven by the continued ramp of Ada RTX GPU workstations for use cases such as generative AI-powered design, simulation, and engineering.\n\nAutomotive revenue for fiscal year 2025 was up 55% from a year ago, driven by sales of our self-driving platforms.\n\nGross margin increased in fiscal year 2025 driven by a higher mix of Data Center revenue.\n\nOperating expenses for fiscal year 2025 were up 45% from a year ago, driven by higher compensation and benefits expenses due to employee growth and compensation increases, and engineering development, compute and infrastructure costs for new product introductions.\n\n---\n\n[NVDA-2025-7-0016] NVDA FY2025 Item 7 (similitud 0.031)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nResearch and development expenses\t$\t12,914\t\t\t$\t8,675\t\t\t$\t4,239\t\t\t49\t%\n% of net revenue\t9.9\t%\t\t14.2\t%\nSales, general and administrative expenses\t3,491\t\t\t2,654\t\t\t837\t\t\t32\t%\n% of net revenue\t2.7\t%\t\t4.4\t%\nTotal operating expenses\t$\t16,405\t\t\t$\t11,329\t\t\t$\t5,076\t\t\t45\t%\n% of net revenue\t12.6\t%\t\t18.6\t%\n\nThe increases in research and development expenses for fiscal year 2025 were driven by a 32% increase in compensation and benefits, including stock-based compensation, reflecting employee growth and compensation increases, a 100% increase in compute and infrastructure, and a 234% increase in engineering development costs for new product introductions.\n\nThe increases in sales, general and administrative expenses for fiscal year 2025 were primarily driven by compensation and benefits, including stock-based compensation, reflecting employee growth and compensation increases.\n\nOther Income (Expense), Net",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_981436",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "7",
+       "ticker": "NVDA",
+       "query": "net income revenue growth drivers data center",
+       "fiscal_year": 2025
+      },
+      "id": "call_1016882",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 3032,
+     "output_tokens": 110,
+     "total_tokens": 3142,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 65
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: '\"Management\\'s Discussion and Analysis\" \"data center\" \"revenue growth\" drivers \"net income\"')\n\n[NVDA-2025-7-0000] NVDA FY2025 Item 7 (similitud 0.032)\nItem 7. Management's Discussion and Analysis of Financial Condition and Results of Operations\n\nThe following discussion and analysis of our financial condition and results of operations should be read in conjunction with “Item 1A. Risk Factors,” our Consolidated Financial Statements and related Notes thereto, as well as other cautionary statements and risks described elsewhere in this Annual Report on Form 10-K, before deciding to purchase, hold, or sell shares of our common stock.\n\nOverview\n\nOur Company and Our Businesses\n\nNVIDIA pioneered accelerated computing to help solve the most challenging computational problems. Since our original focus on PC graphics, we have expanded to several other large and important computationally intensive fields. Fueled by the sustained demand for exceptional 3D graphics and the scale of the gaming market, NVIDIA has leveraged its GPU architecture to create platforms for scientific computing, AI, data science, AV, robotics, and digital twin applications.\n\nOur two operating segments are \"Compute & Networking\" and \"Graphics.\" Refer to Note 16 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for additional information.\n\nHeadquartered in Santa Clara, California, NVIDIA was incorporated in California in April 1993 and reincorporated in Delaware in April 1998.\n\nRecent Developments, Future Objectives and Challenges\n\n---\n\n[NVDA-2025-7-0007] NVDA FY2025 Item 7 (similitud 0.032)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\tChange\n($ in millions, except per share data)\nRevenue\t$\t130,497\t\t\t$\t60,922\t\t\tUp 114%\nGross margin\t75.0\t%\t\t72.7\t%\t\tUp 2.3 pts\nOperating expenses\t$\t16,405\t\t\t$\t11,329\t\t\tUp 45%\nOperating income\t$\t81,453\t\t\t$\t32,972\t\t\tUp 147%\nNet income\t$\t72,880\t\t\t$\t29,760\t\t\tUp 145%\nNet income per diluted share\t$\t2.94\t\t\t$\t1.19\t\t\tUp 147%\n\nWe specialize in markets where our computing platforms can provide tremendous acceleration for applications. These platforms incorporate processors, interconnects, software, algorithms, systems, and services to deliver unique value. Our platforms address four large markets where our expertise is critical: Data Center, Gaming, Professional Visualization, and Automotive.\n\nRevenue for fiscal year 2025 was $130.5 billion, up 114% from a year ago.\n\nData Center revenue for fiscal year 2025 was up 142% from a year ago. The strong year-on-year growth was driven by demand for our Hopper architecture accelerated computing platform used for large language models, recommendation engines, and generative AI applications. We began shipping production systems of the Blackwell architecture in the fourth quarter of fiscal year 2025.\n\nGaming revenue for fiscal year 2025 was up 9% from a year ago, driven by sales of our GeForce RTX 40 Series GPUs.\n\nProfessional Visualization revenue for fiscal year 2025 was up 21% from a year ago, driven by the continued ramp of Ada RTX GPU workstations for use cases such as generative AI-powered design, simulation, and engineering.\n\nAutomotive revenue for fiscal year 2025 was up 55% from a year ago, driven by sales of our self-driving platforms.\n\nGross margin increased in fiscal year 2025 driven by a higher mix of Data Center revenue.\n\nOperating expenses for fiscal year 2025 were up 45% from a year ago, driven by higher compensation and benefits expenses due to employee growth and compensation increases, and engineering development, compute and infrastructure costs for new product introductions.\n\n---\n\n[NVDA-2025-7-0013] NVDA FY2025 Item 7 (similitud 0.032)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nCompute & Networking\t$\t82,875\t\t\t$\t32,016\t\t\t$\t50,859\t\t\t159\t%\nGraphics\t5,085\t\t\t5,846\t\t\t(761)\t\t\t(13)\t%\nAll Other\t(6,507)\t\t\t(4,890)\t\t\t(1,617)\t\t\t33\t%\nTotal\t$\t81,453\t\t\t$\t32,972\t\t\t$\t48,481\t\t\t147\t%\n\nCompute & Networking revenue – The year over year increase was due to strong demand for our accelerated computing and AI solutions. Revenue from Data Center computing grew 162% driven primarily by demand for our Hopper computing platform used for large language models, recommendation engines, and generative AI applications. Revenue from Data Center networking grew 51% driven by Ethernet for AI revenue, which includes Spectrum-X end-to-end ethernet platform.\n\nGraphics revenue – The year over year increase was driven by sales of our GeForce RTX 40 Series GPUs.\n\nReportable segment operating income – The year over year increase in Compute & Networking segment operating income was driven by growth in revenue. The year over year decrease in Graphics segment operating income was driven by an increase of 44% in segment operating expenses, partially offset by growth in revenue.\n\nAll Other operating loss – The year over year increase was due to an increase in stock-based compensation expense reflecting employee growth and compensation increases.\n\nConcentration of Revenue\n\nWe refer to customers who purchase products directly from NVIDIA as direct customers, such as AIBs, distributors, ODMs, OEMs, and system integrators. We have certain customers that may purchase products directly from NVIDIA and may use either internal resources or third-party system integrators to complete their build. We also have indirect customers, who purchase products through our direct customers; indirect customers include CSPs, consumer internet companies, enterprises, and public sector entities.\n\nDirect Customers – Sales to direct customers which represented 10% or more of total revenue, all of which were primarily attributable to the Compute & Networking segment, are presented in the following table:\n\n---\n\n[NVDA-2025-7-0001] NVDA FY2025 Item 7 (similitud 0.032)\nDemand and Supply\n\nRevenue growth in fiscal year 2025 was driven by data center compute and networking platforms for accelerated computing and AI solutions. Demand for our Hopper architecture drove our significant growth for the full year. We began shipping production systems of the Blackwell architecture in the fourth quarter of fiscal year 2025.\n\nDemand estimates for our products, applications, and services can be incorrect and create volatility in our revenue or supply levels. We may not be able to generate significant revenue from them. Advancements in accelerated computing and generative AI models, along with the growth in model complexity and scale, have driven increased demand for our Data Center systems.\n\nWe continue to increase our supply and capacity purchases with existing and new suppliers to support our demand projections and increasing complexity of our data center products. With these additions, we have also entered and may continue to enter into prepaid manufacturing and capacity agreements to supply both current and future products. The increased purchase volumes and integration of new suppliers and contract manufacturers into our supply chain creates more complexity in managing multiple suppliers with variations in production planning, execution and logistics. Our expanding product portfolio and varying component compatibility and quality may lead to increased inventory levels. We have incurred and may in the future incur inventory provisions or impairments if our inventory or supply or capacity commitments exceed demand for our products or demand declines.\n\n---\n\n[NVDA-2025-7-0012] NVDA FY2025 Item 7 (similitud 0.030)\nResults of Operations\n\nA discussion regarding our financial condition and results of operations for fiscal year 2025 compared to fiscal year 2024 is presented below. A discussion regarding our financial condition and results of operations for fiscal year 2024 compared to fiscal year 2023 can be found under Item 7 in our Annual Report on Form 10-K for the fiscal year ended January 28, 2024, filed with the SEC on February 21, 2024, which is available free of charge on the SEC’s website at http://www.sec.gov and at our investor relations website, http://investor.nvidia.com.\n\nThe following table sets forth, for the periods indicated, certain items in our Consolidated Statements of Income expressed as a percentage of revenue.\n\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\nRevenue\t100.0\t%\t\t100.0\t%\nCost of revenue\t25.0\t\t\t27.3\nGross profit\t75.0\t\t\t72.7\nOperating expenses\nResearch and development\t9.9\t\t\t14.2\nSales, general and administrative\t2.7\t\t\t4.4\nTotal operating expenses\t12.6\t\t\t18.6\nOperating income\t62.4\t\t\t54.1\nInterest income\t1.4\t\t\t1.4\nInterest expense\t(0.2)\t\t\t(0.4)\nOther, net\t0.8\t\t\t0.4\nOther income (expense), net\t2.0\t\t\t1.4\nIncome before income tax\t64.4\t\t\t55.5\nIncome tax expense\t8.6\t\t\t6.6\nNet income\t55.8\t%\t\t48.9\t%\n\nReportable Segments\n\nRevenue by Reportable Segments\n\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nCompute & Networking\t$\t116,193\t\t\t$\t47,405\t\t\t$\t68,788\t\t\t145\t%\nGraphics\t14,304\t\t\t13,517\t\t\t787\t\t\t6\t%\nTotal\t$\t130,497\t\t\t$\t60,922\t\t\t$\t69,575\t\t\t114\t%\n\nOperating Income by Reportable Segments",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_1016882",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "cifra": 72880000000,
+       "cita": "Gross margin increased in fiscal year 2025 driven by a higher mix of Data Center revenue.",
+       "unidad": "USD",
+       "chunk_id": "NVDA-2025-7-0007",
+       "ejercicio": 2025,
+       "fuente": "ambas",
+       "ticker": "NVDA",
+       "respuesta": "El beneficio neto (NetIncomeLoss) de NVIDIA aumentó en 43.120.000.000 USD (un incremento del 144,89%), pasando de 29.760.000.000 USD en el ejercicio fiscal 2024 (FY2024) a 72.880.000.000 USD en el ejercicio fiscal 2025 (FY2025). Este fuerte crecimiento se vio impulsado principalmente por el aumento en los ingresos del segmento Data Center y la demanda de la arquitectura Hopper para aplicaciones de inteligencia artificial acelerada y modelos de lenguaje."
+      },
+      "id": "call_1033935",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 5519,
+     "output_tokens": 1280,
+     "total_tokens": 6799,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 1025
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='El beneficio neto (NetIncomeLoss) de NVIDIA aumentó en 43.120.000.000 USD (un incremento del 144,89%), pasando de 29.760.000.000 USD en el ejercicio fiscal 2024 (FY2024) a 72.880.000.000 USD en el ejercicio fiscal 2025 (FY2025). Este fuerte crecimiento se vio impulsado principalmente por el aumento en los ingresos del segmento Data Center y la demanda de la arquitectura Hopper para aplicaciones de inteligencia artificial acelerada y modelos de lenguaje.' cifra=72880000000.0 unidad='USD' ticker='NVDA' ejercicio=2025 fuente='ambas' cita='Gross margin increased in fiscal year 2025 driven by a higher mix of Data Center revenue.' chunk_id='NVDA-2025-7-0007'",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_1033935",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a6_cifras_texto"
+ }
+}

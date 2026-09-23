@@ -1,0 +1,406 @@
+{
+ "item": {
+  "id": "gY-012",
+  "pregunta": "¿Qué compañía redujo más su ratio de pasivo sobre activos entre FY2024 y FY2025, Apple o Meta?",
+  "familia": "multi_temporal",
+  "ticker": "AAPL",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "Apple lo redujo 4.92 pp (84.4 % → 79.5 %); Meta lo AUMENTÓ 6.81 pp. Convención: ticker=AAPL, cifra=reducción de Apple en pp.",
+  "cifra_esperada": 4.92,
+  "unidad": "pp",
+  "concept_xbrl": null,
+  "item_esperado": null,
+  "ancla_texto": null,
+  "ancla_inicio": null,
+  "ancla_fin": null,
+  "chunk_id_esperado": null,
+  "herramienta_esperada": [
+   "get_xbrl_fact"
+  ],
+  "autor": "grupo-X/adversario",
+  "nota": "8 llamadas a get_xbrl_fact + list_available = 9: rompe el límite de 8. Predicción: límite alcanzado. Convención v2 (alineada con el contrato del agente, que manda poner en `cifra` el valor XBRL del ejercicio más reciente y la variación en `respuesta`): se acepta la magnitud derivada o ese valor XBRL.",
+  "cifras_aceptables": [
+   4.92,
+   285508000000.0
+  ]
+ },
+ "rep": 1,
+ "thread_id": "a1_guardrails-rep1-gY-012",
+ "commit": "1e19c11",
+ "fecha": "2026-09-23T17:08:31",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "No se dispone de los datos completos para determinar qué compañía redujo más su ratio, debido a que la consulta del pasivo de Meta para FY2025 fue bloqueada por el límite de llamadas a herramientas. \n\nCon los datos obtenidos:\n- Apple (AAPL): En FY2024, sus activos fueron de 364.980.000.000 USD y sus pasivos de 308.030.000.000 USD (ratio pasivo/activos del 84,40%). En FY2025, sus activos fueron de 359.241.000.000 USD y sus pasivos de 285.508.000.000 USD (ratio pasivo/activos del 79,48%), lo que representa una reducción de 4,92 puntos porcentuales.\n- Meta (META): En FY2024, sus activos fueron de 276.054.000.000 USD y sus pasivos de 93.417.000.000 USD (ratio del 33,84%). Para FY2025 se reportaron activos por 366.021.000.000 USD, pero no fue posible recuperar el pasivo reportado antes de alcanzar el límite de llamadas.",
+   "cifra": null,
+   "unidad": null,
+   "ticker": null,
+   "ejercicio": null,
+   "fuente": "ninguna",
+   "cita": null,
+   "chunk_id": null
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "AAPL",
+     "concept": "Assets",
+     "fiscal_year": 2024
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "Assets",
+     "fiscal_year": 2025,
+     "ticker": "AAPL"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2024,
+     "concept": "Liabilities",
+     "ticker": "AAPL"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "Liabilities",
+     "fiscal_year": 2025,
+     "ticker": "AAPL"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "Assets",
+     "ticker": "META",
+     "fiscal_year": 2024
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "META",
+     "concept": "Assets",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2024,
+     "ticker": "META",
+     "concept": "Liabilities"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "Liabilities",
+     "fiscal_year": 2025,
+     "ticker": "META"
+    }
+   }
+  ],
+  "n_llamadas": 9,
+  "tokens_in": 7940,
+  "tokens_out": 2594,
+  "coste_usd": 0.0156825,
+  "latencia_s": 21.756688999943435,
+  "limite_alcanzado": true,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Qué compañía redujo más su ratio de pasivo sobre activos entre FY2024 y FY2025, Apple o Meta?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_919007",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1406,
+     "output_tokens": 108,
+     "total_tokens": 1514,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 98
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_919007",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "AAPL",
+       "concept": "Assets",
+       "fiscal_year": 2024
+      },
+      "id": "call_865835",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "Assets",
+       "fiscal_year": 2025,
+       "ticker": "AAPL"
+      },
+      "id": "call_865839",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2024,
+       "concept": "Liabilities",
+       "ticker": "AAPL"
+      },
+      "id": "call_865853",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "Liabilities",
+       "fiscal_year": 2025,
+       "ticker": "AAPL"
+      },
+      "id": "call_865859",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1761,
+     "output_tokens": 262,
+     "total_tokens": 2023,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 120
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2024 · Assets = 364,980,000,000 USD (cierre de ejercicio 2024-09-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_865835",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2025 · Assets = 359,241,000,000 USD (cierre de ejercicio 2025-09-27, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_865839",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2024 · Liabilities = 308,030,000,000 USD (cierre de ejercicio 2024-09-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_865853",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2025 · Liabilities = 285,508,000,000 USD (cierre de ejercicio 2025-09-27, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_865859",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "Assets",
+       "ticker": "META",
+       "fiscal_year": 2024
+      },
+      "id": "call_873304",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "META",
+       "concept": "Assets",
+       "fiscal_year": 2025
+      },
+      "id": "call_873310",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2024,
+       "ticker": "META",
+       "concept": "Liabilities"
+      },
+      "id": "call_873316",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "Liabilities",
+       "fiscal_year": 2025,
+       "ticker": "META"
+      },
+      "id": "call_873324",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2223,
+     "output_tokens": 167,
+     "total_tokens": 2390,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 25
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Tool call limit exceeded. Do not make additional tool calls.",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_873324",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2024 · Assets = 276,054,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_873304",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2025 · Assets = 366,021,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_873310",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2024 · Liabilities = 93,417,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_873316",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "fuente": "ninguna",
+       "cita": null,
+       "cifra": null,
+       "respuesta": "No se dispone de los datos completos para determinar qué compañía redujo más su ratio, debido a que la consulta del pasivo de Meta para FY2025 fue bloqueada por el límite de llamadas a herramientas. \n\nCon los datos obtenidos:\n- Apple (AAPL): En FY2024, sus activos fueron de 364.980.000.000 USD y sus pasivos de 308.030.000.000 USD (ratio pasivo/activos del 84,40%). En FY2025, sus activos fueron de 359.241.000.000 USD y sus pasivos de 285.508.000.000 USD (ratio pasivo/activos del 79,48%), lo que representa una reducción de 4,92 puntos porcentuales.\n- Meta (META): En FY2024, sus activos fueron de 276.054.000.000 USD y sus pasivos de 93.417.000.000 USD (ratio del 33,84%). Para FY2025 se reportaron activos por 366.021.000.000 USD, pero no fue posible recuperar el pasivo reportado antes de alcanzar el límite de llamadas.",
+       "ticker": null,
+       "ejercicio": null,
+       "unidad": null,
+       "chunk_id": null
+      },
+      "id": "call_273298",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2550,
+     "output_tokens": 2057,
+     "total_tokens": 4607,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 1687
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='No se dispone de los datos completos para determinar qué compañía redujo más su ratio, debido a que la consulta del pasivo de Meta para FY2025 fue bloqueada por el límite de llamadas a herramientas. \\n\\nCon los datos obtenidos:\\n- Apple (AAPL): En FY2024, sus activos fueron de 364.980.000.000 USD y sus pasivos de 308.030.000.000 USD (ratio pasivo/activos del 84,40%). En FY2025, sus activos fueron de 359.241.000.000 USD y sus pasivos de 285.508.000.000 USD (ratio pasivo/activos del 79,48%), lo que representa una reducción de 4,92 puntos porcentuales.\\n- Meta (META): En FY2024, sus activos fueron de 276.054.000.000 USD y sus pasivos de 93.417.000.000 USD (ratio del 33,84%). Para FY2025 se reportaron activos por 366.021.000.000 USD, pero no fue posible recuperar el pasivo reportado antes de alcanzar el límite de llamadas.' cifra=None unidad=None ticker=None ejercicio=None fuente='ninguna' cita=None chunk_id=None",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_273298",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a1_guardrails"
+ }
+}

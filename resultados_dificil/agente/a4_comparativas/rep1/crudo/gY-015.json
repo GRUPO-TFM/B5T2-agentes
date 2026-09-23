@@ -1,0 +1,508 @@
+{
+ "item": {
+  "id": "gY-015",
+  "pregunta": "¿Cuál de las seis compañías del corpus tuvo el mayor crecimiento de beneficio neto entre FY2024 y FY2025?",
+  "familia": "multi_temporal",
+  "ticker": "NVDA",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "NVIDIA, +144.9 %. Resto: AAPL +19.5 %, AMZN +31.1 %, GOOGL +32.0 %, META -3.1 %, MSFT +15.5 %. Convención: ticker=NVDA, cifra=crecimiento de NVDA en %.",
+  "cifra_esperada": 144.89,
+  "unidad": "%",
+  "concept_xbrl": null,
+  "item_esperado": null,
+  "ancla_texto": null,
+  "ancla_inicio": null,
+  "ancla_fin": null,
+  "chunk_id_esperado": null,
+  "herramienta_esperada": [
+   "get_xbrl_fact"
+  ],
+  "autor": "grupo-X/adversario",
+  "nota": "12 llamadas a get_xbrl_fact: rompe el límite de 8 con holgura. Predicción: límite alcanzado; el agente tendrá que responder con datos parciales o decir que no puede."
+ },
+ "rep": 1,
+ "thread_id": "a4_comparativas-rep1-gY-015",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "No es posible determinar cuál de las seis compañías tuvo el mayor crecimiento de beneficio neto entre FY2024 y FY2025 porque se alcanzó el límite de llamadas a herramientas antes de poder consultar los datos de todas las compañías. Solo se pudieron obtener los datos de AAPL (+19,49%, de 93.736M a 112.010M USD), AMZN (+31,09%, de 59.248M a 77.670M USD) y GOOGL (+32,01%, de 100.118M a 132.170M USD), mientras que para META (FY2025), MSFT (FY2024 y FY2025) y NVDA (FY2024 y FY2025) la herramienta devolvió que la llamada fue bloqueada por límite.",
+   "cifra": null,
+   "unidad": null,
+   "ticker": null,
+   "ejercicio": null,
+   "fuente": "ninguna",
+   "cita": null,
+   "chunk_id": null
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "NetIncomeLoss",
+     "fiscal_year": 2024,
+     "ticker": "AAPL"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "NetIncomeLoss",
+     "fiscal_year": 2025,
+     "ticker": "AAPL"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "AMZN",
+     "concept": "NetIncomeLoss",
+     "fiscal_year": 2024
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "ticker": "AMZN",
+     "concept": "NetIncomeLoss"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2024,
+     "ticker": "GOOGL",
+     "concept": "NetIncomeLoss"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "GOOGL",
+     "concept": "NetIncomeLoss",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2024,
+     "ticker": "META",
+     "concept": "NetIncomeLoss"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "NetIncomeLoss",
+     "ticker": "META",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2024,
+     "concept": "NetIncomeLoss",
+     "ticker": "MSFT"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "concept": "NetIncomeLoss",
+     "ticker": "MSFT"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "NetIncomeLoss",
+     "ticker": "NVDA",
+     "fiscal_year": 2024
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "NetIncomeLoss",
+     "ticker": "NVDA",
+     "fiscal_year": 2025
+    }
+   }
+  ],
+  "n_llamadas": 13,
+  "tokens_in": 9606,
+  "tokens_out": 3480,
+  "coste_usd": 0.0202545,
+  "latencia_s": 32.659321300219744,
+  "limite_alcanzado": true,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Cuál de las seis compañías del corpus tuvo el mayor crecimiento de beneficio neto entre FY2024 y FY2025?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_631853",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1737,
+     "output_tokens": 98,
+     "total_tokens": 1835,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 88
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_631853",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "NetIncomeLoss",
+       "fiscal_year": 2024,
+       "ticker": "AAPL"
+      },
+      "id": "call_227322",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "NetIncomeLoss",
+       "fiscal_year": 2025,
+       "ticker": "AAPL"
+      },
+      "id": "call_227324",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "AMZN",
+       "concept": "NetIncomeLoss",
+       "fiscal_year": 2024
+      },
+      "id": "call_227326",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "ticker": "AMZN",
+       "concept": "NetIncomeLoss"
+      },
+      "id": "call_227328",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2024,
+       "ticker": "GOOGL",
+       "concept": "NetIncomeLoss"
+      },
+      "id": "call_227336",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "GOOGL",
+       "concept": "NetIncomeLoss",
+       "fiscal_year": 2025
+      },
+      "id": "call_227338",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2082,
+     "output_tokens": 322,
+     "total_tokens": 2404,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 94
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2024 · NetIncomeLoss = 93,736,000,000 USD (cierre de ejercicio 2024-09-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_227322",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2025 · NetIncomeLoss = 112,010,000,000 USD (cierre de ejercicio 2025-09-27, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_227324",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AMZN FY2024 · NetIncomeLoss = 59,248,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_227326",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AMZN FY2025 · NetIncomeLoss = 77,670,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_227328",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "GOOGL FY2024 · NetIncomeLoss = 100,118,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_227336",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "GOOGL FY2025 · NetIncomeLoss = 132,170,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_227338",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2024,
+       "ticker": "META",
+       "concept": "NetIncomeLoss"
+      },
+      "id": "call_538170",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "NetIncomeLoss",
+       "ticker": "META",
+       "fiscal_year": 2025
+      },
+      "id": "call_538172",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2024,
+       "concept": "NetIncomeLoss",
+       "ticker": "MSFT"
+      },
+      "id": "call_538174",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "concept": "NetIncomeLoss",
+       "ticker": "MSFT"
+      },
+      "id": "call_538178",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "NetIncomeLoss",
+       "ticker": "NVDA",
+       "fiscal_year": 2024
+      },
+      "id": "call_538188",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "NetIncomeLoss",
+       "ticker": "NVDA",
+       "fiscal_year": 2025
+      },
+      "id": "call_538190",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2719,
+     "output_tokens": 243,
+     "total_tokens": 2962,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 17
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Tool call limit exceeded. Do not make additional tool calls.",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_538172",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "Tool call limit exceeded. Do not make additional tool calls.",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_538174",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "Tool call limit exceeded. Do not make additional tool calls.",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_538178",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "Tool call limit exceeded. Do not make additional tool calls.",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_538188",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "Tool call limit exceeded. Do not make additional tool calls.",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_538190",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2024 · NetIncomeLoss = 62,360,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_538170",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "fuente": "ninguna",
+       "cita": null,
+       "chunk_id": null,
+       "ticker": null,
+       "unidad": null,
+       "respuesta": "No es posible determinar cuál de las seis compañías tuvo el mayor crecimiento de beneficio neto entre FY2024 y FY2025 porque se alcanzó el límite de llamadas a herramientas antes de poder consultar los datos de todas las compañías. Solo se pudieron obtener los datos de AAPL (+19,49%, de 93.736M a 112.010M USD), AMZN (+31,09%, de 59.248M a 77.670M USD) y GOOGL (+32,01%, de 100.118M a 132.170M USD), mientras que para META (FY2025), MSFT (FY2024 y FY2025) y NVDA (FY2024 y FY2025) la herramienta devolvió que la llamada fue bloqueada por límite.",
+       "cifra": null,
+       "ejercicio": null
+      },
+      "id": "call_433899",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 3068,
+     "output_tokens": 2817,
+     "total_tokens": 5885,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 2559
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='No es posible determinar cuál de las seis compañías tuvo el mayor crecimiento de beneficio neto entre FY2024 y FY2025 porque se alcanzó el límite de llamadas a herramientas antes de poder consultar los datos de todas las compañías. Solo se pudieron obtener los datos de AAPL (+19,49%, de 93.736M a 112.010M USD), AMZN (+31,09%, de 59.248M a 77.670M USD) y GOOGL (+32,01%, de 100.118M a 132.170M USD), mientras que para META (FY2025), MSFT (FY2024 y FY2025) y NVDA (FY2024 y FY2025) la herramienta devolvió que la llamada fue bloqueada por límite.' cifra=None unidad=None ticker=None ejercicio=None fuente='ninguna' cita=None chunk_id=None",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_433899",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a4_comparativas"
+ }
+}

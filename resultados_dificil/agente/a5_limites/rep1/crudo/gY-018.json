@@ -1,0 +1,337 @@
+{
+ "item": {
+  "id": "gY-018",
+  "pregunta": "Según la sección de riesgo de mercado (Item 7A) del 10-K de FY2025 de Apple, ¿cuál de sus dos medidas de riesgo aumentó entre 2024 y 2025: la caída de valor de la cartera de inversión ante una subida de 100 pb o la pérdida máxima diaria estimada por su VaR de divisas? Da la cifra de 2025.",
+  "familia": "multi_temporal",
+  "ticker": "AAPL",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "Aumentó el VaR de divisas: 590 M USD en 2025 frente a 538 M en 2024. La sensibilidad a +100 pb bajó de 2.755 M a 2.416 M. cifra=590,000,000 USD, fuente='texto'.",
+  "cifra_esperada": 590000000.0,
+  "unidad": "USD",
+  "concept_xbrl": null,
+  "item_esperado": "7A",
+  "ancla_texto": "Based on the results of the model, the Company estimates, with 95% confidence, a maximum one-day loss in fair value of $590 million and $538 million as of September 27, 2025 and September 28, 2024, respectively.",
+  "ancla_inicio": null,
+  "ancla_fin": null,
+  "chunk_id_esperado": "AAPL-2025-7A-0001",
+  "herramienta_esperada": [],
+  "autor": null,
+  "fuente_esperada": null,
+  "nota": "Pensada para read_section: la respuesta necesita las DOS mitades del Item 7A (tabla de tipos en -0000, VaR en -0001) y la pregunta nombra la sección. No se exige read_section en la trayectoria: search_filings con item='7A' devuelve ambos fragmentos y también es válido; se observa con la columna uso_read_section. Mismo riesgo del verificador que gY-016."
+ },
+ "rep": 1,
+ "thread_id": "a5_limites-rep1-gY-018",
+ "commit": "4008f0a",
+ "fecha": "2026-09-23T18:56:47",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "Entre 2024 y 2025, la medida de riesgo que aumentó fue la pérdida máxima diaria estimada por su VaR de divisas, que se incrementó de $538 millones en 2024 a $590 millones en 2025 (la cifra de 2025 es de $590 millones). En cambio, la caída potencial del valor razonable de la cartera de inversión ante un aumento de 100 pb en los tipos de interés disminuyó, pasando de $2.755 millones en 2024 a $2.416 millones en 2025.",
+   "cifra": null,
+   "unidad": null,
+   "ticker": "AAPL",
+   "ejercicio": 2025,
+   "fuente": "texto",
+   "cita": "Based on the results of the model, the Company estimates, with 95% confidence, a maximum one-day loss in fair value of $590 million and $538 million as of September 27, 2025 and September 28, 2024, respectively.",
+   "chunk_id": "AAPL-2025-7A-0001"
+  },
+  "herramientas": [
+   "list_available",
+   "search_filings",
+   "read_section",
+   "search_filings",
+   "get_xbrl_fact"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "7A",
+     "query": "interest rate sensitivity 100 basis points foreign exchange VaR Value-at-Risk",
+     "fiscal_year": 2025,
+     "ticker": "AAPL"
+    }
+   },
+   {
+    "name": "read_section",
+    "args": {
+     "ticker": "AAPL",
+     "fiscal_year": 2025,
+     "item": "7A"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "ticker": "AAPL",
+     "query": "maximum one-day loss in fair value of $590 million and $538 million",
+     "fiscal_year": 2025,
+     "item": "7A"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "AAPL",
+     "concept": "ValueAtRisk",
+     "fiscal_year": 2025
+    }
+   }
+  ],
+  "n_llamadas": 5,
+  "tokens_in": 18913,
+  "tokens_out": 14418,
+  "coste_usd": 0.06825225,
+  "latencia_s": 134.18230889970437,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "Según la sección de riesgo de mercado (Item 7A) del 10-K de FY2025 de Apple, ¿cuál de sus dos medidas de riesgo aumentó entre 2024 y 2025: la caída de valor de la cartera de inversión ante una subida de 100 pb o la pérdida máxima diaria estimada por su VaR de divisas? Da la cifra de 2025.",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_1002646",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1803,
+     "output_tokens": 141,
+     "total_tokens": 1944,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 131
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_1002646",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "7A",
+       "query": "interest rate sensitivity 100 basis points foreign exchange VaR Value-at-Risk",
+       "fiscal_year": 2025,
+       "ticker": "AAPL"
+      },
+      "id": "call_880718",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2191,
+     "output_tokens": 375,
+     "total_tokens": 2566,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 319
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'Item 7A \"Quantitative and Qualitative Disclosures About Market Risk\" \"interest rate sensitivity\" \"100 basis points\" (\"foreign exchange\" OR \"foreign currency\") (\"Value-at-Risk\" OR \"VaR\")')\n\n[AAPL-2025-7A-0000] AAPL FY2025 Item 7A (similitud 0.033)\nItem 7A. Quantitative and Qualitative Disclosures About Market Risk\n\nThe Company is exposed to economic risk from interest rates and foreign exchange rates. The Company uses various strategies to manage these risks; however, they may still impact the Company’s consolidated financial statements.\n\nInterest Rate Risk\n\nThe Company is primarily exposed to fluctuations in U.S. interest rates and their impact on the Company’s investment portfolio and term debt. Increases in interest rates will negatively affect the fair value of the Company’s investment portfolio and increase the interest expense on the Company’s term debt. To protect against interest rate risk, the Company may use derivative instruments, offset interest rate–sensitive assets and liabilities, or control duration of the investment and term debt portfolios.\n\nThe following table sets forth potential impacts on the Company’s investment portfolio and term debt, including the effects of any associated derivatives, that would result from a hypothetical increase in relevant interest rates as of September 27, 2025 and September 28, 2024 (dollars in millions):\n\nInterest Rate Sensitive Instrument\t\tHypothetical Interest Rate Increase\t\tPotential Impact\t\t2025\t\t2024\nInvestment portfolio\t\t100 basis points, all tenors\t\tDecline in fair value\t\t$\t2,416\t\t\t$\t2,755\nTerm debt\t\t100 basis points, all tenors\t\tIncrease in annual interest expense\t\t$\t129\t\t\t$\t139\n\n---\n\n[AAPL-2025-7A-0001] AAPL FY2025 Item 7A (similitud 0.032)\nForeign Exchange Rate Risk\n\nThe Company’s exposure to foreign exchange rate risk relates primarily to the Company being a net receiver of currencies other than the U.S. dollar. Changes in exchange rates, and in particular a strengthening of the U.S. dollar, will negatively affect the Company’s net sales and gross margins as expressed in U.S. dollars. Fluctuations in exchange rates may also affect the fair values of certain of the Company’s assets and liabilities. To protect against foreign exchange rate risk, the Company may use derivative instruments, offset exposures, or adjust local currency pricing of its products and services. However, the Company may choose to not hedge certain foreign currency exposures for a variety of reasons, including accounting considerations or prohibitive cost.\n\nThe Company applied a value-at-risk (“VAR”) model to its foreign currency derivative positions to assess the potential impact of fluctuations in exchange rates. The VAR model used a Monte Carlo simulation. The VAR is the maximum expected loss in fair value, for a given confidence interval, to the Company’s foreign currency derivative positions due to adverse movements in rates. Based on the results of the model, the Company estimates, with 95% confidence, a maximum one-day loss in fair value of $590 million and $538 million as of September 27, 2025 and September 28, 2024, respectively. Changes in the Company’s underlying foreign currency exposures, which were excluded from the assessment, generally offset changes in the fair values of the Company’s foreign currency derivatives.\n\nApple Inc. | 2025 Form 10-K | 27",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_880718",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "read_section",
+      "args": {
+       "ticker": "AAPL",
+       "fiscal_year": 2025,
+       "item": "7A"
+      },
+      "id": "call_245878",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2629,
+     "output_tokens": 161,
+     "total_tokens": 2790,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 129
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk\n\nThe Company is exposed to economic risk from interest rates and foreign exchange rates. The Company uses various strategies to manage these risks; however, they may still impact the Company’s consolidated financial statements.\n\nInterest Rate Risk\n\nThe Company is primarily exposed to fluctuations in U.S. interest rates and their impact on the Company’s investment portfolio and term debt. Increases in interest rates will negatively affect the fair value of the Company’s investment portfolio and increase the interest expense on the Company’s term debt. To protect against interest rate risk, the Company may use derivative instruments, offset interest rate–sensitive assets and liabilities, or control duration of the investment and term debt portfolios.\n\nThe following table sets forth potential impacts on the Company’s investment portfolio and term debt, including the effects of any associated derivatives, that would result from a hypothetical increase in relevant interest rates as of September 27, 2025 and September 28, 2024 (dollars in millions):\n\nInterest Rate Sensitive Instrument\t\tHypothetical Interest Rate Increase\t\tPotential Impact\t\t2025\t\t2024\nInvestment portfolio\t\t100 basis points, all tenors\t\tDecline in fair value\t\t$\t2,416\t\t\t$\t2,755\nTerm debt\t\t100 basis points, all tenors\t\tIncrease in annual interest expense\t\t$\t129\t\t\t$\t139\n\nForeign Exchange Rate Risk\n\nThe Company’s exposure to foreign exchange rate risk relates primarily to the Company being a net receiver of currencies other than the U.S. dollar. Changes in exchange rates, and in particular a strengthening of the U.S. dollar, will negatively affect the Company’s net sales and gross margins as expressed in U.S. dollars. Fluctuations in exchange rates may also affect the fair values of certain of the Company’s assets and liabilities. To protect against foreign exchange rate risk, the Company may use derivative instruments, offset exposures, or adjust local currency pricing of its products and services. However, the Company may choose to not hedge certain foreign currency exposures for a variety of reasons, including accounting considerations or prohibitive cost.\n\nThe Company applied a value-at-risk (“VAR”) model to its foreign currency derivative positions to assess the potential impact of fluctuations in exchange rates. The VAR model used a Monte Carlo simulation. The VAR is the maximum expected loss in fair value, for a given confidence interval, to the Company’s foreign currency derivative positions due to adverse movements in rates. Based on the results of the model, the Company estimates, with 95% confidence, a maximum one-day loss in fair value of $590 million and $538 million as of September 27, 2025 and September 28, 2024, respectively. Changes in the Company’s underlying foreign currency exposures, which were excluded from the assessment, generally offset changes in the fair values of the Company’s foreign currency derivatives.\n\nApple Inc. | 2025 Form 10-K | 27",
+    "tool_calls": null,
+    "name": "read_section",
+    "tool_call_id": "call_245878",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "ticker": "AAPL",
+       "query": "maximum one-day loss in fair value of $590 million and $538 million",
+       "fiscal_year": 2025,
+       "item": "7A"
+      },
+      "id": "call_1072559",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 3437,
+     "output_tokens": 110,
+     "total_tokens": 3547,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 52
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'maximum one-day loss in fair value $590 million $538 million')\n\n[AAPL-2025-7A-0001] AAPL FY2025 Item 7A (similitud 0.033)\nForeign Exchange Rate Risk\n\nThe Company’s exposure to foreign exchange rate risk relates primarily to the Company being a net receiver of currencies other than the U.S. dollar. Changes in exchange rates, and in particular a strengthening of the U.S. dollar, will negatively affect the Company’s net sales and gross margins as expressed in U.S. dollars. Fluctuations in exchange rates may also affect the fair values of certain of the Company’s assets and liabilities. To protect against foreign exchange rate risk, the Company may use derivative instruments, offset exposures, or adjust local currency pricing of its products and services. However, the Company may choose to not hedge certain foreign currency exposures for a variety of reasons, including accounting considerations or prohibitive cost.\n\nThe Company applied a value-at-risk (“VAR”) model to its foreign currency derivative positions to assess the potential impact of fluctuations in exchange rates. The VAR model used a Monte Carlo simulation. The VAR is the maximum expected loss in fair value, for a given confidence interval, to the Company’s foreign currency derivative positions due to adverse movements in rates. Based on the results of the model, the Company estimates, with 95% confidence, a maximum one-day loss in fair value of $590 million and $538 million as of September 27, 2025 and September 28, 2024, respectively. Changes in the Company’s underlying foreign currency exposures, which were excluded from the assessment, generally offset changes in the fair values of the Company’s foreign currency derivatives.\n\nApple Inc. | 2025 Form 10-K | 27\n\n---\n\n[AAPL-2025-7A-0000] AAPL FY2025 Item 7A (similitud 0.032)\nItem 7A. Quantitative and Qualitative Disclosures About Market Risk\n\nThe Company is exposed to economic risk from interest rates and foreign exchange rates. The Company uses various strategies to manage these risks; however, they may still impact the Company’s consolidated financial statements.\n\nInterest Rate Risk\n\nThe Company is primarily exposed to fluctuations in U.S. interest rates and their impact on the Company’s investment portfolio and term debt. Increases in interest rates will negatively affect the fair value of the Company’s investment portfolio and increase the interest expense on the Company’s term debt. To protect against interest rate risk, the Company may use derivative instruments, offset interest rate–sensitive assets and liabilities, or control duration of the investment and term debt portfolios.\n\nThe following table sets forth potential impacts on the Company’s investment portfolio and term debt, including the effects of any associated derivatives, that would result from a hypothetical increase in relevant interest rates as of September 27, 2025 and September 28, 2024 (dollars in millions):\n\nInterest Rate Sensitive Instrument\t\tHypothetical Interest Rate Increase\t\tPotential Impact\t\t2025\t\t2024\nInvestment portfolio\t\t100 basis points, all tenors\t\tDecline in fair value\t\t$\t2,416\t\t\t$\t2,755\nTerm debt\t\t100 basis points, all tenors\t\tIncrease in annual interest expense\t\t$\t129\t\t\t$\t139",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_1072559",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "AAPL",
+       "concept": "ValueAtRisk",
+       "fiscal_year": 2025
+      },
+      "id": "call_764746",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4298,
+     "output_tokens": 173,
+     "total_tokens": 4471,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 136
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "AAPL no reportó 'ValueAtRisk' en FY2025. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, GrossProfit, Liabilities, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, ResearchAndDevelopmentExpense, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_764746",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "unidad": null,
+       "cita": "Based on the results of the model, the Company estimates, with 95% confidence, a maximum one-day loss in fair value of $590 million and $538 million as of September 27, 2025 and September 28, 2024, respectively.",
+       "fuente": "texto",
+       "respuesta": "Entre 2024 y 2025, la medida de riesgo que aumentó fue la pérdida máxima diaria estimada por su VaR de divisas, que se incrementó de $538 millones en 2024 a $590 millones en 2025 (la cifra de 2025 es de $590 millones). En cambio, la caída potencial del valor razonable de la cartera de inversión ante un aumento de 100 pb en los tipos de interés disminuyó, pasando de $2.755 millones en 2024 a $2.416 millones en 2025.",
+       "ejercicio": 2025,
+       "chunk_id": "AAPL-2025-7A-0001",
+       "cifra": null,
+       "ticker": "AAPL"
+      },
+      "id": "call_945147",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4555,
+     "output_tokens": 13458,
+     "total_tokens": 18013,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 13176
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='Entre 2024 y 2025, la medida de riesgo que aumentó fue la pérdida máxima diaria estimada por su VaR de divisas, que se incrementó de $538 millones en 2024 a $590 millones en 2025 (la cifra de 2025 es de $590 millones). En cambio, la caída potencial del valor razonable de la cartera de inversión ante un aumento de 100 pb en los tipos de interés disminuyó, pasando de $2.755 millones en 2024 a $2.416 millones en 2025.' cifra=None unidad=None ticker='AAPL' ejercicio=2025 fuente='texto' cita='Based on the results of the model, the Company estimates, with 95% confidence, a maximum one-day loss in fair value of $590 million and $538 million as of September 27, 2025 and September 28, 2024, respectively.' chunk_id='AAPL-2025-7A-0001'",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_945147",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a5_limites"
+ }
+}

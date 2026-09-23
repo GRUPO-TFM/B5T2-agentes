@@ -1,0 +1,57 @@
+golden,arquitectura,metrica,media,min,max,reps,fuente
+original,baseline,acierto,0.6333333333333333,0.6,0.65,3,agente
+original,baseline,recall@5,0.5,0.5,0.5,3,agente
+original,baseline,coste medio (¢),1.63645875,1.23757125,2.15844375,3,agente
+original,baseline,latencia media (s),20.325058958296115,17.193255174965817,22.124426509952173,3,agente
+original,a1_guardrails,acierto,0.75,0.75,0.75,3,agente
+original,a1_guardrails,recall@5,0.5,0.5,0.5,3,agente
+original,a1_guardrails,coste medio (¢),1.4092149999999999,1.2709237500000001,1.4979112499999998,3,agente
+original,a1_guardrails,latencia media (s),17.14722912332509,16.13293924999889,18.143752669962122,3,agente
+original,a2_retrieval,acierto,0.75,0.75,0.75,3,agente
+original,a2_retrieval,recall@5,0.6428571428571429,0.6428571428571429,0.6428571428571429,3,agente
+original,a2_retrieval,coste medio (¢),1.44290375,1.4104612499999998,1.4768999999999999,3,agente
+original,a2_retrieval,latencia media (s),29.401346493318368,27.236294575035572,32.49745179999154,3,agente
+original,a3_hibrido,acierto,0.7666666666666666,0.75,0.8,3,agente
+original,a3_hibrido,recall@5,0.8571428571428571,0.8571428571428571,0.8571428571428571,3,agente
+original,a3_hibrido,coste medio (¢),1.3983800000000002,1.3154287500000001,1.4867287499999997,3,agente
+original,a3_hibrido,latencia media (s),23.91699472833352,22.60366408000027,25.79025840000031,3,agente
+original,a4_comparativas,acierto,1.0,1.0,1.0,3,agente
+original,a4_comparativas,recall@5,0.8571428571428571,0.8571428571428571,0.8571428571428571,3,agente
+original,a4_comparativas,coste medio (¢),1.59056375,1.5543975,1.6303612500000002,3,agente
+original,a4_comparativas,latencia media (s),48.27912326664821,40.92137960998225,51.9853886700108,3,agente
+original,a5_limites,acierto,1.0,1.0,1.0,1,agente
+original,a5_limites,recall@5,0.8571428571428571,0.8571428571428571,0.8571428571428571,1,agente
+original,a5_limites,coste medio (¢),1.4738175,1.4738175,1.4738175,1,agente
+original,a5_limites,latencia media (s),49.68164403995361,49.68164403995361,49.68164403995361,1,agente
+original,a6_cifras_texto,acierto,1.0,1.0,1.0,1,agente
+original,a6_cifras_texto,recall@5,0.8571428571428571,0.8571428571428571,0.8571428571428571,1,agente
+original,a6_cifras_texto,coste medio (¢),1.8587475000000002,1.8587475000000002,1.8587475000000002,1,agente
+original,a6_cifras_texto,latencia media (s),39.35407750001177,39.35407750001177,39.35407750001177,1,agente
+dificil,baseline,acierto,0.6111111111111112,0.6111111111111112,0.6111111111111112,1,agente
+dificil,baseline,recall@5,0.75,0.75,0.75,1,retriever
+dificil,baseline,coste medio (¢),1.4574708333333333,1.4574708333333333,1.4574708333333333,1,agente
+dificil,baseline,latencia media (s),23.34126915011762,23.34126915011762,23.34126915011762,1,agente
+dificil,a1_guardrails,acierto,0.7222222222222222,0.7222222222222222,0.7222222222222222,1,agente
+dificil,a1_guardrails,recall@5,0.75,0.75,0.75,1,retriever
+dificil,a1_guardrails,coste medio (¢),1.7743749999999998,1.7743749999999998,1.7743749999999998,1,agente
+dificil,a1_guardrails,latencia media (s),25.42872091113693,25.42872091113693,25.42872091113693,1,agente
+dificil,a2_retrieval,acierto,0.7222222222222222,0.7222222222222222,0.7222222222222222,1,agente
+dificil,a2_retrieval,recall@5,1.0,1.0,1.0,1,retriever
+dificil,a2_retrieval,coste medio (¢),1.7546458333333335,1.7546458333333335,1.7546458333333335,1,agente
+dificil,a2_retrieval,latencia media (s),34.72922497214232,34.72922497214232,34.72922497214232,1,agente
+dificil,a3_hibrido,acierto,0.7222222222222222,0.7222222222222222,0.7222222222222222,1,agente
+dificil,a3_hibrido,recall@5,1.0,1.0,1.0,1,retriever
+dificil,a3_hibrido,coste medio (¢),1.9135125,1.9135125,1.9135125,1,agente
+dificil,a3_hibrido,latencia media (s),39.91392478880981,39.91392478880981,39.91392478880981,1,agente
+dificil,a4_comparativas,acierto,0.7222222222222222,0.7222222222222222,0.7222222222222222,1,agente
+dificil,a4_comparativas,recall@5,1.0,1.0,1.0,1,retriever
+dificil,a4_comparativas,coste medio (¢),1.8895875,1.8895875,1.8895875,1,agente
+dificil,a4_comparativas,latencia media (s),39.12673328325359,39.12673328325359,39.12673328325359,1,agente
+dificil,a5_limites,acierto,0.8333333333333334,0.8333333333333334,0.8333333333333334,1,agente
+dificil,a5_limites,recall@5,1.0,1.0,1.0,1,retriever
+dificil,a5_limites,coste medio (¢),2.3445000000000005,2.3445000000000005,2.3445000000000005,1,agente
+dificil,a5_limites,latencia media (s),53.68375793337408,53.68375793337408,53.68375793337408,1,agente
+dificil,a6_cifras_texto,acierto,0.9444444444444444,0.9444444444444444,0.9444444444444444,1,agente
+dificil,a6_cifras_texto,recall@5,1.0,1.0,1.0,1,retriever
+dificil,a6_cifras_texto,coste medio (¢),2.2469,2.2469,2.2469,1,agente
+dificil,a6_cifras_texto,latencia media (s),46.58986865007642,46.58986865007642,46.58986865007642,1,agente

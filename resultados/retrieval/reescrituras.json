@@ -1,0 +1,1838 @@
+{
+ "gX-007": {
+  "pregunta": "¿Cómo describe NVIDIA la situación competitiva del mercado chino en su 10-K de FY2025?",
+  "consulta": "NVIDIA Fiscal 2025 Form 10-K China competition competitive environment competitors",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-008": {
+  "pregunta": "¿Qué demanda antimonopolio del DOJ menciona Alphabet en sus factores de riesgo de FY2025?",
+  "consulta": "Alphabet Item 1A Risk Factors Department of Justice antitrust litigation",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-009": {
+  "pregunta": "¿Qué obligaciones concretas dice Meta que le impone la DMA europea en FY2025?",
+  "consulta": "Meta Platforms Digital Markets Act DMA gatekeeper obligations compliance requirements European Union 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-010": {
+  "pregunta": "¿Qué riesgo de desastres naturales declara Apple sobre sus instalaciones y las de sus proveedores en FY2025?",
+  "consulta": "Apple 10-K Item 1A Risk Factors natural disasters disruption facilities suppliers contract manufacturers 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-011": {
+  "pregunta": "¿Qué inversión en capital anticipa Meta para 2026 según su MD&A de FY2025?",
+  "consulta": "Meta Platforms capital expenditures anticipate expect 2026 MD&A",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-012": {
+  "pregunta": "¿Qué análisis de sensibilidad dice NVIDIA haber realizado sobre su cartera de inversión en FY2025?",
+  "consulta": "NVIDIA fiscal 2025 sensitivity analysis marketable securities investment portfolio market risk",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-013": {
+  "pregunta": "¿Cuánto crecieron los ingresos de Microsoft entre FY2024 y FY2025?",
+  "consulta": "Microsoft revenue increased fiscal year 2025 compared to 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-014": {
+  "pregunta": "¿Cuánto aumentó el beneficio neto de NVIDIA entre FY2024 y FY2025?",
+  "consulta": "NVIDIA net income increased fiscal 2025 compared to fiscal 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-015": {
+  "pregunta": "¿Cuánto crecieron los ingresos de Alphabet entre FY2024 y FY2025?",
+  "consulta": "Alphabet revenue increased 2024 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-016": {
+  "pregunta": "El beneficio neto de Meta bajó entre FY2024 y FY2025 pese a subir el resultado de explotación: ¿cuánto bajó y por qué?",
+  "consulta": "Meta Platforms net income decreased income from operations increased 2025 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-017": {
+  "pregunta": "¿Cuánto crecieron las ventas netas de Apple entre FY2024 y FY2025?",
+  "consulta": "Apple net sales increased 2025 compared to 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-018": {
+  "pregunta": "¿Cuánto creció el flujo de caja de explotación de Amazon entre FY2024 y FY2025?",
+  "consulta": "Amazon net cash provided by operating activities increased 2024 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-019": {
+  "pregunta": "El BPA diluido de NVIDIA pasó de 11,93 en FY2024 a 2,94 en FY2025: ¿significa eso que ganó menos por acción?",
+  "consulta": "NVIDIA diluted net income per share fiscal 2025 fiscal 2024 stock split",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gX-020": {
+  "pregunta": "¿Cuánto crecieron los ingresos de Meta entre FY2024 y FY2025, y cómo se repartió ese crecimiento por regiones?",
+  "consulta": "Meta Platforms revenue increased 2025 compared to 2024 geographic region",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competitive position competitors market export controls": {
+  "pregunta": "China competitive position competitors market export controls",
+  "consulta": "China \"competitive position\" competition \"export controls\" \"Item 1A\" \"Risk Factors",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competitive position market share export restrictions": {
+  "pregunta": "China competitive position market share export restrictions",
+  "consulta": "China \"competitive position\" \"market share\" \"export controls\" \"Item 1A\" \"Risk Factors",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"China-based competitors\" or competitors in China": {
+  "pregunta": "\"China-based competitors\" or competitors in China",
+  "consulta": "China-based competitors\" OR \"competitors in China\" OR \"Chinese competitors",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"market in China for datacenter solutions remains competitive\"": {
+  "pregunta": "\"market in China for datacenter solutions remains competitive\"",
+  "consulta": "data center\" China \"highly competitive",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:DOJ Department of Justice antitrust lawsuit search ad tech": {
+  "pregunta": "DOJ Department of Justice antitrust lawsuit search ad tech",
+  "consulta": "Department of Justice\" antitrust lawsuit OR litigation \"search\" \"advertising technology",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Digital Markets Act DMA obligations": {
+  "pregunta": "Digital Markets Act DMA obligations",
+  "consulta": "Digital Markets Act\" OR \"DMA\" gatekeeper obligations regulatory compliance \"Item 1A",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"Digital Markets Act\" gatekeeper \"obligations\" OR \"requirements\"": {
+  "pregunta": "\"Digital Markets Act\" gatekeeper \"obligations\" OR \"requirements\"",
+  "consulta": "Digital Markets Act\" AND gatekeeper AND (obligations OR requirements OR compliance)",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Digital Markets Act DMA": {
+  "pregunta": "Digital Markets Act DMA",
+  "consulta": "Digital Markets Act",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:natural disasters facilities suppliers earthquakes climate change": {
+  "pregunta": "natural disasters facilities suppliers earthquakes climate change",
+  "consulta": "Item 1A\" \"Risk Factors\" \"natural disasters\" earthquakes \"climate change\" facilities suppliers \"business interruption",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:capital expenditures 2026 anticipate expect": {
+  "pregunta": "capital expenditures 2026 anticipate expect",
+  "consulta": "MD&A \"Liquidity and Capital Resources\" \"capital expenditures\" (expect OR anticipate) 2026",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:sensitivity analysis investment portfolio equity interest rate": {
+  "pregunta": "sensitivity analysis investment portfolio equity interest rate",
+  "consulta": "Item 7A\" \"Quantitative and Qualitative Disclosures About Market Risk\" \"sensitivity analysis\" \"interest rate risk\" \"equity price risk\" \"investment portfolio",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:provision for income taxes effective tax rate net income decreased": {
+  "pregunta": "provision for income taxes effective tax rate net income decreased",
+  "consulta": "provision for income taxes effective tax rate net income decreased",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:stock split ten-for-one forward stock split Earnings Per Share": {
+  "pregunta": "stock split ten-for-one forward stock split Earnings Per Share",
+  "consulta": "ten-for-one forward stock split\" OR \"10-for-1 forward stock split\" \"earnings per share\" retroactively adjusted",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:stock split June 2024 ten-for-one": {
+  "pregunta": "stock split June 2024 ten-for-one",
+  "consulta": "ten-for-one forward stock split\" OR \"ten-for-one stock split\" \"June 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"ten-for-one\"": {
+  "pregunta": "\"ten-for-one\"",
+  "consulta": "ten-for-one stock split",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"Note 4\" \"Net Income Per Share\"": {
+  "pregunta": "\"Note 4\" \"Net Income Per Share\"",
+  "consulta": "Note 4\" \"Net Income Per Share",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"ten-for-one\" OR \"stock split\"": {
+  "pregunta": "\"ten-for-one\" OR \"stock split\"",
+  "consulta": "ten-for-one\" OR \"stock split",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:revenue by user geography or regional breakdown growth": {
+  "pregunta": "revenue by user geography or regional breakdown growth",
+  "consulta": "net sales\" OR \"revenues\" by \"geographic region\" OR \"geographic area",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Note 2 Revenue revenue disaggregated by geography United States": {
+  "pregunta": "Note 2 Revenue revenue disaggregated by geography United States",
+  "consulta": "disaggregated revenue\" \"geographic region\" \"United States\" Note Revenue",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competitive landscape competition competitors market share export controls": {
+  "pregunta": "China competitive landscape competition competitors market share export controls",
+  "consulta": "Item 1A\" \"Risk Factors\" China competition \"market share\" \"export controls",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competitive position market share export controls Data Center revenue": {
+  "pregunta": "China competitive position market share export controls Data Center revenue",
+  "consulta": "China \"export controls\" \"Data Center\" (\"net sales\" OR revenue) \"competitive position\" \"market share",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:competition competitors \"China\" Huawei domestic alternatives": {
+  "pregunta": "competition competitors \"China\" Huawei domestic alternatives",
+  "consulta": "competition \"China\" (Huawei OR \"domestic competitors\" OR \"local competitors\")",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Competition could adversely impact our market share and financial results China competitors": {
+  "pregunta": "Competition could adversely impact our market share and financial results China competitors",
+  "consulta": "Item 1A Risk Factors competition could adversely affect our business, financial condition and results of operations market share competitors in China",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"Competition could adversely impact our market share\"": {
+  "pregunta": "\"Competition could adversely impact our market share\"",
+  "consulta": "competition could adversely affect our market share",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:DOJ Department of Justice antitrust lawsuit": {
+  "pregunta": "DOJ Department of Justice antitrust lawsuit",
+  "consulta": "DOJ Department of Justice antitrust lawsuit",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Digital Markets Act DMA obligations requirements gatekeeper": {
+  "pregunta": "Digital Markets Act DMA obligations requirements gatekeeper",
+  "consulta": "Digital Markets Act\" DMA gatekeeper compliance obligations regulatory requirements \"Item 1A\" \"Risk Factors",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:gatekeeper gatekeepers": {
+  "pregunta": "gatekeeper gatekeepers",
+  "consulta": "gatekeeper\" OR \"gatekeepers\" OR \"Digital Markets Act",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:sensitivity analysis investment portfolio interest rate equity price market risk": {
+  "pregunta": "sensitivity analysis investment portfolio interest rate equity price market risk",
+  "consulta": "Item 7A\" \"Quantitative and Qualitative Disclosures About Market Risk\" \"sensitivity analysis\" \"interest rate risk\" \"equity price risk\" \"investment portfolio",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:equity investment sensitivity analysis": {
+  "pregunta": "equity investment sensitivity analysis",
+  "consulta": "Item 7A \"equity price risk\" \"sensitivity analysis",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Total net sales increased percent 2025 2024": {
+  "pregunta": "Total net sales increased percent 2025 2024",
+  "consulta": "MD&A \"total net sales increased\" percent \"2025 compared to 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:stock split diluted earnings per share": {
+  "pregunta": "stock split diluted earnings per share",
+  "consulta": "stock split diluted earnings per share",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:ten-for-one stock split common stock": {
+  "pregunta": "ten-for-one stock split common stock",
+  "consulta": "ten-for-one stock split common stock",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"split\" \"ten-for-one\" OR \"10-for-1\"": {
+  "pregunta": "\"split\" \"ten-for-one\" OR \"10-for-1\"",
+  "consulta": "stock split\" AND (\"10-for-1\" OR \"ten-for-one\")",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"Note 1\" OR \"Note 14\" \"split\"": {
+  "pregunta": "\"Note 1\" OR \"Note 14\" \"split\"",
+  "consulta": "(\"Note 1\" OR \"Note 14\") \"stock split",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"Note 1\" \"stock split\"": {
+  "pregunta": "\"Note 1\" \"stock split\"",
+  "consulta": "Note 1\" \"stock split",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:revenue by geographic region user geography": {
+  "pregunta": "revenue by geographic region user geography",
+  "consulta": "revenues by geographic region\" OR \"net sales by geographic region",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Note 2 Revenue geographic information United States Europe Asia-Pacific": {
+  "pregunta": "Note 2 Revenue geographic information United States Europe Asia-Pacific",
+  "consulta": "Note 2\" \"Revenue\" \"geographic region\" \"United States\" Europe \"Asia-Pacific",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competitive position competition export controls market": {
+  "pregunta": "China competitive position competition export controls market",
+  "consulta": "China\" \"export controls\" \"competitive position\" \"Item 1A\" \"Risk Factors",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China Data Center revenue competition competitors": {
+  "pregunta": "China Data Center revenue competition competitors",
+  "consulta": "Data Center\" China (\"net sales\" OR \"revenues\") (competition OR competitors) \"Item 1A Risk Factors\" \"geographic region",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China-based competitors Chinese competitors domestic alternatives": {
+  "pregunta": "China-based competitors Chinese competitors domestic alternatives",
+  "consulta": "China-based competitors\" OR \"Chinese competitors\" OR \"domestic competitors in China\" OR \"local competitors in China",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Department of Justice antitrust DOJ lawsuit": {
+  "pregunta": "Department of Justice antitrust DOJ lawsuit",
+  "consulta": "Department of Justice\" \"Antitrust Division\" antitrust litigation \"Item 3. Legal Proceedings",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Digital Markets Act DMA obligations gatekeeper": {
+  "pregunta": "Digital Markets Act DMA obligations gatekeeper",
+  "consulta": "Digital Markets Act\" gatekeeper obligations",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:DMA Digital Markets Act": {
+  "pregunta": "DMA Digital Markets Act",
+  "consulta": "Digital Markets Act\" (\"DMA\") \"Item 1A\" \"Risk Factors\" \"European Union",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"Digital Markets Act\"": {
+  "pregunta": "\"Digital Markets Act\"",
+  "consulta": "Digital Markets Act",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:European Commission subscription for no ads model DMA": {
+  "pregunta": "European Commission subscription for no ads model DMA",
+  "consulta": "European Commission\" \"Digital Markets Act\" (\"subscription for no ads\" OR \"ad-free subscription\" OR \"pay or consent\")",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:capital expenditures 2026 anticipate range": {
+  "pregunta": "capital expenditures 2026 anticipate range",
+  "consulta": "capital expenditures\" (\"fiscal 2026\" OR \"fiscal year 2026\") (expect OR anticipate) range",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:anticipate capital expenditures": {
+  "pregunta": "anticipate capital expenditures",
+  "consulta": "anticipate capital expenditures",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:sensitivity analysis investment portfolio marketable securities interest rate risk": {
+  "pregunta": "sensitivity analysis investment portfolio marketable securities interest rate risk",
+  "consulta": "Item 7A \"sensitivity analysis\" \"interest rate risk\" \"marketable securities",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:provision for income taxes net income decreased operating income": {
+  "pregunta": "provision for income taxes net income decreased operating income",
+  "consulta": "provision for income taxes net income decreased operating income",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:stock split ten-for-one forward per share": {
+  "pregunta": "stock split ten-for-one forward per share",
+  "consulta": "ten-for-one forward stock split\" OR \"10-for-1 forward stock split\" \"per share",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"stock split\"": {
+  "pregunta": "\"stock split\"",
+  "consulta": "stock split",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"Note 4\" OR \"Note 1\" \"stock split\"": {
+  "pregunta": "\"Note 4\" OR \"Note 1\" \"stock split\"",
+  "consulta": "(\"Note 1\" OR \"Note 4\") AND \"stock split",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"Note 4 - Net Income Per Share\"": {
+  "pregunta": "\"Note 4 - Net Income Per Share\"",
+  "consulta": "Note 4 - Net Income Per Share",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:revenue by geographic region United States Europe Asia-Pacific Rest of World": {
+  "pregunta": "revenue by geographic region United States Europe Asia-Pacific Rest of World",
+  "consulta": "revenue by geographic region United States Europe Asia-Pacific Rest of World",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Note Revenue disaggregated by geography United States Europe Asia-Pacific Rest of World": {
+  "pregunta": "Note Revenue disaggregated by geography United States Europe Asia-Pacific Rest of World",
+  "consulta": "Disaggregation of Revenue\" \"geographic region\" \"United States\" Europe \"Asia-Pacific\" \"Rest of World",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competitive market competition export controls competitive position": {
+  "pregunta": "China competitive market competition export controls competitive position",
+  "consulta": "China \"export controls\" \"competitive position\" \"Item 1A\" \"Risk Factors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competition market share Data Center export controls": {
+  "pregunta": "China competition market share Data Center export controls",
+  "consulta": "\"Item 1A\" \"Risk Factors\" \"export controls\" China \"Data Center\" competition \"market share\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competitors competitive position export controls domestic competitors": {
+  "pregunta": "China competitors competitive position export controls domestic competitors",
+  "consulta": "China \"export controls\" \"competitive position\" (\"domestic competitors\" OR \"local competitors\") \"Risk Factors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Huawei competition competitors China": {
+  "pregunta": "Huawei competition competitors China",
+  "consulta": "Huawei competition \"Item 1A\" \"Risk Factors\" China",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Department of Justice DOJ antitrust lawsuit": {
+  "pregunta": "Department of Justice DOJ antitrust lawsuit",
+  "consulta": "\"Department of Justice\" antitrust litigation \"Legal Proceedings\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"Digital Markets Act\" OR \"DMA\" gatekeeper interoperability data combination": {
+  "pregunta": "\"Digital Markets Act\" OR \"DMA\" gatekeeper interoperability data combination",
+  "consulta": "(\"Digital Markets Act\" OR \"DMA\") AND \"gatekeeper\" AND (interoperability OR \"data combination\" OR \"data sharing\")",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Digital Markets Act DMA gatekeeper": {
+  "pregunta": "Digital Markets Act DMA gatekeeper",
+  "consulta": "\"Digital Markets Act\" DMA gatekeeper \"Item 1A\" \"Risk Factors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"combination of data across services\" \"DMA\"": {
+  "pregunta": "\"combination of data across services\" \"DMA\"",
+  "consulta": "(\"Digital Markets Act\" OR \"DMA\") (\"combining data\" OR \"combination of data\" OR \"combine data\") \"across services\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:sensitivity analysis investment portfolio interest rate": {
+  "pregunta": "sensitivity analysis investment portfolio interest rate",
+  "consulta": "Item 7A \"interest rate risk\" \"sensitivity analysis\" \"investment portfolio\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:revenue increased percent driven by Intelligent Cloud Productivity and Business Processes": {
+  "pregunta": "revenue increased percent driven by Intelligent Cloud Productivity and Business Processes",
+  "consulta": "Item 7 MD&A \"revenue increased\" \"driven by\" \"Intelligent Cloud\" \"Productivity and Business Processes\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Revenues increased driven by Intelligent Cloud": {
+  "pregunta": "Revenues increased driven by Intelligent Cloud",
+  "consulta": "MD&A revenue increased driven by Intelligent Cloud",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Net income increased net income driven by revenue": {
+  "pregunta": "Net income increased net income driven by revenue",
+  "consulta": "\"net income increased\" primarily driven by higher revenue",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Revenues increased percentage Google Services Cloud": {
+  "pregunta": "Revenues increased percentage Google Services Cloud",
+  "consulta": "\"Google Services\" \"Google Cloud\" revenues \"percentage change\" \"Item 7\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:provision for income taxes net income decreased income tax effective tax rate": {
+  "pregunta": "provision for income taxes net income decreased income tax effective tax rate",
+  "consulta": "provision for income taxes effective tax rate net income decreased",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Total net sales increased Services Products": {
+  "pregunta": "Total net sales increased Services Products",
+  "consulta": "\"total net sales increased\" \"Products\" \"Services\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:operating cash flows increased net cash provided by operating activities": {
+  "pregunta": "operating cash flows increased net cash provided by operating activities",
+  "consulta": "\"net cash provided by operating activities\" increased",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:stock split": {
+  "pregunta": "stock split",
+  "consulta": "stock split",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Net Income Per Share Diluted 2024 2025 stock split": {
+  "pregunta": "Net Income Per Share Diluted 2024 2025 stock split",
+  "consulta": "\"diluted net income per share\" \"stock split\" 2024 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:revenue by geographic region user geography revenue growth": {
+  "pregunta": "revenue by geographic region user geography revenue growth",
+  "consulta": "\"net sales by geographic region\" OR \"revenues by geographic area\" \"geographic information\" revenue growth",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Note 2 Revenue geographic information United States": {
+  "pregunta": "Note 2 Revenue geographic information United States",
+  "consulta": "Note 2 Revenue geographic information United States",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competitive position export controls competition market": {
+  "pregunta": "China competitive position export controls competition market",
+  "consulta": "China \"export controls\" \"competitive position\" competition \"Item 1A\" \"Risk Factors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competition competitors market Data Center revenue export controls": {
+  "pregunta": "China competition competitors market Data Center revenue export controls",
+  "consulta": "\"Data Center\" (\"revenue\" OR \"net sales\") China \"export controls\" competition \"Item 1A\" \"Risk Factors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China market revenue Data Center export control regulations": {
+  "pregunta": "China market revenue Data Center export control regulations",
+  "consulta": "\"Data Center\" \"net sales\" China \"geographic region\" \"export controls\" \"Item 1A\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China": {
+  "pregunta": "China",
+  "consulta": "China OR \"People's Republic of China\" OR \"PRC\" OR \"Greater China\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:combination of data across services mergers and acquisitions and product design": {
+  "pregunta": "combination of data across services mergers and acquisitions and product design",
+  "consulta": "\"business combinations\" \"mergers and acquisitions\" data integration \"product development\" Item 1A risk factors",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:natural disasters suppliers facilities earthquakes floods weather": {
+  "pregunta": "natural disasters suppliers facilities earthquakes floods weather",
+  "consulta": "\"Item 1A\" \"Risk Factors\" \"natural disasters\" \"severe weather\" earthquakes floods supply chain facilities disruption",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:capital expenditures 2026 anticipation guidance": {
+  "pregunta": "capital expenditures 2026 anticipation guidance",
+  "consulta": "\"capital expenditures\" (expected OR anticipated) \"fiscal 2026\" \"Liquidity and Capital Resources\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:capital expenditures 2026": {
+  "pregunta": "capital expenditures 2026",
+  "consulta": "\"capital expenditures\" 2026",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:capital expenditures": {
+  "pregunta": "capital expenditures",
+  "consulta": "capital expenditures",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:revenue increased growth drivers": {
+  "pregunta": "revenue increased growth drivers",
+  "consulta": "MD&A \"net sales increased\" OR \"revenues increased\" \"primarily due to\" OR \"primarily driven by\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Revenue increased Microsoft Cloud": {
+  "pregunta": "Revenue increased Microsoft Cloud",
+  "consulta": "MD&A \"Microsoft Cloud\" \"revenue increased\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"Revenue increased\" total fiscal year 2025": {
+  "pregunta": "\"Revenue increased\" total fiscal year 2025",
+  "consulta": "MD&A (\"total revenue increased\" OR \"net sales increased\") \"fiscal year 2025\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Net income increased Data Center revenue": {
+  "pregunta": "Net income increased Data Center revenue",
+  "consulta": "\"Results of Operations\" \"net income\" increased \"Data Center\" revenue",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Revenues increased driven by Google Services Google Cloud": {
+  "pregunta": "Revenues increased driven by Google Services Google Cloud",
+  "consulta": "MD&A revenues increased primarily driven by Google Services and Google Cloud",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:revenues increased": {
+  "pregunta": "revenues increased",
+  "consulta": "revenues increased",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Google Cloud revenues increased from 2024 to 2025": {
+  "pregunta": "Google Cloud revenues increased from 2024 to 2025",
+  "consulta": "Alphabet \"Google Cloud\" segment revenues increased 2024 2025 MD&A",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Google subscriptions platforms and devices Google Cloud revenues increased": {
+  "pregunta": "Google subscriptions platforms and devices Google Cloud revenues increased",
+  "consulta": "Alphabet \"Google subscriptions, platforms, and devices\" \"Google Cloud\" \"revenues increased\" \"Item 7\" MD&A",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:net sales increased year-over-year Services iPhone": {
+  "pregunta": "net sales increased year-over-year Services iPhone",
+  "consulta": "net sales increased year-over-year Services iPhone",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:operating cash flow increased Net cash provided by operating activities": {
+  "pregunta": "operating cash flow increased Net cash provided by operating activities",
+  "consulta": "Net cash provided by operating activities increased",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:diluted net income per share fiscal year 2024 2025": {
+  "pregunta": "diluted net income per share fiscal year 2024 2025",
+  "consulta": "diluted net income per share fiscal year 2024 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Note 2 Revenue disaggregated geography United States Europe Asia-Pacific Rest of World": {
+  "pregunta": "Note 2 Revenue disaggregated geography United States Europe Asia-Pacific Rest of World",
+  "consulta": "\"Note 2\" \"disaggregated revenue\" \"geographic region\" \"United States\" \"Europe\" \"Asia-Pacific\" \"Rest of World\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competitive competition market export controls semiconductor competitors": {
+  "pregunta": "China competitive competition market export controls semiconductor competitors",
+  "consulta": "China semiconductor \"export controls\" competition competitors \"Item 1A\" \"Risk Factors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competitive position competitors Chinese market": {
+  "pregunta": "China competitive position competitors Chinese market",
+  "consulta": "China competition \"competitive position\" competitors \"Item 1\" \"geographic region\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competition competitive position export controls revenue": {
+  "pregunta": "China competition competitive position export controls revenue",
+  "consulta": "\"China\" \"export controls\" \"competitive position\" (\"net sales\" OR \"revenues\")",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:competitors in China and export controls": {
+  "pregunta": "competitors in China and export controls",
+  "consulta": "Item 1A Risk Factors \"export controls\" China competition competitors \"Export Administration Regulations\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:competitors China Huawei Alibaba Baidu Tencent competitive position": {
+  "pregunta": "competitors China Huawei Alibaba Baidu Tencent competitive position",
+  "consulta": "Item 1 Business \"competition\" \"China\" \"competitive position\" (Huawei OR Alibaba OR Baidu OR Tencent)",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competitive export controls market share revenue": {
+  "pregunta": "China competitive export controls market share revenue",
+  "consulta": "China \"export controls\" competition \"market share\" \"net sales\" \"Item 1A\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:DOJ antitrust Department of Justice lawsuit search advertising": {
+  "pregunta": "DOJ antitrust Department of Justice lawsuit search advertising",
+  "consulta": "\"Department of Justice\" antitrust litigation \"search advertising\" \"Legal Proceedings\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Department of Justice antitrust": {
+  "pregunta": "Department of Justice antitrust",
+  "consulta": "Department of Justice Antitrust Division",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Digital Markets Act DMA obligations gatekeeper European Union": {
+  "pregunta": "Digital Markets Act DMA obligations gatekeeper European Union",
+  "consulta": "\"Digital Markets Act\" gatekeeper compliance obligations \"European Union\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"DMA\" OR \"Digital Markets Act\" WhatsApp Messenger interoperability gatekeeper": {
+  "pregunta": "\"DMA\" OR \"Digital Markets Act\" WhatsApp Messenger interoperability gatekeeper",
+  "consulta": "(\"Digital Markets Act\" OR DMA) AND gatekeeper AND interoperability AND (WhatsApp OR Messenger)",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"Digital Markets Act\" OR \"DMA\"": {
+  "pregunta": "\"Digital Markets Act\" OR \"DMA\"",
+  "consulta": "\"Digital Markets Act\" OR \"DMA\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:natural disasters suppliers facilities earthquakes floods": {
+  "pregunta": "natural disasters suppliers facilities earthquakes floods",
+  "consulta": "\"Item 1A\" \"Risk Factors\" \"natural disasters\" (earthquakes OR floods) (facilities OR suppliers) \"business interruption\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:sensitivity analysis investment portfolio interest rate equity price": {
+  "pregunta": "sensitivity analysis investment portfolio interest rate equity price",
+  "consulta": "Item 7A \"sensitivity analysis\" \"interest rate risk\" \"equity price risk\" investment portfolio",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:equity price risk marketable securities sensitivity analysis": {
+  "pregunta": "equity price risk marketable securities sensitivity analysis",
+  "consulta": "\"Item 7A\" \"equity price risk\" \"marketable securities\" \"sensitivity analysis\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:revenue increased Intelligent Cloud Productivity and Business Processes": {
+  "pregunta": "revenue increased Intelligent Cloud Productivity and Business Processes",
+  "consulta": "\"Results of Operations\" \"Intelligent Cloud\" \"Productivity and Business Processes\" \"revenue increased\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Net income increased primary driver revenue data center": {
+  "pregunta": "Net income increased primary driver revenue data center",
+  "consulta": "\"net income\" increased \"primarily driven by\" \"data center\" revenue",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Revenues increased revenue growth drivers": {
+  "pregunta": "Revenues increased revenue growth drivers",
+  "consulta": "MD&A \"revenues increased\" OR \"net sales increased\" \"primarily driven by\" OR \"primarily due to\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:alphabet revenues 2025 2024 increased": {
+  "pregunta": "alphabet revenues 2025 2024 increased",
+  "consulta": "Alphabet Inc. \"Item 7\" MD&A \"revenues\" increased \"fiscal year ended December 31, 2025\" 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Revenues grew due to Google Cloud and Google Services": {
+  "pregunta": "Revenues grew due to Google Cloud and Google Services",
+  "consulta": "MD&A \"revenues increased\" \"Google Cloud\" \"Google Services\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Revenues by segment consolidated revenues Google Services Google Cloud": {
+  "pregunta": "Revenues by segment consolidated revenues Google Services Google Cloud",
+  "consulta": "\"Segment Reporting\" \"Google Services\" \"Google Cloud\" \"consolidated revenues\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:consolidated revenues increased percentage 2025": {
+  "pregunta": "consolidated revenues increased percentage 2025",
+  "consulta": "MD&A \"consolidated revenues\" OR \"net sales\" increased percentage 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:net sales increased revenue growth Products Services": {
+  "pregunta": "net sales increased revenue growth Products Services",
+  "consulta": "MD&A \"net sales increased\" products services revenue",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:operating cash flows increased Net cash provided by operating activities": {
+  "pregunta": "operating cash flows increased Net cash provided by operating activities",
+  "consulta": "Net cash provided by operating activities increased",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:revenue by user geography geographic regions growth": {
+  "pregunta": "revenue by user geography geographic regions growth",
+  "consulta": "\"net sales\" OR revenue by \"geographic region\" growth",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:quarterly net income third quarter three months ended September 30 2025": {
+  "pregunta": "quarterly net income third quarter three months ended September 30 2025",
+  "consulta": "\"selected quarterly financial data\" \"three months ended September 30, 2025\" \"net income\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:third quarter Q3 2025 net income": {
+  "pregunta": "third quarter Q3 2025 net income",
+  "consulta": "\"three months ended\" \"third quarter\" \"net income\" 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:target price stock": {
+  "pregunta": "target price stock",
+  "consulta": "target stock price",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"diluted net income per share\" or \"Earnings Per Share\"": {
+  "pregunta": "\"diluted net income per share\" or \"Earnings Per Share\"",
+  "consulta": "\"diluted net income per share\" OR \"earnings per share\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Cash provided by operating activities increased net income": {
+  "pregunta": "Cash provided by operating activities increased net income",
+  "consulta": "\"net cash provided by operating activities\" increased \"net income\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Cash from operations increased due to": {
+  "pregunta": "Cash from operations increased due to",
+  "consulta": "Net cash provided by operating activities increased primarily due to",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:third quarter net income September 30 2025": {
+  "pregunta": "third quarter net income September 30 2025",
+  "consulta": "\"three months ended September 30, 2025\" \"net income\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:target price stock price target": {
+  "pregunta": "target price stock price target",
+  "consulta": "\"stock price target\" OR \"price target\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:stock split diluted net income per share 2024": {
+  "pregunta": "stock split diluted net income per share 2024",
+  "consulta": "stock split diluted net income per share 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:ten-for-one forward stock split effective June 2024": {
+  "pregunta": "ten-for-one forward stock split effective June 2024",
+  "consulta": "ten-for-one forward stock split effective June 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:stock split Note 1 per share": {
+  "pregunta": "stock split Note 1 per share",
+  "consulta": "\"stock split\" \"Note 1\" \"per share\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:cash provided by operating activities increased": {
+  "pregunta": "cash provided by operating activities increased",
+  "consulta": "net cash provided by operating activities increased",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:10% equity securities hypothetical adverse change market price risk": {
+  "pregunta": "10% equity securities hypothetical adverse change market price risk",
+  "consulta": "Item 7A \"hypothetical 10% adverse change\" \"equity price risk\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"marketable equity securities\" OR \"equity price risk\" OR \"equity securities\" \"10%\"": {
+  "pregunta": "\"marketable equity securities\" OR \"equity price risk\" OR \"equity securities\" \"10%\"",
+  "consulta": "(\"marketable equity securities\" OR \"equity price risk\" OR \"equity securities\") \"10%\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:equity price risk hypothetical 10% adverse change": {
+  "pregunta": "equity price risk hypothetical 10% adverse change",
+  "consulta": "equity price risk hypothetical 10% adverse change",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:hypothetical adverse price change marketable equity securities": {
+  "pregunta": "hypothetical adverse price change marketable equity securities",
+  "consulta": "\"Item 7A\" \"equity price risk\" \"hypothetical adverse change\" \"marketable equity securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Equity Investment Risk marketable equity securities hypothetical adverse price change": {
+  "pregunta": "Equity Investment Risk marketable equity securities hypothetical adverse price change",
+  "consulta": "Item 7A \"equity price risk\" \"marketable equity securities\" \"hypothetical adverse change\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:interest rate 100 basis points foreign exchange Value at Risk VaR": {
+  "pregunta": "interest rate 100 basis points foreign exchange Value at Risk VaR",
+  "consulta": "\"Item 7A\" \"Quantitative and Qualitative Disclosures About Market Risk\" \"interest rate\" \"100 basis points\" \"foreign exchange\" \"Value at Risk\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:maximum one-day loss in fair value of $590 million": {
+  "pregunta": "maximum one-day loss in fair value of $590 million",
+  "consulta": "Item 7A \"maximum one-day loss in fair value\" \"590 million\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Based on the results of the model, the Company estimates, with 95% confidence, a maximum one-day loss in fair value": {
+  "pregunta": "Based on the results of the model, the Company estimates, with 95% confidence, a maximum one-day loss in fair value",
+  "consulta": "Based on the results of the model, the Company estimates, with 95% confidence, a maximum one-day loss in fair value",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:third quarter net income three months ended September 30 2025": {
+  "pregunta": "third quarter net income three months ended September 30 2025",
+  "consulta": "\"net income\" \"three months ended September 30, 2025\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:quarter net income September 30 2025": {
+  "pregunta": "quarter net income September 30 2025",
+  "consulta": "three months ended September 30, 2025 net income",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:quarterly financial data net income 2025 third quarter": {
+  "pregunta": "quarterly financial data net income 2025 third quarter",
+  "consulta": "Item 8 \"quarterly financial data (unaudited)\" \"net income\" \"third quarter\" 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:quarterly financial information": {
+  "pregunta": "quarterly financial information",
+  "consulta": "Selected Quarterly Financial Data",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:target price stock share price target": {
+  "pregunta": "target price stock share price target",
+  "consulta": "\"stock price target\" OR \"share price target\" OR \"market price of our common stock\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:stock split diluted earnings per share recast 2024": {
+  "pregunta": "stock split diluted earnings per share recast 2024",
+  "consulta": "\"stock split\" \"diluted earnings per share\" \"retrospectively adjusted\" 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Diluted earnings per share 6.08 7.46": {
+  "pregunta": "Diluted earnings per share 6.08 7.46",
+  "consulta": "Diluted earnings per share 6.08 7.46",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Cash provided by operating activities increased net income revenue collections": {
+  "pregunta": "Cash provided by operating activities increased net income revenue collections",
+  "consulta": "\"net cash provided by operating activities\" increased \"net income\" \"cash collections\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:operating activities increased primarily due to": {
+  "pregunta": "operating activities increased primarily due to",
+  "consulta": "net cash provided by operating activities increased primarily due to",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:equity price risk 10% adverse change market price marketable equity securities": {
+  "pregunta": "equity price risk 10% adverse change market price marketable equity securities",
+  "consulta": "Item 7A \"equity price risk\" \"hypothetical 10% adverse change\" \"marketable equity securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:equity price risk hypothetical 10% decrease publicly traded": {
+  "pregunta": "equity price risk hypothetical 10% decrease publicly traded",
+  "consulta": "\"Item 7A\" \"equity price risk\" \"hypothetical 10% decrease\" \"publicly traded equity securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Equity Investment Risk marketable equity securities hypothetical adverse price change of 10%": {
+  "pregunta": "Equity Investment Risk marketable equity securities hypothetical adverse price change of 10%",
+  "consulta": "\"Item 7A\" \"equity price risk\" \"marketable equity securities\" \"hypothetical 10% adverse change\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:marketable equity securities hypothetical 10% decrease price risk": {
+  "pregunta": "marketable equity securities hypothetical 10% decrease price risk",
+  "consulta": "\"Item 7A\" \"equity price risk\" \"marketable equity securities\" \"hypothetical 10% decrease\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:equity investment risk market price sensitivity": {
+  "pregunta": "equity investment risk market price sensitivity",
+  "consulta": "Item 7A \"market risk\" \"equity price risk\" sensitivity analysis",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Equity Price Risk marketable equity securities hypothetical adverse price change of 10%": {
+  "pregunta": "Equity Price Risk marketable equity securities hypothetical adverse price change of 10%",
+  "consulta": "Item 7A \"equity price risk\" \"marketable equity securities\" \"hypothetical 10% adverse change\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:interest rate risk 100 basis points value at risk foreign exchange VaR": {
+  "pregunta": "interest rate risk 100 basis points value at risk foreign exchange VaR",
+  "consulta": "\"Item 7A\" \"Quantitative and Qualitative Disclosures About Market Risk\" \"interest rate risk\" \"100 basis points\" \"Value at Risk\" \"foreign exchange\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:basis points interest rate foreign exchange VaR value at risk": {
+  "pregunta": "basis points interest rate foreign exchange VaR value at risk",
+  "consulta": "Item 7A \"market risk\" \"value at risk\" VaR \"interest rate\" \"foreign exchange\" \"basis points\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:The VAR is the maximum expected loss in fair value": {
+  "pregunta": "The VAR is the maximum expected loss in fair value",
+  "consulta": "\"Item 7A\" \"Value at Risk\" OR VaR \"potential loss in fair value\" OR \"maximum expected loss\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:maximum one-day loss in fair value of $590 million and $538 million": {
+  "pregunta": "maximum one-day loss in fair value of $590 million and $538 million",
+  "consulta": "maximum one-day loss in fair value $590 million $538 million",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:equity price risk 10% hypothetical marketable equity securities": {
+  "pregunta": "equity price risk 10% hypothetical marketable equity securities",
+  "consulta": "Item 7A \"equity price risk\" \"hypothetical 10%\" \"marketable equity securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:hypothetical 10% adverse change marketable equity securities price loss": {
+  "pregunta": "hypothetical 10% adverse change marketable equity securities price loss",
+  "consulta": "\"Item 7A\" \"hypothetical 10% adverse change\" \"marketable equity securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Equity Price Risk hypothetical 10% marketable equity securities": {
+  "pregunta": "Equity Price Risk hypothetical 10% marketable equity securities",
+  "consulta": "Item 7A equity price risk hypothetical 10% marketable equity securities",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:interest rate 100 basis points VaR foreign exchange value-at-risk": {
+  "pregunta": "interest rate 100 basis points VaR foreign exchange value-at-risk",
+  "consulta": "Item 7A \"market risk\" \"interest rate\" \"100 basis points\" \"value-at-risk\" \"foreign currency\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente-rapida:operating cash flow increased due to": {
+  "pregunta": "operating cash flow increased due to",
+  "consulta": "net cash provided by operating activities increased primarily due to",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "minimal",
+  "latencia_s": 11.41
+ },
+ "agente-rapida:warmup 1790181259": {
+  "pregunta": "warmup 1790181259",
+  "consulta": "warmup 1790181259",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "minimal",
+  "latencia_s": 8.99
+ },
+ "agente-rapida:revenue growth drivers data center 1790181259": {
+  "pregunta": "revenue growth drivers data center 1790181259",
+  "consulta": "\"Item 7. Management's Discussion and Analysis\" \"data center\" (\"revenue\" OR \"net sales\") growth drivers 1790181259",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "minimal",
+  "latencia_s": 12.04
+ },
+ "agente-rapida:foreign currency risk hedging 1790181259": {
+  "pregunta": "foreign currency risk hedging 1790181259",
+  "consulta": "\"foreign currency exchange rate risk\" \"hedging activities\" \"derivative instruments\" 1790181259",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "minimal",
+  "latencia_s": 7.27
+ },
+ "agente-rapida:share repurchase program authorization 1790181259": {
+  "pregunta": "share repurchase program authorization 1790181259",
+  "consulta": "\"share repurchase program\" OR \"stock repurchase program\" authorized 1790181259",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "minimal",
+  "latencia_s": 19.45
+ },
+ "agente:revenue growth drivers data center 1790181259": {
+  "pregunta": "revenue growth drivers data center 1790181259",
+  "consulta": "Item 7 Management's Discussion and Analysis Results of Operations data center revenue growth drivers net sales 1790181259",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 14.53
+ },
+ "agente:foreign currency risk hedging 1790181259": {
+  "pregunta": "foreign currency risk hedging 1790181259",
+  "consulta": "\"Item 7A\" \"foreign currency exchange rate risk\" \"derivative instruments\" hedging 1790181259",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 8.96
+ },
+ "agente:share repurchase program authorization 1790181259": {
+  "pregunta": "share repurchase program authorization 1790181259",
+  "consulta": "\"share repurchase program\" authorized 1790181259",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 14.99
+ },
+ "agente:quarterly financial data net income third quarter 2025": {
+  "pregunta": "quarterly financial data net income third quarter 2025",
+  "consulta": "\"Quarterly Financial Data\" \"net income\" \"three months ended\" 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 8.05
+ },
+ "agente:target price": {
+  "pregunta": "target price",
+  "consulta": "price targets",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 25.4
+ },
+ "agente:revenue increased percent Data Center": {
+  "pregunta": "revenue increased percent Data Center",
+  "consulta": "\"Data Center\" (\"revenue increased\" OR \"net sales increased\") percent",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.08
+ },
+ "agente:Total revenue was Data Center": {
+  "pregunta": "Total revenue was Data Center",
+  "consulta": "\"Data Center\" (\"segment revenue\" OR \"net sales\")",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.26
+ },
+ "agente:revenue growth": {
+  "pregunta": "revenue growth",
+  "consulta": "\"net sales\" increase OR \"revenue growth\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 29.92
+ },
+ "agente:revenue increased percent": {
+  "pregunta": "revenue increased percent",
+  "consulta": "MD&A \"revenue increased\" OR \"net sales increased\" percent",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.11
+ },
+ "agente:liabilities decrease commercial paper term debt": {
+  "pregunta": "liabilities decrease commercial paper term debt",
+  "consulta": "\"commercial paper\" \"long-term debt\" \"decrease in liabilities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 13.33
+ },
+ "agente:stock split ratio": {
+  "pregunta": "stock split ratio",
+  "consulta": "stock split ratio",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 5.94
+ },
+ "agente:Diluted net income per share 2024 2025": {
+  "pregunta": "Diluted net income per share 2024 2025",
+  "consulta": "Diluted net income per share 2024 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.16
+ },
+ "agente:cash provided by operating activities increase operating cash flows": {
+  "pregunta": "cash provided by operating activities increase operating cash flows",
+  "consulta": "\"net cash provided by operating activities\" increased",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.15
+ },
+ "agente:Net income increased Compute Networking Data Center revenue": {
+  "pregunta": "Net income increased Compute Networking Data Center revenue",
+  "consulta": "\"net income increased\" \"segment revenue\" \"Data Center\" \"Compute\" \"Networking\" MD&A",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 9.32
+ },
+ "agente:equity price risk 10% adverse change market value": {
+  "pregunta": "equity price risk 10% adverse change market value",
+  "consulta": "Item 7A \"equity price risk\" \"hypothetical 10% adverse change\" \"market value\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 13.5
+ },
+ "agente:equity price risk marketable equity securities 10% adverse change": {
+  "pregunta": "equity price risk marketable equity securities 10% adverse change",
+  "consulta": "Item 7A \"equity price risk\" \"marketable equity securities\" \"hypothetical 10% adverse change\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.4
+ },
+ "agente:hypothetical 10% adverse change decrease publicly traded equity securities price risk": {
+  "pregunta": "hypothetical 10% adverse change decrease publicly traded equity securities price risk",
+  "consulta": "\"Item 7A\" \"equity price risk\" (\"hypothetical 10% adverse change\" OR \"hypothetical 10% decrease\") \"marketable equity securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.53
+ },
+ "agente:hypothetical adverse price change of 10% marketable equity securities": {
+  "pregunta": "hypothetical adverse price change of 10% marketable equity securities",
+  "consulta": "Item 7A \"hypothetical 10% adverse change\" \"marketable equity securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 10.83
+ },
+ "agente:equity price risk marketable equity securities 10% adverse decrease": {
+  "pregunta": "equity price risk marketable equity securities 10% adverse decrease",
+  "consulta": "\"Item 7A\" \"equity price risk\" \"marketable equity securities\" \"hypothetical 10%\" adverse decrease",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.93
+ },
+ "agente:Equity Price Risk marketable equity securities hypothetical adverse price change 10%": {
+  "pregunta": "Equity Price Risk marketable equity securities hypothetical adverse price change 10%",
+  "consulta": "Item 7A equity price risk marketable equity securities hypothetical 10% adverse change",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.65
+ },
+ "agente:interest rate sensitivity 100 basis points foreign exchange VaR Value-at-Risk": {
+  "pregunta": "interest rate sensitivity 100 basis points foreign exchange VaR Value-at-Risk",
+  "consulta": "Item 7A \"Quantitative and Qualitative Disclosures About Market Risk\" \"interest rate sensitivity\" \"100 basis points\" (\"foreign exchange\" OR \"foreign currency\") (\"Value-at-Risk\" OR \"VaR\")",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 11.87
+ },
+ "agente:third quarter net income 2025": {
+  "pregunta": "third quarter net income 2025",
+  "consulta": "quarterly financial data third quarter net income 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 12.68
+ },
+ "agente:operating margin": {
+  "pregunta": "operating margin",
+  "consulta": "operating margin",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.82
+ },
+ "agente:operating income percentage of revenue": {
+  "pregunta": "operating income percentage of revenue",
+  "consulta": "\"operating margin\" OR \"operating income as a percentage of net sales\" OR \"operating income as a percentage of total revenue\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.77
+ },
+ "agente:revenue increased percent Compute Networking": {
+  "pregunta": "revenue increased percent Compute Networking",
+  "consulta": "\"Compute and Networking\" segment (\"revenue increased\" OR \"net sales increased\") percent",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 19.53
+ },
+ "agente:Total revenue was 130497": {
+  "pregunta": "Total revenue was 130497",
+  "consulta": "\"Total revenue\" OR \"Total revenues\" 130,497 OR 130497",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 26.08
+ },
+ "agente:Compute & Networking revenue increased": {
+  "pregunta": "Compute & Networking revenue increased",
+  "consulta": "\"Compute & Networking\" segment revenue increased",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 12.19
+ },
+ "agente:total revenue increased percent fiscal year 2025": {
+  "pregunta": "total revenue increased percent fiscal year 2025",
+  "consulta": "MD&A \"total revenues\" OR \"net sales\" increased percent \"fiscal year 2025\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 13.09
+ },
+ "agente:revenue increased Compute Networking Data Center": {
+  "pregunta": "revenue increased Compute Networking Data Center",
+  "consulta": "MD&A \"Data Center\" (\"Compute and Networking\" OR \"Compute\") (\"revenue increased\" OR \"net sales increased\")",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.74
+ },
+ "agente:revenue increased 114%": {
+  "pregunta": "revenue increased 114%",
+  "consulta": "(\"revenue increased\" OR \"revenues increased\" OR \"net sales increased\") AND (\"114%\" OR \"114 percent\")",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 15.77
+ },
+ "agente:total liabilities total assets ratio": {
+  "pregunta": "total liabilities total assets ratio",
+  "consulta": "ratio of total liabilities to total assets",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.81
+ },
+ "agente:diluted net income per share increased": {
+  "pregunta": "diluted net income per share increased",
+  "consulta": "diluted net income per share increased",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 13.68
+ },
+ "agente:Cash provided by operating activities increased operating cash flows": {
+  "pregunta": "Cash provided by operating activities increased operating cash flows",
+  "consulta": "Net cash provided by operating activities increased",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 10.74
+ },
+ "agente:Net income increased primary driver revenue Data Center": {
+  "pregunta": "Net income increased primary driver revenue Data Center",
+  "consulta": "MD&A \"net income increased\" \"primarily driven by\" \"Data Center\" revenue",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.38
+ },
+ "agente:hypothetical 10% decrease equity adverse effect market price": {
+  "pregunta": "hypothetical 10% decrease equity adverse effect market price",
+  "consulta": "\"Item 7A\" \"hypothetical 10% decrease\" \"equity price risk\" \"adverse effect\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 8.58
+ },
+ "agente:hypothetical 10% adverse change adverse movement equity price marketable equity securities": {
+  "pregunta": "hypothetical 10% adverse change adverse movement equity price marketable equity securities",
+  "consulta": "Item 7A \"hypothetical 10% adverse change\" \"equity price risk\" \"marketable equity securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 11.23
+ },
+ "agente:interest rate risk basis points VaR value at risk investment portfolio foreign currency": {
+  "pregunta": "interest rate risk basis points VaR value at risk investment portfolio foreign currency",
+  "consulta": "Item 7A \"interest rate risk\" (\"value-at-risk\" OR \"VaR\") \"basis points\" \"foreign currency risk\" \"investment portfolio\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.1
+ },
+ "agente:China competition competitive market domestic competitors": {
+  "pregunta": "China competition competitive market domestic competitors",
+  "consulta": "Item 1A \"Risk Factors\" China \"competitive\" \"domestic competitors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.24
+ },
+ "agente:China competitive position export controls revenue": {
+  "pregunta": "China competitive position export controls revenue",
+  "consulta": "China \"export controls\" \"competitive position\" (\"net sales\" OR revenues)",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.63
+ },
+ "agente:\"China\" \"competitors\" OR \"competitive\" \"export controls\"": {
+  "pregunta": "\"China\" \"competitors\" OR \"competitive\" \"export controls\"",
+  "consulta": "\"China\" AND (\"export controls\" OR \"export restrictions\") AND (\"competition\" OR \"competitors\" OR \"competitive\")",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 10.38
+ },
+ "agente:\"NVDA-2025-1A-0013\" competitors competition China": {
+  "pregunta": "\"NVDA-2025-1A-0013\" competitors competition China",
+  "consulta": "NVIDIA \"Item 1A\" \"Risk Factors\" competition competitors China",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 5.68
+ },
+ "agente:\"NVDA-2025-1A-0013\"": {
+  "pregunta": "\"NVDA-2025-1A-0013\"",
+  "consulta": "\"NVDA-2025-1A-0013\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 15.69
+ },
+ "agente:Department of Justice DOJ antitrust lawsuit search advertising ad tech": {
+  "pregunta": "Department of Justice DOJ antitrust lawsuit search advertising ad tech",
+  "consulta": "\"Department of Justice\" DOJ antitrust \"Item 3. Legal Proceedings\" \"search advertising\" \"digital advertising technologies\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 13.22
+ },
+ "agente:DMA gatekeeper \"Digital Markets Act\"": {
+  "pregunta": "DMA gatekeeper \"Digital Markets Act\"",
+  "consulta": "\"Digital Markets Act\" gatekeeper \"Risk Factors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 13.72
+ },
+ "agente:\"combination of data across services, mergers and acquisitions, and product design\"": {
+  "pregunta": "\"combination of data across services, mergers and acquisitions, and product design\"",
+  "consulta": "\"combining data across\" \"mergers and acquisitions\" \"product design\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 10.68
+ },
+ "agente:natural disasters facilities suppliers operations interruption": {
+  "pregunta": "natural disasters facilities suppliers operations interruption",
+  "consulta": "\"natural disasters\" (\"business interruption\" OR \"disruption of operations\") facilities suppliers \"supply chain\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 13.7
+ },
+ "agente:capital expenditures 2026 anticipation expect": {
+  "pregunta": "capital expenditures 2026 anticipation expect",
+  "consulta": "\"capital expenditures\" (expect OR anticipate) 2026 \"Liquidity and Capital Resources\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 9.55
+ },
+ "agente:sensitivity analysis investment portfolio interest rate equity price risk": {
+  "pregunta": "sensitivity analysis investment portfolio interest rate equity price risk",
+  "consulta": "\"Item 7A\" \"Quantitative and Qualitative Disclosures About Market Risk\" \"sensitivity analysis\" \"interest rate risk\" \"equity price risk\" \"investment portfolio\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.7
+ },
+ "agente:parallel shifts in the yield curve of plus or minus 0.5% would result in a change in fair value for these investments": {
+  "pregunta": "parallel shifts in the yield curve of plus or minus 0.5% would result in a change in fair value for these investments",
+  "consulta": "Item 7A \"interest rate risk\" \"parallel shift in the yield curve\" (\"50 basis points\" OR \"0.5%\") \"fair value\" investments",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 12.64
+ },
+ "agente:revenue increased drove driver growth": {
+  "pregunta": "revenue increased drove driver growth",
+  "consulta": "MD&A \"revenue increased\" OR \"net sales increased\" \"primarily driven by\" OR \"primarily due to\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.86
+ },
+ "agente:revenue increased by percentage fiscal year 2025 compared with 2024": {
+  "pregunta": "revenue increased by percentage fiscal year 2025 compared with 2024",
+  "consulta": "Item 7 MD&A \"revenues increased\" OR \"net sales increased\" \"fiscal year 2025 compared with fiscal year 2024\" percentage",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.17
+ },
+ "agente:\"Revenue\" \"Percentage Change\" \"Intelligent Cloud\" \"Productivity and Business Processes\"": {
+  "pregunta": "\"Revenue\" \"Percentage Change\" \"Intelligent Cloud\" \"Productivity and Business Processes\"",
+  "consulta": "\"Revenue\" \"Percentage Change\" \"Intelligent Cloud\" \"Productivity and Business Processes\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.37
+ },
+ "agente:Net income increased revenue Data Center": {
+  "pregunta": "Net income increased revenue Data Center",
+  "consulta": "MD&A \"net income\" (\"revenue increased\" OR \"net sales increased\") \"Data Center\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 58.36
+ },
+ "agente:Revenues increased growth drivers Google Services Google Cloud": {
+  "pregunta": "Revenues increased growth drivers Google Services Google Cloud",
+  "consulta": "MD&A \"Google Services\" \"Google Cloud\" \"revenues increased\" \"primarily driven by\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 19.23
+ },
+ "agente:revenues were 402,836 increased": {
+  "pregunta": "revenues were 402,836 increased",
+  "consulta": "\"total revenues\" 402,836 increased",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 12.65
+ },
+ "agente:Diluted net income per share 2024": {
+  "pregunta": "Diluted net income per share 2024",
+  "consulta": "Diluted net income per share 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 4.66
+ },
+ "agente:stock split ten-for-one": {
+  "pregunta": "stock split ten-for-one",
+  "consulta": "10-for-1 stock split",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 12.87
+ },
+ "agente:revenue by user geography geographic region Europe Asia-Pacific": {
+  "pregunta": "revenue by user geography geographic region Europe Asia-Pacific",
+  "consulta": "revenue net sales by geographic region Europe Asia-Pacific",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 12.46
+ },
+ "agente:competitive China market competitors export controls": {
+  "pregunta": "competitive China market competitors export controls",
+  "consulta": "Item 1A Risk Factors \"export controls\" China competition competitors",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 5.48
+ },
+ "agente:China competitive Data Center competition revenue export controls": {
+  "pregunta": "China competitive Data Center competition revenue export controls",
+  "consulta": "\"Data Center\" China \"export controls\" (\"net sales\" OR \"revenues\") competition \"Item 1A\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 32.73
+ },
+ "agente:\"China-based competitors\" OR \"competitors in China\" OR \"China market\"": {
+  "pregunta": "\"China-based competitors\" OR \"competitors in China\" OR \"China market\"",
+  "consulta": "\"China-based competitors\" OR \"competitors in China\" OR \"Chinese competitors\" OR \"competition in China\" OR \"market in China\" OR \"Chinese market\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 3.93
+ },
+ "agente:Department of Justice DOJ antitrust lawsuit monopoly": {
+  "pregunta": "Department of Justice DOJ antitrust lawsuit monopoly",
+  "consulta": "\"Department of Justice\" antitrust monopolization litigation \"Legal Proceedings\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.59
+ },
+ "agente:Digital Markets Act DMA obligations requirements European Union": {
+  "pregunta": "Digital Markets Act DMA obligations requirements European Union",
+  "consulta": "\"Digital Markets Act\" DMA \"European Union\" gatekeeper compliance obligations \"Item 1A\" \"Risk Factors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 5.61
+ },
+ "agente:Digital Markets Act": {
+  "pregunta": "Digital Markets Act",
+  "consulta": "Digital Markets Act",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 8.65
+ },
+ "agente:gatekeeper \"Digital Markets Act\"": {
+  "pregunta": "gatekeeper \"Digital Markets Act\"",
+  "consulta": "gatekeeper \"Digital Markets Act\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 10.2
+ },
+ "agente:sensitivity analysis investment portfolio equity debt": {
+  "pregunta": "sensitivity analysis investment portfolio equity debt",
+  "consulta": "\"Item 7A\" \"sensitivity analysis\" \"market risk\" \"equity securities\" \"debt securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.76
+ },
+ "agente:revenue increased driven by Intelligent Cloud Productivity and Business Processes": {
+  "pregunta": "revenue increased driven by Intelligent Cloud Productivity and Business Processes",
+  "consulta": "revenue increased driven by growth in \"Intelligent Cloud\" and \"Productivity and Business Processes\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 12.74
+ },
+ "agente:Net income increased fiscal year 2025 compared to 2024": {
+  "pregunta": "Net income increased fiscal year 2025 compared to 2024",
+  "consulta": "Item 7 MD&A \"net income increased\" \"fiscal year ended\" 2025 compared to 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 16.42
+ },
+ "agente:Net income fiscal year 2025 72,880 29,760": {
+  "pregunta": "Net income fiscal year 2025 72,880 29,760",
+  "consulta": "\"Consolidated Statements of Operations\" \"net income\" \"fiscal year ended\" 2025 \"72,880\" \"29,760\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.94
+ },
+ "agente:net income revenue growth drivers data center": {
+  "pregunta": "net income revenue growth drivers data center",
+  "consulta": "\"Management's Discussion and Analysis\" \"data center\" \"revenue growth\" drivers \"net income\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.46
+ },
+ "agente:Revenues increased primarily driven by Google Cloud Google Services": {
+  "pregunta": "Revenues increased primarily driven by Google Cloud Google Services",
+  "consulta": "MD&A \"revenues increased primarily driven by\" \"Google Services\" \"Google Cloud\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 8.15
+ },
+ "agente:Total net sales increased percentage FY2024 FY2025 Services Products": {
+  "pregunta": "Total net sales increased percentage FY2024 FY2025 Services Products",
+  "consulta": "Total net sales increased percentage FY2024 FY2025 Services Products",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 10.66
+ },
+ "agente:Total net sales increased during 2025 compared to 2024": {
+  "pregunta": "Total net sales increased during 2025 compared to 2024",
+  "consulta": "MD&A \"net sales increased\" 2025 compared to 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 9.36
+ },
+ "agente:operating cash flows increased NetCashProvidedByUsedInOperatingActivities": {
+  "pregunta": "operating cash flows increased NetCashProvidedByUsedInOperatingActivities",
+  "consulta": "\"net cash provided by operating activities\" increased NetCashProvidedByUsedInOperatingActivities",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 3.52
+ },
+ "agente:revenue geographic region user geography growth United States Europe Asia-Pacific": {
+  "pregunta": "revenue geographic region user geography growth United States Europe Asia-Pacific",
+  "consulta": "\"net sales\" OR \"revenue\" \"geographic region\" OR \"geographic area\" \"United States\" Europe \"Asia-Pacific\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 9.45
+ },
+ "gY-014": {
+  "pregunta": "¿Qué compañía mejoró más su flujo de caja operativo en términos relativos entre FY2024 y FY2025, Microsoft o NVIDIA, y a qué lo atribuye su MD&A?",
+  "consulta": "Microsoft NVIDIA net cash provided by operating activities cash flows from operating activities increased FY2024 FY2025 Management's Discussion and Analysis MD&A",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gY-016": {
+  "pregunta": "Ante una caída hipotética del 10 % en el precio de sus acciones cotizadas en cartera a cierre de FY2025, ¿qué compañía perdería más valor: Alphabet o Meta?",
+  "consulta": "Alphabet Meta marketable equity securities fair value equity price risk hypothetical 10% decrease",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gY-017": {
+  "pregunta": "Entre FY2024 y FY2025, ¿cuál de las dos, Alphabet o Meta, aumentó más la pérdida que sufriría su cartera de acciones cotizadas ante una caída hipotética del 10 % en su precio?",
+  "consulta": "Alphabet Meta marketable equity securities hypothetical 10% decrease market price equity price risk fair value loss 2024 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "gY-018": {
+  "pregunta": "Según la sección de riesgo de mercado (Item 7A) del 10-K de FY2025 de Apple, ¿cuál de sus dos medidas de riesgo aumentó entre 2024 y 2025: la caída de valor de la cartera de inversión ante una subida de 100 pb o la pérdida máxima diaria estimada por su VaR de divisas? Da la cifra de 2025.",
+  "consulta": "Apple Item 7A Quantitative and Qualitative Disclosures About Market Risk interest rate risk 100 basis point foreign currency value-at-risk VaR fair value 2025 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:China competitive position competition competitors export controls market": {
+  "pregunta": "China competitive position competition competitors export controls market",
+  "consulta": "China (\"competitive position\" OR \"competition\") (\"export controls\" OR \"trade restrictions\") \"Item 1A\" \"Risk Factors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 5.14
+ },
+ "agente:China competitive position competitors market share demand": {
+  "pregunta": "China competitive position competitors market share demand",
+  "consulta": "China \"competitive position\" \"market share\" competitors demand",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 12.68
+ },
+ "agente:\"China-based competitors\" OR \"competitors in China\" OR \"market in China\"": {
+  "pregunta": "\"China-based competitors\" OR \"competitors in China\" OR \"market in China\"",
+  "consulta": "(\"competition in China\" OR \"competitors in China\" OR \"China-based competitors\" OR \"Chinese market\" OR \"market in China\" OR \"market in the PRC\")",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 9.0
+ },
+ "agente:Digital Markets Act DMA obligations requirements European Union gatekeeper": {
+  "pregunta": "Digital Markets Act DMA obligations requirements European Union gatekeeper",
+  "consulta": "\"Digital Markets Act\" DMA gatekeeper \"European Union\" regulatory compliance \"Risk Factors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 5.81
+ },
+ "agente:\"combination of data across services\" DMA \"Digital Markets Act\"": {
+  "pregunta": "\"combination of data across services\" DMA \"Digital Markets Act\"",
+  "consulta": "\"Digital Markets Act\" (\"combine data\" OR \"combining data\" OR \"combination of data\") \"Item 1A\" \"Risk Factors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 20.18
+ },
+ "agente:capital expenditures in the range": {
+  "pregunta": "capital expenditures in the range",
+  "consulta": "\"capital expenditures\" \"in the range of\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 13.52
+ },
+ "agente:sensitivity analysis investment portfolio market risk": {
+  "pregunta": "sensitivity analysis investment portfolio market risk",
+  "consulta": "\"Item 7A\" \"Quantitative and Qualitative Disclosures About Market Risk\" \"sensitivity analysis\" \"investment portfolio\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.78
+ },
+ "agente:parallel shifts in the yield curve of plus or minus 0.5% would result in a change in fair value": {
+  "pregunta": "parallel shifts in the yield curve of plus or minus 0.5% would result in a change in fair value",
+  "consulta": "\"Item 7A\" \"parallel shift\" \"yield curve\" (\"50 basis points\" OR \"0.5%\") \"fair value\" sensitivity analysis",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.59
+ },
+ "agente:net income provision for income taxes income tax expense effective tax rate 2025 2024": {
+  "pregunta": "net income provision for income taxes income tax expense effective tax rate 2025 2024",
+  "consulta": "\"provision for income taxes\" OR \"income tax expense\" \"effective tax rate\" \"net income\" 2024 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 9.17
+ },
+ "agente:provision for income taxes effective tax rate": {
+  "pregunta": "provision for income taxes effective tax rate",
+  "consulta": "provision for income taxes effective tax rate",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 3.88
+ },
+ "agente:ten-for-one stock split diluted per share": {
+  "pregunta": "ten-for-one stock split diluted per share",
+  "consulta": "ten-for-one stock split diluted earnings per share",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.9
+ },
+ "agente:ten-for-one forward stock split June 2024": {
+  "pregunta": "ten-for-one forward stock split June 2024",
+  "consulta": "10-for-1 forward stock split June 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 5.99
+ },
+ "agente:revenue by user geographic region United States Europe Asia-Pacific Rest of World": {
+  "pregunta": "revenue by user geographic region United States Europe Asia-Pacific Rest of World",
+  "consulta": "\"revenue by geographic region\" OR \"revenues by geographic area\" \"United States\" \"Europe\" \"Asia-Pacific\" \"Rest of World\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.72
+ },
+ "agente:Note 2 Revenue disaggregated by geography United States Europe Asia-Pacific Rest of World": {
+  "pregunta": "Note 2 Revenue disaggregated by geography United States Europe Asia-Pacific Rest of World",
+  "consulta": "disaggregation of revenue by geographic region \"United States\" Europe \"Asia-Pacific\" \"Rest of World\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 8.5
+ },
+ "agente:disaggregated by geography United States Europe Note 2": {
+  "pregunta": "disaggregated by geography United States Europe Note 2",
+  "consulta": "\"Note 2\" revenue disaggregated by geographic region \"United States\" \"Europe\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.13
+ },
+ "agente:China competitive position market competitors export controls": {
+  "pregunta": "China competitive position market competitors export controls",
+  "consulta": "China \"export controls\" \"competitive position\" competition \"Item 1A\" \"Risk Factors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 8.02
+ },
+ "agente:competitive China market Data Center revenue competitors": {
+  "pregunta": "competitive China market Data Center revenue competitors",
+  "consulta": "\"Data Center\" (\"revenue\" OR \"net sales\") China (competition OR competitors)",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 5.7
+ },
+ "agente:China Data Center competitors demand export controls": {
+  "pregunta": "China Data Center competitors demand export controls",
+  "consulta": "China \"data center\" (\"export controls\" OR \"export regulations\") (competition OR competitors) demand \"Item 1A\" \"Risk Factors\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.69
+ },
+ "agente:Our Data Center revenue in China decreased significantly": {
+  "pregunta": "Our Data Center revenue in China decreased significantly",
+  "consulta": "MD&A \"Data Center\" (\"revenue\" OR \"net sales\") China (\"decreased\" OR \"declined\")",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.75
+ },
+ "agente:competitors in China Huawei Data Center competitive": {
+  "pregunta": "competitors in China Huawei Data Center competitive",
+  "consulta": "\"Huawei\" \"data center\" competition \"China\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.22
+ },
+ "agente:competition in China": {
+  "pregunta": "competition in China",
+  "consulta": "Item 1A \"Risk Factors\" competition China",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.41
+ },
+ "agente:Action Plan that endorses new standards regarding the compute performance per watt": {
+  "pregunta": "Action Plan that endorses new standards regarding the compute performance per watt",
+  "consulta": "\"performance per watt\" energy efficiency standards data center compute",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.58
+ },
+ "agente:DOJ Department of Justice antitrust lawsuit ad tech search": {
+  "pregunta": "DOJ Department of Justice antitrust lawsuit ad tech search",
+  "consulta": "\"Department of Justice\" antitrust litigation \"search\" \"advertising technology\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 5.89
+ },
+ "agente:\"DMA\" \"gatekeeper\"": {
+  "pregunta": "\"DMA\" \"gatekeeper\"",
+  "consulta": "\"Digital Markets Act\" \"gatekeeper\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.21
+ },
+ "agente:capital expenditures 2026 anticipate": {
+  "pregunta": "capital expenditures 2026 anticipate",
+  "consulta": "\"capital expenditures\" anticipate \"fiscal 2026\" \"Liquidity and Capital Resources\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.41
+ },
+ "agente:capital expenditures expectation": {
+  "pregunta": "capital expenditures expectation",
+  "consulta": "anticipated capital expenditures",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 4.66
+ },
+ "agente:sensitivity analysis investment portfolio interest rate equity": {
+  "pregunta": "sensitivity analysis investment portfolio interest rate equity",
+  "consulta": "\"Item 7A\" \"sensitivity analysis\" (\"interest rate risk\" OR \"equity price risk\") (\"investment portfolio\" OR \"marketable securities\")",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.4
+ },
+ "agente:Total net sales increased percentage FY2025 FY2024": {
+  "pregunta": "Total net sales increased percentage FY2025 FY2024",
+  "consulta": "MD&A \"net sales\" \"percentage change\" fiscal 2025 fiscal 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 9.58
+ },
+ "agente:ten-for-one stock split stock split diluted earnings per share": {
+  "pregunta": "ten-for-one stock split stock split diluted earnings per share",
+  "consulta": "\"ten-for-one stock split\" OR \"10-for-1 stock split\" \"diluted earnings per share\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.05
+ },
+ "agente:Note 2 Revenue disaggregated by geography United States": {
+  "pregunta": "Note 2 Revenue disaggregated by geography United States",
+  "consulta": "Note 2 Revenue disaggregated by \"geographic region\" \"United States\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 10.37
+ },
+ "agente:geographic information customer addresses revenue United States Europe": {
+  "pregunta": "geographic information customer addresses revenue United States Europe",
+  "consulta": "\"geographic information\" \"revenues\" \"location of the customer\" \"United States\" Europe",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 13.3
+ },
+ "agente:competitors in China competitive position Huawei Alibaba": {
+  "pregunta": "competitors in China competitive position Huawei Alibaba",
+  "consulta": "Item 1 \"Competition\" \"competitive position\" \"China\" (Huawei OR Alibaba)",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 9.13
+ },
+ "agente:China competitors \"competitive\" \"China-based\"": {
+  "pregunta": "China competitors \"competitive\" \"China-based\"",
+  "consulta": "\"Item 1A\" \"Risk Factors\" (\"China-based competitors\" OR \"competition in China\" OR \"Chinese competitors\")",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.86
+ },
+ "agente:China competitive position competitors market share data center": {
+  "pregunta": "China competitive position competitors market share data center",
+  "consulta": "China \"data center\" (\"competitive position\" OR \"market share\" OR competition)",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.07
+ },
+ "agente:\"NVDA-2025-1A-0036\"": {
+  "pregunta": "\"NVDA-2025-1A-0036\"",
+  "consulta": "NVIDIA 2025 Form 10-K Item 1A Risk Factors",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 11.46
+ },
+ "agente:DOJ antitrust Department of Justice lawsuit search advertising ad tech": {
+  "pregunta": "DOJ antitrust Department of Justice lawsuit search advertising ad tech",
+  "consulta": "\"Department of Justice\" antitrust litigation (\"search advertising\" OR \"digital advertising technology\") \"Legal Proceedings\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.64
+ },
+ "agente:natural disasters supplier facilities earthquakes climate events": {
+  "pregunta": "natural disasters supplier facilities earthquakes climate events",
+  "consulta": "\"Item 1A\" \"risk factors\" \"natural disasters\" earthquakes \"severe weather\" \"supply chain\" disruption suppliers facilities",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.42
+ },
+ "agente:capital expenditures 2026 anticipate increase": {
+  "pregunta": "capital expenditures 2026 anticipate increase",
+  "consulta": "\"Liquidity and Capital Resources\" \"capital expenditures\" \"fiscal 2026\" anticipate increase",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 13.25
+ },
+ "agente:sensitivity analysis investment portfolio interest rate risk": {
+  "pregunta": "sensitivity analysis investment portfolio interest rate risk",
+  "consulta": "Item 7A \"interest rate risk\" \"sensitivity analysis\" \"investment portfolio\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.4
+ },
+ "agente:stock split ten-for-one diluted earnings per share": {
+  "pregunta": "stock split ten-for-one diluted earnings per share",
+  "consulta": "\"ten-for-one stock split\" \"diluted earnings per share\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.7
+ },
+ "agente:ten-for-one forward stock split June 2024 retroactively": {
+  "pregunta": "ten-for-one forward stock split June 2024 retroactively",
+  "consulta": "\"ten-for-one forward stock split\" OR \"10-for-1 forward stock split\" \"retroactively adjusted\" \"June 2024\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 8.55
+ },
+ "agente:\"stock split\" \"June\" 2024": {
+  "pregunta": "\"stock split\" \"June\" 2024",
+  "consulta": "\"stock split\" \"June\" 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 9.45
+ },
+ "agente:\"Diluted earnings per share\" \"Net income per share\" 2024 2025": {
+  "pregunta": "\"Diluted earnings per share\" \"Net income per share\" 2024 2025",
+  "consulta": "\"Diluted earnings per share\" \"Net income per share\" 2024 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 17.31
+ },
+ "agente:revenue by geographic region United States Canada Europe Asia-Pacific Rest of World": {
+  "pregunta": "revenue by geographic region United States Canada Europe Asia-Pacific Rest of World",
+  "consulta": "\"revenues by geographic area\" OR \"net sales by geographic region\" \"United States\" Canada Europe \"Asia-Pacific\" \"Rest of World\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 8.83
+ },
+ "agente:Note 2 Revenue disaggregated by geography United States customer addresses": {
+  "pregunta": "Note 2 Revenue disaggregated by geography United States customer addresses",
+  "consulta": "\"disaggregated revenue\" \"geographic region\" \"United States\" \"customer location\" Note Revenue",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 9.31
+ },
+ "agente:DMA gatekeeper": {
+  "pregunta": "DMA gatekeeper",
+  "consulta": "\"Digital Markets Act\" gatekeeper",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 4.83
+ },
+ "agente:subscription for no ads model DMA": {
+  "pregunta": "subscription for no ads model DMA",
+  "consulta": "\"Digital Markets Act\" (\"subscription for no ads\" OR \"ad-free subscription\")",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.88
+ },
+ "agente:European Commission opened formal proceedings regarding the compliance of our subscription for no ads": {
+  "pregunta": "European Commission opened formal proceedings regarding the compliance of our subscription for no ads",
+  "consulta": "\"European Commission\" \"formal proceedings\" compliance \"subscription for no ads\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.34
+ },
+ "agente:subscription for no ads European Commission": {
+  "pregunta": "subscription for no ads European Commission",
+  "consulta": "\"European Commission\" (\"subscription for no ads\" OR \"ad-free subscription\" OR \"pay or consent\") \"Digital Markets Act\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.32
+ },
+ "agente:operating cash flows increased decreased Net cash provided by operating activities": {
+  "pregunta": "operating cash flows increased decreased Net cash provided by operating activities",
+  "consulta": "\"Net cash provided by operating activities\" (increased OR decreased) \"Liquidity and Capital Resources\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 7.49
+ },
+ "agente:revenue growth fiscal 2025 2024": {
+  "pregunta": "revenue growth fiscal 2025 2024",
+  "consulta": "MD&A \"net sales\" OR \"total revenues\" increase fiscal 2025 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.89
+ },
+ "agente:Compute & Networking revenue increased Data Center": {
+  "pregunta": "Compute & Networking revenue increased Data Center",
+  "consulta": "MD&A \"Compute & Networking\" segment revenue increased \"Data Center\"",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 8.45
+ },
+ "agente:Revenue increased percentage FY2025 fiscal year 2025": {
+  "pregunta": "Revenue increased percentage FY2025 fiscal year 2025",
+  "consulta": "\"net sales\" OR \"total revenue\" increased percentage \"fiscal 2025\" OR \"fiscal year 2025\" MD&A",
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "razonamiento": "por defecto",
+  "latencia_s": 6.81
+ }
+}

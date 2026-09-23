@@ -1,0 +1,474 @@
+{
+ "item": {
+  "id": "gY-012",
+  "pregunta": "¿Qué compañía redujo más su ratio de pasivo sobre activos entre FY2024 y FY2025, Apple o Meta?",
+  "familia": "multi_temporal",
+  "ticker": "AAPL",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "Apple lo redujo 4.92 pp (84.4 % → 79.5 %); Meta lo AUMENTÓ 6.81 pp. Convención: ticker=AAPL, cifra=reducción de Apple en pp.",
+  "cifra_esperada": 4.92,
+  "unidad": "pp",
+  "concept_xbrl": null,
+  "item_esperado": null,
+  "ancla_texto": null,
+  "ancla_inicio": null,
+  "ancla_fin": null,
+  "chunk_id_esperado": null,
+  "herramienta_esperada": [
+   "get_xbrl_fact"
+  ],
+  "autor": "grupo-X/adversario",
+  "nota": "8 llamadas a get_xbrl_fact + list_available = 9: rompe el límite de 8. Predicción: límite alcanzado. Convención v2 (alineada con el contrato del agente, que manda poner en `cifra` el valor XBRL del ejercicio más reciente y la variación en `respuesta`): se acepta la magnitud derivada o ese valor XBRL.",
+  "cifras_aceptables": [
+   4.92,
+   285508000000.0
+  ]
+ },
+ "rep": 1,
+ "thread_id": "a5_limites-rep1-gY-012",
+ "commit": "4008f0a",
+ "fecha": "2026-09-23T18:49:51",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "Apple redujo más su ratio de pasivo sobre activos entre FY2024 y FY2025 (siendo la única de las dos compañías que lo redujo, ya que Meta lo aumentó).\n\nDetalle de los datos reportados en XBRL y el cálculo de los ratios:\n\n1. Apple (AAPL):\n- FY2024: Pasivo de 308.030.000.000 USD y Activo de 364.980.000.000 USD -> Ratio Pasivo/Activo = 84,40% (0,843964).\n- FY2025: Pasivo de 285.508.000.000 USD y Activo de 359.241.000.000 USD -> Ratio Pasivo/Activo = 79,48% (0,794753).\n- Variación: Reducción de 4,92 puntos porcentuales (-5,83% relativo).\n\n2. Meta (META):\n- FY2024: Pasivo de 93.417.000.000 USD y Activo de 276.054.000.000 USD -> Ratio Pasivo/Activo = 33,84% (0,338400).\n- FY2025: Pasivo de 148.778.000.000 USD y Activo de 366.021.000.000 USD -> Ratio Pasivo/Activo = 40,65% (0,406474).\n- Variación: Aumento de 6,81 puntos porcentuales (+20,12% relativo).",
+   "cifra": 285508000000.0,
+   "unidad": "USD",
+   "ticker": "AAPL",
+   "ejercicio": 2025,
+   "fuente": "xbrl",
+   "cita": null,
+   "chunk_id": null
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2024,
+     "concept": "Assets",
+     "ticker": "AAPL"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "AAPL",
+     "concept": "Liabilities",
+     "fiscal_year": 2024
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "Assets",
+     "ticker": "AAPL",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "Liabilities",
+     "ticker": "AAPL",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2024,
+     "ticker": "META",
+     "concept": "Assets"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "Liabilities",
+     "ticker": "META",
+     "fiscal_year": 2024
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "Assets",
+     "ticker": "META",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "META",
+     "fiscal_year": 2025,
+     "concept": "Liabilities"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "ticker": "AAPL",
+     "query": "liabilities decrease commercial paper term debt",
+     "fiscal_year": 2025,
+     "item": "7"
+    }
+   }
+  ],
+  "n_llamadas": 10,
+  "tokens_in": 22751,
+  "tokens_out": 5497,
+  "coste_usd": 0.037677,
+  "latencia_s": 57.30248650023714,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 1,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Qué compañía redujo más su ratio de pasivo sobre activos entre FY2024 y FY2025, Apple o Meta?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_818261",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1739,
+     "output_tokens": 75,
+     "total_tokens": 1814,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 65
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_818261",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2024,
+       "concept": "Assets",
+       "ticker": "AAPL"
+      },
+      "id": "call_1034356",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "AAPL",
+       "concept": "Liabilities",
+       "fiscal_year": 2024
+      },
+      "id": "call_1034370",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "Assets",
+       "ticker": "AAPL",
+       "fiscal_year": 2025
+      },
+      "id": "call_1034378",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "Liabilities",
+       "ticker": "AAPL",
+       "fiscal_year": 2025
+      },
+      "id": "call_1034386",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2024,
+       "ticker": "META",
+       "concept": "Assets"
+      },
+      "id": "call_1034396",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "Liabilities",
+       "ticker": "META",
+       "fiscal_year": 2024
+      },
+      "id": "call_1034400",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "Assets",
+       "ticker": "META",
+       "fiscal_year": 2025
+      },
+      "id": "call_1034406",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "META",
+       "fiscal_year": 2025,
+       "concept": "Liabilities"
+      },
+      "id": "call_1034410",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2061,
+     "output_tokens": 422,
+     "total_tokens": 2483,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 138
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2024 · Assets = 364,980,000,000 USD (cierre de ejercicio 2024-09-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_1034356",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2024 · Liabilities = 308,030,000,000 USD (cierre de ejercicio 2024-09-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_1034370",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2025 · Assets = 359,241,000,000 USD (cierre de ejercicio 2025-09-27, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_1034378",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2025 · Liabilities = 285,508,000,000 USD (cierre de ejercicio 2025-09-27, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_1034386",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2024 · Assets = 276,054,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_1034396",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2024 · Liabilities = 93,417,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_1034400",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2025 · Assets = 366,021,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_1034406",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2025 · Liabilities = 148,778,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_1034410",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "ticker": "AAPL",
+       "query": "liabilities decrease commercial paper term debt",
+       "fiscal_year": 2025,
+       "item": "7"
+      },
+      "id": "call_973874",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2882,
+     "output_tokens": 965,
+     "total_tokens": 3847,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 921
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: '\"commercial paper\" \"long-term debt\" \"decrease in liabilities\"')\n\n[AAPL-2025-7-0007] AAPL FY2025 Item 7 (similitud 0.033)\nDebt\n\nAs of September 27, 2025, the Company had outstanding fixed-rate notes with varying maturities for an aggregate principal amount of $91.3 billion (collectively the “Notes”), with $12.4 billion payable within 12 months. Future interest payments associated with the Notes total $37.0 billion, with $2.6 billion payable within 12 months.\n\nThe Company also issues unsecured short-term promissory notes pursuant to a commercial paper program. As of September 27, 2025, the Company had $8.0 billion of commercial paper outstanding, which was payable within 12 months.\n\nLeases\n\nThe Company has lease arrangements for certain equipment and facilities, including corporate, data center, manufacturing and retail space. As of September 27, 2025, the Company had fixed lease payment obligations of $16.8 billion, with $2.6 billion payable within 12 months.\n\nManufacturing Purchase Obligations\n\nThe Company utilizes several outsourcing partners to manufacture subassemblies for the Company’s products and to perform final assembly and testing of finished products. The Company also obtains individual components for its products from a wide variety of individual suppliers. As of September 27, 2025, the Company had manufacturing purchase obligations of $56.2 billion, with $55.4 billion payable within 12 months.\n\nOther Purchase Obligations\n\nThe Company’s other purchase obligations primarily consist of noncancelable obligations to acquire capital assets, including assets related to product manufacturing, and noncancelable obligations related to supplier arrangements, licensed intellectual property and content, and distribution rights. As of September 27, 2025, the Company had other purchase obligations of $14.8 billion, with $7.0 billion payable within 12 months.\n\nDeemed Repatriation Tax Payable\n\nAs of September 27, 2025, the balance of the deemed repatriation tax payable imposed by the U.S. Tax Cuts and Jobs Act of 2017 (“TCJA”) was $8.8 billion, which was payable within 12 months.\n\nApple Inc. | 2025 Form 10-K | 25\n\n---\n\n[AAPL-2025-7-0010] AAPL FY2025 Item 7 (similitud 0.032)\nCritical Accounting Estimates\n\nThe preparation of financial statements and related disclosures in conformity with U.S. generally accepted accounting principles (“GAAP”) and the Company’s discussion and analysis of its financial condition and operating results require the Company’s management to make judgments, assumptions and estimates that affect the amounts reported. Note 1, “Summary of Significant Accounting Policies” of the Notes to Consolidated Financial Statements in Part II, Item 8 of this Form 10-K describes the significant accounting policies and methods used in the preparation of the Company’s consolidated financial statements. Management bases its estimates on historical experience and on various other assumptions it believes to be reasonable under the circumstances, the results of which form the basis for making judgments about the carrying values of assets and liabilities.\n\nUncertain Tax Positions\n\nThe Company is subject to income taxes in the U.S. and numerous foreign jurisdictions. The evaluation of the Company’s uncertain tax positions involves significant judgment in the interpretation and application of GAAP and complex domestic and international tax laws, including the TCJA and the allocation of international taxation rights between countries. Although management believes the Company’s reserves are reasonable, no assurance can be given that the final outcome of these uncertainties will not be different from that reflected in the Company’s reserves. Reserves are adjusted considering changing facts and circumstances, such as the closing of a tax examination. Resolution of these uncertainties in a manner inconsistent with management’s expectations could have a material impact on the Company’s financial condition and operating results.\n\nApple Inc. | 2025 Form 10-K | 26\n\nLegal and Other Contingencies\n\nThe Company is subject to various legal proceedings and claims that arise in the ordinary course of business, the outcomes of which are inherently uncertain. The Company records a liability when it is probable a loss has been incurred and the amount is reasonably estimable, the determination of which requires significant judgment. Resolution of legal matters in a manner inconsistent with management’s expectations could have a material impact on the Company’s financial condition and operating results.\n\n---\n\n[AAPL-2025-7-0006] AAPL FY2025 Item 7 (similitud 0.032)\nProvision for Income Taxes\n\nProvision for income taxes, effective tax rate and statutory federal income tax rate for 2025, 2024 and 2023 were as follows (dollars in millions):\n\n2025\t\t2024\t\t2023\nProvision for income taxes\t$\t20,719\t\t\t$\t29,749\t\t\t$\t16,741\nEffective tax rate\t15.6\t%\t\t24.1\t%\t\t14.7\t%\nStatutory federal income tax rate\t21\t%\t\t21\t%\t\t21\t%\n\nThe Company’s effective tax rate for 2025 was lower than the statutory federal income tax rate primarily due to a lower effective tax rate on foreign earnings, including the impact of changes in unrecognized tax benefits, the impact of the U.S. federal R&D credit, and tax benefits from share-based compensation, partially offset by a change in valuation allowance and state income taxes.\n\nThe Company’s effective tax rate for 2025 was lower compared to 2024 due to a $10.7 billion year-over-year decrease in the provision for income taxes related to the State Aid Decision (refer to Note 7, “Income Taxes” in the Notes to Consolidated Financial Statements in Part II, Item 8 of this Form 10-K) and the impact of changes in unrecognized tax benefits, partially offset by a change in valuation allowance and a higher effective tax rate on foreign earnings.\n\nLiquidity and Capital Resources\n\nThe Company believes its balances of cash, cash equivalents and marketable securities, which totaled $132.4 billion as of September 27, 2025, along with cash generated by ongoing operations and continued access to debt markets, will be sufficient to satisfy its cash requirements and capital return program over the next 12 months and beyond.\n\nThe Company’s material cash requirements include the following contractual obligations:\n\n---\n\n[AAPL-2025-7-0009] AAPL FY2025 Item 7 (similitud 0.032)\nDisaggregation of Income Statement Expenses\n\nIn November 2024, the FASB issued ASU No. 2024-03, Income Statement—Reporting Comprehensive Income—Expense Disaggregation Disclosures (Subtopic 220-40): Disaggregation of Income Statement Expenses (“ASU 2024-03”) and in January 2025, the FASB issued ASU No. 2025-01, Income Statement—Reporting Comprehensive Income—Expense Disaggregation Disclosures (Subtopic 220-40): Clarifying the Effective Date, which clarified the effective date of ASU 2024-03. ASU 2024-03 will require the Company to disclose the amounts of purchases of inventory, employee compensation, depreciation and intangible asset amortization, as applicable, included in certain expense captions in the Consolidated Statements of Operations, as well as qualitatively describe remaining amounts included in those captions. ASU 2024-03 will also require the Company to disclose both the amount and the Company’s definition of selling expenses. The Company will adopt ASU 2024-03 in its fourth quarter of 2028 using a prospective transition method.\n\nIncome Taxes\n\nIn December 2023, the FASB issued ASU No. 2023-09, Income Taxes (Topic 740): Improvements to Income Tax Disclosures (“ASU 2023-09”), which will require the Company to disclose specified additional information in its income tax rate reconciliation and provide additional information for reconciling items that meet a quantitative threshold. ASU 2023-09 will also require the Company to disaggregate its income taxes paid disclosure by federal, state and foreign taxes, with further disaggregation required for significant individual jurisdictions. The Company will adopt ASU 2023-09 in its fourth quarter of 2026 using a prospective transition method.\n\n---\n\n[AAPL-2025-7-0000] AAPL FY2025 Item 7 (similitud 0.031)\nItem 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\n\nThe following discussion should be read in conjunction with the consolidated financial statements and accompanying notes included in Part II, Item 8 of this Form 10-K. This Item generally discusses 2025 and 2024 items and year-to-year comparisons between 2025 and 2024. Discussions of 2023 items and year-to-year comparisons between 2024 and 2023 are not included, and can be found in “Management’s Discussion and Analysis of Financial Condition and Results of Operations” in Part II, Item 7 of the Company’s Annual Report on Form 10-K for the fiscal year ended September 28, 2024.\n\nProduct, Service and Software Announcements\n\nThe Company announces new product, service and software offerings at various times during the year. Significant announcements during fiscal year 2025 included the following:\n\nFirst Quarter 2025:\n\n•MacBook Pro\n\n•Mac mini\n\n•iMac\n\n•iPad mini\n\nSecond Quarter 2025:\n\n•iPhone 16e\n\n•iPad Air\n\n•iPad\n\n•MacBook Air\n\n•Mac Studio\n\nThird Quarter 2025:\n\n•iOS 26, macOS Tahoe 26, iPadOS 26, watchOS 26, visionOS 26 and tvOS 26\n\nFourth Quarter 2025:\n\n•iPhone 17, iPhone Air, iPhone 17 Pro and iPhone 17 Pro Max\n\n•Apple Watch Series 11, Apple Watch SE 3 and Apple Watch Ultra 3\n\n•AirPods Pro 3\n\nFiscal Period\n\nThe Company’s fiscal year is the 52- or 53-week period that ends on the last Saturday of September. An additional week is included in the first fiscal quarter every five or six years to realign the Company’s fiscal quarters with calendar quarters, which occurred in the first quarter of 2023. The Company’s fiscal years 2025 and 2024 spanned 52 weeks each, whereas fiscal year 2023 spanned 53 weeks.\n\nMacroeconomic Conditions\n\nMacroeconomic conditions, including inflation, interest rates and currency fluctuations, have directly and indirectly impacted, and could in the future materially impact, the Company’s results of operations and financial condition.\n\nApple Inc. | 2025 Form 10-K | 21",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_973874",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "ejercicio": 2025,
+       "unidad": "USD",
+       "ticker": "AAPL",
+       "fuente": "xbrl",
+       "cifra": null,
+       "respuesta": "Apple redujo más su ratio de pasivo sobre activos entre FY2024 y FY2025 (de hecho fue la única de las dos que lo redujo). \n\nDetalle de los cálculos a partir de las cifras oficiales reportadas en XBRL:\n\n1. Apple (AAPL):\n- FY2024: Pasivo de 308.030.000.000 USD / Activo de 364.980.000.000 USD = 84,40% (0,843964).\n- FY2025: Pasivo de 285.508.000.000 USD / Activo de 359.241.000.000 USD = 79,48% (0,794753).\n- Variación: Se redujo en 4,92 puntos porcentuales (-5,83% relativo).\n\n2. Meta (META):\n- FY2024: Pasivo de 93.417.000.000 USD / Activo de 276.054.000.000 USD = 33,84% (0,338400).\n- FY2025: Pasivo de 148.778.000.000 USD / Activo de 366.021.000.000 USD = 40,65% (0,406474).\n- Variación: Aumentó en 6,81 puntos porcentuales (+20,12% relativo)."
+      },
+      "id": "call_387450",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 6336,
+     "output_tokens": 3239,
+     "total_tokens": 9575,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 2797
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Error: Failed to parse structured output for tool 'RespuestaFinancieraEstricta': Failed to parse data to RespuestaFinancieraEstricta: 1 validation error for RespuestaFinancieraEstricta\n  Value error, fuente='xbrl' implica una cifra sacada de get_xbrl_fact: rellena `cifra` con ese valor exacto, o usa fuente='texto' si la respuesta no es numérica. [type=value_error, input_value={'ejercicio': 2025, 'unid...es (+20,12% relativo).'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/value_error.\n Please fix your mistakes.",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_387450",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "respuesta": "Apple redujo más su ratio de pasivo sobre activos entre FY2024 y FY2025 (siendo la única de las dos compañías que lo redujo, ya que Meta lo aumentó).\n\nDetalle de los datos reportados en XBRL y el cálculo de los ratios:\n\n1. Apple (AAPL):\n- FY2024: Pasivo de 308.030.000.000 USD y Activo de 364.980.000.000 USD -> Ratio Pasivo/Activo = 84,40% (0,843964).\n- FY2025: Pasivo de 285.508.000.000 USD y Activo de 359.241.000.000 USD -> Ratio Pasivo/Activo = 79,48% (0,794753).\n- Variación: Reducción de 4,92 puntos porcentuales (-5,83% relativo).\n\n2. Meta (META):\n- FY2024: Pasivo de 93.417.000.000 USD y Activo de 276.054.000.000 USD -> Ratio Pasivo/Activo = 33,84% (0,338400).\n- FY2025: Pasivo de 148.778.000.000 USD y Activo de 366.021.000.000 USD -> Ratio Pasivo/Activo = 40,65% (0,406474).\n- Variación: Aumento de 6,81 puntos porcentuales (+20,12% relativo).",
+       "ticker": "AAPL",
+       "unidad": "USD",
+       "ejercicio": 2025,
+       "cifra": 285508000000,
+       "fuente": "xbrl"
+      },
+      "id": "call_347982",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 9733,
+     "output_tokens": 796,
+     "total_tokens": 10529,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 311
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='Apple redujo más su ratio de pasivo sobre activos entre FY2024 y FY2025 (siendo la única de las dos compañías que lo redujo, ya que Meta lo aumentó).\\n\\nDetalle de los datos reportados en XBRL y el cálculo de los ratios:\\n\\n1. Apple (AAPL):\\n- FY2024: Pasivo de 308.030.000.000 USD y Activo de 364.980.000.000 USD -> Ratio Pasivo/Activo = 84,40% (0,843964).\\n- FY2025: Pasivo de 285.508.000.000 USD y Activo de 359.241.000.000 USD -> Ratio Pasivo/Activo = 79,48% (0,794753).\\n- Variación: Reducción de 4,92 puntos porcentuales (-5,83% relativo).\\n\\n2. Meta (META):\\n- FY2024: Pasivo de 93.417.000.000 USD y Activo de 276.054.000.000 USD -> Ratio Pasivo/Activo = 33,84% (0,338400).\\n- FY2025: Pasivo de 148.778.000.000 USD y Activo de 366.021.000.000 USD -> Ratio Pasivo/Activo = 40,65% (0,406474).\\n- Variación: Aumento de 6,81 puntos porcentuales (+20,12% relativo).' cifra=285508000000.0 unidad='USD' ticker='AAPL' ejercicio=2025 fuente='xbrl' cita=None chunk_id=None",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_347982",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a5_limites"
+ }
+}

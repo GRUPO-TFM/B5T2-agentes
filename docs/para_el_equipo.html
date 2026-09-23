@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rama mejoras — B5T2</title>
+<style>
+:root{--tinta:#1c1c1c;--suave:#555;--linea:#e2e2e2;--fondo:#fff;--acento:#1f4e79;--codigo:#f4f4f4}
+@media (prefers-color-scheme:dark){:root{--tinta:#e8e8e8;--suave:#aaa;--linea:#333;--fondo:#151515;--acento:#8ab4e8;--codigo:#222}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--fondo);color:var(--tinta)}
+body{font:16px/1.55 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:860px;margin:0 auto;padding:24px 16px 64px;overflow-x:hidden}
+h1{font-size:1.7rem;line-height:1.25;margin:.2em 0 .3em}
+h2{font-size:1.3rem;margin:2em 0 .6em;padding-top:.6em;border-top:1px solid var(--linea);color:var(--acento)}
+h3{font-size:1.05rem;margin:1.5em 0 .4em}
+p,li{max-width:72ch}
+em{color:var(--suave)}
+code{font:.9em ui-monospace,Menlo,Consolas,monospace;background:var(--codigo);padding:.1em .35em;border-radius:3px;word-break:break-word}
+pre{background:var(--codigo);padding:12px;border-radius:6px;overflow-x:auto;font-size:.9em}
+pre code{background:none;padding:0}
+.tabla{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1em 0;border:1px solid var(--linea);border-radius:6px}
+table{border-collapse:collapse;min-width:100%;font-size:.92em}
+th,td{padding:6px 10px;border-bottom:1px solid var(--linea);text-align:left;white-space:nowrap;vertical-align:top}
+th{background:var(--codigo);font-weight:600}
+tr:last-child td{border-bottom:none}
+hr{border:0;border-top:1px solid var(--linea);margin:2em 0}
+strong{font-weight:650}
+</style></head><body>
+<h1>Rama <code>mejoras</code> — qué hay, por qué, y qué falta</h1>
+<p><em>Javi · 22 de septiembre de 2026 · para Diego y Javier</em></p>
+<p>Este documento explica lo que he hecho en la rama <code>mejoras</code> para que podáis
+leerla sin tener que reconstruirla desde los commits. Va de menos a más: primero
+el resultado, luego cómo se mide, luego qué cambia en cada arquitectura y por
+qué, después los cambios a vuestros ficheros, y al final lo que queda abierto.</p>
+<p>Todo lo que digo aquí está medido y guardado en <code>resultados/</code>; ninguna cifra
+sale de memoria.</p>
+<hr />
+<h2>1. El resultado en una tabla</h2>
+<p>Cuatro arquitecturas acumulativas, cada una medida tres veces sobre las 20
+preguntas del golden set (<code>data/golden_set.jsonl</code>), mismo modelo
+(<code>google/gemini-3.8-flash</code> vía OpenRouter):</p>
+<div class="tabla"><table>
+<thead>
+<tr>
+<th>arquitectura</th>
+<th>acierto</th>
+<th>numéricas</th>
+<th>extractivas</th>
+<th>comparativas</th>
+<th>cita</th>
+<th>cifra</th>
+<th>trayectoria</th>
+<th>recall@5</th>
+<th>coste</th>
+<th>latencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>baseline</td>
+<td>61,7 %</td>
+<td>100 %</td>
+<td>94,4 %</td>
+<td>8,3 %</td>
+<td>52 %</td>
+<td>50 %</td>
+<td>83 %</td>
+<td>50 %</td>
+<td>1,62 ¢</td>
+<td>20 s</td>
+</tr>
+<tr>
+<td>a1_guardrails</td>
+<td>75,0 %</td>
+<td>100 %</td>
+<td>100 %</td>
+<td>37,5 %</td>
+<td>64 %</td>
+<td>100 %</td>
+<td>75 %</td>
+<td>50 %</td>
+<td>1,41 ¢</td>
+<td>17 s</td>
+</tr>
+<tr>
+<td>a2_retrieval</td>
+<td>75,0 %</td>
+<td>100 %</td>
+<td>100 %</td>
+<td>37,5 %</td>
+<td>64 %</td>
+<td>100 %</td>
+<td>77 %</td>
+<td>64 %</td>
+<td>1,44 ¢</td>
+<td>29 s</td>
+</tr>
+<tr>
+<td><strong>a4_comparativas</strong></td>
+<td><strong>96,7 %</strong></td>
+<td>100 %</td>
+<td>94,4 %</td>
+<td><strong>95,8 %</strong></td>
+<td><strong>95 %</strong></td>
+<td>98 %</td>
+<td><strong>100 %</strong></td>
+<td><strong>86 %</strong></td>
+<td>1,52 ¢</td>
+<td>49 s</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>a3_hibrido</code> (A2 + BM25, sin el prompt de comparativas) está definida y
+predicha pero aún sin ejecutar; ver §7.</p>
+<p><strong>La lectura corta.</strong> El agujero del baseline eran las comparativas (8 de 20
+preguntas, 40 % del golden set) y tenía <strong>dos causas independientes</strong>: el
+agente ponía la <em>variación</em> en <code>cifra</code> en vez del valor del ejercicio (lo arregla
+A1), y no buscaba texto, así que no podía citar (lo arregla A4). A2 y A3 atacan
+una tercera causa —el retrieval— que en este golden set no existía: el buscador
+mejora 36 puntos de recall y el agente no cambia ni una respuesta.</p>
+<hr />
+<h2>2. Cómo se mide</h2>
+<h3>La idea: crudo primero</h3>
+<p>Cada pregunta que el agente responde se guarda <strong>entera</strong> — la conversación
+completa con todas las llamadas a herramientas y sus respuestas — en
+<code>resultados/agente/&lt;arquitectura&gt;/rep&lt;n&gt;/crudo/&lt;id&gt;.json</code>. Los veredictos
+(cita bien / cifra bien / trayectoria bien) <strong>no se guardan: se calculan al
+leer</strong>. Esto tiene una consecuencia práctica que ya nos ha ahorrado dinero dos
+veces: cuando encuentro un bug en un evaluador o en un contador, lo corrijo y
+vuelvo a puntuar todo en segundos, sin repetir una sola llamada a la API.</p>
+<h3>Tres funciones, una gasta API</h3>
+<div class="tabla"><table>
+<thead>
+<tr>
+<th>función</th>
+<th>qué hace</th>
+<th>API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ejecutar(golden, arq, rep)</code></td>
+<td>corre el agente y guarda un JSON por pregunta; <strong>idempotente</strong> (si el JSON existe, salta)</td>
+<td>sí</td>
+</tr>
+<tr>
+<td><code>puntuar(arq, rep)</code></td>
+<td>lee los JSON, aplica los evaluadores, escribe <code>tabla.csv</code></td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>comparar()</code></td>
+<td>una fila por arquitectura, media de repeticiones, escribe <code>comparativa.md</code></td>
+<td>no</td>
+</tr>
+</tbody>
+</table></div>
+<p>Todo está en <code>agente/interfaz.py</code>; el notebook <code>notebooks/evaluacion.ipynb</code> solo
+las llama y pinta. El día 24 el profesor corre <code>evaluar("holdout.jsonl")</code>, que es
+una fachada sobre las tres.</p>
+<h3>Los tres evaluadores del enunciado, y qué cuenta como acierto</h3>
+<ul>
+<li><strong><code>cita</code></strong>: el <code>chunk_id</code> citado existe, es del ticker y ejercicio correctos, y
+  la <code>cita</code> es texto <strong>literal</strong> del fragmento.</li>
+<li><strong><code>cifra</code></strong>: la <code>cifra</code> coincide con el hecho XBRL esperado (±1 %).</li>
+<li><strong><code>trayectoria</code></strong>: el agente pasó por las herramientas esperadas
+  (<code>get_xbrl_fact</code> en numéricas, <code>search_filings</code> en extractivas, las dos en
+  comparativas).</li>
+</ul>
+<p><strong><code>acierto</code> = todos los evaluadores aplicables en verde.</strong> Una comparativa con la
+cifra perfecta y sin cita suspende. Es exigente a propósito: «acertar por el
+camino equivocado cuenta como fallo».</p>
+<h3>Tres repeticiones y una barra de ruido</h3>
+<p>El modelo no es determinista. Cada arquitectura se corre tres veces, con la
+repetición dentro del <code>thread_id</code> para que no se contaminen. En el baseline,
+<strong>2 de 20 preguntas oscilan entre repeticiones</strong>: ese es el ruido de fondo, y
+cualquier mejora menor que eso no es una mejora.</p>
+<h3>Instrumentación: atribuir contando, no estimando</h3>
+<p>Con 20 preguntas, cada una vale 5 puntos y la mayoría de los cambios
+individuales son indistinguibles del ruido. Por eso no hago ablaciones de cada
+pieza: en vez de eso, cada tabla lleva columnas que dicen <strong>cuántas veces actuó
+cada mecanismo</strong>: <code>corrigio_cifra</code>, <code>corrigio_cita</code>, <code>limite_alcanzado</code>,
+<code>reintentos_esquema</code>, <code>busquedas_reescritas</code>, <code>reintentos_proveedor</code>. Un
+guardrail que nunca se disparó no aportó nada — y eso se cuenta, no se
+estima. Ejemplo real: el verificador de cifras se disparó 3 veces en A1 y 0 en
+A2; la diferencia es que entre medias arreglé un bug de <code>get_xbrl_fact</code> (§5).</p>
+<h3>Predicciones antes de medir</h3>
+<p><code>docs/predicciones.md</code> tiene, para cada peldaño, lo que predije <strong>antes</strong> de
+ejecutarlo y lo que salió. No se edita después. Cuatro predicciones han fallado
+y cada una obligó a leer trazas y explicar algo que no sabíamos; ese fichero es
+la mitad de la presentación.</p>
+<hr />
+<h2>3. Los peldaños, uno a uno</h2>
+<p>Las arquitecturas son <strong>presets de configuración</strong> en <code>agente/config.py</code>, no
+ramas: el mismo código, con interruptores. Cada peldaño añade y no quita nada.</p>
+<h3>Baseline — el agente del día 10, sin tocar</h3>
+<p>Prompt del profesor, <code>RespuestaFinanciera</code> sin validadores, sin middleware,
+retrieval denso con filtros. <strong>61,7 %.</strong> Numéricas 100 %, extractivas 94 %,
+comparativas 8 %.</p>
+<p>Lo que encontré leyendo las trazas: el agente <strong>razona bien las ocho
+comparativas</strong> (deltas, porcentajes, el signo de la caída de Meta, hasta el
+split 10:1 de NVIDIA) y suspende siete. Pone la variación en <code>cifra</code>; el golden
+set espera el valor del ejercicio reciente. <code>ratio_cifra</code> es idéntico en las
+tres repeticiones — es una convención que nadie le había dicho, no falta de
+capacidad. Verificado contra el <code>ej-003</code> del propio Guillermo: el golden set
+tiene razón, y el hold-out usará la misma convención.</p>
+<h3>A1 — guardrails: límites, dos verificadores, esquema estricto, prompt honesto</h3>
+<ul>
+<li><code>ToolCallLimitMiddleware</code> (8 herramientas, 1 <code>read_section</code>) y
+  <code>ModelCallLimitMiddleware</code> (10 vueltas), con <code>exit_behavior="continue"</code> para
+  que el agente cierre con lo que tenga.</li>
+<li><strong>Verificador de cifras</strong> (<code>after_model</code>): si la <code>cifra</code> no cuadra con ningún
+  hecho XBRL del ticker y ejercicio, devuelve el mensaje al modelo con la lista
+  de hechos y <code>jump_to="model"</code>. Una corrección por invocación, sin bucles.</li>
+<li><strong>Verificador de cita</strong>: el <code>chunk_id</code> existe y contiene la <code>cita</code>.</li>
+<li><code>RespuestaFinancieraEstricta</code>: validadores de coherencia (<code>fuente='xbrl'</code> ⇒
+  hay cifra; <code>fuente='texto'</code> ⇒ hay cita y chunk; ticker de los seis; etc.).
+  El contrato <code>RespuestaFinanciera</code> del enunciado queda intacto.</li>
+<li>Prompt <code>HONESTO</code>: cómo rellenar cada campo, y la convención de <code>cifra</code>.</li>
+</ul>
+<p><strong>75,0 %.</strong> <code>cifra</code> 50 → 100 %: la línea del prompt bastó. Dos sorpresas: la
+trayectoria <strong>bajó</strong> (83 → 75 %) porque el prompt honesto («a la tercera,
+cierra») hace al agente más tacaño y deja de buscar texto en comparativas — un
+efecto secundario real de un guardrail; y el coste <strong>bajó</strong> porque los
+verificadores casi no se disparan.</p>
+<h3>A2 — retrieval: filtros forzados y reescritura de la consulta</h3>
+<ul>
+<li><code>forzar_filtros</code> (<code>wrap_tool_call</code>): si la pregunta identifica ticker/año/
+  sección y el modelo los olvida, se rellenan.</li>
+<li><code>reescritura</code>: la consulta del modelo pasa por una llamada barata que la
+  reescribe con vocabulario de 10-K, cacheada en disco.</li>
+</ul>
+<p><strong>75,0 %, sin cambiar una sola respuesta.</strong> Pero el recall@5 del retriever sube
+de 50 a 64 %. Es el hallazgo más limpio del proyecto: <em>lo que mejora al buscador
+no mejora necesariamente al agente</em>, porque el prompt del profesor ya obliga al
+modelo a escribir las consultas en inglés — el modelo ya era el reescritor. Y
+lo que la reescritura hizo de verdad fue convertir lenguaje natural en sintaxis
+booleana (<code>"Digital Markets Act" AND gatekeeper AND (obligations OR
+requirements)</code>), que un retriever denso no entiende: comillas y <code>AND</code> son
+tokens más para BGE. No empeora porque los filtros de metadatos absorben el
+ruido. El coste real: <strong>+72 % de latencia</strong> (una vuelta de red por búsqueda con
+un modelo que razona).</p>
+<h3>A3 — híbrido BM25 (definida, predicha, no ejecutada)</h3>
+<p>RRF del orden denso y el orden BM25, medido <strong>después</strong> de la reescritura,
+porque la tabla del §4.4 dice que antes no aporta nada (7/14 → 7/14) y después
+sí (9/14 → 12/14). Predicción: plano en acierto, por la misma razón que A2.</p>
+<h3>A4 — el procedimiento de comparativas (y es <code>final</code>)</h3>
+<p>Prompt <code>COMPARATIVAS</code>: dos <code>get_xbrl_fact</code> con el mismo concepto, calcular la
+variación, <strong>buscar la explicación en el Item 7 con <code>search_filings</code></strong>, y el
+procedimiento de conceptos por acción (buscar el split antes de comparar EPS).</p>
+<p><strong>96,7 %</strong> (0,95 / 1,00 / 0,95). Comparativas 37,5 → 95,8 %. Trayectoria 100 %.
+Las cinco comparativas mudas empiezan a buscar: en esa familia <code>fuente</code> pasa de
+15 <code>xbrl</code> + 9 <code>ambas</code> a <strong>23 <code>ambas</code> y ningún <code>xbrl</code></strong>. Lo había predicho con
+la tabla de posiciones del ancla: con el retrieval de A4, las cinco tenían el
+fragmento correcto en posición 1 o 2. El cuello de botella nunca fue encontrar;
+era buscar.</p>
+<p>Los dos únicos fallos de 60 son el mismo: el modelo emite un turno vacío y
+<code>create_agent</code> cierra sin respuesta estructurada. 3,3 % de las invocaciones.
+Ver §7.</p>
+<hr />
+<h2>4. Lo que he cambiado en vuestros ficheros, y por qué</h2>
+<p>Regla que me impuse: <strong>no tocar <code>retrieval.py</code>, <code>corpus.py</code> ni las firmas de
+las cuatro herramientas</strong> (son contrato del enunciado). He cumplido las tres.
+Lo que sí he cambiado:</p>
+<h3><code>agente/herramientas.py</code> (Diego)</h3>
+<p><strong><code>construir_herramientas(*, reescritura=False, hibrido=False, k=5)</code>.</strong> Tres
+argumentos con valor por defecto. Con los defectos es <em>exactamente</em> el agente
+del día 10; baseline y A1 no se ven afectados. Lo que cambia es lo que hay
+<em>detrás</em> de <code>search_filings</code>: si <code>reescritura</code>, la consulta se reescribe antes;
+si <code>hibrido</code>, se llama a <code>recall.hibrido</code> en vez de a <code>retrieval.buscar</code>. La
+firma que ve el modelo es la misma. Necesitaba esto porque <code>agente.py</code> construye
+todas las arquitecturas con el mismo código y solo cambia los interruptores.</p>
+<p><strong>Una línea en <code>get_xbrl_fact</code>:</strong> <code>f"{f.value:,.0f}"</code> → <code>formatear_valor(f.value,
+f.unit)</code>. El <code>:,.0f</code> está pensado para dólares, pero redondea los valores por
+acción: devolvía «EarningsPerShareDiluted = <strong>3</strong> USD/shares» para 2,94. El
+modelo copiaba el 3, el evaluador lo tumbaba (3/2,94 = +2 %), y en A1 el
+verificador lo rescataba del texto — es decir, <strong>el guardrail estaba tapando un
+bug de la herramienta</strong>. Lo vi en la traza de gX-019. Ahora los valores por
+acción (y cualquier valor &lt; 1000) salen con dos decimales. Afecta a cualquier
+pregunta de EPS del hold-out.</p>
+<p><strong>Detalle de <code>k</code>:</strong> el valor por defecto de la firma de <code>search_filings</code> es ahora
+el <code>k</code> de la arquitectura en vez de un 5 fijo. Hoy todos los presets tienen 5,
+así que no cambia nada; lo arreglé porque un test de integración pidió <code>k=3</code> y
+recibió 5.</p>
+<h3><code>agente/interfaz.py</code>, <code>agente/agente.py</code> — reescritos</h3>
+<p>El <code>interfaz.py</code> original tiraba <code>r["messages"]</code> (y los evaluadores los
+necesitan), contaba <code>RespuestaFinanciera</code> como herramienta (llamadas infladas
+en 1) y <code>evaluar()</code> no propagaba <code>mejoras</code>. Lo reescribí entero con el diseño de
+§2. <code>agente.py</code> construye el agente a partir de un preset; <code>construir_agente(mejoras=True)</code>
+sigue funcionando como alias de <code>"final"</code>.</p>
+<h3>Ficheros nuevos</h3>
+<p><code>config.py</code> (presets), <code>esquema.py</code> (esquema estricto), <code>middleware.py</code>,
+<code>prompts.py</code>, <code>resultado.py</code> (normalización de trazas), <code>evaluadores.py</code>,
+<code>recall.py</code> (las cinco configuraciones del §4.4, la reescritura y el recall
+sobre las consultas reales del agente), <code>cli.py</code>, <code>tests/</code> (55 tests, sin API),
+<code>notebooks/evaluacion.ipynb</code>, y los tres documentos de <code>docs/</code>.</p>
+<hr />
+<h2>5. Bugs que he encontrado y arreglado</h2>
+<p>El detalle está en <code>docs/errores_y_reparaciones.md</code> (26 entradas). Los que os
+afectan directamente:</p>
+<div class="tabla"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>qué</th>
+<th>dónde</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8</td>
+<td><code>get_xbrl_fact</code> redondea EPS a entero</td>
+<td><code>herramientas.py</code>, corregido</td>
+</tr>
+<tr>
+<td>9</td>
+<td>el <code>interfaz.py</code> original tiraba los mensajes y contaba mal las llamadas</td>
+<td>reescrito</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Gemini 3 devuelve 400 «Corrupted thought signature» en ~8 % de las llamadas con middleware</td>
+<td><code>ejecutar</code> reintenta una vez en hilo nuevo; funcionó 5/5</td>
+</tr>
+<tr>
+<td>25</td>
+<td>el modelo emite un turno vacío y no hay respuesta estructurada (2 de 60 en A4)</td>
+<td>pendiente: mismo reintento, disparado por <code>structured_response is None</code></td>
+</tr>
+<tr>
+<td>26</td>
+<td>con el híbrido, los fragmentos se imprimen como «similitud 0.032» (es la suma RRF, no un coseno)</td>
+<td>cosmético, pendiente</td>
+</tr>
+</tbody>
+</table></div>
+<p>Y tres cosas de método que descubrí a base de equivocarme: el calentamiento
+del índice caía dentro de la latencia de la primera pregunta (<code>calentar()</code> lo
+saca fuera); el detector de «límite alcanzado» saltaba con el texto de NVIDIA
+sobre controles de exportación; y <code>ToolCallLimitMiddleware</code> contaba la
+respuesta estructurada como una herramienta más.</p>
+<hr />
+<h2>6. Cómo trabajar con la rama</h2>
+<pre><code class="language-powershell">git fetch
+git checkout mejoras
+uv sync --frozen
+uv run --with pytest python -m pytest -q      # 55 passed
+</code></pre>
+<ul>
+<li><strong><code>python -m pytest</code>, no <code>pytest</code> a secas</strong>: Windows (App Control) bloquea el
+  lanzador <code>.exe</code> que uv genera en una carpeta temporal.</li>
+<li>El notebook: cambia <code>ARQ</code> en el bloque 1 y ejecuta 1 → 3 → 5. El bloque 3 es
+  idempotente: si se corta, se relanza y sigue. Un JSON con error se repite solo.</li>
+<li>Sin clave, todo lo que no gasta API funciona: puntuar, comparar, recall
+  (menos la reescritura).</li>
+<li><strong>Commitear en cuanto los tests pasan.</strong> Tres veces perdí trabajo porque
+  estaba solo en el árbol de trabajo y un <code>git restore</code> lo devolvió al commit
+  anterior.</li>
+<li>La clave va en <code>.env</code> y nunca en el repo (está en <code>.gitignore</code>; el notebook
+  solo imprime <code>bool(os.environ.get("OPENROUTER_API_KEY"))</code>).</li>
+</ul>
+<hr />
+<h2>7. Lo que falta y lo que mejoraría</h2>
+<p><strong>Antes de la entrega (23-sep 23:59):</strong></p>
+<ol>
+<li><strong>Reintento cuando no hay respuesta estructurada</strong> (bug 25). Con 10
+   preguntas ciegas y un 3,3 % de turnos vacíos, hay un 28 % de probabilidad de
+   perder una pregunta entera. Son ~15 líneas, el mismo patrón que el reintento
+   del 400.</li>
+<li><strong>Ejecutar A3</strong> para que la escalera tenga los cuatro peldaños. Predicción
+   escrita: plano en acierto.</li>
+<li><strong>Merge de <code>mejoras</code> en <code>main</code>.</strong> El profesor clona <code>main</code>; hay que
+   fusionar antes del plazo. Diego: tu rama <code>traduccion-retrieval-mejorado</code> toca
+   <code>retrieval.py</code>; la mía toca <code>herramientas.py</code>. No deberían chocar, pero
+   miradlo.</li>
+<li><strong>Ensayar <code>evaluar("holdout.jsonl")</code> en un clon limpio</strong>, con el índice
+   FAISS descargado y el codificador en caché, cronometrado: A4 tarda 49 s por
+   pregunta, o sea ~8 minutos para las 10 ciegas. Hay que saber si eso cabe en
+   la clase.</li>
+<li>El informe PDF.</li>
+</ol>
+<p><strong>Mejoras que dejaría anotadas pero no haría ya:</strong></p>
+<ul>
+<li><strong>La latencia de la reescritura.</strong> +72 % por una llamada que no cambia
+  ninguna respuesta. Si el tiempo del día 24 aprieta, <code>reescritura=False</code> en
+  <code>final</code> es una decisión defendible con los datos de A2.</li>
+<li><strong>La etiqueta «similitud»</strong> con el híbrido: renombrar a «score».</li>
+<li><strong>Validar <code>PRECIOS_OPENROUTER</code></strong> contra openrouter.ai/activity; la ficha del
+  modelo lleva un «50 % off». Si cambia, se repuntúa sin repetir nada.</li>
+<li><strong>Ablación de «a la tercera, cierra»</strong>: es la línea del prompt honesto que
+  hizo al agente tacaño en A1. Merecería medirse sola.</li>
+<li><strong>Un golden set con fallos de retrieval de verdad</strong>: en este, cuando el agente
+  busca, encuentra. Para que A2/A3 tuvieran algo que arreglar habría que añadir
+  preguntas cuyo ancla esté enterrada (posición &gt; 20 con el denso).</li>
+<li><strong>Diego:</strong> en tu tabla de recall falta la fila «reescritura sola». Sin ella el
+  salto de 7 a 12 no se puede atribuir entre reescritura e híbrido; la mía sí la
+  tiene (9/14).</li>
+</ul>
+<p><strong>Preguntas para vosotros:</strong></p>
+<ul>
+<li>¿Os parece bien que <code>final</code> sea A4 tal cual (con reescritura e híbrido), o
+  preferís <code>final</code> = A1 + prompt de comparativas, que da lo mismo en acierto y
+  tarda la mitad? Yo lo decidiría con el cronómetro del punto 4.</li>
+<li>¿Alguien tiene un caso del hold-out del profesor de otros años? Serviría para
+  ensayar con preguntas que no hayamos visto.</li>
+</ul>
+</body></html>

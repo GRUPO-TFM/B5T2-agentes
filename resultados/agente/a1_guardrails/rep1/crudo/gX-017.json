@@ -1,0 +1,263 @@
+{
+ "item": {
+  "id": "gX-017",
+  "pregunta": "¿Cuánto crecieron las ventas netas de Apple entre FY2024 y FY2025?",
+  "familia": "comparativa",
+  "ticker": "AAPL",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "De 391.035 a 416.161 millones de dólares, un 6,4 % más.",
+  "cifra_esperada": 416161000000.0,
+  "unidad": "USD",
+  "concept_xbrl": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "item_esperado": "7",
+  "ancla_texto": "Americas net sales increased during 2025 compared to 2024 primarily due to higher net sales of iPhone and Services.",
+  "ancla_inicio": 4375,
+  "ancla_fin": 4490,
+  "chunk_id_esperado": "AAPL-2025-7-0002",
+  "herramienta_esperada": [
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "autor": "grupo-X"
+ },
+ "rep": 1,
+ "thread_id": "a1_guardrails-rep1-gX-017",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "Las ventas netas de Apple aumentaron de 391.035.000.000 USD en FY2024 a 416.161.000.000 USD en FY2025, lo que supone un incremento de 25.126.000.000 USD (aproximadamente un 6,43%).",
+   "cifra": 416161000000.0,
+   "unidad": "USD",
+   "ticker": "AAPL",
+   "ejercicio": 2025,
+   "fuente": "xbrl",
+   "cita": null,
+   "chunk_id": null
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "ticker": "AAPL",
+     "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "Revenues",
+     "fiscal_year": 2025,
+     "ticker": "AAPL"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2024,
+     "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+     "ticker": "AAPL"
+    }
+   }
+  ],
+  "n_llamadas": 4,
+  "tokens_in": 7364,
+  "tokens_out": 1283,
+  "coste_usd": 0.01033425,
+  "latencia_s": 13.5120260999538,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Cuánto crecieron las ventas netas de Apple entre FY2024 y FY2025?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_116054",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1399,
+     "output_tokens": 59,
+     "total_tokens": 1458,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 49
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_116054",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "ticker": "AAPL",
+       "concept": "RevenueFromContractWithCustomerExcludingAssessedTax"
+      },
+      "id": "call_1738765",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "Revenues",
+       "fiscal_year": 2025,
+       "ticker": "AAPL"
+      },
+      "id": "call_1738767",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1705,
+     "output_tokens": 203,
+     "total_tokens": 1908,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 123
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2025 · RevenueFromContractWithCustomerExcludingAssessedTax = 416,161,000,000 USD (cierre de ejercicio 2025-09-27, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_1738765",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AAPL no reportó 'Revenues' en FY2025. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, GrossProfit, Liabilities, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, ResearchAndDevelopmentExpense, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_1738767",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2024,
+       "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+       "ticker": "AAPL"
+      },
+      "id": "call_106504",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2050,
+     "output_tokens": 101,
+     "total_tokens": 2151,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 57
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2024 · RevenueFromContractWithCustomerExcludingAssessedTax = 391,035,000,000 USD (cierre de ejercicio 2024-09-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_106504",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "fuente": "xbrl",
+       "ticker": "AAPL",
+       "respuesta": "Las ventas netas de Apple aumentaron de 391.035.000.000 USD en FY2024 a 416.161.000.000 USD en FY2025, lo que supone un incremento de 25.126.000.000 USD (aproximadamente un 6,43%).",
+       "cifra": 416161000000,
+       "unidad": "USD",
+       "ejercicio": 2025
+      },
+      "id": "call_1591232",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2210,
+     "output_tokens": 920,
+     "total_tokens": 3130,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 765
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='Las ventas netas de Apple aumentaron de 391.035.000.000 USD en FY2024 a 416.161.000.000 USD en FY2025, lo que supone un incremento de 25.126.000.000 USD (aproximadamente un 6,43%).' cifra=416161000000.0 unidad='USD' ticker='AAPL' ejercicio=2025 fuente='xbrl' cita=None chunk_id=None",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_1591232",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a1_guardrails"
+ }
+}

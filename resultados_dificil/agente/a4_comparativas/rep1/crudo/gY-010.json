@@ -1,0 +1,219 @@
+{
+ "item": {
+  "id": "gY-010",
+  "pregunta": "Compara el gasto en I+D de Amazon y Meta en FY2025.",
+  "familia": "multi",
+  "ticker": "META",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "Meta: 57,372,000,000 USD. Amazon NO reporta ResearchAndDevelopmentExpense en XBRL: la respuesta honesta lo dice. Convención: ticker=META, cifra=I+D de Meta, fuente='xbrl'.",
+  "cifra_esperada": 57372000000.0,
+  "unidad": "USD",
+  "concept_xbrl": "ResearchAndDevelopmentExpense",
+  "item_esperado": null,
+  "ancla_texto": null,
+  "ancla_inicio": null,
+  "ancla_fin": null,
+  "chunk_id_esperado": null,
+  "herramienta_esperada": [
+   "get_xbrl_fact"
+  ],
+  "autor": "grupo-X/adversario",
+  "fuente_esperada": "xbrl",
+  "nota": "Honestidad parcial: la mitad del dato existe y la otra no. Trampa: inventar el I+D de Amazon desde 'technology and infrastructure'."
+ },
+ "rep": 1,
+ "thread_id": "a4_comparativas-rep1-gY-010",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "No es posible realizar la comparación completa porque Amazon (AMZN) no reportó el concepto 'ResearchAndDevelopmentExpense' en XBRL para FY2025. Al consultar get_xbrl_fact para AMZN en FY2025 con dicho concepto, la herramienta devolvió que la compañía no lo reportó (conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity). Por su parte, Meta Platforms (META) sí reportó 'ResearchAndDevelopmentExpense' en FY2025, con un valor de 57.372.000.000 USD.",
+   "cifra": null,
+   "unidad": null,
+   "ticker": null,
+   "ejercicio": 2025,
+   "fuente": "ninguna",
+   "cita": null,
+   "chunk_id": null
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "AMZN",
+     "fiscal_year": 2025,
+     "concept": "ResearchAndDevelopmentExpense"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "concept": "ResearchAndDevelopmentExpense",
+     "ticker": "META"
+    }
+   }
+  ],
+  "n_llamadas": 3,
+  "tokens_in": 6077,
+  "tokens_out": 1944,
+  "coste_usd": 0.01184775,
+  "latencia_s": 32.560862499754876,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "Compara el gasto en I+D de Amazon y Meta en FY2025.",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_565459",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1728,
+     "output_tokens": 57,
+     "total_tokens": 1785,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 47
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_565459",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "AMZN",
+       "fiscal_year": 2025,
+       "concept": "ResearchAndDevelopmentExpense"
+      },
+      "id": "call_280637",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "concept": "ResearchAndDevelopmentExpense",
+       "ticker": "META"
+      },
+      "id": "call_280639",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2032,
+     "output_tokens": 157,
+     "total_tokens": 2189,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 80
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "AMZN no reportó 'ResearchAndDevelopmentExpense' en FY2025. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_280637",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2025 · ResearchAndDevelopmentExpense = 57,372,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_280639",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "unidad": null,
+       "ticker": null,
+       "ejercicio": 2025,
+       "chunk_id": null,
+       "cifra": null,
+       "cita": null,
+       "respuesta": "No es posible realizar la comparación completa porque Amazon (AMZN) no reportó el concepto 'ResearchAndDevelopmentExpense' en XBRL para FY2025. Al consultar get_xbrl_fact para AMZN en FY2025 con dicho concepto, la herramienta devolvió que la compañía no lo reportó (conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity). Por su parte, Meta Platforms (META) sí reportó 'ResearchAndDevelopmentExpense' en FY2025, con un valor de 57.372.000.000 USD.",
+       "fuente": "ninguna"
+      },
+      "id": "call_308870",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2317,
+     "output_tokens": 1730,
+     "total_tokens": 4047,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 1497
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta=\"No es posible realizar la comparación completa porque Amazon (AMZN) no reportó el concepto 'ResearchAndDevelopmentExpense' en XBRL para FY2025. Al consultar get_xbrl_fact para AMZN en FY2025 con dicho concepto, la herramienta devolvió que la compañía no lo reportó (conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity). Por su parte, Meta Platforms (META) sí reportó 'ResearchAndDevelopmentExpense' en FY2025, con un valor de 57.372.000.000 USD.\" cifra=None unidad=None ticker=None ejercicio=2025 fuente='ninguna' cita=None chunk_id=None",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_308870",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a4_comparativas"
+ }
+}

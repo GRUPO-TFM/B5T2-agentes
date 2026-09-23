@@ -1,0 +1,267 @@
+{
+ "item": {
+  "id": "gX-015",
+  "pregunta": "¿Cuánto crecieron los ingresos de Alphabet entre FY2024 y FY2025?",
+  "familia": "comparativa",
+  "ticker": "GOOGL",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "De 350.018 a 402.836 millones de dólares, un 15,1 % más.",
+  "cifra_esperada": 402836000000.0,
+  "unidad": "USD",
+  "concept_xbrl": "Revenues",
+  "item_esperado": "7",
+  "ancla_texto": "Google Network revenues decreased $567 million from 2024 to 2025, primarily due to a decrease in AdSense revenues, partially offset by an increase in AdMob revenues.",
+  "ancla_inicio": 23250,
+  "ancla_fin": 23415,
+  "chunk_id_esperado": "GOOGL-2025-7-0012",
+  "herramienta_esperada": [
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "autor": "grupo-X"
+ },
+ "rep": 1,
+ "thread_id": "a4_comparativas-rep1-gX-015",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "Los ingresos de Alphabet aumentaron en 52.818.000.000 USD entre FY2024 (350.018.000.000 USD) y FY2025 (402.836.000.000 USD), lo que supone un crecimiento del 15,09%. Según la dirección, este crecimiento interanual estuvo impulsado principalmente por el aumento en los ingresos de Google Services en 37.800 millones de dólares (12%) y de Google Cloud en 15.500 millones de dólares (36%).",
+   "cifra": 402836000000.0,
+   "unidad": "USD",
+   "ticker": "GOOGL",
+   "ejercicio": 2025,
+   "fuente": "ambas",
+   "cita": "Revenues were $402.8 billion, an increase of 15% year over year, primarily driven by an increase in Google Services revenues of $37.8 billion, or 12%, and an increase in Google Cloud revenues of $15.5 billion, or 36%.",
+   "chunk_id": "GOOGL-2025-7-0009"
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "GOOGL",
+     "fiscal_year": 2024,
+     "concept": "Revenues"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "Revenues",
+     "ticker": "GOOGL",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "7",
+     "query": "Revenues increased percentage Google Services Cloud",
+     "fiscal_year": 2025,
+     "ticker": "GOOGL"
+    }
+   }
+  ],
+  "n_llamadas": 4,
+  "tokens_in": 11501,
+  "tokens_out": 1477,
+  "coste_usd": 0.0141645,
+  "latencia_s": 29.813408799935132,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Cuánto crecieron los ingresos de Alphabet entre FY2024 y FY2025?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_32618",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1730,
+     "output_tokens": 69,
+     "total_tokens": 1799,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 59
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_32618",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "GOOGL",
+       "fiscal_year": 2024,
+       "concept": "Revenues"
+      },
+      "id": "call_178120",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "Revenues",
+       "ticker": "GOOGL",
+       "fiscal_year": 2025
+      },
+      "id": "call_178126",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2046,
+     "output_tokens": 148,
+     "total_tokens": 2194,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 72
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "GOOGL FY2024 · Revenues = 350,018,000,000 USD (cierre de ejercicio 2024-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_178120",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "GOOGL FY2025 · Revenues = 402,836,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_178126",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "7",
+       "query": "Revenues increased percentage Google Services Cloud",
+       "fiscal_year": 2025,
+       "ticker": "GOOGL"
+      },
+      "id": "call_58762",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2298,
+     "output_tokens": 430,
+     "total_tokens": 2728,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 384
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: '\"Google Services\" \"Google Cloud\" revenues \"percentage change\" \"Item 7\"')\n\n[GOOGL-2025-7-0013] GOOGL FY2025 Item 7 (similitud 0.032)\nGoogle Search & other\nPaid clicks change\t6\t%\nCost-per-click change\t7\t%\nGoogle Network\nImpressions change\t(7)\t%\nCost-per-impression change\t7\t%\n\nChanges in paid clicks and impressions are driven by a number of interrelated factors, including changes in advertiser spending; ongoing product and policy changes; and, as it relates to paid clicks, fluctuations in search queries resulting from changes in user adoption and usage, primarily on mobile devices.\n\nChanges in cost-per-click and cost-per-impression are driven by a number of interrelated factors including changes in device mix, geographic mix, advertiser spending, ongoing product and policy changes, product mix, property mix, and changes in foreign currency exchange rates.\n\nGoogle Subscriptions, Platforms, and Devices\n\nGoogle subscriptions, platforms, and devices revenues increased $7.7 billion from 2024 to 2025. The growth was primarily driven by an increase in subscriptions revenues. This increase was primarily due to the contribution from growth in paid subscriptions across both YouTube services and Google One.\n\nGoogle Cloud\n\nGoogle Cloud revenues increased $15.5 billion from 2024 to 2025, primarily driven by growth in Google Cloud Platform largely from infrastructure and platform services.\n\nRevenues by Geography\n\nThe following table presents revenues by geography as a percentage of revenues, determined based on the addresses of our customers:\n\nYear Ended December 31,\n2024\t\t2025\nUnited States\t49\t%\t\t48\t%\nEMEA (1)\t29\t%\t\t29\t%\nAPAC (1)\t16\t%\t\t17\t%\nOther Americas (1)\t6\t%\t\t6\t%\nHedging gains (losses)\t0\t%\t\t0\t%\n\n(1) Regions represent Europe, the Middle East, and Africa (EMEA); Asia-Pacific (APAC); and Canada and Latin America (\"Other Americas\").\n\nFor additional information, see Note 2 of the Notes to Consolidated Financial Statements included in Item 8 of this Annual Report on Form 10-K.\n\nCosts and Expenses\n\n34.\n\nTable of Contents\tAlphabet Inc.\n\n---\n\n[GOOGL-2025-7-0004] GOOGL FY2025 Item 7 (similitud 0.032)\nRevenues and Monetization Metrics\n\nWe generate revenues by delivering relevant, cost-effective online advertising; cloud-based solutions that provide enterprise customers of all sizes with infrastructure, platform services, and applications; and sales of other products and services, such as fees received for subscription-based products, apps and in-app purchases, and devices. For additional information on how we recognize revenue, see Note 1 of the Notes to Consolidated Financial Statements included in Item 8 of this Annual Report on Form 10-K.\n\nIn addition to the long-term trends and their financial effect on our business discussed above, fluctuations in our revenues have been and may continue to be affected by a combination of factors, including:\n\n•changes in foreign currency exchange rates;\n\n•changes in pricing, such as those resulting from changes in fee structures, discounts, and customer incentives;\n\n•general economic conditions and various external dynamics, including geopolitical events, regulations, and other measures and their effect on advertiser, consumer, and enterprise spending;\n\n•new product, service, and market launches; and\n\n•seasonality.\n\nAdditionally, fluctuations in our revenues generated from advertising (\"Google advertising\"), other sources (\"Google subscriptions, platforms, and devices\"), Google Cloud, and Other Bets have been, and may continue to be, affected by other factors unique to each set of revenues, as described below.\n\nGoogle Services\n\nGoogle Services revenues consist of Google advertising as well as Google subscriptions, platforms, and devices revenues.\n\nGoogle Advertising\n\nGoogle advertising revenues are comprised of the following:\n\n•Google Search & other, which includes revenues generated on Google search properties (including revenues from traffic generated by search distribution partners who use Google.com as their default search in browsers, toolbars, etc.), and other Google owned and operated properties like Gmail, Google Maps, and Google Play;\n\n---\n\n[GOOGL-2025-7-0016] GOOGL FY2025 Item 7 (similitud 0.032)\nGoogle Services\n\nGoogle Services operating income increased $18.1 billion from 2024 to 2025. The increase in operating income was primarily driven by an increase in revenues, partially offset by an increase in expenses related to legal and other matters, TAC, and content acquisition costs.\n\nGoogle Cloud\n\nGoogle Cloud operating income increased $7.8 billion from 2024 to 2025. The increase in operating income was primarily driven by an increase in revenues, partially offset by increases in usage costs for technical infrastructure and employee compensation expenses.\n\nOther Bets\n\nOther Bets operating loss increased $3.1 billion from 2024 to 2025. The increase in operating loss was primarily driven by an increase in employee compensation expenses largely due to an increase in a valuation-based compensation charge related to Waymo.\n\nOther Income (Expense), Net\n\nThe following table presents OI&E, (in millions):\n\nYear Ended December 31,\n2024\t\t2025\nInterest income\t$\t4,482\t\t\t$\t4,337\nInterest expense\t(268)\t\t\t(736)\nForeign currency exchange gain (loss), net\t(409)\t\t\t(382)\nGain (loss) on debt securities, net\t(1,043)\t\t\t540\nGain (loss) on equity securities, net\t3,714\t\t\t24,080\nIncome (loss) and impairment from equity method investments, net\t(188)\t\t\t281\nOther\t1,137\t\t\t1,667\nOther income (expense), net\t$\t7,425\t\t\t$\t29,787\n\nOI&E, net increased $22.4 billion from 2024 to 2025, primarily due to increases in net unrealized gains on equity securities resulting from fair value adjustments on non-marketable equity securities.\n\nFor additional information, see Note 3 and Note 7 of the Notes to Consolidated Financial Statements included in Item 8 of this Annual Report on Form 10-K.\n\n36.\n\nTable of Contents\tAlphabet Inc.\n\n---\n\n[GOOGL-2025-7-0015] GOOGL FY2025 Item 7 (similitud 0.031)\nSales and Marketing\n\nThe following table presents sales and marketing expenses (in millions, except percentages):\n\nYear Ended December 31,\n2024\t\t2025\nSales and marketing expenses\t$\t27,808\t\t\t$\t28,693\nSales and marketing expenses as a percentage of revenues\t8\t%\t\t7\t%\n\nSales and marketing expenses increased $885 million from 2024 to 2025, primarily driven by an increase in advertising and promotional activities of $1.2 billion, partially offset by a decrease in employee compensation expenses of $214 million.\n\nGeneral and Administrative\n\nThe following table presents general and administrative expenses (in millions, except percentages):\n\nYear Ended December 31,\n2024\t\t2025\nGeneral and administrative expenses\t$\t14,188\t\t\t$\t21,482\nGeneral and administrative expenses as a percentage of revenues\t4\t%\t\t5\t%\n\nGeneral and administrative expenses increased $7.3 billion from 2024 to 2025, primarily driven by an increase in expenses related to legal and other matters of $6.2 billion, largely the result of the $3.5 billion EC fine accrued in the third quarter of 2025 and a $1.4 billion legal accrual made in the second quarter of 2025.\n\n35.\n\nTable of Contents\tAlphabet Inc.\n\nSegment Profitability\n\nWe report our segment results as Google Services, Google Cloud, and Other Bets. Additionally, certain costs are not allocated to our segments because they represent Alphabet-level activities. For further details on our segments, see Part I, Item 1 Business and Note 15 of the Notes to Consolidated Financial Statements included in Item 8 of this Annual Report on Form 10-K.\n\nThe following table presents segment operating income (loss) (in millions).\n\nYear Ended December 31,\n2024\t\t2025\nOperating income (loss):\nGoogle Services\t$\t121,263\t\t\t$\t139,404\nGoogle Cloud\t6,112\t\t\t13,910\nOther Bets\t(4,444)\t\t\t(7,515)\nAlphabet-level activities (1)\t(10,541)\t\t\t(16,760)\nTotal income from operations\t$\t112,390\t\t\t$\t129,039\n\n(1)Alphabet-level activities primarily reflect expenses related to our shared AI research and development.\n\n---\n\n[GOOGL-2025-7-0009] GOOGL FY2025 Item 7 (similitud 0.031)\nExecutive Overview\n\nThe following table summarizes consolidated financial results (in millions, except for per share information and percentages):\n\nYear Ended December 31,\n2024\t\t2025\t\t$ Change\t\t% Change\nConsolidated revenues\t$\t350,018\t\t\t$\t402,836\t\t\t$\t52,818\t\t\t15\t%\nCost of revenues\t$\t146,306\t\t\t$\t162,535\t\t\t$\t16,229\t\t\t11\t%\nOperating expenses\t$\t91,322\t\t\t$\t111,262\t\t\t$\t19,940\t\t\t22\t%\nOperating income\t$\t112,390\t\t\t$\t129,039\t\t\t$\t16,649\t\t\t15\t%\nOperating margin\t32\t%\t\t32\t%\t\t\t\t0\t%\nOther income (expense), net\t$\t7,425\t\t\t$\t29,787\t\t\t$\t22,362\t\t\t301\t%\nNet income\t$\t100,118\t\t\t$\t132,170\t\t\t$\t32,052\t\t\t32\t%\nDiluted net income per share (1)\t$\t8.04\t\t\t$\t10.81\t\t\t$\t2.77\t\t\t34\t%\n\n(1) For additional information on the calculation of diluted net income per share, see Note 12 of the Notes to Consolidated Financial Statements included in Item 8 of this Annual Report on Form 10-K.\n\n•Revenues were $402.8 billion, an increase of 15% year over year, primarily driven by an increase in Google Services revenues of $37.8 billion, or 12%, and an increase in Google Cloud revenues of $15.5 billion, or 36%.\n\n•Cost of revenues was $162.5 billion, an increase of 11% year over year, primarily driven by increases in TAC, content acquisition costs, and depreciation expense.\n\n•Operating expenses were $111.3 billion, an increase of 22% year over year, primarily driven by increases in employee compensation expenses, expenses related to legal and other matters, and depreciation expense.\n\nOther Information:\n\n32.\n\nTable of Contents\tAlphabet Inc.\n\n•In 2025, we entered into definitive agreements to acquire Wiz, a leading cloud security platform, for $32.0 billion, and Intersect, a provider of data center and energy infrastructure solutions, for $",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_58762",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "ejercicio": 2025,
+       "cita": "Revenues were $402.8 billion, an increase of 15% year over year, primarily driven by an increase in Google Services revenues of $37.8 billion, or 12%, and an increase in Google Cloud revenues of $15.5 billion, or 36%.",
+       "cifra": 402836000000,
+       "chunk_id": "GOOGL-2025-7-0009",
+       "unidad": "USD",
+       "ticker": "GOOGL",
+       "fuente": "ambas",
+       "respuesta": "Los ingresos de Alphabet aumentaron en 52.818.000.000 USD entre FY2024 (350.018.000.000 USD) y FY2025 (402.836.000.000 USD), lo que supone un crecimiento del 15,09%. Según la dirección, este crecimiento interanual estuvo impulsado principalmente por el aumento en los ingresos de Google Services en 37.800 millones de dólares (12%) y de Google Cloud en 15.500 millones de dólares (36%)."
+      },
+      "id": "call_135706",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 5427,
+     "output_tokens": 830,
+     "total_tokens": 6257,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 533
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='Los ingresos de Alphabet aumentaron en 52.818.000.000 USD entre FY2024 (350.018.000.000 USD) y FY2025 (402.836.000.000 USD), lo que supone un crecimiento del 15,09%. Según la dirección, este crecimiento interanual estuvo impulsado principalmente por el aumento en los ingresos de Google Services en 37.800 millones de dólares (12%) y de Google Cloud en 15.500 millones de dólares (36%).' cifra=402836000000.0 unidad='USD' ticker='GOOGL' ejercicio=2025 fuente='ambas' cita='Revenues were $402.8 billion, an increase of 15% year over year, primarily driven by an increase in Google Services revenues of $37.8 billion, or 12%, and an increase in Google Cloud revenues of $15.5 billion, or 36%.' chunk_id='GOOGL-2025-7-0009'",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_135706",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a4_comparativas"
+ }
+}

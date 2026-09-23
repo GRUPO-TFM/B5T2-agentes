@@ -1,0 +1,376 @@
+{
+ "item": {
+  "id": "gY-014",
+  "pregunta": "¿Qué compañía mejoró más su flujo de caja operativo en términos relativos entre FY2024 y FY2025, Microsoft o NVIDIA, y a qué lo atribuye su MD&A?",
+  "familia": "multi_temporal",
+  "ticker": "NVDA",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "NVIDIA: +128.2 % frente a Microsoft +14.9 %. El MD&A de NVIDIA lo atribuye al crecimiento de ingresos. Convención: ticker=NVDA, cifra=crecimiento de NVDA en %.",
+  "cifra_esperada": 128.16,
+  "unidad": "%",
+  "concept_xbrl": null,
+  "item_esperado": "7",
+  "ancla_texto": "Cash provided by operating activities increased in fiscal year 2025 compared to fiscal year 2024, due to growth in revenue.",
+  "ancla_inicio": null,
+  "ancla_fin": null,
+  "chunk_id_esperado": "NVDA-2025-7-0019",
+  "herramienta_esperada": [
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "autor": "grupo-X/adversario",
+  "cifras_aceptables": [
+   128.16,
+   64089000000.0
+  ],
+  "nota": "Convención v2 (alineada con el contrato del agente, que manda poner en `cifra` el valor XBRL del ejercicio más reciente y la variación en `respuesta`): se acepta la magnitud derivada o ese valor XBRL."
+ },
+ "rep": 1,
+ "thread_id": "baseline-rep1-gY-014",
+ "commit": "1e19c11",
+ "fecha": "2026-09-23T17:03:09",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "La compañía que mejoró más su flujo de caja operativo en términos relativos entre FY2024 y FY2025 fue NVIDIA, con un incremento del 128,16%, frente al 14,86% de Microsoft.\n\nCifras de flujo de caja operativo (NetCashProvidedByUsedInOperatingActivities):\n• NVIDIA:\n  - FY2024: 28.090.000.000 USD\n  - FY2025: 64.089.000.000 USD\n  - Variación relativa: +128,16% (+35.999 millones de USD)\n• Microsoft:\n  - FY2024: 118.548.000.000 USD\n  - FY2025: 136.162.000.000 USD\n  - Variación relativa: +14,86% (+17.614 millones de USD)\n\nEn su sección MD&A (Item 7), NVIDIA atribuye directamente este incremento al crecimiento de los ingresos: «Cash provided by operating activities increased in fiscal year 2025 compared to fiscal year 2024, due to growth in revenue» [NVDA-2025-7-0019].\n\n(A modo comparativo, Microsoft en su MD&A [MSFT-2025-7-0017] atribuye su incremento principalmente a mayores cobros de clientes, compensados en parte por mayores pagos a proveedores, empleados e impuestos).",
+   "cifra": 128.16,
+   "unidad": "%",
+   "ticker": "NVDA",
+   "ejercicio": 2025,
+   "fuente": "ambas",
+   "cita": "Cash provided by operating activities increased in fiscal year 2025 compared to fiscal year 2024, due to growth in revenue.",
+   "chunk_id": null
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "search_filings",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "MSFT",
+     "fiscal_year": 2024,
+     "concept": "NetCashProvidedByUsedInOperatingActivities"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "MSFT",
+     "fiscal_year": 2025,
+     "concept": "NetCashProvidedByUsedInOperatingActivities"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2024,
+     "concept": "NetCashProvidedByUsedInOperatingActivities",
+     "ticker": "NVDA"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "ticker": "NVDA",
+     "concept": "NetCashProvidedByUsedInOperatingActivities"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "query": "operating activities cash flows increased Net cash provided by operating activities",
+     "ticker": "NVDA",
+     "fiscal_year": 2025,
+     "item": "7"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "fiscal_year": 2025,
+     "item": "7",
+     "ticker": "MSFT",
+     "query": "Cash from operations increased Net cash from operations operating activities"
+    }
+   }
+  ],
+  "n_llamadas": 7,
+  "tokens_in": 15470,
+  "tokens_out": 2436,
+  "coste_usd": 0.0207375,
+  "latencia_s": 25.17276280000806,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Qué compañía mejoró más su flujo de caja operativo en términos relativos entre FY2024 y FY2025, Microsoft o NVIDIA, y a qué lo atribuye su MD&A?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_817381",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 998,
+     "output_tokens": 85,
+     "total_tokens": 1083,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 75
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_817381",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "MSFT",
+       "fiscal_year": 2024,
+       "concept": "NetCashProvidedByUsedInOperatingActivities"
+      },
+      "id": "call_797482",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "MSFT",
+       "fiscal_year": 2025,
+       "concept": "NetCashProvidedByUsedInOperatingActivities"
+      },
+      "id": "call_797494",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2024,
+       "concept": "NetCashProvidedByUsedInOperatingActivities",
+       "ticker": "NVDA"
+      },
+      "id": "call_797500",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "ticker": "NVDA",
+       "concept": "NetCashProvidedByUsedInOperatingActivities"
+      },
+      "id": "call_797516",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1330,
+     "output_tokens": 267,
+     "total_tokens": 1597,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 95
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "MSFT FY2024 · NetCashProvidedByUsedInOperatingActivities = 118,548,000,000 USD (cierre de ejercicio 2024-06-30, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_797482",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "MSFT FY2025 · NetCashProvidedByUsedInOperatingActivities = 136,162,000,000 USD (cierre de ejercicio 2025-06-30, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_797494",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "NVDA FY2024 · NetCashProvidedByUsedInOperatingActivities = 28,090,000,000 USD (cierre de ejercicio 2024-01-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_797500",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "NVDA FY2025 · NetCashProvidedByUsedInOperatingActivities = 64,089,000,000 USD (cierre de ejercicio 2025-01-26, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_797516",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "query": "operating activities cash flows increased Net cash provided by operating activities",
+       "ticker": "NVDA",
+       "fiscal_year": 2025,
+       "item": "7"
+      },
+      "id": "call_163585",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1827,
+     "output_tokens": 459,
+     "total_tokens": 2286,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 410
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[NVDA-2025-7-0019] NVDA FY2025 Item 7 (similitud 0.784)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\n(In millions)\nNet cash provided by operating activities\t$\t64,089\t\t\t$\t28,090\nNet cash used in investing activities\t$\t(20,421)\t\t\t$\t(10,566)\nNet cash used in financing activities\t$\t(42,359)\t\t\t$\t(13,633)\n\nOur investment policy requires the purchase of highly-rated fixed income securities, the diversification of investment types and credit exposures, and certain maturity limits on our portfolio.\n\nCash provided by operating activities increased in fiscal year 2025 compared to fiscal year 2024, due to growth in revenue.\n\nCash used in investing activities increased in fiscal year 2025 compared to fiscal year 2024, primarily driven by net purchases of marketable securities, and purchase of land, property and equipment.\n\nCash used in financing activities increased in fiscal year 2025 compared to fiscal year 2024, mainly due to higher share repurchases and higher tax payments related to RSUs.\n\n---\n\n[NVDA-2025-7-0012] NVDA FY2025 Item 7 (similitud 0.679)\nResults of Operations\n\nA discussion regarding our financial condition and results of operations for fiscal year 2025 compared to fiscal year 2024 is presented below. A discussion regarding our financial condition and results of operations for fiscal year 2024 compared to fiscal year 2023 can be found under Item 7 in our Annual Report on Form 10-K for the fiscal year ended January 28, 2024, filed with the SEC on February 21, 2024, which is available free of charge on the SEC’s website at http://www.sec.gov and at our investor relations website, http://investor.nvidia.com.\n\nThe following table sets forth, for the periods indicated, certain items in our Consolidated Statements of Income expressed as a percentage of revenue.\n\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\nRevenue\t100.0\t%\t\t100.0\t%\nCost of revenue\t25.0\t\t\t27.3\nGross profit\t75.0\t\t\t72.7\nOperating expenses\nResearch and development\t9.9\t\t\t14.2\nSales, general and administrative\t2.7\t\t\t4.4\nTotal operating expenses\t12.6\t\t\t18.6\nOperating income\t62.4\t\t\t54.1\nInterest income\t1.4\t\t\t1.4\nInterest expense\t(0.2)\t\t\t(0.4)\nOther, net\t0.8\t\t\t0.4\nOther income (expense), net\t2.0\t\t\t1.4\nIncome before income tax\t64.4\t\t\t55.5\nIncome tax expense\t8.6\t\t\t6.6\nNet income\t55.8\t%\t\t48.9\t%\n\nReportable Segments\n\nRevenue by Reportable Segments\n\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nCompute & Networking\t$\t116,193\t\t\t$\t47,405\t\t\t$\t68,788\t\t\t145\t%\nGraphics\t14,304\t\t\t13,517\t\t\t787\t\t\t6\t%\nTotal\t$\t130,497\t\t\t$\t60,922\t\t\t$\t69,575\t\t\t114\t%\n\nOperating Income by Reportable Segments\n\n---\n\n[NVDA-2025-7-0017] NVDA FY2025 Item 7 (similitud 0.674)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\n($ in millions)\nInterest income\t$\t1,786\t\t\t$\t866\t\t\t$\t920\nInterest expense\t(247)\t\t\t(257)\t\t\t10\nOther, net\t1,034\t\t\t237\t\t\t797\nOther income (expense), net\t$\t2,573\t\t\t$\t846\t\t\t$\t1,727\n\nThe increase in interest income was primarily due to growth in cash, cash equivalents, and marketable securities.\n\nInterest expense is comprised of coupon interest and debt discount amortization related to our notes.\n\nOther, net consists of realized or unrealized gains and losses from investments in non-marketable equity securities, publicly-held equity securities, and the impact of changes in foreign currency rates. The change in Other, net, compared to fiscal year 2024, was primarily driven by an increase in fair value of our non-marketable equity securities and publicly-held equity securities. Refer to Note 8 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for additional information regarding our non-marketable equity securities.\n\n---\n\n[NVDA-2025-7-0022] NVDA FY2025 Item 7 (similitud 0.668)\nMaterial Cash Requirements and Other Obligations\n\nFor a description of our long-term debt, purchase obligations, and operating lease obligations, refer to Note 11, Note 12, and Note 17 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K, respectively.\n\nDuring fiscal year 2025 and fiscal year 2024, we spent $3.4 billion and $1.1 billion on capital expenditures, respectively. We expect to increase capital expenditures in fiscal year 2026 relative to fiscal year 2025 to support the future growth of our business.\n\nUnrecognized tax benefits of $2.2 billion, which includes related interest and penalties of $251 million, were recorded in non-current income tax payable at the end of fiscal year 2025. We are unable to estimate the timing of any potential tax liability, interest payments, or penalties in individual years due to uncertainties in the underlying income tax positions and the timing of the effective settlement of such tax positions. Refer to Note 13 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for further information.\n\nClimate Change\n\nTo date, there has been no material impact to our results of operations associated with global sustainability regulations, compliance, costs from sourcing renewable energy or climate-related business trends.\n\nAdoption of New and Recently Issued Accounting Pronouncements\n\nRefer to Note 1 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for a discussion of adoption of new and recently issued accounting pronouncements.\n\n---\n\n[NVDA-2025-7-0016] NVDA FY2025 Item 7 (similitud 0.660)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\t$ Change\t\t% Change\n($ in millions)\nResearch and development expenses\t$\t12,914\t\t\t$\t8,675\t\t\t$\t4,239\t\t\t49\t%\n% of net revenue\t9.9\t%\t\t14.2\t%\nSales, general and administrative expenses\t3,491\t\t\t2,654\t\t\t837\t\t\t32\t%\n% of net revenue\t2.7\t%\t\t4.4\t%\nTotal operating expenses\t$\t16,405\t\t\t$\t11,329\t\t\t$\t5,076\t\t\t45\t%\n% of net revenue\t12.6\t%\t\t18.6\t%\n\nThe increases in research and development expenses for fiscal year 2025 were driven by a 32% increase in compensation and benefits, including stock-based compensation, reflecting employee growth and compensation increases, a 100% increase in compute and infrastructure, and a 234% increase in engineering development costs for new product introductions.\n\nThe increases in sales, general and administrative expenses for fiscal year 2025 were primarily driven by compensation and benefits, including stock-based compensation, reflecting employee growth and compensation increases.\n\nOther Income (Expense), Net",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_163585",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "fiscal_year": 2025,
+       "item": "7",
+       "ticker": "MSFT",
+       "query": "Cash from operations increased Net cash from operations operating activities"
+      },
+      "id": "call_760501",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4242,
+     "output_tokens": 233,
+     "total_tokens": 4475,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 185
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[MSFT-2025-7-0017] MSFT FY2025 Item 7 (similitud 0.753)\nCash Flows\n\nCash from operations increased $17.6 billion to $136.2 billion for fiscal year 2025, primarily due to an increase in cash received from customers, offset in part by an increase in cash paid to suppliers and employees and cash used to pay income taxes. Cash used in financing increased $13.9 billion to $51.7 billion for fiscal year 2025, primarily due to a $9.5 billion increase in cash used for repayments of debt, net of proceeds. Cash used in investing decreased $24.4 billion to $72.6 billion for fiscal year 2025, primarily due to a $63.2 billion decrease in cash used for acquisitions of companies, net of cash acquired and divestitures, and purchases of intangible and other assets, offset in part by a $22.3 billion increase in cash used in net investment purchases, sales, and maturities, and a $20.1 billion increase in additions to property and equipment.\n\n\n\nDebt Proceeds\n\nWe issue debt to take advantage of favorable pricing and liquidity in the debt markets, reflecting our credit rating. The proceeds of these issuances were or will be used for general corporate purposes, which may include, among other things, funding for working capital, capital expenditures, repurchases of capital stock, acquisitions, and repayment of existing debt. Refer to Note 10 – Debt of the Notes to Financial Statements (Part II, Item 8 of this Form 10-K).\n\nUnearned Revenue\n\nUnearned revenue comprises mainly unearned revenue related to volume licensing programs, which may include cloud services and Software Assurance (“SA”). Unearned revenue is generally invoiced annually at the beginning of each contract period for multi-year agreements and recognized ratably over the coverage period. Unearned revenue also includes payments for other offerings for which we have been paid in advance and earn the revenue when we transfer control of the product or service. Refer to Note 1 – Accounting Policies of the Notes to Financial Statements (Part II, Item 8 of this Form 10-K).\n\nThe following table outlines the expected future recognition of unearned revenue as of June 30, 2025:\n\n---\n\n[MSFT-2025-7-0010] MSFT FY2025 Item 7 (similitud 0.690)\nIntelligent Cloud\n\nRevenue increased $18.8 billion or 21%.\n\n•\nServer products and cloud services revenue increased $18.6 billion or 23% driven by Azure and other cloud services. Azure and other cloud services revenue grew 34% driven by demand for our portfolio of services. Server products revenue decreased 3% driven by a decrease in transactional purchasing with continued customer shift to cloud offerings.\n\n•\nEnterprise and partner services revenue increased $166 million or 2% driven by growth in Enterprise Support Services, offset in part by a decline in Industry Solutions.\n\nOperating income increased $6.8 billion or 18%.\n\n•\nCost of revenue increased $10.6 billion or 36% driven by growth in Azure.\n\n•\nGross margin increased $8.2 billion or 14% driven by growth in Azure. Gross margin percentage decreased driven by the impact of scaling our AI infrastructure, offset in part by efficiency gains in Azure.\n\n•\nOperating expenses increased $1.5 billion or 7% driven by investments in cloud and AI engineering.\n\nMore Personal Computing\n\nRevenue increased $3.8 billion or 7%.\n\n•\nWindows and Devices revenue increased $288 million or 2%. Windows OEM and Devices revenue increased 3% driven by growth in Windows OEM, offset in part by a decline in Devices.\n\n•\nGaming revenue increased $2.0 billion or 9% driven by growth in Xbox content and services, offset in part by a decline in Xbox hardware. Xbox content and services revenue increased 16% driven by the impact of the Activision Blizzard acquisition and Xbox Game Pass. Xbox hardware revenue decreased 25% driven by lower volume of consoles sold.\n\n•\nSearch and news advertising revenue increased $1.6 billion or 13%. Search and news advertising revenue excluding traffic acquisition costs increased 20% driven by higher search volume and higher revenue per search.\n\nOperating income increased $2.2 billion or 18%.\n\n•\nCost of revenue increased $346 million or 1% driven by growth in Search and news advertising.\n\n•\nGross margin increased $3.5 billion or 13% with growth across all businesses. Gross margin percentage increased with improvement across all businesses.\n\n•\nOperating expenses increased $1.3 billion or 9% driven by Gaming, including the impact of the Activision Blizzard acquisition.\n\nOPERATING EXPENSES\n\n---\n\n[MSFT-2025-7-0008] MSFT FY2025 Item 7 (similitud 0.687)\nSEGMENT RESULTS OF OPERATIONS\n\n(In millions, except percentages)\t\t2025\t\t\t2024\t\t\tPercentage Change\nProductivity and Business Processes\nRevenue\t\t$\t120,810\t\t\t$\t106,820\t\t\t\t13%\nCost of revenue\t\t\t22,422\t\t\t\t19,611\t\t\t\t14%\nOperating expenses\t\t\t28,615\t\t\t\t27,548\t\t\t\t4%\nOperating Income\t\t$\t69,773\t\t\t$\t59,661\t\t\t\t17%\nIntelligent Cloud\nRevenue\t\t$\t106,265\t\t\t$\t87,464\t\t\t\t21%\nCost of revenue\t\t\t40,171\t\t\t\t29,611\t\t\t\t36%\nOperating expenses\t\t\t21,505\t\t\t\t20,040\t\t\t\t7%\nOperating Income\t\t$\t44,589\t\t\t$\t37,813\t\t\t\t18%\nMore Personal Computing\nRevenue\t\t$\t54,649\t\t\t$\t50,838\t\t\t\t7%\nCost of revenue\t\t\t25,238\t\t\t\t24,892\t\t\t\t1%\nOperating expenses\t\t\t15,245\t\t\t\t13,987\t\t\t\t9%\nOperating Income\t\t$\t14,166\t\t\t$\t11,959\t\t\t\t18%\nTotal\nRevenue\t\t$\t281,724\t\t\t$\t245,122\t\t\t\t15%\nCost of revenue\t\t\t87,831\t\t\t\t74,114\t\t\t\t19%\nOperating expenses\t\t\t65,365\t\t\t\t61,575\t\t\t\t6%\nOperating Income\t\t$\t128,528\t\t\t$\t109,433\t\t\t\t17%\n\nReportable Segments\n\nFiscal Year 2025 Compared with Fiscal Year 2024\n\n---\n\n[MSFT-2025-7-0009] MSFT FY2025 Item 7 (similitud 0.680)\nProductivity and Business Processes\n\nRevenue increased $14.0 billion or 13%.\n\n•\nMicrosoft 365 Commercial products and cloud services revenue increased $10.8 billion or 14%. Microsoft 365 Commercial cloud revenue grew 15% with Microsoft 365 Commercial seat growth of 6% driven by small and medium businesses and frontline worker offerings, as well as growth in revenue per user. Microsoft 365 Commercial products revenue grew 7% driven by the Windows Commercial on-premises components of Microsoft 365 suite sales and an increase in Office transactional purchasing with the launch of Office 2024.\n\n•\nMicrosoft 365 Consumer products and cloud services revenue increased $756 million or 11%. Microsoft 365 Consumer cloud revenue grew 11% driven by Microsoft 365 Consumer subscriber growth of 8% to 89.0 million, as well as growth in revenue per user from the price increase announced in January 2025.\n\n•\nLinkedIn revenue increased $1.4 billion or 9% with growth across all lines of business.\n\n•\nDynamics products and cloud services revenue increased $996 million or 15% driven by growth in Dynamics 365, offset in part by a decline in Dynamics on-premises products. Dynamics 365 revenue grew 19% with growth across all workloads.\n\nOperating income increased $10.1 billion or 17%.\n\n•\nCost of revenue increased $2.8 billion or 14% driven by growth in Microsoft 365 Commercial cloud.\n\n•\nGross margin increased $11.2 billion or 13% driven by growth in Microsoft 365 Commercial cloud. Gross margin percentage decreased slightly primarily driven by the impact of scaling our AI infrastructure, offset in part by efficiency gains in Microsoft 365 Commercial cloud.\n\n•\nOperating expenses increased $1.1 billion or 4% driven by investments in cloud and AI engineering and commercial sales.\n\n---\n\n[MSFT-2025-7-0018] MSFT FY2025 Item 7 (similitud 0.651)\n(In millions)\nThree Months Ending\nSeptember 30, 2025\t\t$\t25,191\nDecember 31, 2025\t\t\t19,733\nMarch 31, 2026\t\t\t13,742\nJune 30, 2026\t\t\t5,889\nThereafter\t\t\t2,710\nTotal\t\t$\t67,265\n\nIf our customers choose to license cloud-based versions of our products and services rather than licensing transaction-based products and services, the associated revenue will shift from being recognized at the time of the transaction to being recognized over the subscription period or upon consumption, as applicable. Refer to Note 12 – Unearned Revenue of the Notes to Financial Statements (Part II, Item 8 of this Form 10-K).\n\nMaterial Cash Requirements and Other Obligations\n\nContractual Obligations\n\nThe following table summarizes the payments due by fiscal year for our outstanding contractual obligations as of June 30, 2025:\n\n(In millions)\t\t2026\t\t\tThereafter\t\t\tTotal\nLong-term debt: (a)\nPrincipal payments\t\t$\t3,000\t\t\t$\t46,206\t\t\t$\t49,206\nInterest payments\t\t\t1,509\t\t\t\t25,527\t\t\t\t27,036\nConstruction commitments (b)\t\t\t26,859\t\t\t\t5,290\t\t\t\t32,149\nOperating and finance leases, including imputed interest (c)\t\t\t12,798\t\t\t\t165,903\t\t\t\t178,701\nPurchase commitments (d)\t\t\t103,940\t\t\t\t6,013\t\t\t\t109,953\nTotal\t\t$\t148,106\t\t\t$\t248,939\t\t\t$\t397,045\n\n(a)\nRefer to Note 10 – Debt of the Notes to Financial Statements (Part II, Item 8 of this Form 10-K).\n\n(b)\nRefer to Note 6 – Property and Equipment of the Notes to Financial Statements (Part II, Item 8 of this Form 10-K).\n\n(c)\nRefer to Note 13 – Leases of the Notes to Financial Statements (Part II, Item 8 of this Form 10-K).\n\n(d)\nPurchase commitments primarily relate to datacenters and include open purchase orders and take-or-pay contracts that are not presented as construction commitments above.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_760501",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinanciera",
+      "args": {
+       "cifra": 128.16,
+       "fuente": "ambas",
+       "cita": "Cash provided by operating activities increased in fiscal year 2025 compared to fiscal year 2024, due to growth in revenue.",
+       "ticker": "NVDA",
+       "unidad": "%",
+       "respuesta": "La compañía que mejoró más su flujo de caja operativo en términos relativos entre FY2024 y FY2025 fue NVIDIA, con un incremento del 128,16%, frente al 14,86% de Microsoft.\n\nCifras de flujo de caja operativo (NetCashProvidedByUsedInOperatingActivities):\n• NVIDIA:\n  - FY2024: 28.090.000.000 USD\n  - FY2025: 64.089.000.000 USD\n  - Variación relativa: +128,16% (+35.999 millones de USD)\n• Microsoft:\n  - FY2024: 118.548.000.000 USD\n  - FY2025: 136.162.000.000 USD\n  - Variación relativa: +14,86% (+17.614 millones de USD)\n\nEn su sección MD&A (Item 7), NVIDIA atribuye directamente este incremento al crecimiento de los ingresos: «Cash provided by operating activities increased in fiscal year 2025 compared to fiscal year 2024, due to growth in revenue» [NVDA-2025-7-0019].\n\n(A modo comparativo, Microsoft en su MD&A [MSFT-2025-7-0017] atribuye su incremento principalmente a mayores cobros de clientes, compensados en parte por mayores pagos a proveedores, empleados e impuestos).",
+       "ejercicio": 2025
+      },
+      "id": "call_286549",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 7073,
+     "output_tokens": 1392,
+     "total_tokens": 8465,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 941
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='La compañía que mejoró más su flujo de caja operativo en términos relativos entre FY2024 y FY2025 fue NVIDIA, con un incremento del 128,16%, frente al 14,86% de Microsoft.\\n\\nCifras de flujo de caja operativo (NetCashProvidedByUsedInOperatingActivities):\\n• NVIDIA:\\n  - FY2024: 28.090.000.000 USD\\n  - FY2025: 64.089.000.000 USD\\n  - Variación relativa: +128,16% (+35.999 millones de USD)\\n• Microsoft:\\n  - FY2024: 118.548.000.000 USD\\n  - FY2025: 136.162.000.000 USD\\n  - Variación relativa: +14,86% (+17.614 millones de USD)\\n\\nEn su sección MD&A (Item 7), NVIDIA atribuye directamente este incremento al crecimiento de los ingresos: «Cash provided by operating activities increased in fiscal year 2025 compared to fiscal year 2024, due to growth in revenue» [NVDA-2025-7-0019].\\n\\n(A modo comparativo, Microsoft en su MD&A [MSFT-2025-7-0017] atribuye su incremento principalmente a mayores cobros de clientes, compensados en parte por mayores pagos a proveedores, empleados e impuestos).' cifra=128.16 unidad='%' ticker='NVDA' ejercicio=2025 fuente='ambas' cita='Cash provided by operating activities increased in fiscal year 2025 compared to fiscal year 2024, due to growth in revenue.' chunk_id=None",
+    "tool_calls": null,
+    "name": "RespuestaFinanciera",
+    "tool_call_id": "call_286549",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "baseline"
+ }
+}

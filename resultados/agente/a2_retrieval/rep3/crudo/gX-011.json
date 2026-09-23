@@ -1,0 +1,292 @@
+{
+ "item": {
+  "id": "gX-011",
+  "pregunta": "¿Qué inversión en capital anticipa Meta para 2026 según su MD&A de FY2025?",
+  "familia": "extractiva",
+  "ticker": "META",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "Entre 115.000 y 135.000 millones de dólares, para sostener sus esfuerzos en IA y su negocio principal.",
+  "cifra_esperada": null,
+  "unidad": null,
+  "concept_xbrl": null,
+  "item_esperado": "7",
+  "ancla_texto": "We anticipate making capital expenditures of approximately $115 billion to $135 billion in 2026 to support our AI efforts and core business.",
+  "ancla_inicio": 52632,
+  "ancla_fin": 52772,
+  "chunk_id_esperado": "META-2025-7-0031",
+  "herramienta_esperada": [
+   "search_filings"
+  ],
+  "autor": "grupo-X"
+ },
+ "rep": 3,
+ "thread_id": "a2_retrieval-rep3-gX-011",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "Según la sección de MD&A (Item 7) del informe 10-K de FY2025 de Meta Platforms, Inc., la compañía prevé realizar inversiones en capital (capital expenditures) de aproximadamente entre 115.000 millones y 135.000 millones de dólares en 2026 para respaldar sus iniciativas de inteligencia artificial y su negocio principal.",
+   "cifra": null,
+   "unidad": null,
+   "ticker": "META",
+   "ejercicio": 2025,
+   "fuente": "texto",
+   "cita": "We anticipate making capital expenditures of approximately $115 billion to $135 billion in 2026 to support our AI efforts and core business.",
+   "chunk_id": "META-2025-7-0031"
+  },
+  "herramientas": [
+   "list_available",
+   "search_filings",
+   "search_filings",
+   "get_xbrl_fact"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "ticker": "META",
+     "query": "capital expenditures 2026 anticipate range",
+     "fiscal_year": 2025,
+     "k": 5,
+     "item": "7"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "7",
+     "ticker": "META",
+     "query": "anticipate capital expenditures",
+     "k": 5,
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "ticker": "META",
+     "concept": "PaymentsToAcquireProductiveAssets"
+    }
+   }
+  ],
+  "n_llamadas": 4,
+  "tokens_in": 14487,
+  "tokens_out": 988,
+  "coste_usd": 0.01457025,
+  "latencia_s": 64.53055369993672,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Qué inversión en capital anticipa Meta para 2026 según su MD&A de FY2025?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_294319",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1402,
+     "output_tokens": 69,
+     "total_tokens": 1471,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 59
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_294319",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "ticker": "META",
+       "query": "capital expenditures 2026 anticipate range",
+       "fiscal_year": 2025,
+       "k": 5,
+       "item": "7"
+      },
+      "id": "call_3526150",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1718,
+     "output_tokens": 187,
+     "total_tokens": 1905,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 137
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: 'capital expenditures\" (\"fiscal 2026\" OR \"fiscal year 2026\") (expect OR anticipate) range')\n\n[META-2025-7-0028] META FY2025 Item 7 (similitud 0.668)\nProvision for income taxes\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\t\t2025 vs 2024 % change\t\t2024 vs 2023 % change\n(in millions, except percentages)\nProvision for income taxes\t$\t25,474\t\t\t$\t8,303\t\t\t$\t8,330\t\t\t207\t%\t\t—\t%\nEffective tax rate\t30\t%\t\t12\t%\t\t18\t%\n\nOn July 4, 2025, the One Big Beautiful Bill Act (OBBBA) was enacted, introducing several significant U.S. income tax provisions that reduced our U.S. federal cash tax payments for the remainder of 2025 and future years. The provisions include the immediate expensing of domestic research and development costs and certain capital expenditures beginning in 2025, as well as an enhanced deduction for foreign-derived intangible income effective in 2026. The benefits from these provisions are limited by the 15% Corporate Alternative Minimum Tax (CAMT). As a result, we recorded a $15.93 billion charge in the third quarter of 2025, of which $14.03 billion was a valuation allowance against our U.S. federal deferred tax assets as of the enactment date of OBBBA, and the remaining was mostly related to the reduction of the benefit of the foreign-derived intangible income deduction. In determining the valuation allowance, our accounting policy incorporates the expected impact of future years’ CAMT in assessing the realizability of our deferred tax assets.\n\nOur provision for income taxes in 2025 increased $17.17 billion or 207% compared to 2024, primarily due to an increase in the effective tax rate. Our effective tax rate in 2025 increased compared to 2024, mostly due to the effects of OBBBA.\n\nEffective Tax Rate Items. Our effective tax rate in the future will depend upon the proportion between the following items and income before provision for income taxes: the effects of changes in tax law, changes in valuation allowance due to the effects of CAMT, U.S. tax benefits from foreign-derived intangible income, tax effects from share-based compensation, research tax credit, tax effects from capital losses not expected to be utilized, settlement of tax contingency items, and tax effects of changes in our business.\n\nA number of countries have enacted legislation to implement the Organization for Economic Cooperation and Development’s 15% global minimum tax\n\n---\n\n[META-2025-7-0019] META FY2025 Item 7 (similitud 0.661)\nResults of Operations\n\nIn this section, we discuss the results of our operations for the year ended December 31, 2025 compared to the year ended December 31, 2024. For a discussion of the year ended December 31, 2024 compared to the year ended December 31, 2023, please refer to Part II, Item 7, \"Management's Discussion and Analysis of Financial Condition and Results of Operations\" in our Annual Report on Form 10-K for the year ended December 31, 2024.\n\nThe following table sets forth our consolidated statements of income data (in millions):\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\nRevenue\t$\t200,966\t\t\t$\t164,501\t\t\t$\t134,902\nCosts and expenses:\nCost of revenue\t36,175\t\t\t30,161\t\t\t25,959\nResearch and development\t57,372\t\t\t43,873\t\t\t38,483\nMarketing and sales\t11,991\t\t\t11,347\t\t\t12,301\nGeneral and administrative\t12,152\t\t\t9,740\t\t\t11,408\nTotal costs and expenses\t117,690\t\t\t95,121\t\t\t88,151\nIncome from operations\t83,276\t\t\t69,380\t\t\t46,751\nInterest and other income, net\t2,656\t\t\t1,283\t\t\t677\nIncome before provision for income taxes\t85,932\t\t\t70,663\t\t\t47,428\nProvision for income taxes\t25,474\t\t\t8,303\t\t\t8,330\nNet income\t$\t60,458\t\t\t$\t62,360\t\t\t$\t39,098\n\nThe following table sets forth our consolidated statements of income data (as a percentage of revenue)(1):\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\nRevenue\t100\t%\t\t100\t%\t\t100\t%\nCosts and expenses:\nCost of revenue\t18\t\t\t18\t\t\t19\nResearch and development\t29\t\t\t27\t\t\t29\nMarketing and sales\t6\t\t\t7\t\t\t9\nGeneral and administrative\t6\t\t\t6\t\t\t8\nTotal costs and expenses\t59\t\t\t58\t\t\t65\nIncome from operations\t41\t\t\t42\t\t\t35\nInterest and other income, net\t1\n\n---\n\n[META-2025-7-0031] META FY2025 Item 7 (similitud 0.658)\nCash Provided by Operating Activities\n\nCash provided by operating activities during 2025 mostly consisted of $60.46 billion net income adjusted for certain non-cash items, such as $20.43 billion of share-based compensation expense, $18.74 billion of deferred income taxes, and $18.62 billion of depreciation and amortization expense. The increase in cash flows from operating activities during 2025 compared to 2024, was primarily due to an increase in cash collections from our customers driven by the increase in revenue and lower cash paid for income taxes, partially offset by higher operational spending.\n\nCash Used in Investing Activities\n\nCash used in investing activities during 2025 mostly consisted of $69.69 billion of purchases of property and equipment as we continued to invest in servers, data centers, and network infrastructure, and $18.33 billion of purchases of non-marketable equity investments, and $10.05 billion of net purchases of marketable securities. The increase in cash used in investing activities during 2025 compared to 2024 was mostly due to increases in purchases of property and equipment and non-marketable equity investments.\n\nWe anticipate making capital expenditures of approximately $115 billion to $135 billion in 2026 to support our AI efforts and core business.\n\nCash Used in Financing Activities\n\nCash used in financing activities during 2025 mostly consisted of $26.25 billion for repurchases of our Class A common stock, $18.40 billion of taxes paid related to net share settlement of RSUs, and $5.32 billion of payments of dividends and dividend equivalents, partially offset by $29.91 billion net proceeds from the issuance of the Notes in November 2025. The decrease in cash used in financing activities during 2025 compared to 2024, was mostly due to an increase in net proceeds from the Notes.\n\n---\n\n[META-2025-7-0025] META FY2025 Item 7 (similitud 0.643)\nMarketing and sales\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\t\t2025 vs 2024 % change\t\t2024 vs 2023 % change\n(in millions, except percentages)\nMarketing and sales\t$\t11,991\t\t\t$\t11,347\t\t\t$\t12,301\t\t\t6\t%\t\t(8)\t%\nPercentage of revenue\t6\t%\t\t7\t%\t\t9\t%\n\nMarketing and sales expenses in 2025 increased $644 million, or 6%, compared to 2024. The increase was mainly due to higher professional services related to our ongoing platform integrity efforts.\n\nGeneral and administrative\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\t\t2025 vs 2024 % change\t\t2024 vs 2023 % change\n(in millions, except percentages)\nGeneral and administrative\t$\t12,152\t\t\t$\t9,740\t\t\t$\t11,408\t\t\t25\t%\t\t(15)\t%\nPercentage of revenue\t6\t%\t\t6\t%\t\t8\t%\n\nGeneral and administrative expenses in 2025 increased $2.41 billion, or 25%, compared to 2024. The increase was mainly due to higher legal-related costs, which included lapping of a $1.55 billion decrease in accrued losses for certain legal proceedings that benefited the prior year.\n\nSee Note 11 — Commitments and Contingencies in the notes to the consolidated financial statements included in Part II, Item 8, \"Financial Statements and Supplementary Data\" of this Annual Report on Form 10-K for additional information regarding legal-related costs.\n\n---\n\n[META-2025-7-0024] META FY2025 Item 7 (similitud 0.642)\nCost of revenue\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\t\t2025 vs 2024 % change\t\t2024 vs 2023 % change\n(in millions, except percentages)\nCost of revenue\t$\t36,175\t\t\t$\t30,161\t\t\t$\t25,959\t\t\t20\t%\t\t16\t%\nPercentage of revenue\t18\t%\t\t18\t%\t\t19\t%\n\nCost of revenue in 2025 increased $6.01 billion, or 20%, compared to 2024. The increase was mainly due to higher operational expenses related to our data centers and technical infrastructure, which included decreases in the depreciation growth rate due to an extension in the useful lives of servers and network assets, effective January 1, 2025. To a lesser extent, higher costs associated with partner arrangements also contributed to the increase.\n\nSee Note 1 — Summary of Significant Accounting Policies in the notes to the consolidated financial statements included in Part II, Item 8, \"Financial Statements and Supplementary Data\" of this Annual Report on Form 10-K for additional information regarding changes in the estimated useful life of our servers and network assets.\n\nResearch and development\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\t\t2025 vs 2024 % change\t\t2024 vs 2023 % change\n(in millions, except percentages)\nResearch and development\t$\t57,372\t\t\t$\t43,873\t\t\t$\t38,483\t\t\t31\t%\t\t14\t%\nPercentage of revenue\t29\t%\t\t27\t%\t\t29\t%\n\nResearch and development expenses in 2025 increased $13.50 billion, or 31%, compared to 2024. The increase was mostly due to higher employee compensation and infrastructure costs related to research and development, including our AI initiatives.\n\nThe higher employee compensation was primarily from an 8% growth in employee headcount from 2024 to 2025 in engineering and other technical functions and an increase in share-based compensation expense.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_3526150",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "7",
+       "ticker": "META",
+       "query": "anticipate capital expenditures",
+       "k": 5,
+       "fiscal_year": 2025
+      },
+      "id": "call_20385",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1953,
+     "output_tokens": 111,
+     "total_tokens": 2064,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 65
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[META-2025-7-0033] META FY2025 Item 7 (similitud 0.661)\nMaterial Cash Requirements\n\nWe currently anticipate that our available funds and cash flow from operations and financing activities will be sufficient to meet our operational cash needs and fund our cash commitments for investing and financing activities, including investments in infrastructure and AI initiatives, as well as any return of capital to stockholders over the next 12 months and thereafter for the foreseeable future. We have increased investments in infrastructure and AI initiatives and expect to continue to do so. From time to time we may also seek to raise additional capital through debt, equity, or other financing arrangements. We continuously evaluate our liquidity and capital resources, including our access to external capital, to ensure we can finance our future capital requirements.\n\nLeases and Contractual Commitments\n\nOur operating and finance leases include data centers, offices, and certain network infrastructure. In addition to lease liabilities included in our consolidated balance sheets, we have leases that have not yet commenced, with total lease obligations of approximately $103.77 billion, mostly for data centers, colocations, and network infrastructure, as of December 31, 2025. These operating and finance leases will commence between 2026 and 2030 with lease terms of greater than one year to 30 years.\n\nWe also have $131.05 billion of contractual commitments as of December 31, 2025, mostly related to third-party cloud capacity arrangements and our continued investments in servers and network infrastructure, data centers, and consumer hardware products in Reality Labs with $30.63 billion due in 2026.\n\nLong-term Debt\n\nAs of December 31, 2025, we had outstanding long-term debt in the form of senior unsecured notes for an aggregate principal amount of $59.0 billion, which mature from 2027 through 2064. Short-term and long-term future interest payments obligations as of December 31, 2025 were $2.98 billion and $56.74 billion, respectively.\n\nCapital Return Program\n\n---\n\n[META-2025-7-0031] META FY2025 Item 7 (similitud 0.661)\nCash Provided by Operating Activities\n\nCash provided by operating activities during 2025 mostly consisted of $60.46 billion net income adjusted for certain non-cash items, such as $20.43 billion of share-based compensation expense, $18.74 billion of deferred income taxes, and $18.62 billion of depreciation and amortization expense. The increase in cash flows from operating activities during 2025 compared to 2024, was primarily due to an increase in cash collections from our customers driven by the increase in revenue and lower cash paid for income taxes, partially offset by higher operational spending.\n\nCash Used in Investing Activities\n\nCash used in investing activities during 2025 mostly consisted of $69.69 billion of purchases of property and equipment as we continued to invest in servers, data centers, and network infrastructure, and $18.33 billion of purchases of non-marketable equity investments, and $10.05 billion of net purchases of marketable securities. The increase in cash used in investing activities during 2025 compared to 2024 was mostly due to increases in purchases of property and equipment and non-marketable equity investments.\n\nWe anticipate making capital expenditures of approximately $115 billion to $135 billion in 2026 to support our AI efforts and core business.\n\nCash Used in Financing Activities\n\nCash used in financing activities during 2025 mostly consisted of $26.25 billion for repurchases of our Class A common stock, $18.40 billion of taxes paid related to net share settlement of RSUs, and $5.32 billion of payments of dividends and dividend equivalents, partially offset by $29.91 billion net proceeds from the issuance of the Notes in November 2025. The decrease in cash used in financing activities during 2025 compared to 2024, was mostly due to an increase in net proceeds from the Notes.\n\n---\n\n[META-2025-7-0030] META FY2025 Item 7 (similitud 0.656)\nLiquidity and Capital Resources\n\nOur principal sources of liquidity are our cash, cash equivalents, marketable securities, and cash generated from operations. Cash, cash equivalents, and marketable securities are comprised of cash on deposit with banks, time deposits, money market funds, U.S. government and agency securities, investment grade corporate debt securities, and marketable equity securities. As part of our cash management strategy, we concentrate cash deposits with large financial institutions and our investment holdings are in diversified highly rated securities. Cash, cash equivalents, and marketable securities were $81.59 billion as of December 31, 2025, an increase of $3.78 billion from December 31, 2024. The increase was due to $115.80 billion of cash generated from operations and $29.91 billion of net proceeds from the issuance of fixed-rate senior unsecured notes (the Notes) in November 2025. These increases were partially offset by $72.22 billion of capital expenditures, which includes purchases of property and equipment and principal payments on finance leases; $31.57 billion of capital returns for repurchases of our Class A common stock and payments of dividends and dividend equivalents; $18.40 billion of taxes paid related to net share settlement of employee restricted stock unit (RSU) awards; and $18.33 billion of purchases of non-marketable equity investments.\n\nThe following table presents our cash flows (in millions):\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\nNet cash provided by operating activities\t$\t115,800\t\t\t$\t91,328\t\t\t$\t71,113\nNet cash used in investing activities\t$\t(102,003)\t\t\t$\t(47,150)\t\t\t$\t(24,495)\nNet cash used in financing activities\t$\t(20,370)\t\t\t$\t(40,781)\t\t\t$\t(19,500)\n\n---\n\n[META-2025-7-0015] META FY2025 Item 7 (similitud 0.644)\nIncome Taxes\n\nWe are subject to income taxes in the United States and numerous foreign jurisdictions. Significant judgment is required in determining our provision for income taxes and income tax assets and liabilities, including evaluating uncertainties in the application of accounting principles and complex tax laws. Our actual and forecasted income (loss) before provision is subject to change due to economic, political and other conditions and significant judgment is required in determining our ability to recognize our net deferred tax assets.\n\nAs a result of certain U.S. income tax provisions of the One Big Beautiful Bill Act enacted in July 2025, we expect to incur Corporate Alternative Minimum Tax (CAMT) beginning in 2025. In assessing the realizability of our deferred tax assets and determining the need for a valuation allowance, our accounting policy incorporates the expected impact of future years' CAMT.\n\nWe recognize tax benefits from uncertain tax positions only if we believe that it is more likely than not that the tax position will be sustained on examination by the taxing authorities based on the technical merits of the position. These uncertain tax positions include our estimates related to uncertainties with our research and development tax credits that are based on an assessment of whether our available documentation corroborating the nature of our activities supporting the tax credits will be sufficient. Similarly, our estimates for transfer pricing have been developed based upon analyses of appropriate arms-length prices. Although we believe that we have adequately reserved for our uncertain tax positions (including net interest and penalties), we can provide no assurance that the final tax outcome of these matters will not be materially different, as significant judgment is required in evaluating and estimating our provision for income taxes. We make adjustments to these reserves in accordance with the income tax accounting guidance when facts and circumstances change, such as the closing of a tax audit or the refinement of an estimate. To the extent that the final tax outcome of these matters is different from the amounts recorded, such differences will affect the provision for income taxes in the period in which such determination is made, and could have a material impact on our financial condition and operating results. For additional information, see Note 14 — Income Taxes of the accompanying notes to the consolidated financial statements included in Part II, Item 8, \"Financial Statements and Supplementary Data\" of this Annual Report on Form 10-K.\n\n---\n\n[META-2025-7-0028] META FY2025 Item 7 (similitud 0.643)\nProvision for income taxes\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\t\t2025 vs 2024 % change\t\t2024 vs 2023 % change\n(in millions, except percentages)\nProvision for income taxes\t$\t25,474\t\t\t$\t8,303\t\t\t$\t8,330\t\t\t207\t%\t\t—\t%\nEffective tax rate\t30\t%\t\t12\t%\t\t18\t%\n\nOn July 4, 2025, the One Big Beautiful Bill Act (OBBBA) was enacted, introducing several significant U.S. income tax provisions that reduced our U.S. federal cash tax payments for the remainder of 2025 and future years. The provisions include the immediate expensing of domestic research and development costs and certain capital expenditures beginning in 2025, as well as an enhanced deduction for foreign-derived intangible income effective in 2026. The benefits from these provisions are limited by the 15% Corporate Alternative Minimum Tax (CAMT). As a result, we recorded a $15.93 billion charge in the third quarter of 2025, of which $14.03 billion was a valuation allowance against our U.S. federal deferred tax assets as of the enactment date of OBBBA, and the remaining was mostly related to the reduction of the benefit of the foreign-derived intangible income deduction. In determining the valuation allowance, our accounting policy incorporates the expected impact of future years’ CAMT in assessing the realizability of our deferred tax assets.\n\nOur provision for income taxes in 2025 increased $17.17 billion or 207% compared to 2024, primarily due to an increase in the effective tax rate. Our effective tax rate in 2025 increased compared to 2024, mostly due to the effects of OBBBA.\n\nEffective Tax Rate Items. Our effective tax rate in the future will depend upon the proportion between the following items and income before provision for income taxes: the effects of changes in tax law, changes in valuation allowance due to the effects of CAMT, U.S. tax benefits from foreign-derived intangible income, tax effects from share-based compensation, research tax credit, tax effects from capital losses not expected to be utilized, settlement of tax contingency items, and tax effects of changes in our business.\n\nA number of countries have enacted legislation to implement the Organization for Economic Cooperation and Development’s 15% global minimum tax",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_20385",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "ticker": "META",
+       "concept": "PaymentsToAcquireProductiveAssets"
+      },
+      "id": "call_63424",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4578,
+     "output_tokens": 173,
+     "total_tokens": 4751,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 132
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "META no reportó 'PaymentsToAcquireProductiveAssets' en FY2025. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, Liabilities, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, ResearchAndDevelopmentExpense, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_63424",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "cita": "We anticipate making capital expenditures of approximately $115 billion to $135 billion in 2026 to support our AI efforts and core business.",
+       "chunk_id": "META-2025-7-0031",
+       "ejercicio": 2025,
+       "unidad": null,
+       "respuesta": "Según la sección de MD&A (Item 7) del informe 10-K de FY2025 de Meta Platforms, Inc., la compañía prevé realizar inversiones en capital (capital expenditures) de aproximadamente entre 115.000 millones y 135.000 millones de dólares en 2026 para respaldar sus iniciativas de inteligencia artificial y su negocio principal.",
+       "ticker": "META",
+       "fuente": "texto",
+       "cifra": null
+      },
+      "id": "call_68639",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4836,
+     "output_tokens": 448,
+     "total_tokens": 5284,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 254
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='Según la sección de MD&A (Item 7) del informe 10-K de FY2025 de Meta Platforms, Inc., la compañía prevé realizar inversiones en capital (capital expenditures) de aproximadamente entre 115.000 millones y 135.000 millones de dólares en 2026 para respaldar sus iniciativas de inteligencia artificial y su negocio principal.' cifra=None unidad=None ticker='META' ejercicio=2025 fuente='texto' cita='We anticipate making capital expenditures of approximately $115 billion to $135 billion in 2026 to support our AI efforts and core business.' chunk_id='META-2025-7-0031'",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_68639",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a2_retrieval"
+ }
+}
