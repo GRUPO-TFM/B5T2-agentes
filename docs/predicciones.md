@@ -379,3 +379,54 @@ quitar de `HONESTO` la línea de «a la tercera, cierra» y medir solo eso.
 > (≈ 1/(60+1) + 1/(60+1)), no un coseno. No afecta al ranking ni a ninguna
 > métrica, pero la etiqueta miente y el modelo la lee. Renombrar a «score» en el
 > texto del fragmento cuando `hibrido=True`.
+
+---
+
+## Golden set adversario · A4 tal cual (predicho el 2026-09-23, antes de ejecutar)
+
+`data/golden_set_dificil.jsonl`: 15 preguntas en tres familias nuevas —
+**honestidad** (5, el dato no está en el corpus), **multi** (5, varias compañías
+en un ejercicio) y **multi_temporal** (5, compañías × ejercicios). Se corre A4
+sin cambiar nada: primero se mide cuánto falla, después se arregla. Convención
+de `cifra` en multi-entidad: si se pregunta *quién*, `ticker`=ganadora y
+`cifra`=su valor; si se pregunta una diferencia o ratio, `cifra`=esa magnitud.
+
+**Predicción global: acierto entre 40 % y 60 %** (6-9 de 15). Por familia:
+
+**Honestidad — 3 a 5 de 5.** El prompt `HONESTO` ya dice «si get_xbrl_fact te
+dice que la compañía NO reportó un concepto, NO lo busques en el texto ni lo
+calcules: fuente='ninguna'». Debería funcionar en gY-001 (GrossProfit de AMZN) y
+gY-004 (Tesla). Las dudosas son las trampas de texto: gY-002 (el revenue de
+FY2023 **está** en una tabla del Item 8 de FY2025) y gY-003 (trimestrales). Si el
+modelo busca, lo encuentra y lo da como `fuente='texto'`, suspende — y eso es
+justo lo que queremos saber.
+
+**Multi — 2 a 3 de 5.**
+- gY-006 (¿quién, AAPL o MSFT?) y gY-007 (¿cuál de las seis?): deberían
+  acertar; gY-007 gasta 7 de 8 llamadas y es la prueba fina del límite.
+- gY-008 (diferencia GOOGL − META en USD): **predicho fallo por el verificador
+  de cifras** — 3.715 M no es un hecho XBRL de ningún ticker, así que el
+  verificador lo rechazará y empujará al modelo a poner el I+D de una sola
+  compañía. Es la limitación del esquema mono-entidad, medida.
+- gY-009 (margen operativo NVDA vs AAPL): 50/50. El verificador salta los
+  porcentajes, pero hay riesgo de convención (62,42 frente a 0,6242).
+- gY-010 (I+D de AMZN y META): acierto probable en `cifra`; lo que importa es si
+  la `respuesta` dice que Amazon no lo reporta o se lo inventa.
+
+**Multi_temporal — 1 a 2 de 5.**
+- gY-011 (diferencial NVDA−MSFT): 6-7 llamadas; cabe justo. 50/50.
+- gY-012 (ratio pasivo/activos AAPL vs META, 9 llamadas) y gY-015 (las seis,
+  12 llamadas): **predicho `limite_alcanzado=True` en ambas** y fallo.
+- gY-013 (BPA con split): el procedimiento de splits del prompt es para *una*
+  compañía; con dos, 50/50.
+- gY-014 (flujo de caja + MD&A): probable acierto; el ancla está en posición
+  1-2 con el retrieval de A4.
+
+**Latencia**: ~70 s de media (más llamadas por pregunta que el golden original).
+
+**Lo que este experimento tiene que enseñar, gane o pierda:** qué bloquea el
+esquema mono-entidad, qué bloquea el límite de 8, y si la honestidad aguanta
+cuando la cifra prohibida está a la vista en el texto. Cada uno de esos tres es
+una decisión de diseño de A5, y ninguno se puede tomar sin estos datos.
+
+> Resultado: _(pendiente)_

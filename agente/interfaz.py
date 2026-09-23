@@ -146,8 +146,15 @@ def responder(pregunta: str, thread_id: str | None = None, *,
 # ---------------------------------------------------------------------------
 # Rutas
 # ---------------------------------------------------------------------------
+# Un golden set distinto va a una carpeta distinta: así las tablas de A4 sobre
+# las 20 preguntas del golden original no se mezclan con las de A4 sobre las 15
+# adversarias. El notebook lo cambia antes de ejecutar; el valor por defecto
+# es el de siempre y `evaluar()` no lo toca.
+CARPETA_RESULTADOS = "resultados"
+
+
 def dir_resultados() -> Path:
-    return raiz_repo() / "resultados"
+    return raiz_repo() / CARPETA_RESULTADOS
 
 
 def dir_arquitectura(arq: str | Arquitectura) -> Path:
@@ -499,9 +506,15 @@ def resumir(tabla: pd.DataFrame, etiqueta: str) -> dict:
             float(tabla["busquedas_con_ticker"].sum() / tabla["n_busquedas"].sum())
             if "n_busquedas" in tabla and tabla["n_busquedas"].sum() else float("nan")),
     }
-    for fam in FAMILIAS:
+    # Las tres familias del enunciado siempre (aunque den NaN), y detrás las que
+    # traiga la tabla (honestidad, multi, multi_temporal…) en orden de aparición.
+    familias = list(FAMILIAS)
+    if "familia" in tabla:
+        familias += [f for f in tabla["familia"].dropna().unique() if f not in familias]
+    for fam in familias:
         sub = tabla[tabla["familia"] == fam] if "familia" in tabla else tabla.iloc[0:0]
         fila[f"acierto {fam}"] = _tasa(sub, "acierto")
+    fila["honestidad"] = _tasa(tabla, "honestidad")
     return fila
 
 
@@ -534,9 +547,10 @@ def comparar(arquitecturas: list[str] | None = None, *, escribir: bool = True) -
                 fila[f"{col} min"] = float(numericas[col].min())
                 fila[f"{col} max"] = float(numericas[col].max())
         filas.append(fila)
-        for fam in FAMILIAS:
-            por_familia.append({"arquitectura": a.nombre, "familia": fam,
-                                "acierto": float(media[f"acierto {fam}"])})
+        for col in media.index:
+            if col.startswith("acierto ") and col not in ("acierto min", "acierto max"):
+                por_familia.append({"arquitectura": a.nombre, "familia": col[len("acierto "):],
+                                    "acierto": float(media[col])})
     comp = pd.DataFrame(filas)
     if escribir and not comp.empty:
         dir_resultados().mkdir(parents=True, exist_ok=True)
@@ -546,17 +560,21 @@ def comparar(arquitecturas: list[str] | None = None, *, escribir: bool = True) -
     return comp
 
 
-_MAYOR_MEJOR = {"acierto", "cita", "cifra", "trayectoria", "recall@5",
-                "acierto numerica", "acierto extractiva", "acierto comparativa"}
+_MAYOR_MEJOR = {"acierto", "cita", "cifra", "trayectoria", "honestidad", "recall@5",
+                "acierto numerica", "acierto extractiva", "acierto comparativa",
+                "acierto honestidad", "acierto multi", "acierto multi_temporal"}
 _MENOR_MEJOR = {"coste medio (¢)", "latencia media (s)", "llamadas/pregunta", "errores"}
 
 
 def _markdown(comp: pd.DataFrame) -> str:
     """La tabla del informe con el mejor valor de cada columna en negrita."""
     columnas = ["arquitectura", "reps", "acierto", "acierto numerica", "acierto extractiva",
-                "acierto comparativa", "cita", "cifra", "trayectoria", "recall@5",
-                "coste medio (¢)", "latencia media (s)", "llamadas/pregunta", "% fuente=ninguna"]
-    columnas = [c for c in columnas if c in comp]
+                "acierto comparativa"]
+    columnas += [c for c in comp.columns if c.startswith("acierto ") and c not in columnas
+                 and not c.endswith((" min", " max"))]
+    columnas += ["cita", "cifra", "trayectoria", "honestidad", "recall@5",
+                 "coste medio (¢)", "latencia media (s)", "llamadas/pregunta", "% fuente=ninguna"]
+    columnas = [c for c in columnas if c in comp and not comp[c].isna().all()]
     mejores = {}
     for c in columnas:
         if c in _MAYOR_MEJOR:
