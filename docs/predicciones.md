@@ -544,3 +544,38 @@ Razonamiento:
 > - Coste casi plano (1,5-1,9 ¢). La latencia es la que paga cada peldaño: 23 → 39 s aquí y
 >   20 → 49 s en el original.
 
+
+---
+
+## Segunda escalera · A5, A6 y A7 (escrita el 23-sep, ANTES de ejecutar)
+
+Cada peldaño ataca un fallo **medido** en el golden difícil v2, y cada uno cambia
+una sola cosa sobre el anterior (hay un test que lo exige). `final` sigue siendo
+A4 hasta que las tres estén medidas en los dos golden.
+
+| | cambio | fallo que ataca |
+|---|---|---|
+| **A5** `a5_limites` | techo por herramienta: XBRL 16, búsqueda 6, `read_section` 1 (global 24 como red) | gY-012 y gY-015: el límite de 8 contaba llamadas y el modelo ya pide 6 datos XBRL por turno |
+| **A6** `a6_reescritura_rapida` | la misma reescritura, con `reasoning={"effort": "minimal"}` y caché propia | la latencia: en A2 cada reescritura costó ~11 s (17,1 → 29,4 s con ~1 búsqueda por pregunta) |
+| **A7** `a7_cifras_texto` | prompt con contrato para cifras de texto (unidades completas, cifra dentro de la cita, un solo `chunk_id`) + verificador que las comprueba contra la cita y no contra XBRL | gY-016..018: bien en prosa en las 12 ejecuciones de A1-A4, `cifra=null` por contrato |
+
+**Predicciones (golden difícil: 1 rep × 18; original: 1 rep × 20 como regresión):**
+
+- **A5**: difícil **72,2 % → 83,3 %** (gY-012 y gY-015 pasan; 016-018 siguen fallando).
+  `% límite alcanzado` → 0 %. Latencia de esas dos preguntas algo mayor, media casi
+  igual. Original: igual que A4 (19-20 de 20). Confianza alta.
+- **A6**: acierto igual que A5 (±1 pregunta) en los dos golden. **Latencia −20 a
+  −30 %**: ~49 → 35-40 s en el original y ~39 → 28-33 s en el difícil, si el
+  proveedor respeta `minimal` (la caché lo apunta en `razonamiento`). Riesgo que
+  preocupa al equipo, la precisión: se mide aparte y gratis con
+  `recall_de_trazas("a4_comparativas")`, que ahora incluye «reescritura rápida +
+  híbrido» con las consultas reales del agente. Predicción: recall igual ±1 ancla.
+  Confianza media-baja en el tamaño del ahorro, alta en que el acierto no cae.
+- **A7**: difícil **83,3 % → 94-100 %** (016-018 pasan; como mucho una falla por
+  escala o cita). El riesgo es la honestidad: gY-002 (el revenue de FY2023 SÍ está
+  en una tabla del texto) podría empezar a responderse con `fuente='texto'`. El
+  prompt lo prohíbe explícitamente para partidas contables; predigo que aguanta.
+  Original: igual (ninguna pregunta del original tiene cifra de texto).
+  `% corrigió cifra` > 0 solo si el modelo pone la cifra en millones.
+
+> Resultado: _(pendiente)_

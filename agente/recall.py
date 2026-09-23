@@ -127,11 +127,45 @@ def _ruta_cache() -> Path:
     return raiz_repo() / "resultados" / "retrieval" / "reescrituras.json"
 
 
+# La caché se comparte entre procesos: se pueden correr los dos golden a la vez
+# en dos ventanas. Leer a medio escribir daría un JSON truncado, así que la
+# escritura es atómica (fichero temporal + os.replace) y la lectura reintenta.
+def _leer_cache(ruta: Path) -> dict:
+    import time
+    for intento in range(5):
+        if not ruta.is_file():
+            return {}
+        try:
+            return json.loads(ruta.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, PermissionError, OSError):
+            time.sleep(0.2 * (intento + 1))
+    return json.loads(ruta.read_text(encoding="utf-8"))       # que falle a la vista
+
+
+def _guardar_en_cache(ruta: Path, clave: str, entrada: dict) -> None:
+    """Relee justo antes de escribir (otra búsqueda u otro proceso pudo añadir
+    entradas mientras esta esperaba al modelo) y escribe de forma atómica."""
+    import os
+    import time
+    ruta.parent.mkdir(parents=True, exist_ok=True)
+    cache = _leer_cache(ruta)
+    cache[clave] = entrada
+    tmp = ruta.with_name(f"{ruta.name}.{os.getpid()}.tmp")
+    tmp.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
+    for intento in range(5):
+        try:
+            os.replace(tmp, ruta)
+            return
+        except PermissionError:                  # Windows: el otro proceso lo tiene abierto
+            time.sleep(0.2 * (intento + 1))
+    os.replace(tmp, ruta)
+
+
 def reescribir(pregunta: str, clave: str | None = None, modelo: str = MODELO) -> str:
     """La pregunta convertida en consulta en inglés. Cacheada por `clave` (el id
     del golden) o por la pregunta literal, para no pagar dos veces."""
     ruta = _ruta_cache()
-    cache = json.loads(ruta.read_text(encoding="utf-8")) if ruta.is_file() else {}
+    cache = _leer_cache(ruta)
     k = clave or pregunta
     if k in cache and cache[k].get("pregunta") == pregunta:
         return cache[k]["consulta"]
@@ -139,9 +173,7 @@ def reescribir(pregunta: str, clave: str | None = None, modelo: str = MODELO) ->
     modelo_llm = init_chat_model(modelo, temperature=0)
     consulta = modelo_llm.invoke([{"role": "system", "content": INSTRUCCION_REESCRITURA},
                                   {"role": "user", "content": pregunta}]).text.strip().strip('"')
-    cache[k] = {"pregunta": pregunta, "consulta": consulta, "modelo": modelo}
-    ruta.parent.mkdir(parents=True, exist_ok=True)
-    ruta.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
+    _guardar_en_cache(ruta, k, {"pregunta": pregunta, "consulta": consulta, "modelo": modelo})
     return consulta
 
 
@@ -152,27 +184,53 @@ flow", "stock split", "geographic region"). Si ya está bien, devuélvela tal cu
 Devuelve SOLO la consulta, sin comillas ni explicación."""
 
 
-def reescribir_consulta(consulta: str, modelo: str = MODELO) -> str:
+# A6: la misma reescritura con el razonamiento al mínimo. Se prueba en orden y
+# se apunta en la caché cuál aceptó el proveedor, para que la medición diga la
+# verdad si alguno no está soportado.
+ESFUERZOS_RAPIDOS = ("minimal", "low")
+
+
+def _invocar_reescritura(modelo: str, consulta: str, rapida: bool) -> tuple[str, str]:
+    """(texto crudo, razonamiento usado)."""
+    from langchain.chat_models import init_chat_model
+    mensajes = [{"role": "system", "content": INSTRUCCION_REESCRITURA_CONSULTA},
+                {"role": "user", "content": consulta}]
+    if rapida:
+        for esfuerzo in ESFUERZOS_RAPIDOS:
+            try:
+                llm = init_chat_model(modelo, temperature=0, reasoning={"effort": esfuerzo})
+                return llm.invoke(mensajes).text.strip(), esfuerzo
+            except Exception:                                   # noqa: BLE001
+                continue
+    llm = init_chat_model(modelo, temperature=0)
+    return llm.invoke(mensajes).text.strip(), "por defecto"
+
+
+def reescribir_consulta(consulta: str, modelo: str = MODELO, *, rapida: bool = False) -> str:
     """Reescritura de la CONSULTA que manda el modelo (no de la pregunta del
-    golden): es lo que usa `search_filings` en a2_retrieval. Misma caché en
-    disco, con prefijo `agente:` para no mezclarse con las del recall."""
+    golden): es lo que usa `search_filings` desde a2_retrieval. Misma caché en
+    disco, con prefijo `agente:` para no mezclarse con las del recall.
+
+    `rapida=True` (A6) usa OTRA clave de caché (`agente-rapida:`): si reutilizara
+    las reescrituras ya hechas con razonamiento completo, A6 saldría más rápida
+    por la caché y no por el cambio, y la medición mentiría."""
+    import time
     ruta = _ruta_cache()
-    cache = json.loads(ruta.read_text(encoding="utf-8")) if ruta.is_file() else {}
-    clave = f"agente:{consulta}"
+    cache = _leer_cache(ruta)
+    clave = f"{'agente-rapida' if rapida else 'agente'}:{consulta}"
     if clave in cache:
         return cache[clave]["consulta"]
-    from langchain.chat_models import init_chat_model
-    modelo_llm = init_chat_model(modelo, temperature=0)
-    bruto = modelo_llm.invoke([{"role": "system", "content": INSTRUCCION_REESCRITURA_CONSULTA},
-                               {"role": "user", "content": consulta}]).text.strip()
+    t0 = time.perf_counter()
+    bruto, razonamiento = _invocar_reescritura(modelo, consulta, rapida)
+    latencia = time.perf_counter() - t0
     # `.strip('"')` a secas se come las comillas legítimas de una consulta con
     # frases exactas (`"net sales" growth` -> `net sales" growth`). Solo se
     # quitan si envuelven la consulta entera y no hay más dentro.
     nueva = bruto[1:-1] if (len(bruto) > 1 and bruto[0] == bruto[-1] == '"'
                             and '"' not in bruto[1:-1]) else bruto
-    cache[clave] = {"pregunta": consulta, "consulta": nueva or consulta, "modelo": modelo}
-    ruta.parent.mkdir(parents=True, exist_ok=True)
-    ruta.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
+    _guardar_en_cache(ruta, clave, {"pregunta": consulta, "consulta": nueva or consulta,
+                                    "modelo": modelo, "razonamiento": razonamiento,
+                                    "latencia_s": round(latencia, 2)})
     return nueva or consulta
 
 
@@ -277,9 +335,9 @@ def consultas_del_agente(arq: str | Arquitectura) -> dict[str, list[dict]]:
     return salida
 
 
-def _buscador(reescrita: bool, hibrida: bool):
+def _buscador(reescrita: bool, hibrida: bool, rapida: bool = False):
     def fn(consulta: str, **filtros) -> list[dict]:
-        q = reescribir_consulta(consulta) if reescrita else consulta
+        q = reescribir_consulta(consulta, rapida=rapida) if reescrita else consulta
         return hibrido(q, **filtros) if hibrida else con_filtros(q, **filtros)
     return fn
 
@@ -289,6 +347,9 @@ CONFIGS_AGENTE = {
     "+ híbrido BM25":                  _buscador(False, True),
     "+ reescritura":                   _buscador(True, False),
     "reescritura + híbrido":           _buscador(True, True),
+    # A6: ¿pierde recall la reescritura con razonamiento mínimo? Se mide con las
+    # consultas REALES del agente, antes de fiarse del acierto.
+    "reescritura rápida + híbrido":    _buscador(True, True, rapida=True),
 }
 
 

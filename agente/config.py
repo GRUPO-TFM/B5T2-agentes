@@ -26,13 +26,18 @@ class Arquitectura:
     max_llamadas: int = 8              # herramientas por invocación
     max_read_section: int = 1          # la herramienta cara, aparte
     max_vueltas_modelo: int = 10       # acota también el bucle verificador→modelo
+    limites_por_herramienta: bool = False  # A5: techo por herramienta según su coste
+    max_xbrl: int = 16                 # get_xbrl_fact: barata (≈100 caracteres por llamada)
+    max_busquedas: int = 6             # search_filings: cara (5 fragmentos ≈ 2.300 tokens)
     verificador_cifras: bool = False   # after_model: cifra vs. XBRL
     verificador_cita: bool = False     # after_model: cita ⊂ chunk citado
+    cifras_de_texto: bool = False      # A7: contrato y verificación para cifras que solo están en el texto
     esquema_estricto: bool = False     # validadores de coherencia en la salida
-    prompt: str = "base"               # "base" | "honesto" | "comparativas"
+    prompt: str = "base"               # "base" | "honesto" | "comparativas" | "cifras_texto"
     # --- retrieval (agente/retrieval.py) ---
     filtros_forzados: bool = False     # wrap_tool_call: rellena ticker/fy si faltan
     reescritura: bool = False          # consulta reescrita a inglés antes de buscar
+    reescritura_rapida: bool = False   # A6: la misma reescritura, con razonamiento mínimo
     hibrido: bool = False              # BM25 + denso con RRF
     k: int = K
     # --- documentación ---
@@ -78,8 +83,39 @@ A4 = replace(
                 "acción (splits).",
 )
 
-ARQUITECTURAS: dict[str, Arquitectura] = {a.nombre: a for a in (BASELINE, A1, A2, A3, A4)}
-ARQUITECTURAS["final"] = A4          # alias: lo que corre `evaluar()` el día 24
+# --- Segunda escalera (23-sep), medida sobre el golden difícil v2 y con el
+# original como regresión. Cada peldaño ataca un fallo MEDIDO, no una idea:
+
+A5 = replace(
+    A4, nombre="a5_limites",
+    limites_por_herramienta=True, max_llamadas=24,
+    descripcion="+ límite por herramienta según su coste (XBRL 16, búsqueda 6, "
+                "read_section 1) en vez de 8 llamadas en total. El modelo ya pide "
+                "hasta 6 datos XBRL por turno: el límite global contaba llamadas, "
+                "no turnos, y tumbaba gY-012 y gY-015.",
+)
+
+A6 = replace(
+    A5, nombre="a6_reescritura_rapida",
+    reescritura_rapida=True,
+    descripcion="+ la reescritura de consultas se mantiene, pero con razonamiento "
+                "mínimo: la búsqueda deja de esperar a un modelo que piensa. "
+                "Ataca la latencia (+72 % en A2) sin quitar la ayuda al recall.",
+)
+
+A7 = replace(
+    A6, nombre="a7_cifras_texto",
+    cifras_de_texto=True, prompt="cifras_texto",
+    descripcion="+ contrato para cifras que solo están en el texto (fuente='texto', "
+                "unidades completas, la cifra dentro de la cita) y un verificador que "
+                "las comprueba contra la cita en vez de contra XBRL. Ataca gY-016..018.",
+)
+
+ARQUITECTURAS: dict[str, Arquitectura] = {a.nombre: a for a in (BASELINE, A1, A2, A3, A4,
+                                                                 A5, A6, A7)}
+# `final` sigue siendo A4 hasta que A5-A7 estén medidas en los dos golden: lo
+# que corre `evaluar()` el día 24 no cambia por una intuición.
+ARQUITECTURAS["final"] = A4
 
 
 def arquitectura(nombre: str | Arquitectura) -> Arquitectura:

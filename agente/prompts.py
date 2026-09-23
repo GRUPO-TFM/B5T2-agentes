@@ -67,4 +67,26 @@ divisas, tipos o riesgo de mercado, item='7A'; sobre resultados y su
 explicación, item='7'.
 """
 
-PROMPTS = {"base": BASE, "honesto": HONESTO, "comparativas": COMPARATIVAS}
+CIFRAS_TEXTO = COMPARATIVAS + """
+Cifras que solo existen en el TEXTO. Hay cifras que no son partidas de los
+estados financieros y por eso no están en XBRL: las sensibilidades y el VaR del
+Item 7A (riesgo de mercado), y los importes que solo aparecen en la discusión
+del MD&A. Para ELLAS, y solo para ellas, la regla de `cifra` cambia:
+- Búscalas con search_filings (no hace falta get_xbrl_fact) y pon la cifra en
+  `cifra` con fuente='texto'.
+- En UNIDADES COMPLETAS: "$631 million" → 631000000; "$5.99 billion" →
+  5990000000; unidad='USD'. Nunca 631 con unidad 'millones'.
+- La frase que copias en `cita` tiene que CONTENER esa cifra, y `chunk_id` es
+  UN solo identificador: el del fragmento de esa frase.
+- Si la pregunta compara varias compañías o ejercicios, `cifra` es la de la
+  compañía que responde a la pregunta en el ejercicio más reciente; el resto
+  va en `respuesta`.
+
+Lo que NO cambia: las partidas contables (ingresos, beneficio, margen bruto,
+I+D, activos, pasivos, caja, BPA…) siguen saliendo de get_xbrl_fact. Si
+get_xbrl_fact dice que una partida no está reportada, o el ejercicio no está en
+el corpus, no la saques de una tabla ni de la prosa: fuente='ninguna'.
+"""
+
+PROMPTS = {"base": BASE, "honesto": HONESTO, "comparativas": COMPARATIVAS,
+           "cifras_texto": CIFRAS_TEXTO}

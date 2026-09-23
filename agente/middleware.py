@@ -65,12 +65,25 @@ def limites(arq: Arquitectura) -> list:
     el modelo cierre: recibe un ToolMessage diciendo que la llamada fue
     bloqueada y tiene que responder con lo que tenga (el prompt le dice cómo:
     fuente='ninguna'). Con "end" no habría respuesta estructurada."""
-    return [
-        LimiteDeHerramientas(run_limit=arq.max_llamadas,
-                             exit_behavior="continue"),
+    por_herramienta = [
         ToolCallLimitMiddleware(tool_name="read_section",
                                 run_limit=arq.max_read_section,
                                 exit_behavior="continue"),
+    ]
+    if arq.limites_por_herramienta:
+        # A5. El techo sigue la CARESTÍA de cada herramienta, no su número: una
+        # llamada XBRL devuelve ~100 caracteres y una búsqueda ~2.300 tokens. El
+        # global se queda como red de seguridad, mucho más alto.
+        por_herramienta += [
+            ToolCallLimitMiddleware(tool_name="get_xbrl_fact", run_limit=arq.max_xbrl,
+                                    exit_behavior="continue"),
+            ToolCallLimitMiddleware(tool_name="search_filings", run_limit=arq.max_busquedas,
+                                    exit_behavior="continue"),
+        ]
+    return [
+        LimiteDeHerramientas(run_limit=arq.max_llamadas,
+                             exit_behavior="continue"),
+        *por_herramienta,
         # Acota también el bucle modelo→verificador→modelo, que no gasta
         # herramientas y por tanto el de arriba no lo ve.
         ModelCallLimitMiddleware(run_limit=arq.max_vueltas_modelo,
@@ -94,9 +107,7 @@ def _es_porcentaje(unidad: str | None) -> bool:
                                            unidad, re.IGNORECASE))
 
 
-@after_model(can_jump_to=["model"])
-def verificar_cifras_contra_xbrl(state: AgentState,
-                                 runtime: Runtime) -> dict | None:
+def _verificar_contra_xbrl(state) -> dict | None:
     """Si la respuesta afirma una cifra, tiene que existir tal cual (±1 %) entre
     los hechos XBRL de ese ticker y ejercicio. Si no, se le devuelve al modelo
     QUÉ afirmó y QUÉ hay reportado, y se le obliga a otra vuelta."""
@@ -136,6 +147,73 @@ def verificar_cifras_contra_xbrl(state: AgentState,
     )
     return {"messages": [{"role": "user", "content": aviso}],
             "jump_to": "model"}
+
+
+
+@after_model(can_jump_to=["model"])
+def verificar_cifras_contra_xbrl(state: AgentState,
+                                 runtime: Runtime) -> dict | None:
+    """Si la respuesta afirma una cifra, tiene que existir tal cual (±1 %) entre
+    los hechos XBRL de ese ticker y ejercicio (A1-A6)."""
+    return _verificar_contra_xbrl(state)
+
+
+# --- A7: cifras que solo están en el texto ---------------------------------
+# El verificador de arriba compara TODA cifra con XBRL. Una sensibilidad del
+# Item 7A («$631 million») no es un hecho XBRL, así que la rechazaría. Medido en
+# el golden difícil v2: nunca llegó a dispararse porque el prompt de A1 ya
+# impedía poner cifras de texto, pero en cuanto A7 las permite, lo haría.
+# Para fuente='texto' la comprobación correcta es otra: la cifra tiene que
+# estar DENTRO de la cita, en la escala en que el informe la escribe.
+_NUMERO = re.compile(r"\$?\s?(\d{1,3}(?:,\d{3})+|\d+)(\.\d+)?\s*(thousand|million|billion)?",
+                     re.IGNORECASE)
+_ESCALA = {"thousand": 1e3, "million": 1e6, "billion": 1e9}
+
+
+def cifras_de_la_cita(cita: str) -> list[float]:
+    """Los importes que aparecen en una frase, en unidades completas.
+
+    Con escala escrita («$631 million»), solo ese valor: así 631 a secas NO
+    cuadra con «$631 million», que es el error del baseline (476 y 590 en vez
+    de 476.000.000 y 590.000.000). Sin escala (filas de tabla, que el 10-K
+    presenta «in millions»), se aceptan unidades, miles y millones."""
+    valores: list[float] = []
+    for entero, decimales, escala in _NUMERO.findall(cita or ""):
+        base = float(entero.replace(",", "") + (decimales or ""))
+        if escala:
+            valores.append(base * _ESCALA[escala.lower()])
+        else:
+            valores += [base, base * 1e3, base * 1e6]
+    return valores
+
+
+def _verificar_cifra_en_cita(state, r) -> dict | None:
+    if _ya_corregido(state, MARCA_CIFRA):
+        return None
+    if any(cuadra(float(r.cifra), v) for v in cifras_de_la_cita(r.cita or "")):
+        return None
+    aviso = (
+        f"[{MARCA_CIFRA}] Has puesto cifra={r.cifra:,.2f} con fuente='texto', pero "
+        f"esa cifra no aparece en la cita (ni en unidades, ni en miles, millones "
+        f"o miles de millones tal y como la escribe el informe). Una cifra de "
+        f"texto tiene que estar DENTRO de la frase citada y en unidades completas "
+        f"(\"$631 million\" → 631000000). Corrige `cifra` o copia en `cita` la "
+        f"frase literal que la contiene. Si la cifra es un cálculo a partir del "
+        f"texto, pon en `cifra` el valor del ejercicio más reciente que sí "
+        f"aparece en la cita y explica el cálculo en `respuesta`."
+    )
+    return {"messages": [{"role": "user", "content": aviso}], "jump_to": "model"}
+
+
+@after_model(can_jump_to=["model"])
+def verificar_cifras_con_texto(state: AgentState, runtime: Runtime) -> dict | None:
+    """A7: fuente='texto' → la cifra se comprueba contra la CITA; cualquier
+    otra fuente → contra XBRL, igual que antes."""
+    r = state.get("structured_response")
+    if r is not None and getattr(r, "cifra", None) is not None \
+            and getattr(r, "fuente", None) == "texto":
+        return _verificar_cifra_en_cita(state, r)
+    return _verificar_contra_xbrl(state)
 
 
 # ---------------------------------------------------------------------------
@@ -290,7 +368,8 @@ def middlewares_para(arq: Arquitectura) -> list:
     if arq.filtros_forzados:
         lista.append(forzar_filtros)
     if arq.verificador_cifras:
-        lista.append(verificar_cifras_contra_xbrl)
+        lista.append(verificar_cifras_con_texto if arq.cifras_de_texto
+                     else verificar_cifras_contra_xbrl)
     if arq.verificador_cita:
         lista.append(verificar_cita)
     return lista

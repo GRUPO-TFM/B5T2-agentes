@@ -72,7 +72,7 @@ def test_get_xbrl_fact_no_redondea_el_eps():
 
 def test_la_reescritura_se_ve_en_el_toolmessage(busqueda, monkeypatch):
     monkeypatch.setattr(recall, "reescribir_consulta",
-                        lambda q, modelo=None: "export controls Item 1A risk factors")
+                        lambda q, modelo=None, **kw: "export controls Item 1A risk factors")
     hs = construir_herramientas(reescritura=True)
     salida = _tool(hs, "search_filings").invoke({"query": "controles de exportación",
                                                  "ticker": "NVDA", "fiscal_year": 2025, "item": "1A"})
@@ -81,7 +81,7 @@ def test_la_reescritura_se_ve_en_el_toolmessage(busqueda, monkeypatch):
     assert busqueda[-1]["consulta"] == "export controls Item 1A risk factors"   # busca la reescrita
 
     # si la reescritura no cambia nada, no se ensucia el mensaje
-    monkeypatch.setattr(recall, "reescribir_consulta", lambda q, modelo=None: q)
+    monkeypatch.setattr(recall, "reescribir_consulta", lambda q, modelo=None, **kw: q)
     hs = construir_herramientas(reescritura=True)
     salida = _tool(hs, "search_filings").invoke({"query": "export controls", "ticker": "NVDA",
                                                  "fiscal_year": 2025, "item": "1A"})

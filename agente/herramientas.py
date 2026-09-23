@@ -25,7 +25,7 @@ def formatear_valor(valor: float, unidad: str | None = None) -> str:
 
 
 def construir_herramientas(*, reescritura: bool = False, hibrido: bool = False,
-                           k: int = 5) -> list:
+                           k: int = 5, reescritura_rapida: bool = False) -> list:
     """Las cuatro @tool del día 10, con los docstrings que ya funcionaban.
 
     Args:
@@ -34,6 +34,8 @@ def construir_herramientas(*, reescritura: bool = False, hibrido: bool = False,
             (cacheada en disco). El modelo ve qué consulta se usó de verdad.
         hibrido: fusión RRF del orden denso y el orden BM25 en vez de solo denso.
         k: fragmentos por defecto cuando el modelo no pide otra cosa.
+        reescritura_rapida: la misma reescritura con el razonamiento del modelo
+            al mínimo (A6). Solo tiene efecto con `reescritura=True`.
     """
     secciones = cargar_secciones()
     xbrl = cargar_xbrl()
@@ -128,7 +130,7 @@ def construir_herramientas(*, reescritura: bool = False, hibrido: bool = False,
         consulta = query
         if reescritura:
             from agente.recall import reescribir_consulta
-            consulta = reescribir_consulta(query)
+            consulta = reescribir_consulta(query, rapida=reescritura_rapida)
         if hibrido:
             from agente.recall import hibrido as buscar_hibrido
             fragmentos = buscar_hibrido(consulta, ticker=ticker, fiscal_year=fiscal_year,

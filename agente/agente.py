@@ -29,7 +29,8 @@ def _herramientas(arq: Arquitectura) -> list:
     """Las cuatro herramientas con el retrieval del peldaño detrás de
     `search_filings`. Con el baseline, los tres valores están apagados."""
     return construir_herramientas(reescritura=arq.reescritura,
-                                  hibrido=arq.hibrido, k=arq.k)
+                                  hibrido=arq.hibrido, k=arq.k,
+                                  reescritura_rapida=arq.reescritura_rapida)
 
 
 @functools.lru_cache(maxsize=8)
