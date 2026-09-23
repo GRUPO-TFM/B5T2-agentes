@@ -154,15 +154,15 @@ def _verificar_contra_xbrl(state) -> dict | None:
 def verificar_cifras_contra_xbrl(state: AgentState,
                                  runtime: Runtime) -> dict | None:
     """Si la respuesta afirma una cifra, tiene que existir tal cual (±1 %) entre
-    los hechos XBRL de ese ticker y ejercicio (A1-A6)."""
+    los hechos XBRL de ese ticker y ejercicio (A1-A5)."""
     return _verificar_contra_xbrl(state)
 
 
-# --- A7: cifras que solo están en el texto ---------------------------------
+# --- A6: cifras que solo están en el texto ---------------------------------
 # El verificador de arriba compara TODA cifra con XBRL. Una sensibilidad del
 # Item 7A («$631 million») no es un hecho XBRL, así que la rechazaría. Medido en
 # el golden difícil v2: nunca llegó a dispararse porque el prompt de A1 ya
-# impedía poner cifras de texto, pero en cuanto A7 las permite, lo haría.
+# impedía poner cifras de texto, pero en cuanto A6 las permite, lo haría.
 # Para fuente='texto' la comprobación correcta es otra: la cifra tiene que
 # estar DENTRO de la cita, en la escala en que el informe la escribe.
 _NUMERO = re.compile(r"\$?\s?(\d{1,3}(?:,\d{3})+|\d+)(\.\d+)?\s*(thousand|million|billion)?",
@@ -207,7 +207,7 @@ def _verificar_cifra_en_cita(state, r) -> dict | None:
 
 @after_model(can_jump_to=["model"])
 def verificar_cifras_con_texto(state: AgentState, runtime: Runtime) -> dict | None:
-    """A7: fuente='texto' → la cifra se comprueba contra la CITA; cualquier
+    """A6: fuente='texto' → la cifra se comprueba contra la CITA; cualquier
     otra fuente → contra XBRL, igual que antes."""
     r = state.get("structured_response")
     if r is not None and getattr(r, "cifra", None) is not None \

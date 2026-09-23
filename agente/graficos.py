@@ -35,8 +35,7 @@ ETIQUETAS = {
     "a3_hibrido": "A3\nhíbrido",
     "a4_comparativas": "A4\ncomparativas",
     "a5_limites": "A5\nlímites",
-    "a6_reescritura_rapida": "A6\nreescr. rápida",
-    "a7_cifras_texto": "A7\ncifras texto",
+    "a6_cifras_texto": "A6\ncifras texto",
 }
 METRICAS = [  # (columna de resumir(), título del panel, formato, escala)
     ("acierto", "Acierto", "{:.0%}", 1.0),

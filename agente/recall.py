@@ -184,7 +184,8 @@ flow", "stock split", "geographic region"). Si ya está bien, devuélvela tal cu
 Devuelve SOLO la consulta, sin comillas ni explicación."""
 
 
-# A6: la misma reescritura con el razonamiento al mínimo. Se prueba en orden y
+# Experimento `x_reescritura_rapida` (descartado el 23-sep: tarda lo mismo):
+# la misma reescritura con el razonamiento al mínimo. Se prueba en orden y
 # se apunta en la caché cuál aceptó el proveedor, para que la medición diga la
 # verdad si alguno no está soportado.
 ESFUERZOS_RAPIDOS = ("minimal", "low")
@@ -211,9 +212,9 @@ def reescribir_consulta(consulta: str, modelo: str = MODELO, *, rapida: bool = F
     golden): es lo que usa `search_filings` desde a2_retrieval. Misma caché en
     disco, con prefijo `agente:` para no mezclarse con las del recall.
 
-    `rapida=True` (A6) usa OTRA clave de caché (`agente-rapida:`): si reutilizara
-    las reescrituras ya hechas con razonamiento completo, A6 saldría más rápida
-    por la caché y no por el cambio, y la medición mentiría."""
+    `rapida=True` (experimento x_reescritura_rapida) usa OTRA clave de caché (`agente-rapida:`): si reutilizara
+    las reescrituras ya hechas con razonamiento completo, el experimento saldría más
+    rápido por la caché y no por el cambio, y la medición mentiría."""
     import time
     ruta = _ruta_cache()
     cache = _leer_cache(ruta)
@@ -347,7 +348,7 @@ CONFIGS_AGENTE = {
     "+ híbrido BM25":                  _buscador(False, True),
     "+ reescritura":                   _buscador(True, False),
     "reescritura + híbrido":           _buscador(True, True),
-    # A6: ¿pierde recall la reescritura con razonamiento mínimo? Se mide con las
+    # Experimento x_reescritura_rapida: ¿pierde recall con razonamiento mínimo? Se mide con las
     # consultas REALES del agente, antes de fiarse del acierto.
     "reescritura rápida + híbrido":    _buscador(True, True, rapida=True),
 }

@@ -35,7 +35,8 @@ def construir_herramientas(*, reescritura: bool = False, hibrido: bool = False,
         hibrido: fusión RRF del orden denso y el orden BM25 en vez de solo denso.
         k: fragmentos por defecto cuando el modelo no pide otra cosa.
         reescritura_rapida: la misma reescritura con el razonamiento del modelo
-            al mínimo (A6). Solo tiene efecto con `reescritura=True`.
+            al mínimo (experimento descartado: no baja la latencia). Solo tiene
+            efecto con `reescritura=True`.
     """
     secciones = cargar_secciones()
     xbrl = cargar_xbrl()

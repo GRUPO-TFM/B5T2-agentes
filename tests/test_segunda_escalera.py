@@ -1,7 +1,8 @@
-"""A5, A6 y A7: la segunda escalera, sin API.
+"""A5 y A6: la segunda escalera, sin API.
 
-A5 límite por herramienta · A6 reescritura con razonamiento mínimo ·
-A7 contrato y verificador para cifras que solo están en el texto.
+A5 límite por herramienta · A6 contrato y verificador para cifras que solo
+están en el texto. La reescritura con razonamiento mínimo se midió y se
+descartó (no baja la latencia); su código se conserva y se sigue probando.
 """
 import json
 import sys
@@ -32,7 +33,7 @@ CITA_GOOGL = ("A hypothetical adverse price change of 10% on our December 31, 20
 
 # --- la escalera ------------------------------------------------------------
 def test_la_segunda_escalera_es_acumulativa_y_final_no_cambia():
-    orden = ["a4_comparativas", "a5_limites", "a6_reescritura_rapida", "a7_cifras_texto"]
+    orden = ["a4_comparativas", "a5_limites", "a6_cifras_texto"]
     booleanos = ["limites", "verificador_cifras", "verificador_cita", "esquema_estricto",
                  "filtros_forzados", "reescritura", "hibrido", "limites_por_herramienta",
                  "reescritura_rapida", "cifras_de_texto"]
@@ -47,6 +48,10 @@ def test_la_segunda_escalera_es_acumulativa_y_final_no_cambia():
         previo = actual
     # lo que corre evaluar() mañana no cambia hasta medir
     assert ARQUITECTURAS["final"].nombre == "a4_comparativas"
+    # el experimento descartado no está en la escalera
+    assert "x_reescritura_rapida" not in ARQUITECTURAS
+    from agente.config import X_REESCRITURA_RAPIDA
+    assert X_REESCRITURA_RAPIDA.reescritura_rapida and not ARQUITECTURAS["a6_cifras_texto"].reescritura_rapida
 
 
 # --- A5 ---------------------------------------------------------------------
@@ -91,7 +96,7 @@ def _modelo_falso(registro, texto="rewritten query", fallar=()):
     return mod
 
 
-def test_a6_pide_razonamiento_minimo_y_usa_otra_cache(tmp_path, monkeypatch):
+def test_rapida_pide_razonamiento_minimo_y_usa_otra_cache(tmp_path, monkeypatch):
     cache = tmp_path / "c.json"
     cache.write_text(json.dumps({"agente:net sales": {"consulta": "VIEJA", "pregunta": "net sales"}}),
                      encoding="utf-8")
@@ -107,7 +112,7 @@ def test_a6_pide_razonamiento_minimo_y_usa_otra_cache(tmp_path, monkeypatch):
     assert json.loads(cache.read_text(encoding="utf-8"))["agente:net sales"]["consulta"] == "VIEJA"
 
 
-def test_a6_si_el_proveedor_rechaza_minimal_prueba_low_y_lo_apunta(tmp_path, monkeypatch):
+def test_rapida_si_el_proveedor_rechaza_minimal_prueba_low_y_lo_apunta(tmp_path, monkeypatch):
     cache = tmp_path / "c.json"
     monkeypatch.setattr(recall, "_ruta_cache", lambda: cache)
     llamadas = []
@@ -117,7 +122,7 @@ def test_a6_si_el_proveedor_rechaza_minimal_prueba_low_y_lo_apunta(tmp_path, mon
     assert json.loads(cache.read_text(encoding="utf-8"))["agente-rapida:capex"]["razonamiento"] == "low"
 
 
-def test_a6_la_herramienta_pasa_rapida_a_la_reescritura(monkeypatch):
+def test_rapida_la_herramienta_pasa_rapida_a_la_reescritura(monkeypatch):
     from agente import herramientas as H
     vistos = []
     monkeypatch.setattr(recall, "reescribir_consulta",
@@ -137,7 +142,7 @@ def test_cifras_de_la_cita_respeta_la_escala():
     assert 2_416_000_000 in cifras_de_la_cita(fila)             # tabla «in millions»
 
 
-def test_a7_valida_la_cifra_de_texto_contra_la_cita_y_no_contra_xbrl():
+def test_a6_cifras_valida_la_cifra_de_texto_contra_la_cita_y_no_contra_xbrl():
     bien = _SR(cifra=631_000_000.0, ticker="GOOGL", ejercicio=2025, fuente="texto",
                cita=CITA_GOOGL, chunk_id="GOOGL-2025-7A-0003")
     # el verificador viejo la rechazaría: 631 M no es un hecho XBRL de GOOGL
@@ -146,7 +151,7 @@ def test_a7_valida_la_cifra_de_texto_contra_la_cita_y_no_contra_xbrl():
     assert verificar_cifras_con_texto.after_model(_estado(bien), None) is None
 
 
-def test_a7_rebota_la_escala_equivocada_una_sola_vez():
+def test_a6_cifras_rebota_la_escala_equivocada_una_sola_vez():
     mal = _SR(cifra=631.0, ticker="GOOGL", ejercicio=2025, fuente="texto",
               cita=CITA_GOOGL, chunk_id="GOOGL-2025-7A-0003")
     salto = verificar_cifras_con_texto.after_model(_estado(mal), None)
@@ -155,18 +160,18 @@ def test_a7_rebota_la_escala_equivocada_una_sola_vez():
     assert verificar_cifras_con_texto.after_model(_estado(mal, [ya]), None) is None
 
 
-def test_a7_sigue_verificando_xbrl_cuando_la_fuente_no_es_texto():
+def test_a6_cifras_sigue_verificando_xbrl_cuando_la_fuente_no_es_texto():
     inventada = _SR(cifra=1.0e11, ticker="NVDA", ejercicio=2025, fuente="xbrl")
     assert verificar_cifras_con_texto.after_model(_estado(inventada), None) is not None
     real = _SR(cifra=130_497_000_000.0, ticker="NVDA", ejercicio=2025, fuente="xbrl")
     assert verificar_cifras_con_texto.after_model(_estado(real), None) is None
 
 
-def test_a7_monta_el_verificador_nuevo_y_el_prompt_mantiene_la_honestidad():
+def test_a6_cifras_monta_el_verificador_nuevo_y_el_prompt_mantiene_la_honestidad():
     nombres = lambda n: [m.name for m in middlewares_para(ARQUITECTURAS[n])]
-    assert "verificar_cifras_con_texto" in nombres("a7_cifras_texto")
-    assert "verificar_cifras_contra_xbrl" not in nombres("a7_cifras_texto")
-    assert "verificar_cifras_contra_xbrl" in nombres("a6_reescritura_rapida")
+    assert "verificar_cifras_con_texto" in nombres("a6_cifras_texto")
+    assert "verificar_cifras_contra_xbrl" not in nombres("a6_cifras_texto")
+    assert "verificar_cifras_contra_xbrl" in nombres("a5_limites")
     p = PROMPTS["cifras_texto"]
     assert p.startswith(PROMPTS["comparativas"])               # añade, no quita
     assert "UNIDADES COMPLETAS" in p and "fuente='ninguna'" in p.split("Lo que NO cambia")[1]

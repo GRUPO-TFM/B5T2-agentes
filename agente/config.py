@@ -31,13 +31,13 @@ class Arquitectura:
     max_busquedas: int = 6             # search_filings: cara (5 fragmentos ≈ 2.300 tokens)
     verificador_cifras: bool = False   # after_model: cifra vs. XBRL
     verificador_cita: bool = False     # after_model: cita ⊂ chunk citado
-    cifras_de_texto: bool = False      # A7: contrato y verificación para cifras que solo están en el texto
+    cifras_de_texto: bool = False      # A6: contrato y verificación para cifras que solo están en el texto
     esquema_estricto: bool = False     # validadores de coherencia en la salida
     prompt: str = "base"               # "base" | "honesto" | "comparativas" | "cifras_texto"
     # --- retrieval (agente/retrieval.py) ---
     filtros_forzados: bool = False     # wrap_tool_call: rellena ticker/fy si faltan
     reescritura: bool = False          # consulta reescrita a inglés antes de buscar
-    reescritura_rapida: bool = False   # A6: la misma reescritura, con razonamiento mínimo
+    reescritura_rapida: bool = False   # experimento descartado: misma reescritura, razonamiento mínimo
     hibrido: bool = False              # BM25 + denso con RRF
     k: int = K
     # --- documentación ---
@@ -95,16 +95,20 @@ A5 = replace(
                 "no turnos, y tumbaba gY-012 y gY-015.",
 )
 
-A6 = replace(
-    A5, nombre="a6_reescritura_rapida",
+# Experimento que NO entra en la escalera (medido el 23-sep antes de lanzarlo):
+# la reescritura con razonamiento mínimo tarda lo mismo que la normal (media
+# 12,9 s frente a 12,8 s en tres llamadas en caliente, con 7-19 s de dispersión
+# en ambas). Lo que cuesta es la ida y vuelta al proveedor, no el razonamiento.
+# Se deja definida, sin registrar, como evidencia del resultado nulo.
+X_REESCRITURA_RAPIDA = replace(
+    A5, nombre="x_reescritura_rapida",
     reescritura_rapida=True,
-    descripcion="+ la reescritura de consultas se mantiene, pero con razonamiento "
-                "mínimo: la búsqueda deja de esperar a un modelo que piensa. "
-                "Ataca la latencia (+72 % en A2) sin quitar la ayuda al recall.",
+    descripcion="A5 + reescritura con razonamiento mínimo. Descartada: no baja "
+                "la latencia de la reescritura (12,9 s frente a 12,8 s).",
 )
 
-A7 = replace(
-    A6, nombre="a7_cifras_texto",
+A6 = replace(
+    A5, nombre="a6_cifras_texto",
     cifras_de_texto=True, prompt="cifras_texto",
     descripcion="+ contrato para cifras que solo están en el texto (fuente='texto', "
                 "unidades completas, la cifra dentro de la cita) y un verificador que "
@@ -112,8 +116,8 @@ A7 = replace(
 )
 
 ARQUITECTURAS: dict[str, Arquitectura] = {a.nombre: a for a in (BASELINE, A1, A2, A3, A4,
-                                                                 A5, A6, A7)}
-# `final` sigue siendo A4 hasta que A5-A7 estén medidas en los dos golden: lo
+                                                                 A5, A6)}
+# `final` sigue siendo A4 hasta que A5 y A6 estén medidas en los dos golden: lo
 # que corre `evaluar()` el día 24 no cambia por una intuición.
 ARQUITECTURAS["final"] = A4
 

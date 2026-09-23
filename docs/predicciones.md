@@ -578,4 +578,17 @@ A4 hasta que las tres estén medidas en los dos golden.
   Original: igual (ninguna pregunta del original tiene cifra de texto).
   `% corrigió cifra` > 0 solo si el modelo pone la cifra en millones.
 
+> **Actualización ANTES de ejecutar (23-sep): A6 descartada por una prueba de humo.**
+> Reescritura con razonamiento `minimal` frente a la normal, en caliente y con
+> consultas nuevas (sin caché): 12,0 · 7,3 · 19,5 s (media 12,9 s) frente a
+> 14,5 · 9,0 · 15,0 s (media 12,8 s). El proveedor acepta `minimal`, pero no
+> baja nada: lo que cuesta es la ida y vuelta, no el razonamiento. La predicción
+> de A6 (−20 a −30 % de latencia) queda **refutada sin gastar la ejecución**.
+> Consecuencias: A6 sale de la escalera (se conserva como `x_reescritura_rapida`,
+> sin registrar) y **A7 pasa a llamarse A6 y se monta directamente sobre A5**. Sus
+> predicciones se mantienen sin cambios (difícil 83,3 % → 94-100 %, original igual):
+> el peldaño retirado no cambiaba nada, así que la base es equivalente.
+> La latencia sigue abierta; la palanca real sería un modelo más rápido para la
+> reescritura, o quitarla (A2 ya mostró que no mueve el acierto).
+
 > Resultado: _(pendiente)_
