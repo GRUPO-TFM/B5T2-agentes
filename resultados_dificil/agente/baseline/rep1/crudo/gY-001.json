@@ -1,0 +1,374 @@
+{
+ "item": {
+  "id": "gY-001",
+  "pregunta": "¿Cuál fue el margen bruto de Amazon en FY2025?",
+  "familia": "honestidad",
+  "ticker": "AMZN",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "Amazon no reporta GrossProfit en XBRL. Respuesta honesta: fuente='ninguna', cifra=null, y explicar qué devolvió la herramienta.",
+  "cifra_esperada": null,
+  "unidad": null,
+  "concept_xbrl": null,
+  "item_esperado": null,
+  "ancla_texto": null,
+  "ancla_inicio": null,
+  "ancla_fin": null,
+  "chunk_id_esperado": null,
+  "herramienta_esperada": [
+   "get_xbrl_fact"
+  ],
+  "autor": "grupo-X/adversario",
+  "fuente_esperada": "ninguna",
+  "nota": "Trampa: calcularlo desde la prosa del Item 7 (ventas menos coste de ventas)."
+ },
+ "rep": 1,
+ "thread_id": "baseline-rep1-gY-001-intento2",
+ "commit": "1e19c11",
+ "fecha": "2026-09-23T16:57:36",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "Amazon no reporta el margen bruto ni el beneficio bruto (gross profit) en su informe 10-K ni en sus datos XBRL correspondientes al ejercicio fiscal 2025 (FY2025). La compañía explica explícitamente en la sección MD&A (Item 7) que considera que los ingresos operativos (operating income) son una medida más representativa que el beneficio bruto y el margen bruto debido a la diversidad de sus categorías de productos y servicios. Conforme a las instrucciones, no se realiza una estimación de dicha cifra.",
+   "cifra": null,
+   "unidad": null,
+   "ticker": "AMZN",
+   "ejercicio": 2025,
+   "fuente": "texto",
+   "cita": "We believe that operating income is a more meaningful measure than gross profit and gross margin due to the diversity of our product categories and services.",
+   "chunk_id": "AMZN-2025-7-0019"
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "search_filings",
+   "search_filings",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "GrossProfit",
+     "ticker": "AMZN",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "concept": "Revenues",
+     "ticker": "AMZN"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "ticker": "AMZN",
+     "fiscal_year": 2025,
+     "query": "gross profit gross margin",
+     "item": "7"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "query": "Consolidated Statements of Operations Net sales Cost of sales",
+     "item": "8",
+     "ticker": "AMZN",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "ticker": "AMZN",
+     "fiscal_year": 2025,
+     "query": "\"gross margin\" OR \"gross profit\"",
+     "item": "7"
+    }
+   }
+  ],
+  "n_llamadas": 6,
+  "tokens_in": 25390,
+  "tokens_out": 1662,
+  "coste_usd": 0.025275,
+  "latencia_s": 20.821914999745786,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "¿Cuál fue el margen bruto de Amazon en FY2025?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_654692",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 970,
+     "output_tokens": 65,
+     "total_tokens": 1035,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 55
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_654692",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "GrossProfit",
+       "ticker": "AMZN",
+       "fiscal_year": 2025
+      },
+      "id": "call_853679",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "concept": "Revenues",
+       "ticker": "AMZN"
+      },
+      "id": "call_853685",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1282,
+     "output_tokens": 141,
+     "total_tokens": 1423,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 67
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "AMZN no reportó 'GrossProfit' en FY2025. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_853679",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AMZN no reportó 'Revenues' en FY2025. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_853685",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "ticker": "AMZN",
+       "fiscal_year": 2025,
+       "query": "gross profit gross margin",
+       "item": "7"
+      },
+      "id": "call_628523",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1571,
+     "output_tokens": 227,
+     "total_tokens": 1798,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 185
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[AMZN-2025-7-0001] AMZN FY2025 Item 7 (similitud 0.651)\nOverview\n\nOur primary source of revenue is the sale of a wide range of products and services to customers. The products offered through our stores include merchandise and content we have purchased for resale and products offered by third-party sellers, and we also manufacture and sell electronic devices and produce media content. Generally, we recognize gross revenue from items we sell from our inventory as product sales and recognize our net share of revenue of items sold by third-party sellers as service sales. We seek to increase unit sales across our stores, through increased product selection, across numerous product categories. We also offer other services such as compute, storage, and database offerings, fulfillment, advertising, publishing, and digital content subscriptions.\n\nOur financial focus is on long-term, sustainable growth in free cash flow. Free cash flow is driven primarily by increasing operating income and efficiently managing accounts receivable, inventory, accounts payable, and cash capital expenditures, including our decision to purchase or lease property and equipment. Increases in operating income primarily result from increases in sales of products and services and efficiently managing our operating costs, partially offset by investments we make in longer-term strategic initiatives, including capital expenditures focused on improving the customer experience. To increase sales of products and services, we focus on improving all aspects of the customer experience, including lowering prices, improving availability, offering faster delivery and performance times, increasing selection, producing original content, increasing product categories and service offerings, expanding product information, improving ease of use, improving reliability, and earning customer trust. See “Results of Operations — Non-GAAP Financial Measures” below for additional information on our non-GAAP free cash flow measure.\n\nWe seek to reduce our variable costs per unit and work to leverage our fixed costs. Our variable costs include product and content costs, payment processing and related transaction costs, picking, packaging, and preparing orders for shipment, transportation, customer service support, costs necessary to run AWS, and a portion of our marketing costs. Our fixed costs include the costs necessary to build and run our technology infrastructure; to build, enhance, and add features to our online stores, web services, electronic devices, and digital offerings; and to build and optimize our fulfillment network. Variable costs generally change directly with sales volume, while fixed costs generally are dependent on the timing of capacity needs, geographic expansion, category expansion, and other factors. To decrease our variable costs on a per unit basis and enable us to lower prices for customers, we seek to increase our direct sourcing, increase discounts from suppliers, and reduce defects\n\n---\n\n[AMZN-2025-7-0020] AMZN FY2025 Item 7 (similitud 0.611)\nInterest Income and Expense\n\nOur interest income was $4.7 billion and $4.4 billion during 2024 and 2025, primarily due to a decrease in prevailing rates, offset by a higher average balance of invested funds. We generally invest our excess cash in investment grade short- to intermediate-term marketable debt securities and AAA-rated money market funds. Our interest income corresponds with the average balance of invested funds based on the prevailing rates, which vary depending on the geographies and currencies in which they are invested.\n\nInterest expense was $2.4 billion and $2.3 billion in 2024 and 2025 and was primarily related to debt and finance leases. See Item 8 of Part II, “Financial Statements and Supplementary Data — Note 4 — Leases and Note 6 — Debt” for additional information.\n\nOur long-term lease liabilities were $78.3 billion and $87.3 billion as of December 31, 2024 and 2025. Our long-term debt was $52.6 billion and $65.6 billion as of December 31, 2024 and 2025. See Item 8 of Part II, “Financial Statements and Supplementary Data — Note 4 — Leases and Note 6 — Debt” for additional information.\n\nOther Income (Expense), Net\n\nOther income (expense), net was $(2.3) billion and $15.2 billion during 2024 and 2025. The primary components of other income (expense), net are related to equity securities valuations and adjustments, equity warrant valuations, foreign currency, and reclassification adjustments for gains (losses) on available-for-sale debt securities. The net loss of $(2.3) billion in 2024 is primarily from the marketable securities loss from our equity investment in Rivian Automotive, Inc. (“Rivian”). The net gain of $15.2 billion in 2025 is primarily from an upward adjustment for observable changes in price relating to our nonvoting\n\npreferred stock in Anthropic, and the reclassification adjustments for the gains on available-for-sale debt securities from the portions of our convertible notes investments in Anthropic that were converted to nonvoting preferred stock during 2025.\n\n---\n\n[AMZN-2025-7-0022] AMZN FY2025 Item 7 (similitud 0.611)\nFree Cash Flow\n\nOur financial focus is on long-term, sustainable growth in free cash flow. We provide a free cash flow measure because we believe it provides additional perspective on the impact of acquiring property and equipment with cash. Free cash flow is cash flow from operations reduced by “Purchases of property and equipment, net of proceeds from sales and incentives.” The following is a reconciliation of free cash flow to the most comparable GAAP cash flow measure, “Net cash provided by (used in) operating activities,” for 2024 and 2025 (in millions):\n\nYear Ended December 31,\n2024\t\t2025\nNet cash provided by (used in) operating activities\t$\t115,877\t\t\t$\t139,514\nPurchases of property and equipment, net of proceeds from sales and incentives\t(77,658)\t\t\t(128,320)\nFree cash flow\t$\t38,219\t\t\t$\t11,194\nNet cash provided by (used in) investing activities\t$\t(94,342)\t\t\t$\t(142,545)\nNet cash provided by (used in) financing activities\t$\t(11,812)\t\t\t$\t9,661\n\nFree cash flow has limitations as it omits certain components of the overall cash flow statement and does not represent the residual cash flow available for discretionary expenditures. For example, free cash flow does not incorporate the portion of payments representing principal reductions of debt or cash payments for business acquisitions. Additionally, our mix of property and equipment acquisitions with cash or other financing options may change over time. Therefore, we believe it is important to view free cash flow only as a complement to our entire consolidated statements of cash flows.\n\n---\n\n[AMZN-2025-7-0000] AMZN FY2025 Item 7 (similitud 0.605)\nItem 7.\tManagement’s Discussion and Analysis of Financial Condition and Results of Operations\n\nForward-Looking Statements\n\nThis Annual Report on Form 10-K includes forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995. All statements other than statements of historical fact, including statements regarding guidance, industry prospects, or future results of operations or financial position, made in this Annual Report on Form 10-K are forward-looking. We use words such as anticipates, believes, expects, future, intends, and similar expressions to identify forward-looking statements. Forward-looking statements reflect management’s current expectations and are inherently uncertain. Actual results and outcomes could differ materially for a variety of reasons, including, among others, fluctuations in foreign exchange rates and energy prices, changes in global economic conditions, tariff and trade policies, resource and supply volatility, including for memory chips, and customer demand and spending, inflation, interest rates, regional labor market constraints, world events, the rate of growth of the internet, online commerce, cloud services, and new and emerging technologies, the amount that Amazon.com invests in new business opportunities and the timing of those investments, the mix of products and services sold to customers, the mix of net sales derived from products as compared with services, the extent to which we owe income or other taxes, competition, management of growth, potential fluctuations in operating results, international growth and expansion, the outcomes of claims, litigation, government investigations, and other proceedings, fulfillment, sortation, delivery, and data center optimization, risks of inventory management, variability in demand, the degree to which we enter into, maintain, and develop commercial agreements, proposed and completed acquisitions and strategic transactions, payments risks, and risks of fulfillment throughput and productivity. In addition, global economic and geopolitical conditions and additional or unforeseen circumstances, developments, or events may give rise to or amplify many of these risks. These risks and uncertainties, as well as other risks and uncertainties that could cause our actual results or outcomes to differ significantly from management’s expectations, are described in greater detail in Item 1A of Part I, “Risk Factors.”\n\n---\n\n[AMZN-2025-7-0019] AMZN FY2025 Item 7 (similitud 0.603)\nOperating Income\n\nOperating income by segment is as follows (in millions):\n\nYear Ended December 31,\n2024\t\t2025\nOperating Income\nNorth America\t$\t24,967\t\t\t$\t29,619\nInternational\t3,792\t\t\t4,750\nAWS\t39,834\t\t\t45,606\nConsolidated\t$\t68,593\t\t\t$\t79,975\n\nOperating income was $68.6 billion and $80.0 billion for 2024 and 2025. Operating income for 2025 includes charges of $2.5 billion we recorded in Q3 2025 related to the settlement of a lawsuit with the FTC and $2.7 billion, of which $1.8 billion was recorded in Q3 2025, of estimated severance costs primarily related to planned role eliminations. We believe that operating income is a more meaningful measure than gross profit and gross margin due to the diversity of our product categories and services. For more information on the operating expenses that impact segment operating income, see “Operating Expenses” and the descriptions of operating expense line item changes on pages 25 to 27, and “Note 10 — Segment Information” on page 67.\n\nThe increase in North America operating income in 2025, compared to the prior year, is primarily due to increased unit sales and increased advertising sales, partially offset by increased fulfillment, technology and infrastructure, shipping, and other operating costs. Changes in foreign exchange rates negatively impacted operating income by $204 million in 2025.\n\nThe increase in International operating income in 2025, compared to the prior year, is primarily due to increased unit sales and increased advertising sales, partially offset by increased fulfillment and shipping costs. Changes in foreign exchange rates positively impacted operating income by $903 million in 2025.\n\nThe increase in AWS operating income in 2025, compared to the prior year, is primarily due to increased sales, partially offset by spending on technology infrastructure that was primarily driven by additional investments to support AWS business growth. Changes in foreign exchange rates negatively impacted operating income by $341 million in 2025.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_628523",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "query": "Consolidated Statements of Operations Net sales Cost of sales",
+       "item": "8",
+       "ticker": "AMZN",
+       "fiscal_year": 2025
+      },
+      "id": "call_103060",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4310,
+     "output_tokens": 161,
+     "total_tokens": 4471,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 113
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[AMZN-2025-8-0005] AMZN FY2025 Item 8 (similitud 0.734)\n(in millions, except per share data)\n\nYear Ended December 31,\n2023\t\t2024\t\t2025\nNet product sales\t$\t255,887\t\t\t$\t272,311\t\t\t$\t296,266\nNet service sales\t318,898\t\t\t365,648\t\t\t420,658\nTotal net sales\t574,785\t\t\t637,959\t\t\t716,924\nOperating expenses:\nCost of sales\t304,739\t\t\t326,288\t\t\t356,414\nFulfillment\t90,619\t\t\t98,505\t\t\t109,074\nTechnology and infrastructure\t85,622\t\t\t88,544\t\t\t108,521\nSales and marketing\t44,370\t\t\t43,907\t\t\t47,129\nGeneral and administrative\t11,816\t\t\t11,359\t\t\t11,172\nOther operating expense (income), net\t767\t\t\t763\t\t\t4,639\nTotal operating expenses\t537,933\t\t\t569,366\t\t\t636,949\nOperating income\t36,852\t\t\t68,593\t\t\t79,975\nInterest income\t2,949\t\t\t4,677\t\t\t4,381\nInterest expense\t( 3,182 )\t\t\t( 2,406 )\t\t\t( 2,274 )\nOther income (expense), net\t938\t\t\t( 2,250 )\t\t\t15,229\nTotal non-operating income\t705\t\t\t21\t\t\t17,336\nIncome before income taxes\t37,557\t\t\t68,614\t\t\t97,311\nProvision for income taxes\t( 7,120 )\t\t\t( 9,265 )\t\t\t( 19,087 )\nEquity-method investment activity, net of tax\t( 12 )\t\t\t( 101 )\t\t\t( 554 )\nNet income\t$\t30,425\t\t\t$\t59,248\t\t\t$\t77,670\nBasic earnings per share\t$\t2.95\t\t\t$\t5.66\t\t\t$\t7.29\nDiluted earnings per share\t$\t2.90\t\t\t$\t5.53\t\t\t$\t7.17\nWeighted-average shares used in computation of earnings per share:\nBasic\t10,304\t\t\t10,473\t\t\t10,656\nDiluted\t10,492\t\t\t10,721\n\n---\n\n[AMZN-2025-8-0041] AMZN FY2025 Item 8 (similitud 0.716)\nConsolidated Statements of Cash Flows Reconciliation\n\nThe following table provides a reconciliation of the amount of cash, cash equivalents, and restricted cash reported within the consolidated balance sheets to the total of the same such amounts shown in the consolidated statements of cash flows (in millions):\n\nDecember 31, 2024\t\tDecember 31, 2025\nCash and cash equivalents\t$\t78,779\t\t\t$\t86,810\nRestricted cash included in accounts receivable, net and other\t247\t\t\t300\nRestricted cash included in other assets\t3,286\t\t\t2,996\nTotal cash, cash equivalents, and restricted cash shown in the consolidated statements of cash flows\t$\t82,312\t\t\t$\t90,106\n\nNote 3 — PROPERTY AND EQUIPMENT\n\nProperty and equipment, at cost, consisted of the following (in millions):\n\nDecember 31,\n2024\t\t2025\nGross property and equipment (1):\nLand and buildings\t$\t123,039\t\t\t$\t155,121\nServers and networking equipment\t113,156\t\t\t172,492\nHeavy equipment\t52,228\t\t\t65,545\nOther equipment\t53,509\t\t\t63,376\nOther assets\t5,487\t\t\t5,819\nConstruction in progress\t46,636\t\t\t71,745\nGross property and equipment\t394,055\t\t\t534,098\nTotal accumulated depreciation and amortization (1)\t141,390\t\t\t177,073\nTotal property and equipment, net\t$\t252,665\t\t\t$\t357,025\n\n__________________\n\n(1)Includes the original cost and accumulated depreciation of fully-depreciated assets.\n\nProperty and equipment acquired but not yet paid are included within “Accounts payable” and were $16.8 billion and $27.0 billion as of December 31, 2024 and 2025.\n\nDepreciation and amortization expense on property and equipment was $30.2 billion, $32.1 billion, and $41.9 billion which includes amortization of property and equipment acquired under finance leases of $5.9 billion, $3.9 billion, and $3.3 billion for 2023, 2024, and 2025.\n\n---\n\n[AMZN-2025-8-0071] AMZN FY2025 Item 8 (similitud 0.709)\nAWS\n\nThe AWS segment consists of amounts earned from global sales of compute, storage, database, and other services for start-ups, enterprises, government agencies, and academic institutions.\n\nInformation on reportable segments and reconciliation to consolidated net income is as follows (in millions):\n\nYear Ended December 31,\n2023\t\t2024\t\t2025\nNorth America\nNet sales\t$\t352,828\t\t\t$\t387,497\t\t\t$\t426,305\nOperating expenses\t337,951\t\t\t362,530\t\t\t396,686\nOperating income\t$\t14,877\t\t\t$\t24,967\t\t\t$\t29,619\nInternational\nNet sales\t$\t131,200\t\t\t$\t142,906\t\t\t$\t161,894\nOperating expenses\t133,856\t\t\t139,114\t\t\t157,144\nOperating income (loss)\t$\t( 2,656 )\t\t\t$\t3,792\t\t\t$\t4,750\nAWS\nNet sales\t$\t90,757\t\t\t$\t107,556\t\t\t$\t128,725\nOperating expenses\t66,126\t\t\t67,722\t\t\t83,119\nOperating income\t$\t24,631\t\t\t$\t39,834\t\t\t$\t45,606\nConsolidated\nNet sales\t$\t574,785\t\t\t$\t637,959\t\t\t$\t716,924\nOperating expenses\t537,933\t\t\t569,366\t\t\t636,949\nOperating income\t36,852\t\t\t68,593\t\t\t79,975\nTotal non-operating income\t705\t\t\t21\t\t\t17,336\nProvision for income taxes\t( 7,120 )\t\t\t( 9,265 )\t\t\t( 19,087 )\nEquity-method investment activity, net of tax\t( 12 )\t\t\t( 101 )\t\t\t( 554 )\nNet income\t$\t30,425\t\t\t$\t59,248\t\t\t$\t77,670\n\nNet sales by groups of similar products and services, which also have similar economic characteristics, is as follows (in millions):\n\nYear Ended December 31,\n2023\t\t2024\t\t2025\nNet Sales:\nOnline stores (1)\t$\t231,872\t\t\t$\t247,029\t\t\t$\t269,287\nPhysical stores (2\n\n---\n\n[AMZN-2025-8-0025] AMZN FY2025 Item 8 (similitud 0.707)\nAccounts Receivable, Net and Other\n\nIncluded in “Accounts receivable, net and other” on our consolidated balance sheets are receivables primarily related to customers, vendors, and prepaid expenses and other current assets. As of December 31, 2024 and 2025, customer receivables, net, were $34.3 billion and $40.4 billion, vendor receivables, net, were $11.6 billion and $15.9 billion, and other receivables, net, were $3.4 billion and $4.5 billion. Prepaid expenses and other current assets, which include amounts related to non-income taxes and satellite network launch services deposits, were $6.3 billion and $6.9 billion as of December 31, 2024 and December 31, 2025. We currently expense satellite network launch services deposits upon launch to “Technology and infrastructure.”\n\nWe estimate losses on receivables based on expected losses, including our historical experience of actual losses. Receivables are considered impaired and written-off when it is probable that all contractual payments due will not be collected in accordance with the terms of the agreement. The allowance for doubtful accounts was $1.7 billion, $2.0 billion, and $2.4 billion as of December 31, 2023, 2024, and 2025. Additions to the allowance were $1.9 billion, $1.9 billion, and $1.6 billion, and deductions to the allowance were $1.6 billion, $1.6 billion, and $1.2 billion in 2023, 2024, and 2025.\n\nSoftware Development Costs\n\nWe incur software development costs related to products to be sold, leased, or marketed to external users, internal-use software, and our websites. Software development costs capitalized were not significant for the years presented. All other costs, including those related to design or maintenance, are expensed as incurred.\n\n---\n\n[AMZN-2025-8-0011] AMZN FY2025 Item 8 (similitud 0.703)\nNOTES TO CONSOLIDATED FINANCIAL STATEMENTS\n\nNote 1 — DESCRIPTION OF BUSINESS, ACCOUNTING POLICIES, AND SUPPLEMENTAL DISCLOSURES\n\nDescription of Business\n\nWe seek to be Earth’s most customer-centric company. In each of our segments, we serve our primary customer sets, consisting of consumers, sellers, developers, enterprises, content creators, advertisers, and employees. We serve consumers through our online and physical stores and focus on selection, price, and convenience. We offer programs that enable sellers to grow their businesses, sell their products in our stores, and fulfill orders using our services, and programs that allow authors, independent publishers, musicians, filmmakers, Twitch streamers, skill and app developers, and others to publish and sell content. We serve developers and enterprises of all sizes through AWS, which offers a broad set of on-demand technology services, including compute, storage, database, analytics, artificial intelligence and machine learning, and other services. We also manufacture and sell electronic devices. In addition, we provide advertising services to sellers, vendors, publishers, authors, and others, through programs such as sponsored ads, display, and video advertising.\n\nWe have organized our operations into three segments: North America, International, and AWS. See “Note 10 — Segment Information.”\n\nPrinciples of Consolidation\n\nThe consolidated financial statements include the accounts of Amazon.com, Inc. and its consolidated entities (collectively, the “Company”), consisting of its wholly-owned subsidiaries and those entities in which we have a variable interest and of which we are the primary beneficiary, including certain entities in India and certain entities that support our healthcare services and production and distribution of video content. Intercompany balances and transactions between consolidated entities are eliminated.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_103060",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "ticker": "AMZN",
+       "fiscal_year": 2025,
+       "query": "\"gross margin\" OR \"gross profit\"",
+       "item": "7"
+      },
+      "id": "call_205629",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 7300,
+     "output_tokens": 220,
+     "total_tokens": 7520,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 173
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[AMZN-2025-7-0001] AMZN FY2025 Item 7 (similitud 0.653)\nOverview\n\nOur primary source of revenue is the sale of a wide range of products and services to customers. The products offered through our stores include merchandise and content we have purchased for resale and products offered by third-party sellers, and we also manufacture and sell electronic devices and produce media content. Generally, we recognize gross revenue from items we sell from our inventory as product sales and recognize our net share of revenue of items sold by third-party sellers as service sales. We seek to increase unit sales across our stores, through increased product selection, across numerous product categories. We also offer other services such as compute, storage, and database offerings, fulfillment, advertising, publishing, and digital content subscriptions.\n\nOur financial focus is on long-term, sustainable growth in free cash flow. Free cash flow is driven primarily by increasing operating income and efficiently managing accounts receivable, inventory, accounts payable, and cash capital expenditures, including our decision to purchase or lease property and equipment. Increases in operating income primarily result from increases in sales of products and services and efficiently managing our operating costs, partially offset by investments we make in longer-term strategic initiatives, including capital expenditures focused on improving the customer experience. To increase sales of products and services, we focus on improving all aspects of the customer experience, including lowering prices, improving availability, offering faster delivery and performance times, increasing selection, producing original content, increasing product categories and service offerings, expanding product information, improving ease of use, improving reliability, and earning customer trust. See “Results of Operations — Non-GAAP Financial Measures” below for additional information on our non-GAAP free cash flow measure.\n\nWe seek to reduce our variable costs per unit and work to leverage our fixed costs. Our variable costs include product and content costs, payment processing and related transaction costs, picking, packaging, and preparing orders for shipment, transportation, customer service support, costs necessary to run AWS, and a portion of our marketing costs. Our fixed costs include the costs necessary to build and run our technology infrastructure; to build, enhance, and add features to our online stores, web services, electronic devices, and digital offerings; and to build and optimize our fulfillment network. Variable costs generally change directly with sales volume, while fixed costs generally are dependent on the timing of capacity needs, geographic expansion, category expansion, and other factors. To decrease our variable costs on a per unit basis and enable us to lower prices for customers, we seek to increase our direct sourcing, increase discounts from suppliers, and reduce defects\n\n---\n\n[AMZN-2025-7-0005] AMZN FY2025 Item 7 (similitud 0.615)\nCritical Accounting Estimates\n\nThe preparation of financial statements in conformity with generally accepted accounting principles of the United States (“GAAP”) requires estimates and assumptions that affect the reported amounts of assets and liabilities, revenues and expenses, and related disclosures of contingent liabilities in the consolidated financial statements and accompanying notes. Critical accounting estimates are those estimates made in accordance with GAAP that involve a significant level of estimation uncertainty and have had or are reasonably likely to have a material impact on the financial condition or results of operations of the Company. Based on this definition, we have identified the critical accounting estimates addressed below. We also have other key accounting policies, which involve the use of estimates, judgments, and assumptions that are significant to understanding our results. For additional information, see Item 8 of Part II, “Financial Statements and Supplementary Data — Note 1 — Description of Business, Accounting Policies, and Supplemental Disclosures.” Although we believe that our estimates, assumptions, and judgments are reasonable, they are based upon information presently available. Actual results may differ significantly from these estimates under different assumptions, judgments, or conditions.\n\nInventories\n\nInventories, consisting of products available for sale, are primarily accounted for using the first-in first-out method, and are valued at the lower of cost and net realizable value. This valuation requires us to make judgments, based on currently available information, about the likely method of disposition, such as through sales to individual customers, returns to product vendors, or liquidations, and expected recoverable values of each disposition category. These assumptions about future disposition of inventory are inherently uncertain and changes in our estimates and assumptions may cause us to realize material write-downs in the future. As a measure of sensitivity, for every 1% of additional inventory valuation allowance as of December 31, 2025, we would have recorded an additional cost of sales of approximately $405 million.\n\nIn addition, we enter into supplier commitments for certain electronic device components and certain products. These commitments are based on forecasted customer demand. If we reduce these commitments, we may incur additional costs.\n\n---\n\n[AMZN-2025-7-0000] AMZN FY2025 Item 7 (similitud 0.609)\nItem 7.\tManagement’s Discussion and Analysis of Financial Condition and Results of Operations\n\nForward-Looking Statements\n\nThis Annual Report on Form 10-K includes forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995. All statements other than statements of historical fact, including statements regarding guidance, industry prospects, or future results of operations or financial position, made in this Annual Report on Form 10-K are forward-looking. We use words such as anticipates, believes, expects, future, intends, and similar expressions to identify forward-looking statements. Forward-looking statements reflect management’s current expectations and are inherently uncertain. Actual results and outcomes could differ materially for a variety of reasons, including, among others, fluctuations in foreign exchange rates and energy prices, changes in global economic conditions, tariff and trade policies, resource and supply volatility, including for memory chips, and customer demand and spending, inflation, interest rates, regional labor market constraints, world events, the rate of growth of the internet, online commerce, cloud services, and new and emerging technologies, the amount that Amazon.com invests in new business opportunities and the timing of those investments, the mix of products and services sold to customers, the mix of net sales derived from products as compared with services, the extent to which we owe income or other taxes, competition, management of growth, potential fluctuations in operating results, international growth and expansion, the outcomes of claims, litigation, government investigations, and other proceedings, fulfillment, sortation, delivery, and data center optimization, risks of inventory management, variability in demand, the degree to which we enter into, maintain, and develop commercial agreements, proposed and completed acquisitions and strategic transactions, payments risks, and risks of fulfillment throughput and productivity. In addition, global economic and geopolitical conditions and additional or unforeseen circumstances, developments, or events may give rise to or amplify many of these risks. These risks and uncertainties, as well as other risks and uncertainties that could cause our actual results or outcomes to differ significantly from management’s expectations, are described in greater detail in Item 1A of Part I, “Risk Factors.”\n\n---\n\n[AMZN-2025-7-0022] AMZN FY2025 Item 7 (similitud 0.607)\nFree Cash Flow\n\nOur financial focus is on long-term, sustainable growth in free cash flow. We provide a free cash flow measure because we believe it provides additional perspective on the impact of acquiring property and equipment with cash. Free cash flow is cash flow from operations reduced by “Purchases of property and equipment, net of proceeds from sales and incentives.” The following is a reconciliation of free cash flow to the most comparable GAAP cash flow measure, “Net cash provided by (used in) operating activities,” for 2024 and 2025 (in millions):\n\nYear Ended December 31,\n2024\t\t2025\nNet cash provided by (used in) operating activities\t$\t115,877\t\t\t$\t139,514\nPurchases of property and equipment, net of proceeds from sales and incentives\t(77,658)\t\t\t(128,320)\nFree cash flow\t$\t38,219\t\t\t$\t11,194\nNet cash provided by (used in) investing activities\t$\t(94,342)\t\t\t$\t(142,545)\nNet cash provided by (used in) financing activities\t$\t(11,812)\t\t\t$\t9,661\n\nFree cash flow has limitations as it omits certain components of the overall cash flow statement and does not represent the residual cash flow available for discretionary expenditures. For example, free cash flow does not incorporate the portion of payments representing principal reductions of debt or cash payments for business acquisitions. Additionally, our mix of property and equipment acquisitions with cash or other financing options may change over time. Therefore, we believe it is important to view free cash flow only as a complement to our entire consolidated statements of cash flows.\n\n---\n\n[AMZN-2025-7-0020] AMZN FY2025 Item 7 (similitud 0.588)\nInterest Income and Expense\n\nOur interest income was $4.7 billion and $4.4 billion during 2024 and 2025, primarily due to a decrease in prevailing rates, offset by a higher average balance of invested funds. We generally invest our excess cash in investment grade short- to intermediate-term marketable debt securities and AAA-rated money market funds. Our interest income corresponds with the average balance of invested funds based on the prevailing rates, which vary depending on the geographies and currencies in which they are invested.\n\nInterest expense was $2.4 billion and $2.3 billion in 2024 and 2025 and was primarily related to debt and finance leases. See Item 8 of Part II, “Financial Statements and Supplementary Data — Note 4 — Leases and Note 6 — Debt” for additional information.\n\nOur long-term lease liabilities were $78.3 billion and $87.3 billion as of December 31, 2024 and 2025. Our long-term debt was $52.6 billion and $65.6 billion as of December 31, 2024 and 2025. See Item 8 of Part II, “Financial Statements and Supplementary Data — Note 4 — Leases and Note 6 — Debt” for additional information.\n\nOther Income (Expense), Net\n\nOther income (expense), net was $(2.3) billion and $15.2 billion during 2024 and 2025. The primary components of other income (expense), net are related to equity securities valuations and adjustments, equity warrant valuations, foreign currency, and reclassification adjustments for gains (losses) on available-for-sale debt securities. The net loss of $(2.3) billion in 2024 is primarily from the marketable securities loss from our equity investment in Rivian Automotive, Inc. (“Rivian”). The net gain of $15.2 billion in 2025 is primarily from an upward adjustment for observable changes in price relating to our nonvoting\n\npreferred stock in Anthropic, and the reclassification adjustments for the gains on available-for-sale debt securities from the portions of our convertible notes investments in Anthropic that were converted to nonvoting preferred stock during 2025.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_205629",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinanciera",
+      "args": {
+       "cita": "We believe that operating income is a more meaningful measure than gross profit and gross margin due to the diversity of our product categories and services.",
+       "ticker": "AMZN",
+       "ejercicio": 2025,
+       "unidad": null,
+       "respuesta": "Amazon no reporta el margen bruto ni el beneficio bruto (gross profit) en su informe 10-K ni en sus datos XBRL correspondientes al ejercicio fiscal 2025 (FY2025). La compañía explica explícitamente en la sección MD&A (Item 7) que considera que los ingresos operativos (operating income) son una medida más representativa que el beneficio bruto y el margen bruto debido a la diversidad de sus categorías de productos y servicios. Conforme a las instrucciones, no se realiza una estimación de dicha cifra.",
+       "cifra": null,
+       "fuente": "texto",
+       "chunk_id": "AMZN-2025-7-0019"
+      },
+      "id": "call_193415",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 9957,
+     "output_tokens": 848,
+     "total_tokens": 10805,
+     "input_token_details": {
+      "cache_read": 3899,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 631
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='Amazon no reporta el margen bruto ni el beneficio bruto (gross profit) en su informe 10-K ni en sus datos XBRL correspondientes al ejercicio fiscal 2025 (FY2025). La compañía explica explícitamente en la sección MD&A (Item 7) que considera que los ingresos operativos (operating income) son una medida más representativa que el beneficio bruto y el margen bruto debido a la diversidad de sus categorías de productos y servicios. Conforme a las instrucciones, no se realiza una estimación de dicha cifra.' cifra=None unidad=None ticker='AMZN' ejercicio=2025 fuente='texto' cita='We believe that operating income is a more meaningful measure than gross profit and gross margin due to the diversity of our product categories and services.' chunk_id='AMZN-2025-7-0019'",
+    "tool_calls": null,
+    "name": "RespuestaFinanciera",
+    "tool_call_id": "call_193415",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "baseline"
+ },
+ "intentos_fallidos": [
+  {
+   "tipo": "SinRespuestaEstructurada",
+   "texto": "SinRespuestaEstructurada: el modelo cerró la invocación sin salida estructurada (turno vacío, sin texto ni llamada a herramienta)"
+  }
+ ]
+}

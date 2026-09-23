@@ -668,5 +668,220 @@
   "pregunta": "revenue by user geography geographic regions growth",
   "consulta": "\"net sales\" OR revenue by \"geographic region\" growth",
   "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:quarterly net income third quarter three months ended September 30 2025": {
+  "pregunta": "quarterly net income third quarter three months ended September 30 2025",
+  "consulta": "\"selected quarterly financial data\" \"three months ended September 30, 2025\" \"net income\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:third quarter Q3 2025 net income": {
+  "pregunta": "third quarter Q3 2025 net income",
+  "consulta": "\"three months ended\" \"third quarter\" \"net income\" 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:target price stock": {
+  "pregunta": "target price stock",
+  "consulta": "target stock price",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"diluted net income per share\" or \"Earnings Per Share\"": {
+  "pregunta": "\"diluted net income per share\" or \"Earnings Per Share\"",
+  "consulta": "\"diluted net income per share\" OR \"earnings per share\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Cash provided by operating activities increased net income": {
+  "pregunta": "Cash provided by operating activities increased net income",
+  "consulta": "\"net cash provided by operating activities\" increased \"net income\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Cash from operations increased due to": {
+  "pregunta": "Cash from operations increased due to",
+  "consulta": "Net cash provided by operating activities increased primarily due to",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:third quarter net income September 30 2025": {
+  "pregunta": "third quarter net income September 30 2025",
+  "consulta": "\"three months ended September 30, 2025\" \"net income\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:target price stock price target": {
+  "pregunta": "target price stock price target",
+  "consulta": "\"stock price target\" OR \"price target\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:stock split diluted net income per share 2024": {
+  "pregunta": "stock split diluted net income per share 2024",
+  "consulta": "stock split diluted net income per share 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:ten-for-one forward stock split effective June 2024": {
+  "pregunta": "ten-for-one forward stock split effective June 2024",
+  "consulta": "ten-for-one forward stock split effective June 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:stock split Note 1 per share": {
+  "pregunta": "stock split Note 1 per share",
+  "consulta": "\"stock split\" \"Note 1\" \"per share\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:cash provided by operating activities increased": {
+  "pregunta": "cash provided by operating activities increased",
+  "consulta": "net cash provided by operating activities increased",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:10% equity securities hypothetical adverse change market price risk": {
+  "pregunta": "10% equity securities hypothetical adverse change market price risk",
+  "consulta": "Item 7A \"hypothetical 10% adverse change\" \"equity price risk\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:\"marketable equity securities\" OR \"equity price risk\" OR \"equity securities\" \"10%\"": {
+  "pregunta": "\"marketable equity securities\" OR \"equity price risk\" OR \"equity securities\" \"10%\"",
+  "consulta": "(\"marketable equity securities\" OR \"equity price risk\" OR \"equity securities\") \"10%\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:equity price risk hypothetical 10% adverse change": {
+  "pregunta": "equity price risk hypothetical 10% adverse change",
+  "consulta": "equity price risk hypothetical 10% adverse change",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:hypothetical adverse price change marketable equity securities": {
+  "pregunta": "hypothetical adverse price change marketable equity securities",
+  "consulta": "\"Item 7A\" \"equity price risk\" \"hypothetical adverse change\" \"marketable equity securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Equity Investment Risk marketable equity securities hypothetical adverse price change": {
+  "pregunta": "Equity Investment Risk marketable equity securities hypothetical adverse price change",
+  "consulta": "Item 7A \"equity price risk\" \"marketable equity securities\" \"hypothetical adverse change\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:interest rate 100 basis points foreign exchange Value at Risk VaR": {
+  "pregunta": "interest rate 100 basis points foreign exchange Value at Risk VaR",
+  "consulta": "\"Item 7A\" \"Quantitative and Qualitative Disclosures About Market Risk\" \"interest rate\" \"100 basis points\" \"foreign exchange\" \"Value at Risk\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:maximum one-day loss in fair value of $590 million": {
+  "pregunta": "maximum one-day loss in fair value of $590 million",
+  "consulta": "Item 7A \"maximum one-day loss in fair value\" \"590 million\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Based on the results of the model, the Company estimates, with 95% confidence, a maximum one-day loss in fair value": {
+  "pregunta": "Based on the results of the model, the Company estimates, with 95% confidence, a maximum one-day loss in fair value",
+  "consulta": "Based on the results of the model, the Company estimates, with 95% confidence, a maximum one-day loss in fair value",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:third quarter net income three months ended September 30 2025": {
+  "pregunta": "third quarter net income three months ended September 30 2025",
+  "consulta": "\"net income\" \"three months ended September 30, 2025\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:quarter net income September 30 2025": {
+  "pregunta": "quarter net income September 30 2025",
+  "consulta": "three months ended September 30, 2025 net income",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:quarterly financial data net income 2025 third quarter": {
+  "pregunta": "quarterly financial data net income 2025 third quarter",
+  "consulta": "Item 8 \"quarterly financial data (unaudited)\" \"net income\" \"third quarter\" 2025",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:quarterly financial information": {
+  "pregunta": "quarterly financial information",
+  "consulta": "Selected Quarterly Financial Data",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:target price stock share price target": {
+  "pregunta": "target price stock share price target",
+  "consulta": "\"stock price target\" OR \"share price target\" OR \"market price of our common stock\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:stock split diluted earnings per share recast 2024": {
+  "pregunta": "stock split diluted earnings per share recast 2024",
+  "consulta": "\"stock split\" \"diluted earnings per share\" \"retrospectively adjusted\" 2024",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Diluted earnings per share 6.08 7.46": {
+  "pregunta": "Diluted earnings per share 6.08 7.46",
+  "consulta": "Diluted earnings per share 6.08 7.46",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Cash provided by operating activities increased net income revenue collections": {
+  "pregunta": "Cash provided by operating activities increased net income revenue collections",
+  "consulta": "\"net cash provided by operating activities\" increased \"net income\" \"cash collections\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:operating activities increased primarily due to": {
+  "pregunta": "operating activities increased primarily due to",
+  "consulta": "net cash provided by operating activities increased primarily due to",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:equity price risk 10% adverse change market price marketable equity securities": {
+  "pregunta": "equity price risk 10% adverse change market price marketable equity securities",
+  "consulta": "Item 7A \"equity price risk\" \"hypothetical 10% adverse change\" \"marketable equity securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:equity price risk hypothetical 10% decrease publicly traded": {
+  "pregunta": "equity price risk hypothetical 10% decrease publicly traded",
+  "consulta": "\"Item 7A\" \"equity price risk\" \"hypothetical 10% decrease\" \"publicly traded equity securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Equity Investment Risk marketable equity securities hypothetical adverse price change of 10%": {
+  "pregunta": "Equity Investment Risk marketable equity securities hypothetical adverse price change of 10%",
+  "consulta": "\"Item 7A\" \"equity price risk\" \"marketable equity securities\" \"hypothetical 10% adverse change\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:marketable equity securities hypothetical 10% decrease price risk": {
+  "pregunta": "marketable equity securities hypothetical 10% decrease price risk",
+  "consulta": "\"Item 7A\" \"equity price risk\" \"marketable equity securities\" \"hypothetical 10% decrease\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:equity investment risk market price sensitivity": {
+  "pregunta": "equity investment risk market price sensitivity",
+  "consulta": "Item 7A \"market risk\" \"equity price risk\" sensitivity analysis",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Equity Price Risk marketable equity securities hypothetical adverse price change of 10%": {
+  "pregunta": "Equity Price Risk marketable equity securities hypothetical adverse price change of 10%",
+  "consulta": "Item 7A \"equity price risk\" \"marketable equity securities\" \"hypothetical 10% adverse change\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:interest rate risk 100 basis points value at risk foreign exchange VaR": {
+  "pregunta": "interest rate risk 100 basis points value at risk foreign exchange VaR",
+  "consulta": "\"Item 7A\" \"Quantitative and Qualitative Disclosures About Market Risk\" \"interest rate risk\" \"100 basis points\" \"Value at Risk\" \"foreign exchange\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:basis points interest rate foreign exchange VaR value at risk": {
+  "pregunta": "basis points interest rate foreign exchange VaR value at risk",
+  "consulta": "Item 7A \"market risk\" \"value at risk\" VaR \"interest rate\" \"foreign exchange\" \"basis points\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:The VAR is the maximum expected loss in fair value": {
+  "pregunta": "The VAR is the maximum expected loss in fair value",
+  "consulta": "\"Item 7A\" \"Value at Risk\" OR VaR \"potential loss in fair value\" OR \"maximum expected loss\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:maximum one-day loss in fair value of $590 million and $538 million": {
+  "pregunta": "maximum one-day loss in fair value of $590 million and $538 million",
+  "consulta": "maximum one-day loss in fair value $590 million $538 million",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:equity price risk 10% hypothetical marketable equity securities": {
+  "pregunta": "equity price risk 10% hypothetical marketable equity securities",
+  "consulta": "Item 7A \"equity price risk\" \"hypothetical 10%\" \"marketable equity securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:hypothetical 10% adverse change marketable equity securities price loss": {
+  "pregunta": "hypothetical 10% adverse change marketable equity securities price loss",
+  "consulta": "\"Item 7A\" \"hypothetical 10% adverse change\" \"marketable equity securities\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:Equity Price Risk hypothetical 10% marketable equity securities": {
+  "pregunta": "Equity Price Risk hypothetical 10% marketable equity securities",
+  "consulta": "Item 7A equity price risk hypothetical 10% marketable equity securities",
+  "modelo": "openrouter:google/gemini-3.8-flash"
+ },
+ "agente:interest rate 100 basis points VaR foreign exchange value-at-risk": {
+  "pregunta": "interest rate 100 basis points VaR foreign exchange value-at-risk",
+  "consulta": "Item 7A \"market risk\" \"interest rate\" \"100 basis points\" \"value-at-risk\" \"foreign currency\"",
+  "modelo": "openrouter:google/gemini-3.8-flash"
  }
 }

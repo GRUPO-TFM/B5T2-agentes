@@ -1,4 +1,4 @@
-versión,acierto,cita,cifra,trayectoria,recall@5,coste medio (¢),latencia media (s),llamadas/pregunta,% fuente=ninguna,errores,reintentos proveedor,% corrigió cifra,% corrigió cita,reintentos esquema,% límite alcanzado,% búsquedas reescritas,% búsquedas con ticker,acierto numerica,acierto extractiva,acierto comparativa
-a2_retrieval rep1,0.75,0.6428571428571429,1.0,0.75,0.6428571428571429,1.44135,27.236294575035572,3.4,0.0,0,0,0.0,0.0,0.0,0.05,0.9,1.0,1.0,1.0,0.375
-a2_retrieval rep2,0.75,0.6428571428571429,1.0,0.8,0.6428571428571429,1.4768999999999999,28.470293104927986,3.65,0.0,0,1,0.0,0.0,0.05,0.0,0.8181818181818182,1.0,1.0,1.0,0.375
-a2_retrieval rep3,0.75,0.6428571428571429,1.0,0.75,0.6428571428571429,1.4104612499999998,32.49745179999154,3.4,0.0,0,0,0.0,0.0,0.05,0.05,0.8095238095238095,1.0,1.0,1.0,0.375
+versión,acierto,cita,cifra,trayectoria,recall@5,coste medio (¢),latencia media (s),llamadas/pregunta,% fuente=ninguna,errores,reintentos proveedor,reintentos por respuesta vacía,% sin respuesta,% corrigió cifra,% corrigió cita,reintentos esquema,% límite alcanzado,% búsquedas reescritas,% búsquedas con ticker,acierto numerica,acierto extractiva,acierto comparativa,honestidad
+a2_retrieval rep1,0.75,0.6428571428571429,1.0,0.75,0.6428571428571429,1.44135,27.236294575035572,3.4,0.0,0,0,0,0.0,0.0,0.0,0.0,0.05,0.9,1.0,1.0,1.0,0.375,
+a2_retrieval rep2,0.75,0.6428571428571429,1.0,0.8,0.6428571428571429,1.4768999999999999,28.470293104927986,3.65,0.0,0,1,0,0.0,0.0,0.0,0.05,0.0,0.8181818181818182,1.0,1.0,1.0,0.375,
+a2_retrieval rep3,0.75,0.6428571428571429,1.0,0.75,0.6428571428571429,1.4104612499999998,32.49745179999154,3.4,0.0,0,0,0,0.0,0.0,0.0,0.05,0.05,0.8095238095238095,1.0,1.0,1.0,0.375,

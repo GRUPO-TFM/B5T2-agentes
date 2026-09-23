@@ -1,4 +1,4 @@
-versión,acierto,cita,cifra,trayectoria,recall@5,coste medio (¢),latencia media (s),llamadas/pregunta,% fuente=ninguna,errores,reintentos proveedor,% corrigió cifra,% corrigió cita,reintentos esquema,% límite alcanzado,% búsquedas reescritas,% búsquedas con ticker,acierto numerica,acierto extractiva,acierto comparativa
-a1_guardrails rep1,0.75,0.6428571428571429,1.0,0.75,0.5,1.4588100000000002,16.13293924999889,3.25,0.0,0,1,0.05,0.05,0.05,0.05,0.0,1.0,1.0,1.0,0.375
-a1_guardrails rep2,0.75,0.6428571428571429,1.0,0.75,0.5,1.2709237500000001,17.16499545001425,3.2,0.0,0,4,0.05,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.375
-a1_guardrails rep3,0.75,0.6428571428571429,1.0,0.75,0.5,1.4979112499999998,18.143752669962122,3.3,0.0,0,1,0.05,0.0,0.05,0.05,0.0,1.0,1.0,1.0,0.375
+versión,acierto,cita,cifra,trayectoria,recall@5,coste medio (¢),latencia media (s),llamadas/pregunta,% fuente=ninguna,errores,reintentos proveedor,reintentos por respuesta vacía,% sin respuesta,% corrigió cifra,% corrigió cita,reintentos esquema,% límite alcanzado,% búsquedas reescritas,% búsquedas con ticker,acierto numerica,acierto extractiva,acierto comparativa,honestidad
+a1_guardrails rep1,0.75,0.6428571428571429,1.0,0.75,0.5,1.4588100000000002,16.13293924999889,3.25,0.0,0,1,0,0.0,0.05,0.05,0.05,0.05,0.0,1.0,1.0,1.0,0.375,
+a1_guardrails rep2,0.75,0.6428571428571429,1.0,0.75,0.5,1.2709237500000001,17.16499545001425,3.2,0.0,0,4,0,0.0,0.05,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.375,
+a1_guardrails rep3,0.75,0.6428571428571429,1.0,0.75,0.5,1.4979112499999998,18.143752669962122,3.3,0.0,0,1,0,0.0,0.05,0.0,0.05,0.05,0.0,1.0,1.0,1.0,0.375,

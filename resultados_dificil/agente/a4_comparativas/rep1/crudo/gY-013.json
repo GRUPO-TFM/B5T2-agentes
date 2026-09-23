@@ -1,0 +1,420 @@
+{
+ "item": {
+  "id": "gY-013",
+  "pregunta": "Entre FY2024 y FY2025, ¿creció más el BPA diluido de NVIDIA o el de Apple, ajustando por el split de NVIDIA?",
+  "familia": "multi_temporal",
+  "ticker": "NVDA",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "NVIDIA: 11,93 → 2,94; ajustado por el split 10:1, 1,193 → 2,94 = +146.4 %. Apple: 6,08 → 7,46 = +22.7 %. Convención: ticker=NVDA, cifra=crecimiento de NVDA en %.",
+  "cifra_esperada": 146.44,
+  "unidad": "%",
+  "concept_xbrl": null,
+  "item_esperado": null,
+  "ancla_texto": null,
+  "ancla_inicio": null,
+  "ancla_fin": null,
+  "chunk_id_esperado": null,
+  "herramienta_esperada": [
+   "get_xbrl_fact",
+   "search_filings"
+  ],
+  "autor": "grupo-X/adversario",
+  "nota": "Split + cross-company. Sin ajustar, NVIDIA parece caer un 75 %."
+ },
+ "rep": 1,
+ "thread_id": "a4_comparativas-rep1-gY-013",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "Creció más el BPA diluido de NVIDIA. \n\nPara NVIDIA (NVDA):\n- FY2024: 11.93 USD/acción reportados originalmente en XBRL. En junio de 2024 la compañía ejecutó un split de acciones 10 a 1 (10-for-1 stock split), por lo que ajustando por dicho ratio el BPA diluido de FY2024 pasa a ser de 1.193 USD/acción (presentado retrospectivamente como 1.19 USD en el 10-K de FY2025).\n- FY2025: 2.94 USD/acción.\n- Variación de NVIDIA: aumento de 1.747 USD/acción (+146.44% con respecto a 1.193 USD, o +147.06% con respecto a 1.19 USD).\n\nPara Apple (AAPL):\n- FY2024: 6.08 USD/acción.\n- FY2025: 7.46 USD/acción.\n- Variación de Apple: aumento de 1.38 USD/acción (+22.70%).\n\nTanto en términos relativos (+146.44% frente a +22.70%) como absolutos (+1.75 USD frente a +1.38 USD), el BPA diluido de NVIDIA creció sustancialmente más que el de Apple.",
+   "cifra": 2.94,
+   "unidad": "USD/shares",
+   "ticker": "NVDA",
+   "ejercicio": 2025,
+   "fuente": "ambas",
+   "cita": "In June 2024, we executed a ten-for-one stock split of our common stock. All share, equity award, and per share amounts and related shareholders' equity balances presented herein have been retroactively adjusted to reflect the Stock Split.",
+   "chunk_id": "NVDA-2025-8-0015"
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "search_filings",
+   "search_filings",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "EarningsPerShareDiluted",
+     "ticker": "NVDA",
+     "fiscal_year": 2024
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "NVDA",
+     "concept": "EarningsPerShareDiluted",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "EarningsPerShareDiluted",
+     "ticker": "AAPL",
+     "fiscal_year": 2024
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "concept": "EarningsPerShareDiluted",
+     "ticker": "AAPL"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "8",
+     "query": "stock split",
+     "ticker": "NVDA",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "fiscal_year": 2025,
+     "query": "\"diluted net income per share\" or \"Earnings Per Share\"",
+     "item": "8",
+     "ticker": "NVDA"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "query": "stock split",
+     "fiscal_year": 2025,
+     "item": "8",
+     "ticker": "AAPL"
+    }
+   }
+  ],
+  "n_llamadas": 8,
+  "tokens_in": 30769,
+  "tokens_out": 3136,
+  "coste_usd": 0.03483675,
+  "latencia_s": 68.63162319967523,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "Entre FY2024 y FY2025, ¿creció más el BPA diluido de NVIDIA o el de Apple, ajustando por el split de NVIDIA?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_282705",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1745,
+     "output_tokens": 68,
+     "total_tokens": 1813,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 58
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_282705",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "EarningsPerShareDiluted",
+       "ticker": "NVDA",
+       "fiscal_year": 2024
+      },
+      "id": "call_612301",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "NVDA",
+       "concept": "EarningsPerShareDiluted",
+       "fiscal_year": 2025
+      },
+      "id": "call_612303",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "EarningsPerShareDiluted",
+       "ticker": "AAPL",
+       "fiscal_year": 2024
+      },
+      "id": "call_612311",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "concept": "EarningsPerShareDiluted",
+       "ticker": "AAPL"
+      },
+      "id": "call_612317",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2060,
+     "output_tokens": 232,
+     "total_tokens": 2292,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 74
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "NVDA FY2024 · EarningsPerShareDiluted = 11.93 USD/shares (cierre de ejercicio 2024-01-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_612301",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "NVDA FY2025 · EarningsPerShareDiluted = 2.94 USD/shares (cierre de ejercicio 2025-01-26, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_612303",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2024 · EarningsPerShareDiluted = 6.08 USD/shares (cierre de ejercicio 2024-09-28, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_612311",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "AAPL FY2025 · EarningsPerShareDiluted = 7.46 USD/shares (cierre de ejercicio 2025-09-27, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_612317",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "8",
+       "query": "stock split",
+       "ticker": "NVDA",
+       "fiscal_year": 2025
+      },
+      "id": "call_462091",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 2475,
+     "output_tokens": 181,
+     "total_tokens": 2656,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 141
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[NVDA-2025-8-0010] NVDA FY2025 Item 8 (similitud 0.032)\nConsolidated Statements of Shareholders' Equity\n\nCommon Stock Outstanding\t\tAdditional Paid-in\t\tAccumulated Other Comprehensive\t\tRetained\t\tTotal Shareholders'\nShares\t\tAmount\t\tCapital\t\tIncome (Loss)\t\tEarnings\t\tEquity\n(In millions, except per share data)\nBalances as of Jan 30, 2022\t25,064\t\t\t$\t26\t\t\t$\t10,362\t\t\t$\t( 11 )\t\t\t$\t16,235\t\t\t$\t26,612\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t4,368\t\t\t4,368\nOther comprehensive loss\t—\t\t\t—\t\t\t—\t\t\t( 32 )\t\t\t—\t\t\t( 32 )\nIssuance of common stock from stock plans\t312\t\t\t—\t\t\t355\t\t\t—\t\t\t—\t\t\t355\nTax withholding related to vesting of restricted stock units\t( 82 )\t\t\t—\t\t\t( 1,475 )\t\t\t—\t\t\t—\t\t\t( 1,475 )\nShares repurchased\t( 633 )\t\t\t( 1 )\t\t\t( 4 )\t\t\t—\t\t\t( 10,034 )\t\t\t( 10,039 )\nCash dividends declared and paid ($ 0.016 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 398 )\t\t\t( 398 )\nStock-based compensation\t—\t\t\t—\t\t\t2,710\t\t\t—\t\t\t—\t\t\t2,710\nBalances as of Jan 29, 2023\t24,661\t\t\t25\t\t\t11,948\t\t\t( 43 )\t\t\t10,171\t\t\t22,101\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t29,760\t\t\t29,760\nOther comprehensive income\t—\t\t\t—\t\t\t—\t\t\t70\t\t\t—\t\t\t70\nIssuance of common stock from stock plans\t265\t\t\t—\t\t\t403\t\t\t—\t\t\t—\t\t\t403\nTax withholding related to vesting of restricted stock units\t( 72 )\t\t\t—\t\t\t( 2,783 )\t\t\t—\t\t\t—\t\t\t( 2,783 )\nShares repurchased\t( 211 )\t\t\t—\t\t\t(\n\n---\n\n[NVDA-2025-8-0011] NVDA FY2025 Item 8 (similitud 0.031)\nance of common stock from stock plans\t265\t\t\t—\t\t\t403\t\t\t—\t\t\t—\t\t\t403\nTax withholding related to vesting of restricted stock units\t( 72 )\t\t\t—\t\t\t( 2,783 )\t\t\t—\t\t\t—\t\t\t( 2,783 )\nShares repurchased\t( 211 )\t\t\t—\t\t\t( 27 )\t\t\t—\t\t\t( 9,719 )\t\t\t( 9,746 )\nCash dividends declared and paid ($ 0.016 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 395 )\t\t\t( 395 )\nStock-based compensation\t—\t\t\t—\t\t\t3,568\t\t\t—\t\t\t—\t\t\t3,568\nBalances as of Jan 28, 2024\t24,643\t\t\t25\t\t\t13,109\t\t\t27\t\t\t29,817\t\t\t42,978\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t72,880\t\t\t72,880\nOther comprehensive income\t—\t\t\t—\t\t\t—\t\t\t1\t\t\t—\t\t\t1\nIssuance of common stock from stock plans\t203\t\t\t—\t\t\t490\t\t\t—\t\t\t—\t\t\t490\nTax withholding related to vesting of restricted stock units\t( 59 )\t\t\t—\t\t\t( 6,930 )\t\t\t—\t\t\t—\t\t\t( 6,930 )\nShares repurchased\t( 310 )\t\t\t( 1 )\t\t\t( 189 )\t\t\t—\t\t\t( 33,825 )\t\t\t( 34,015 )\nCash dividends declared and paid ($ 0.034 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 834 )\t\t\t( 834 )\nStock-based compensation\t—\t\t\t—\t\t\t4,757\t\t\t—\t\t\t—\t\t\t4,757\nBalances as of Jan 26, 2025\t24,477\t\t\t$\t24\t\t\t$\t11,237\t\t\t$\t28\t\t\t$\t68,038\t\t\t$\t79,327\n\nSee accompanying Notes to the Consolidated Financial Statements.\n\nNVIDIA Corporation and Subsidiaries\n\nConsolidated Statements of Cash Flows\n\n(In millions)\n\n---\n\n[NVDA-2025-8-0015] NVDA FY2025 Item 8 (similitud 0.031)\nNVIDIA Corporation and Subsidiaries\n\nNotes to the Consolidated Financial Statements\n\nNote 1 - Organization and Summary of Significant Accounting Policies\n\nOur Company\n\nHeadquartered in Santa Clara, California, NVIDIA was incorporated in California in April 1993 and reincorporated in Delaware in April 1998.\n\nAll references to “NVIDIA,” “we,” “us,” “our” or the “Company” mean NVIDIA Corporation and its subsidiaries.\n\nCertain prior fiscal year balances have been reclassified to conform to the current fiscal year presentation.\n\nIn June 2024, we executed a ten-for-one stock split of our common stock. All share, equity award, and per share amounts and related shareholders' equity balances presented herein have been retroactively adjusted to reflect the Stock Split.\n\nFiscal Year\n\nWe operate on a 52- or 53-week year, ending on the last Sunday in January. Fiscal years 2025, 2024 and 2023 were all 52-week years.\n\nPrinciples of Consolidation\n\nOur consolidated financial statements include the accounts of NVIDIA Corporation and our wholly-owned subsidiaries. All intercompany balances and transactions have been eliminated in consolidation.\n\nUse of Estimates\n\nThe preparation of financial statements in conformity with U.S. GAAP requires management to make estimates and assumptions that affect the reported amounts of assets and liabilities and disclosures of contingent assets and liabilities at the date of the financial statements and the reported amounts of revenue and expenses during the reporting period. Actual results could differ materially from our estimates. On an on-going basis, we evaluate our estimates, including those related to accounts receivable, cash equivalents and marketable securities, goodwill, income taxes, inventories and product purchase commitments, investigation and settlement costs, litigation, non-marketable equity securities, other contingencies, property, plant, and equipment, restructuring and other charges, revenue recognition, and stock-based compensation. These estimates are based on historical facts and various other assumptions that we believe are reasonable.\n\n---\n\n[NVDA-2025-8-0013] NVDA FY2025 Item 8 (similitud 0.031)\n-marketable equity securities\t171\t\t\t1\t\t\t8\nPurchases of marketable securities\t( 26,575 )\t\t\t( 18,211 )\t\t\t( 11,897 )\nPurchases related to property and equipment and intangible assets\t( 3,236 )\t\t\t( 1,069 )\t\t\t( 1,833 )\nPurchases of non-marketable equity securities\t( 1,486 )\t\t\t( 862 )\t\t\t( 85 )\nAcquisitions, net of cash acquired\t( 1,007 )\t\t\t( 83 )\t\t\t( 49 )\nOther\t22\t\t\t( 124 )\t\t\t—\nNet cash provided by (used in) investing activities\t( 20,421 )\t\t\t( 10,566 )\t\t\t7,375\nCash flows from financing activities:\nProceeds related to employee stock plans\t490\t\t\t403\t\t\t355\nPayments related to repurchases of common stock\t( 33,706 )\t\t\t( 9,533 )\t\t\t( 10,039 )\nPayments related to tax on restricted stock units\t( 6,930 )\t\t\t( 2,783 )\t\t\t( 1,475 )\nRepayment of debt\t( 1,250 )\t\t\t( 1,250 )\t\t\t—\nDividends paid\t( 834 )\t\t\t( 395 )\t\t\t( 398 )\nPrincipal payments on property and equipment and intangible assets\t( 129 )\t\t\t( 74 )\t\t\t( 58 )\nOther\t—\t\t\t( 1 )\t\t\t( 2 )\nNet cash used in financing activities\t( 42,359 )\t\t\t( 13,633 )\t\t\t( 11,617 )\nChange in cash and cash equivalents\t1,309\t\t\t3,891\t\t\t1,399\nCash and cash equivalents at beginning of period\t7,280\t\t\t3,389\t\t\t1,990\nCash and cash equivalents at end of period\t$\t8,589\t\t\t$\t7,280\t\t\t$\t3,389\nSupplemental disclosures of cash flow information:\nCash paid for income taxes, net\t$\t15,118\t\t\t$\t6,549\t\t\t$\t1,404\nCash paid for interest\t$\t246\t\t\t$\t252\t\t\t$\t254\n\n---\n\n[NVDA-2025-8-0030] NVDA FY2025 Item 8 (similitud 0.029)\nAmended and Restated 2007 Equity Incentive Plan\n\nIn 2007, our shareholders approved the NVIDIA Corporation 2007 Equity Incentive Plan, or as most recently amended and restated, the 2007 Plan.\n\nThe 2007 Plan authorizes the issuance of incentive stock options, non-statutory stock options, restricted stock, RSUs, stock appreciation rights, performance stock awards, performance cash awards, and other stock-based awards to employees, directors and consultants. Only our employees may receive incentive stock options. We grant RSUs, PSUs and market-based PSUs under the 2007 Plan. As of January 26, 2025, up to 274 million shares of our common stock could be issued pursuant to stock awards granted under the 2007 Plan, and 1.4 billion shares were available for future grants.\n\nNVIDIA Corporation and Subsidiaries\n\nNotes to the Consolidated Financial Statements\n\n(Continued)\n\nSubject to certain exceptions, RSUs vest generally over four years subject to continued service. PSUs vest over four years, subject to continued service and performance conditions. Market-based PSUs vest on the third anniversary of the date of grant subject to market conditions. However, the number of shares subject to both PSUs and market-based PSUs that are eligible to vest is determined by the Compensation Committee based on achievement of pre-determined criteria.\n\nAmended and Restated 2012 Employee Stock Purchase Plan\n\nIn 2012, our shareholders approved the NVIDIA Corporation 2012 Employee Stock Purchase Plan, or as most recently amended and restated, the 2012 Plan.\n\nEmployees who participate in the 2012 Plan may have up to 15% of their earnings withheld to purchase shares of common stock. Starting in March 2025, employees may have up to 25% of their earnings withheld to purchase shares of common stock. The Board may decrease this percentage at its discretion. Each offering period is about 24 months, divided into four purchase periods of six months. The price of common stock purchased under our 2012 Plan will be equal to 85% of the lower of the fair market value of the common stock on the commencement date of each offering period or the fair market value of the common stock on each purchase date within the offering. As of January 26, 2025, we had 2.2 billion shares reserved for future issuance under the 2012 Plan.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_462091",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "fiscal_year": 2025,
+       "query": "\"diluted net income per share\" or \"Earnings Per Share\"",
+       "item": "8",
+       "ticker": "NVDA"
+      },
+      "id": "call_283097",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 5419,
+     "output_tokens": 173,
+     "total_tokens": 5592,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 121
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: '\"diluted net income per share\" OR \"earnings per share\"')\n\n[NVDA-2025-8-0032] NVDA FY2025 Item 8 (similitud 0.033)\nYear Ended\nJan 26, 2025\t\tJan 28, 2024\t\tJan 29, 2023\n(In millions, except per share data)\nNumerator:\nNet income\t$\t72,880\t\t\t$\t29,760\t\t\t$\t4,368\nDenominator:\nBasic weighted average shares\t24,555\t\t\t24,690\t\t\t24,870\nDilutive impact of outstanding equity awards\t249\t\t\t250\t\t\t200\nDiluted weighted average shares\t24,804\t\t\t24,940\t\t\t25,070\nNet income per share:\nBasic (1)\t$\t2.97\t\t\t$\t1.21\t\t\t$\t0.18\nDiluted (2)\t$\t2.94\t\t\t$\t1.19\t\t\t$\t0.17\nAnti-dilutive equity awards excluded from diluted net income per share\t51\t\t\t150\t\t\t400\n\n(1) Net income divided by basic weighted average shares.\n\n(2) Net income divided by diluted weighted average shares.\n\nNote 5 - Goodwill\n\nAs of January 26, 2025, the total carrying amount of goodwill was $5.2 billion, consisting of goodwill balances allocated to our Compute & Networking and Graphics reporting units of $4.8 billion and $370 million, respectively. As of January 28, 2024, the total carrying amount of goodwill was $4.4 billion, consisting of goodwill balances allocated to our Compute & Networking and Graphics reporting units of $4.1 billion and $370 million, respectively. Goodwill increased by $758 million in fiscal year 2025 from acquisitions and was allocated to our Compute & Networking reporting unit. During the fourth quarters of fiscal years 2025, 2024, and 2023, we completed our annual qualitative impairment tests and concluded that goodwill was not impaired.\n\n---\n\n[NVDA-2025-8-0010] NVDA FY2025 Item 8 (similitud 0.032)\nConsolidated Statements of Shareholders' Equity\n\nCommon Stock Outstanding\t\tAdditional Paid-in\t\tAccumulated Other Comprehensive\t\tRetained\t\tTotal Shareholders'\nShares\t\tAmount\t\tCapital\t\tIncome (Loss)\t\tEarnings\t\tEquity\n(In millions, except per share data)\nBalances as of Jan 30, 2022\t25,064\t\t\t$\t26\t\t\t$\t10,362\t\t\t$\t( 11 )\t\t\t$\t16,235\t\t\t$\t26,612\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t4,368\t\t\t4,368\nOther comprehensive loss\t—\t\t\t—\t\t\t—\t\t\t( 32 )\t\t\t—\t\t\t( 32 )\nIssuance of common stock from stock plans\t312\t\t\t—\t\t\t355\t\t\t—\t\t\t—\t\t\t355\nTax withholding related to vesting of restricted stock units\t( 82 )\t\t\t—\t\t\t( 1,475 )\t\t\t—\t\t\t—\t\t\t( 1,475 )\nShares repurchased\t( 633 )\t\t\t( 1 )\t\t\t( 4 )\t\t\t—\t\t\t( 10,034 )\t\t\t( 10,039 )\nCash dividends declared and paid ($ 0.016 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 398 )\t\t\t( 398 )\nStock-based compensation\t—\t\t\t—\t\t\t2,710\t\t\t—\t\t\t—\t\t\t2,710\nBalances as of Jan 29, 2023\t24,661\t\t\t25\t\t\t11,948\t\t\t( 43 )\t\t\t10,171\t\t\t22,101\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t29,760\t\t\t29,760\nOther comprehensive income\t—\t\t\t—\t\t\t—\t\t\t70\t\t\t—\t\t\t70\nIssuance of common stock from stock plans\t265\t\t\t—\t\t\t403\t\t\t—\t\t\t—\t\t\t403\nTax withholding related to vesting of restricted stock units\t( 72 )\t\t\t—\t\t\t( 2,783 )\t\t\t—\t\t\t—\t\t\t( 2,783 )\nShares repurchased\t( 211 )\t\t\t—\t\t\t(\n\n---\n\n[NVDA-2025-8-0020] NVDA FY2025 Item 8 (similitud 0.030)\nIncome Taxes\n\nWe recognize federal, state and foreign current tax liabilities or assets based on our estimate of taxes payable or refundable in the current fiscal year by tax jurisdiction. We recognize federal, state and foreign deferred tax assets or liabilities, as appropriate, for our estimate of future tax effects attributable to temporary differences and carryforwards; and we record a valuation allowance to reduce any deferred tax assets by the amount of any tax benefits that, based on available evidence and judgment, are not expected to be realized.\n\nOur calculation of deferred tax assets and liabilities is based on certain estimates and judgments and involves dealing with uncertainties in the application of complex tax laws. Our estimates of deferred tax assets and liabilities may change based, in part, on added certainty or finality to an anticipated outcome, changes in accounting standards or tax laws in the U.S., or foreign jurisdictions where we operate, or changes in other facts or circumstances. In addition, we recognize liabilities for potential U.S. and foreign income tax contingencies based on our estimate of whether, and the extent to which, additional taxes may be due. If we determine that payment of these amounts is unnecessary or if the recorded tax liability is less than our current assessment, we may be required to recognize an income tax benefit or additional income tax expense in our financial statements accordingly.\n\nAs of January 26, 2025, we had a valuation allowance of $1.6 billion related to capital loss carryforwards, and certain state and other deferred tax assets that management determined are not likely to be realized due, in part, to jurisdictional projections of future taxable income, including capital gains. To the extent realization of the deferred tax assets becomes more-likely-than-not, we would recognize such deferred tax assets as income tax benefits during the period.\n\nWe recognize the benefit from a tax position only if it is more-likely-than-not that the position would be sustained upon audit based solely on the technical merits of the tax position. Our policy is to include interest and penalties related to unrecognized tax benefits as a component of income tax expense.\n\nNet Income Per Share\n\nBasic net income per share is computed using the weighted average number of common shares outstanding during the period. Diluted net income per share is computed using the weighted average number of common and potentially dilutive shares outstanding during the period, using the treasury stock method. Any anti-dilutive effect of equity awards outstanding is not included in the computation of diluted net income per share.\n\n---\n\n[NVDA-2025-8-0011] NVDA FY2025 Item 8 (similitud 0.030)\nance of common stock from stock plans\t265\t\t\t—\t\t\t403\t\t\t—\t\t\t—\t\t\t403\nTax withholding related to vesting of restricted stock units\t( 72 )\t\t\t—\t\t\t( 2,783 )\t\t\t—\t\t\t—\t\t\t( 2,783 )\nShares repurchased\t( 211 )\t\t\t—\t\t\t( 27 )\t\t\t—\t\t\t( 9,719 )\t\t\t( 9,746 )\nCash dividends declared and paid ($ 0.016 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 395 )\t\t\t( 395 )\nStock-based compensation\t—\t\t\t—\t\t\t3,568\t\t\t—\t\t\t—\t\t\t3,568\nBalances as of Jan 28, 2024\t24,643\t\t\t25\t\t\t13,109\t\t\t27\t\t\t29,817\t\t\t42,978\nNet income\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t72,880\t\t\t72,880\nOther comprehensive income\t—\t\t\t—\t\t\t—\t\t\t1\t\t\t—\t\t\t1\nIssuance of common stock from stock plans\t203\t\t\t—\t\t\t490\t\t\t—\t\t\t—\t\t\t490\nTax withholding related to vesting of restricted stock units\t( 59 )\t\t\t—\t\t\t( 6,930 )\t\t\t—\t\t\t—\t\t\t( 6,930 )\nShares repurchased\t( 310 )\t\t\t( 1 )\t\t\t( 189 )\t\t\t—\t\t\t( 33,825 )\t\t\t( 34,015 )\nCash dividends declared and paid ($ 0.034 per common share)\t—\t\t\t—\t\t\t—\t\t\t—\t\t\t( 834 )\t\t\t( 834 )\nStock-based compensation\t—\t\t\t—\t\t\t4,757\t\t\t—\t\t\t—\t\t\t4,757\nBalances as of Jan 26, 2025\t24,477\t\t\t$\t24\t\t\t$\t11,237\t\t\t$\t28\t\t\t$\t68,038\t\t\t$\t79,327\n\nSee accompanying Notes to the Consolidated Financial Statements.\n\nNVIDIA Corporation and Subsidiaries\n\nConsolidated Statements of Cash Flows\n\n(In millions)\n\n---\n\n[NVDA-2025-8-0022] NVDA FY2025 Item 8 (similitud 0.030)\nFair Value of Financial Instruments\n\nThe carrying value of cash equivalents, accounts receivable, accounts payable and accrued liabilities approximate their fair values due to their relatively short maturities as of January 26, 2025 and January 28, 2024. Marketable debt and equity securities are reported at fair value based on quoted market prices. Derivative instruments are recognized as either assets or liabilities and are measured at fair value. The accounting for changes in the fair value of a derivative depends on the intended use of the derivative and the resulting designation. For fair value hedges, the gains or losses are recognized in earnings in the periods of change together with the offsetting losses or gains on the hedged items attributed to the risk being hedged. For derivative instruments designated as accounting hedges, the effective portion of the gains or losses on the derivatives is initially reported as a component of other comprehensive income or loss and is subsequently recognized in earnings when the hedged exposure is recognized in earnings. For derivative instruments not designated as accounting hedges, changes in fair value are recognized in earnings.\n\nConcentration of Credit Risk\n\nFinancial instruments that potentially subject us to concentrations of credit risk consist primarily of cash equivalents, marketable securities, and accounts receivable. Our investment policy requires the purchase of highly-rated fixed income securities, the diversification of investment type and credit exposures, and includes certain limits on our portfolio maturities. We perform ongoing credit evaluations of our customers’ financial condition and maintain an allowance for potential credit losses. This allowance consists of an amount identified for specific customers and an amount based on overall estimated exposure. Our overall estimated exposure excludes amounts covered by credit insurance and letters of credit.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_283097",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "query": "stock split",
+       "fiscal_year": 2025,
+       "item": "8",
+       "ticker": "AAPL"
+      },
+      "id": "call_256815",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 8127,
+     "output_tokens": 205,
+     "total_tokens": 8332,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 166
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[AAPL-2025-8-0031] AAPL FY2025 Item 8 (similitud 0.033)\nNote 10 – Shareholders’ Equity\n\nShare Repurchase Program\n\nDuring 2025, the Company repurchased 402 million shares of its common stock for $89.3 billion. The Company’s share repurchase programs do not obligate the Company to acquire a minimum amount of shares. Under the programs, shares may be repurchased in privately negotiated or open market transactions, including under plans complying with Rule 10b5-1 under the Exchange Act.\n\nApple Inc. | 2025 Form 10-K | 44\n\nShares of Common Stock\n\nThe following table shows the changes in shares of common stock for 2025, 2024 and 2023 (in thousands):\n\n2025\t\t2024\t\t2023\nCommon stock outstanding, beginning balances\t15,116,786\t\t\t15,550,061\t\t\t15,943,425\nCommon stock repurchased\t( 401,672 )\t\t\t( 499,372 )\t\t\t( 471,419 )\nCommon stock issued, net of shares withheld for employee taxes\t58,146\t\t\t66,097\t\t\t78,055\nCommon stock outstanding, ending balances\t14,773,260\t\t\t15,116,786\t\t\t15,550,061\n\nNote 11 – Share-Based Compensation\n\n2022 Employee Stock Plan\n\nThe Apple Inc. 2022 Employee Stock Plan (“2022 Plan”) is a shareholder-approved plan that provides for broad-based equity grants to employees, including executive officers, and permits the granting of RSUs, stock grants, performance-based awards, stock options and stock appreciation rights. RSUs granted under the 2022 Plan generally vest over four years, based on continued employment, and are settled upon vesting in shares of the Company’s common stock on a one-for-one basis. All RSUs granted under the 2022 Plan have dividend equivalent rights, which entitle holders of RSUs to the same dividend value per share as holders of common stock. A maximum of approximately 1.3 billion shares were authorized for issuance pursuant to 2022 Plan awards at the time the plan was approved on March 4, 2022.\n\n---\n\n[AAPL-2025-8-0005] AAPL FY2025 Item 8 (similitud 0.033)\nYears ended\nSeptember 27, 2025\t\tSeptember 28, 2024\t\tSeptember 30, 2023\nTotal shareholders’ equity, beginning balances\t$\t56,950\t\t\t$\t62,146\t\t\t$\t50,672\nCommon stock and additional paid-in capital:\nBeginning balances\t83,276\t\t\t73,812\t\t\t64,849\nCommon stock issued\t1,498\t\t\t1,423\t\t\t1,346\nCommon stock withheld related to net share settlement of equity awards\t( 4,452 )\t\t\t( 3,993 )\t\t\t( 3,521 )\nShare-based compensation\t13,246\t\t\t12,034\t\t\t11,138\nEnding balances\t93,568\t\t\t83,276\t\t\t73,812\nAccumulated deficit:\nBeginning balances\t( 19,154 )\t\t\t( 214 )\t\t\t( 3,068 )\nNet income\t112,010\t\t\t93,736\t\t\t96,995\nDividends and dividend equivalents declared\t( 15,413 )\t\t\t( 15,218 )\t\t\t( 14,996 )\nCommon stock withheld related to net share settlement of equity awards\t( 1,655 )\t\t\t( 1,612 )\t\t\t( 2,099 )\nCommon stock repurchased\t( 90,052 )\t\t\t( 95,846 )\t\t\t( 77,046 )\nEnding balances\t( 14,264 )\t\t\t( 19,154 )\t\t\t( 214 )\nAccumulated other comprehensive loss:\nBeginning balances\t( 7,172 )\t\t\t( 11,452 )\t\t\t( 11,109 )\nOther comprehensive income/(loss)\t1,601\t\t\t4,280\t\t\t( 343 )\nEnding balances\t( 5,571 )\t\t\t( 7,172 )\t\t\t( 11,452 )\nTotal shareholders’ equity, ending balances\t$\t73,733\t\t\t$\t56,950\t\t\t$\t62,146\nDividends and dividend equivalents declared per share or RSU\t$\t1.02\t\t\t$\t0.98\t\t\t$\t0.94\n\nSee accompanying Notes to Consolidated Financial Statements.\n\nApple Inc. | 2025 Form 10-K | 32\n\nApple Inc.\n\nCONSOLIDATED STATEMENTS OF CASH FLOWS\n\n(In millions)\n\n---\n\n[AAPL-2025-8-0007] AAPL FY2025 Item 8 (similitud 0.031)\nand equipment\t( 12,715 )\t\t\t( 9,447 )\t\t\t( 10,959 )\nOther\t( 1,480 )\t\t\t( 1,308 )\t\t\t( 1,337 )\nCash generated by investing activities\t15,195\t\t\t2,935\t\t\t3,705\nFinancing activities:\nPayments for taxes related to net share settlement of equity awards\t( 5,960 )\t\t\t( 5,441 )\t\t\t( 5,431 )\nPayments for dividends and dividend equivalents\t( 15,421 )\t\t\t( 15,234 )\t\t\t( 15,025 )\nRepurchases of common stock\t( 90,711 )\t\t\t( 94,949 )\t\t\t( 77,550 )\nProceeds from issuance of term debt, net\t4,481\t\t\t—\t\t\t5,228\nRepayments of term debt\t( 10,932 )\t\t\t( 9,958 )\t\t\t( 11,151 )\nProceeds from/(Repayments of) commercial paper, net\t( 2,032 )\t\t\t3,960\t\t\t( 3,978 )\nOther\t( 111 )\t\t\t( 361 )\t\t\t( 581 )\nCash used in financing activities\t( 120,686 )\t\t\t( 121,983 )\t\t\t( 108,488 )\nIncrease/(Decrease) in cash, cash equivalents, and restricted cash and cash equivalents\t5,991\t\t\t( 794 )\t\t\t5,760\nCash, cash equivalents, and restricted cash and cash equivalents, ending balances\t$\t35,934\t\t\t$\t29,943\t\t\t$\t30,737\nSupplemental cash flow disclosure:\nCash paid for income taxes, net\t$\t43,369\t\t\t$\t26,102\t\t\t$\t18,679\n\nSee accompanying Notes to Consolidated Financial Statements.\n\n---\n\n[AAPL-2025-8-0004] AAPL FY2025 Item 8 (similitud 0.030)\nshares issued and outstanding, respectively\t93,568\t\t\t83,276\nAccumulated deficit\t( 14,264 )\t\t\t( 19,154 )\nAccumulated other comprehensive loss\t( 5,571 )\t\t\t( 7,172 )\nTotal shareholders’ equity\t73,733\t\t\t56,950\nTotal liabilities and shareholders’ equity\t$\t359,241\t\t\t$\t364,980\n\nSee accompanying Notes to Consolidated Financial Statements.\n\nApple Inc. | 2025 Form 10-K | 31\n\nApple Inc.\n\nCONSOLIDATED STATEMENTS OF SHAREHOLDERS’ EQUITY\n\n(In millions, except per-share amounts)\n\n---\n\n[AAPL-2025-8-0032] AAPL FY2025 Item 8 (similitud 0.030)\nRestricted Stock Units\n\nA summary of the Company’s RSU activity and related information for 2025 is as follows:\n\nNumber of RSUs (in thousands)\t\tWeighted-Average Grant-Date Fair Value Per RSU\nBalance as of September 28, 2024\t163,326\t\t\t$\t158.73\nRSUs granted\t73,466\t\t\t$\t226.68\nRSUs vested\t( 76,845 )\t\t\t$\t159.85\nRSUs forfeited\t( 8,373 )\t\t\t$\t183.03\nBalance as of September 27, 2025\t151,574\t\t\t$\t189.75\n\nThe weighted-average grant-date fair value of RSUs granted in 2024 and 2023 was $173.78 and $150.87, respectively. The Company estimates the grant-date fair value of RSUs based on the closing price of the Company’s common stock on the date of grant.\n\nThe total vesting-date fair value of RSUs was $17.1 billion, $15.8 billion and $15.9 billion for 2025, 2024 and 2023, respectively. The majority of RSUs that vested in 2025, 2024 and 2023 were net share settled such that the Company withheld shares with a value equivalent to the employees’ obligation for the applicable income and other employment taxes, and remitted cash to the appropriate taxing authorities. Total payments to taxing authorities for employees’ tax obligations were $6.1 billion in 2025 and $5.6 billion in both 2024 and 2023.\n\nShare-Based Compensation\n\nThe following table shows share-based compensation expense and the related income tax benefit included in the Consolidated Statements of Operations for 2025, 2024 and 2023 (in millions):\n\n2025\t\t2024\t\t2023\nShare-based compensation expense\t$\t12,863\t\t\t$\t11,688\t\t\t$\t10,833\nIncome tax benefit related to share-based compensation expense\t$\t( 3,602 )\t\t\t$\t( 3,350 )\t\t\t$\t( 3,421 )\n\nAs of September 27, 2025, the total unrecognized compensation cost related to outstanding RSUs was $21.8 billion, which the Company expects to recognize over a weighted-average period of 2.5 years.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_256815",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "respuesta": "Creció más el BPA diluido de NVIDIA. \n\nPara NVIDIA (NVDA):\n- FY2024: 11.93 USD/acción reportados originalmente en XBRL. En junio de 2024 la compañía ejecutó un split de acciones 10 a 1 (10-for-1 stock split), por lo que ajustando por dicho ratio el BPA diluido de FY2024 pasa a ser de 1.193 USD/acción (presentado retrospectivamente como 1.19 USD en el 10-K de FY2025).\n- FY2025: 2.94 USD/acción.\n- Variación de NVIDIA: aumento de 1.747 USD/acción (+146.44% con respecto a 1.193 USD, o +147.06% con respecto a 1.19 USD).\n\nPara Apple (AAPL):\n- FY2024: 6.08 USD/acción.\n- FY2025: 7.46 USD/acción.\n- Variación de Apple: aumento de 1.38 USD/acción (+22.70%).\n\nTanto en términos relativos (+146.44% frente a +22.70%) como absolutos (+1.75 USD frente a +1.38 USD), el BPA diluido de NVIDIA creció sustancialmente más que el de Apple.",
+       "cita": "In June 2024, we executed a ten-for-one stock split of our common stock. All share, equity award, and per share amounts and related shareholders' equity balances presented herein have been retroactively adjusted to reflect the Stock Split.",
+       "cifra": 2.94,
+       "chunk_id": "NVDA-2025-8-0015",
+       "ejercicio": 2025,
+       "fuente": "ambas",
+       "unidad": "USD/shares",
+       "ticker": "NVDA"
+      },
+      "id": "call_283289",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 10943,
+     "output_tokens": 2277,
+     "total_tokens": 13220,
+     "input_token_details": {
+      "cache_read": 7800,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 1812
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='Creció más el BPA diluido de NVIDIA. \\n\\nPara NVIDIA (NVDA):\\n- FY2024: 11.93 USD/acción reportados originalmente en XBRL. En junio de 2024 la compañía ejecutó un split de acciones 10 a 1 (10-for-1 stock split), por lo que ajustando por dicho ratio el BPA diluido de FY2024 pasa a ser de 1.193 USD/acción (presentado retrospectivamente como 1.19 USD en el 10-K de FY2025).\\n- FY2025: 2.94 USD/acción.\\n- Variación de NVIDIA: aumento de 1.747 USD/acción (+146.44% con respecto a 1.193 USD, o +147.06% con respecto a 1.19 USD).\\n\\nPara Apple (AAPL):\\n- FY2024: 6.08 USD/acción.\\n- FY2025: 7.46 USD/acción.\\n- Variación de Apple: aumento de 1.38 USD/acción (+22.70%).\\n\\nTanto en términos relativos (+146.44% frente a +22.70%) como absolutos (+1.75 USD frente a +1.38 USD), el BPA diluido de NVIDIA creció sustancialmente más que el de Apple.' cifra=2.94 unidad='USD/shares' ticker='NVDA' ejercicio=2025 fuente='ambas' cita=\"In June 2024, we executed a ten-for-one stock split of our common stock. All share, equity award, and per share amounts and related shareholders' equity balances presented herein have been retroactively adjusted to reflect the Stock Split.\" chunk_id='NVDA-2025-8-0015'",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_283289",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a4_comparativas"
+ }
+}

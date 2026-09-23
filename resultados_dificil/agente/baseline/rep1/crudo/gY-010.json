@@ -1,0 +1,371 @@
+{
+ "item": {
+  "id": "gY-010",
+  "pregunta": "Compara el gasto en I+D de Amazon y Meta en FY2025.",
+  "familia": "multi",
+  "ticker": "META",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "Meta: 57,372,000,000 USD. Amazon NO reporta ResearchAndDevelopmentExpense en XBRL: la respuesta honesta lo dice. Convención: ticker=META, cifra=I+D de Meta, fuente='xbrl'.",
+  "cifra_esperada": 57372000000.0,
+  "unidad": "USD",
+  "concept_xbrl": "ResearchAndDevelopmentExpense",
+  "item_esperado": null,
+  "ancla_texto": null,
+  "ancla_inicio": null,
+  "ancla_fin": null,
+  "chunk_id_esperado": null,
+  "herramienta_esperada": [
+   "get_xbrl_fact"
+  ],
+  "autor": "grupo-X/adversario",
+  "fuente_esperada": [
+   "xbrl",
+   "ninguna"
+  ],
+  "nota": "Honestidad parcial: la mitad del dato existe y la otra no. Trampa: inventar el I+D de Amazon desde 'technology and infrastructure'. v2: se acepta también fuente='ninguna' con cifra=null si la respuesta explica que la comparación no se puede completar (honestidad parcial, no deshonestidad)."
+ },
+ "rep": 1,
+ "thread_id": "baseline-rep1-gY-010",
+ "commit": "1e19c11",
+ "fecha": "2026-09-23T17:01:12",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "En FY2025, Meta reportó un gasto en Investigación y Desarrollo (I+D / Research and Development) de 57.372 millones de dólares (57.372.000.000 USD). Por su parte, Amazon no desglosa ni reporta una partida específica de I+D (Research and Development) en sus estados financieros ni en XBRL; en su lugar, agrupa los costes de investigación y desarrollo dentro de la partida 'Technology and infrastructure' (108.521 millones de dólares en FY2025), que también incluye costes de infraestructura, servidores y centros de datos de AWS y otros negocios.",
+   "cifra": 57372000000.0,
+   "unidad": "USD",
+   "ticker": "META",
+   "ejercicio": 2025,
+   "fuente": "ambas",
+   "cita": "Technology and infrastructure costs include payroll and related expenses for employees involved in the research and development of new and existing products and services...",
+   "chunk_id": "AMZN-2025-8-0018"
+  },
+  "herramientas": [
+   "list_available",
+   "get_xbrl_fact",
+   "get_xbrl_fact",
+   "search_filings",
+   "search_filings",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "fiscal_year": 2025,
+     "concept": "ResearchAndDevelopmentExpense",
+     "ticker": "AMZN"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "ticker": "META",
+     "fiscal_year": 2025,
+     "concept": "ResearchAndDevelopmentExpense"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "query": "Technology and infrastructure Research and development expense",
+     "ticker": "AMZN",
+     "fiscal_year": 2025,
+     "item": "8"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "8",
+     "ticker": "AMZN",
+     "query": "Consolidated Statements of Operations Technology and infrastructure Fulfillment Cost of sales",
+     "fiscal_year": 2025
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "query": "Consolidated Statements of Income Research and development Costs and expenses",
+     "fiscal_year": 2025,
+     "ticker": "META",
+     "item": "8"
+    }
+   }
+  ],
+  "n_llamadas": 6,
+  "tokens_in": 24899,
+  "tokens_out": 2487,
+  "coste_usd": 0.0280005,
+  "latencia_s": 40.69439600035548,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "Compara el gasto en I+D de Amazon y Meta en FY2025.",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_633703",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 974,
+     "output_tokens": 61,
+     "total_tokens": 1035,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 51
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_633703",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "fiscal_year": 2025,
+       "concept": "ResearchAndDevelopmentExpense",
+       "ticker": "AMZN"
+      },
+      "id": "call_173443",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "ticker": "META",
+       "fiscal_year": 2025,
+       "concept": "ResearchAndDevelopmentExpense"
+      },
+      "id": "call_173449",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1282,
+     "output_tokens": 132,
+     "total_tokens": 1414,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 55
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "AMZN no reportó 'ResearchAndDevelopmentExpense' en FY2025. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_173443",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META FY2025 · ResearchAndDevelopmentExpense = 57,372,000,000 USD (cierre de ejercicio 2025-12-31, según el 10-K)",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_173449",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "query": "Technology and infrastructure Research and development expense",
+       "ticker": "AMZN",
+       "fiscal_year": 2025,
+       "item": "8"
+      },
+      "id": "call_676585",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1542,
+     "output_tokens": 161,
+     "total_tokens": 1703,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 116
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[AMZN-2025-8-0012] AMZN FY2025 Item 8 (similitud 0.674)\nUse of Estimates\n\nThe preparation of financial statements in conformity with GAAP requires estimates and assumptions that affect the reported amounts of assets and liabilities, revenues and expenses, and related disclosures of contingent liabilities in the consolidated financial statements and accompanying notes. Estimates are used for, but not limited to, collectability of receivables, commitments and contingencies, impairment of property and equipment and operating leases, income taxes, inventory valuation, self-insurance liabilities, stock-based compensation forfeiture rates, the determination of when to capitalize certain costs relating to new products or service offerings, useful lives of equipment, valuation and impairment of investments, valuation of acquired intangibles and goodwill, valuation of derivative instruments, vendor funding, and viewing patterns of capitalized video content. Actual results could differ materially from these estimates. We review the useful lives of equipment on an ongoing basis.\n\nEffective January 1, 2025 we changed our estimate of the useful lives of a subset of our servers and networking equipment from six years to five years. The shorter useful lives are due to the increased pace of technology development, particularly in the area of artificial intelligence and machine learning. The effect of this change in estimate for the year ended December 31, 2025, based on servers and networking equipment that were included in “Property and equipment, net” as of December 31, 2024 and those acquired during the year ended December 31, 2025, was an increase in depreciation and amortization expense of $1.4 billion and a reduction in net income of $1.0 billion, or $0.10 per basic share and $0.10 per diluted share, which primarily impacted our AWS segment.\n\nDuring Q3 2025, we recorded $2.5 billion of expense related to the settlement of a lawsuit with the FTC. This charge was recorded in “Other operating expense (income), net” and impacted our North America segment.\n\nDuring Q4 2025, we recorded $2.4 billion of expense related to settlements of a lawsuit and tax disputes, severance costs, and asset impairments. Of this total, $1.1 billion related to the resolution of tax disputes associated with our stores business in Italy, and the settlement of a lawsuit, recorded primarily in “Other operating expense (income), net” and “Fulfillment,” and primarily impacted our International segment.\n\nFor the year ended December 31, 2025, we recorded approximately $2.7 billion of estimated severance\n\n---\n\n[AMZN-2025-8-0028] AMZN FY2025 Item 8 (similitud 0.669)\nFinancing Obligations\n\nWe record assets and liabilities for estimated construction costs under build-to-suit lease arrangements when we have control over the building during the construction period. If we continue to control the building after the construction period, the arrangement is classified as a financing obligation instead of a lease. The building is depreciated over the shorter of its useful life or the term of the obligation.\n\nIf we do not control the building after the construction period ends, the assets and liabilities for construction costs are derecognized, and we classify the lease as operating.\n\nGoodwill and Indefinite-Lived Intangible Assets\n\nWe evaluate goodwill and indefinite-lived intangible assets for impairment annually or more frequently when an event occurs or circumstances change that indicate the carrying value may not be recoverable. We may elect to utilize a qualitative assessment to evaluate whether it is more likely than not that the fair value of a reporting unit or indefinite-lived intangible asset is less than its carrying value and if so, we perform a quantitative test. We compare the carrying value of each reporting unit and indefinite-lived intangible asset to its estimated fair value and if the fair value is determined to be less than the carrying value, we recognize an impairment loss for the difference. We estimate the fair value of the reporting units using discounted cash flows. Forecasts of future cash flows are based on our best estimate of future net sales and operating expenses, based primarily on expected category expansion, pricing, market segment share, and general economic conditions.\n\nWe completed the required annual impairment test of goodwill for all reporting units and indefinite-lived intangible assets as of April 1, 2025, resulting in no impairments. The fair value of our reporting units substantially exceeded their carrying value. There were no events that caused us to update our annual impairment test. See “Note 5 — Acquisitions, Goodwill, and Acquired Intangible Assets.”\n\n---\n\n[AMZN-2025-8-0070] AMZN FY2025 Item 8 (similitud 0.669)\nNote 10 — SEGMENT INFORMATION\n\nWe have organized our operations into three segments: North America, International, and AWS. We allocate to segment results the operating expenses “Fulfillment,” “Technology and infrastructure,” “Sales and marketing,” and “General and administrative” based on usage, which is generally reflected in the segment in which the costs are incurred. The majority of technology costs recorded in “Technology and infrastructure” are incurred in the U.S. and are included in our North America and AWS segments. The majority of infrastructure costs recorded in “Technology and infrastructure” are allocated to the AWS segment based on usage. There are no internal revenue transactions between our reportable segments. Our chief operating decision maker (“CODM”) is our President and Chief Executive Officer. Our CODM regularly reviews consolidated net sales, consolidated operating expenses, and consolidated operating income (loss) by segment. Amounts included in consolidated operating expenses include “Cost of sales,” “Fulfillment,” “Technology and infrastructure,” “Sales and marketing,” “General and administrative,” and “Other operating expense (income), net.” Our CODM manages our business primarily by reviewing consolidated results by segment on a quarterly basis, and using those results along with forecasts and other non-financial information in our annual budgeting process.\n\nNorth America\n\nThe North America segment primarily consists of amounts earned from retail sales of consumer products (including from sellers) and advertising and subscription services through North America-focused online and physical stores. This segment includes export sales from these online stores.\n\nInternational\n\nThe International segment primarily consists of amounts earned from retail sales of consumer products (including from sellers) and advertising and subscription services through internationally-focused online stores. This segment includes export sales from these internationally-focused online stores (including export sales from these online stores to customers in the U.S., Mexico, and Canada), but excludes export sales from our North America-focused online stores.\n\n---\n\n[AMZN-2025-8-0018] AMZN FY2025 Item 8 (similitud 0.667)\nFulfillment\n\nFulfillment costs primarily consist of those costs incurred in operating and staffing our North America and International segments’ fulfillment centers, physical stores, and customer service centers, including facilities and equipment expenses, such as depreciation and amortization, and rent; costs attributable to buying, receiving, inspecting, and warehousing inventories; picking, packaging, and preparing customer orders for shipment; payment processing and related transaction costs, including costs associated with our guarantee for certain seller transactions; responding to inquiries from customers; and supply chain management for our manufactured electronic devices. Fulfillment costs also include amounts paid to third parties that assist us in fulfillment and customer service operations.\n\nTechnology and Infrastructure\n\nTechnology and infrastructure costs include payroll and related expenses for employees involved in the research and development of new and existing products and services, development, design, and maintenance of our stores, curation and display of products and services made available in our online stores, and infrastructure costs. Infrastructure costs include servers, networking equipment, and data center related depreciation and amortization, rent, utilities, and other expenses necessary to support AWS and other Amazon businesses. Collectively, these costs reflect the investments we make in order to offer a wide variety of products and services to our customers, including expenditures related to initiatives to build and deploy innovative and efficient software and electronic devices and the development of a satellite network for global broadband service and autonomous vehicles for ride-hailing services. Technology and infrastructure costs are generally expensed as incurred.\n\nSales and Marketing\n\nSales and marketing costs include advertising and payroll and related expenses for personnel engaged in marketing and selling activities, including sales commissions related to AWS. We pay commissions to third parties when their customer referrals result in sales. We also participate in cooperative advertising arrangements with certain of our vendors, and other third parties.\n\nAdvertising and other promotional costs to market our products and services are expensed as incurred and were $20.3 billion, $21.4 billion, and $23.5 billion in 2023, 2024, and 2025.\n\nGeneral and Administrative\n\nGeneral and administrative expenses primarily consist of costs for corporate functions, including payroll and related expenses; facilities and equipment expenses, such as depreciation and amortization expense and rent; and professional fees.\n\n---\n\n[AMZN-2025-8-0025] AMZN FY2025 Item 8 (similitud 0.666)\nAccounts Receivable, Net and Other\n\nIncluded in “Accounts receivable, net and other” on our consolidated balance sheets are receivables primarily related to customers, vendors, and prepaid expenses and other current assets. As of December 31, 2024 and 2025, customer receivables, net, were $34.3 billion and $40.4 billion, vendor receivables, net, were $11.6 billion and $15.9 billion, and other receivables, net, were $3.4 billion and $4.5 billion. Prepaid expenses and other current assets, which include amounts related to non-income taxes and satellite network launch services deposits, were $6.3 billion and $6.9 billion as of December 31, 2024 and December 31, 2025. We currently expense satellite network launch services deposits upon launch to “Technology and infrastructure.”\n\nWe estimate losses on receivables based on expected losses, including our historical experience of actual losses. Receivables are considered impaired and written-off when it is probable that all contractual payments due will not be collected in accordance with the terms of the agreement. The allowance for doubtful accounts was $1.7 billion, $2.0 billion, and $2.4 billion as of December 31, 2023, 2024, and 2025. Additions to the allowance were $1.9 billion, $1.9 billion, and $1.6 billion, and deductions to the allowance were $1.6 billion, $1.6 billion, and $1.2 billion in 2023, 2024, and 2025.\n\nSoftware Development Costs\n\nWe incur software development costs related to products to be sold, leased, or marketed to external users, internal-use software, and our websites. Software development costs capitalized were not significant for the years presented. All other costs, including those related to design or maintenance, are expensed as incurred.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_676585",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "8",
+       "ticker": "AMZN",
+       "query": "Consolidated Statements of Operations Technology and infrastructure Fulfillment Cost of sales",
+       "fiscal_year": 2025
+      },
+      "id": "call_287045",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4057,
+     "output_tokens": 285,
+     "total_tokens": 4342,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 235
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[AMZN-2025-8-0018] AMZN FY2025 Item 8 (similitud 0.762)\nFulfillment\n\nFulfillment costs primarily consist of those costs incurred in operating and staffing our North America and International segments’ fulfillment centers, physical stores, and customer service centers, including facilities and equipment expenses, such as depreciation and amortization, and rent; costs attributable to buying, receiving, inspecting, and warehousing inventories; picking, packaging, and preparing customer orders for shipment; payment processing and related transaction costs, including costs associated with our guarantee for certain seller transactions; responding to inquiries from customers; and supply chain management for our manufactured electronic devices. Fulfillment costs also include amounts paid to third parties that assist us in fulfillment and customer service operations.\n\nTechnology and Infrastructure\n\nTechnology and infrastructure costs include payroll and related expenses for employees involved in the research and development of new and existing products and services, development, design, and maintenance of our stores, curation and display of products and services made available in our online stores, and infrastructure costs. Infrastructure costs include servers, networking equipment, and data center related depreciation and amortization, rent, utilities, and other expenses necessary to support AWS and other Amazon businesses. Collectively, these costs reflect the investments we make in order to offer a wide variety of products and services to our customers, including expenditures related to initiatives to build and deploy innovative and efficient software and electronic devices and the development of a satellite network for global broadband service and autonomous vehicles for ride-hailing services. Technology and infrastructure costs are generally expensed as incurred.\n\nSales and Marketing\n\nSales and marketing costs include advertising and payroll and related expenses for personnel engaged in marketing and selling activities, including sales commissions related to AWS. We pay commissions to third parties when their customer referrals result in sales. We also participate in cooperative advertising arrangements with certain of our vendors, and other third parties.\n\nAdvertising and other promotional costs to market our products and services are expensed as incurred and were $20.3 billion, $21.4 billion, and $23.5 billion in 2023, 2024, and 2025.\n\nGeneral and Administrative\n\nGeneral and administrative expenses primarily consist of costs for corporate functions, including payroll and related expenses; facilities and equipment expenses, such as depreciation and amortization expense and rent; and professional fees.\n\n---\n\n[AMZN-2025-8-0070] AMZN FY2025 Item 8 (similitud 0.756)\nNote 10 — SEGMENT INFORMATION\n\nWe have organized our operations into three segments: North America, International, and AWS. We allocate to segment results the operating expenses “Fulfillment,” “Technology and infrastructure,” “Sales and marketing,” and “General and administrative” based on usage, which is generally reflected in the segment in which the costs are incurred. The majority of technology costs recorded in “Technology and infrastructure” are incurred in the U.S. and are included in our North America and AWS segments. The majority of infrastructure costs recorded in “Technology and infrastructure” are allocated to the AWS segment based on usage. There are no internal revenue transactions between our reportable segments. Our chief operating decision maker (“CODM”) is our President and Chief Executive Officer. Our CODM regularly reviews consolidated net sales, consolidated operating expenses, and consolidated operating income (loss) by segment. Amounts included in consolidated operating expenses include “Cost of sales,” “Fulfillment,” “Technology and infrastructure,” “Sales and marketing,” “General and administrative,” and “Other operating expense (income), net.” Our CODM manages our business primarily by reviewing consolidated results by segment on a quarterly basis, and using those results along with forecasts and other non-financial information in our annual budgeting process.\n\nNorth America\n\nThe North America segment primarily consists of amounts earned from retail sales of consumer products (including from sellers) and advertising and subscription services through North America-focused online and physical stores. This segment includes export sales from these online stores.\n\nInternational\n\nThe International segment primarily consists of amounts earned from retail sales of consumer products (including from sellers) and advertising and subscription services through internationally-focused online stores. This segment includes export sales from these internationally-focused online stores (including export sales from these online stores to customers in the U.S., Mexico, and Canada), but excludes export sales from our North America-focused online stores.\n\n---\n\n[AMZN-2025-8-0073] AMZN FY2025 Item 8 (similitud 0.729)\nobook, digital music, e-book, and other non-AWS subscription services.\n\n(6)Includes sales related to various other offerings (such as shipping services, healthcare services, and certain licensing and distribution of video content) and our co-branded credit card agreements.\n\nNet sales are attributed to countries primarily based on country-focused online and physical stores or, for AWS purposes, the selling entity.\n\nNet sales attributed to countries that represent a significant portion of consolidated net sales are as follows (in millions):\n\nYear Ended December 31,\n2023\t\t2024\t\t2025\nUnited States\t$\t395,637\t\t\t$\t438,015\t\t\t$\t489,657\nGermany\t37,588\t\t\t40,856\t\t\t45,900\nUnited Kingdom\t33,591\t\t\t37,855\t\t\t43,212\nJapan\t26,002\t\t\t27,401\t\t\t30,688\nRest of world\t81,967\t\t\t93,832\t\t\t107,467\nConsolidated\t$\t574,785\t\t\t$\t637,959\t\t\t$\t716,924\n\nTotal segment assets exclude corporate assets, such as cash and cash equivalents, marketable securities, other long-term investments, corporate facilities, goodwill and other acquired intangible assets, and tax assets. Technology infrastructure assets, which are included in property and equipment, net, net additions, and the depreciation and amortization expense on these assets, are allocated among the segments based on usage, with the majority allocated to the AWS segment. Usage of technology infrastructure assets by the North America and International segments, and the related allocation of total net additions, can fluctuate on a quarter-to-quarter basis, and is affected by seasonality, peak periods, new product or service offerings, and other factors.\n\nTotal segment assets reconciled to consolidated amounts are as follows (in millions):\n\nDecember 31,\n2023\t\t2024\t\t2025\nNorth America (1)\t$\t196,029\t\t\t$\t210,120\t\t\t$\t235,652\nInternational (1)\t69,718\t\t\t69,487\t\t\t81,984\nAWS (2)\t108,533\t\t\t155,953\t\t\t252,588\nCorporate\t153,574\t\t\t189,334\t\t\t247,818\nConsolidated\t$\t527,854\t\t\t$\t624,894\t\t\t$\t818,042\n\n---\n\n[AMZN-2025-8-0042] AMZN FY2025 Item 8 (similitud 0.720)\nNote 4 — LEASES\n\nWe have entered into non-cancellable operating and finance leases for fulfillment network, data center, office, and physical store facilities as well as server and networking equipment, aircraft, and vehicles. Gross assets acquired under finance leases, including those where title transfers at the end of the lease, are recorded in “Property and equipment, net” and were $56.5 billion and $55.6 billion as of December 31, 2024 and 2025. Accumulated amortization associated with finance leases was $41.8 billion and $40.4 billion as of December 31, 2024 and 2025.\n\nLease cost recognized in our consolidated statements of operations is summarized as follows (in millions):\n\nYear Ended December 31,\n2023\t\t2024\t\t2025\nOperating lease cost\t$\t10,550\t\t\t$\t11,961\t\t\t$\t14,006\nFinance lease cost:\nAmortization of lease assets\t5,899\t\t\t3,866\t\t\t3,284\nInterest on lease liabilities\t304\t\t\t285\t\t\t312\nFinance lease cost\t6,203\t\t\t4,151\t\t\t3,596\nVariable lease cost\t2,165\t\t\t2,465\t\t\t2,694\nTotal lease cost\t$\t18,918\t\t\t$\t18,577\t\t\t$\t20,296\n\nOther information about lease amounts recognized in our consolidated financial statements is as follows:\n\nDecember 31, 2024\t\tDecember 31, 2025\nWeighted-average remaining lease term – operating leases\t10.6 years\t\t10.0 years\nWeighted-average remaining lease term – finance leases\t11.9 years\t\t12.6 years\nWeighted-average discount rate – operating leases\t3.5\t%\t\t3.7\t%\nWeighted-average discount rate – finance leases\t3.0\t%\t\t3.4\t%\n\nOur lease liabilities were as follows (in millions):\n\n---\n\n[AMZN-2025-8-0005] AMZN FY2025 Item 8 (similitud 0.716)\n(in millions, except per share data)\n\nYear Ended December 31,\n2023\t\t2024\t\t2025\nNet product sales\t$\t255,887\t\t\t$\t272,311\t\t\t$\t296,266\nNet service sales\t318,898\t\t\t365,648\t\t\t420,658\nTotal net sales\t574,785\t\t\t637,959\t\t\t716,924\nOperating expenses:\nCost of sales\t304,739\t\t\t326,288\t\t\t356,414\nFulfillment\t90,619\t\t\t98,505\t\t\t109,074\nTechnology and infrastructure\t85,622\t\t\t88,544\t\t\t108,521\nSales and marketing\t44,370\t\t\t43,907\t\t\t47,129\nGeneral and administrative\t11,816\t\t\t11,359\t\t\t11,172\nOther operating expense (income), net\t767\t\t\t763\t\t\t4,639\nTotal operating expenses\t537,933\t\t\t569,366\t\t\t636,949\nOperating income\t36,852\t\t\t68,593\t\t\t79,975\nInterest income\t2,949\t\t\t4,677\t\t\t4,381\nInterest expense\t( 3,182 )\t\t\t( 2,406 )\t\t\t( 2,274 )\nOther income (expense), net\t938\t\t\t( 2,250 )\t\t\t15,229\nTotal non-operating income\t705\t\t\t21\t\t\t17,336\nIncome before income taxes\t37,557\t\t\t68,614\t\t\t97,311\nProvision for income taxes\t( 7,120 )\t\t\t( 9,265 )\t\t\t( 19,087 )\nEquity-method investment activity, net of tax\t( 12 )\t\t\t( 101 )\t\t\t( 554 )\nNet income\t$\t30,425\t\t\t$\t59,248\t\t\t$\t77,670\nBasic earnings per share\t$\t2.95\t\t\t$\t5.66\t\t\t$\t7.29\nDiluted earnings per share\t$\t2.90\t\t\t$\t5.53\t\t\t$\t7.17\nWeighted-average shares used in computation of earnings per share:\nBasic\t10,304\t\t\t10,473\t\t\t10,656\nDiluted\t10,492\t\t\t10,721",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_287045",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "query": "Consolidated Statements of Income Research and development Costs and expenses",
+       "fiscal_year": 2025,
+       "ticker": "META",
+       "item": "8"
+      },
+      "id": "call_288842",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 7114,
+     "output_tokens": 354,
+     "total_tokens": 7468,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 306
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[META-2025-8-0009] META FY2025 Item 8 (similitud 0.794)\nCONSOLIDATED STATEMENTS OF INCOME\n\n(In millions, except per share amounts)\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\nRevenue\t$\t200,966\t\t\t$\t164,501\t\t\t$\t134,902\nCosts and expenses:\nCost of revenue\t36,175\t\t\t30,161\t\t\t25,959\nResearch and development\t57,372\t\t\t43,873\t\t\t38,483\nMarketing and sales\t11,991\t\t\t11,347\t\t\t12,301\nGeneral and administrative\t12,152\t\t\t9,740\t\t\t11,408\nTotal costs and expenses\t117,690\t\t\t95,121\t\t\t88,151\nIncome from operations\t83,276\t\t\t69,380\t\t\t46,751\nInterest and other income, net\t2,656\t\t\t1,283\t\t\t677\nIncome before provision for income taxes\t85,932\t\t\t70,663\t\t\t47,428\nProvision for income taxes\t25,474\t\t\t8,303\t\t\t8,330\nNet income\t$\t60,458\t\t\t$\t62,360\t\t\t$\t39,098\nEarnings per share:\nBasic\t$\t23.98\t\t\t$\t24.61\t\t\t$\t15.19\nDiluted\t$\t23.49\t\t\t$\t23.86\t\t\t$\t14.87\nWeighted-average shares used to compute earnings per share:\nBasic\t2,521\t\t\t2,534\t\t\t2,574\nDiluted\t2,574\t\t\t2,614\t\t\t2,629\n\nSee Accompanying Notes to Consolidated Financial Statements.\n\nMETA PLATFORMS, INC.\n\nCONSOLIDATED STATEMENTS OF COMPREHENSIVE INCOME\n\n---\n\n[META-2025-8-0017] META FY2025 Item 8 (similitud 0.743)\nCONSOLIDATED STATEMENTS OF CASH FLOWS\n\n(In millions)\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\nSupplemental cash flow data\nCash paid for income taxes, net\t$\t7,578\t\t\t$\t10,554\t\t\t$\t6,607\nCash paid for interest, net of amounts capitalized\t$\t696\t\t\t$\t486\t\t\t$\t448\nNon-cash investing and financing activities:\nProperty and equipment in accounts payable and accrued expenses and other current liabilities\t$\t9,331\t\t\t$\t7,127\t\t\t$\t4,105\nAcquisition of businesses and intangible assets in accounts payable, accrued expenses and other current liabilities, and other liabilities\t$\t2,659\t\t\t$\t172\t\t\t$\t119\n\nSee Accompanying Notes to Consolidated Financial Statements.\n\nMETA PLATFORMS, INC.\n\nNOTES TO CONSOLIDATED FINANCIAL STATEMENTS\n\nNote 1. Summary of Significant Accounting Policies\n\nOrganization and Description of Business\n\nWe were incorporated in Delaware in July 2004. Our mission is to build the future of human connection and the technology that makes it possible.\n\nWe report our financial results based on two reportable segments: Family of Apps (FoA) and Reality Labs (RL). The segment information aligns with how the chief operating decision maker (CODM), who is our chief executive officer (CEO), reviews and manages the business. We generate substantially all of our revenue from advertising.\n\nBasis of Presentation\n\nWe prepared the consolidated financial statements in accordance with U.S. generally accepted accounting principles (GAAP). The consolidated financial statements include the accounts of Meta Platforms, Inc. and its subsidiaries where we have controlling financial interests. All intercompany balances and transactions have been eliminated.\n\n---\n\n[META-2025-8-0000] META FY2025 Item 8 (similitud 0.724)\nItem 8.Financial Statements and Supplementary Data\n\nMETA PLATFORMS, INC.\n\nINDEX TO CONSOLIDATED FINANCIAL STATEMENTS\n\nPage\nReports of Independent Registered Public Accounting Firm (PCAOB ID No. 42 )\t83\nConsolidated Financial Statements:\nConsolidated Balance Sheets\t88\nConsolidated Statements of Income\t89\nConsolidated Statements of Comprehensive Income\t90\nConsolidated Statements of Stockholders' Equity\t91\nConsolidated Statements of Cash Flows\t92\nNotes to Consolidated Financial Statements\t94\n\nReport of Independent Registered Public Accounting Firm\n\nTo the Stockholders and the Board of Directors of Meta Platforms, Inc.\n\nOpinion on the Financial Statements\n\nWe have audited the accompanying consolidated balance sheets of Meta Platforms, Inc. (the Company) as of December 31, 2025 and 2024, the related consolidated statements of income, comprehensive income, stockholders' equity and cash flows for each of the three years in the period ended December 31, 2025, and the related notes (collectively referred to as the \"consolidated financial statements\"). In our opinion, the consolidated financial statements present fairly, in all material respects, the financial position of the Company at December 31, 2025 and 2024, and the results of its operations and its cash flows for each of the three years in the period ended December 31, 2025, in conformity with U.S. generally accepted accounting principles.\n\nWe also have audited, in accordance with the standards of the Public Company Accounting Oversight Board (United States) (PCAOB), the Company's internal control over financial reporting as of December 31, 2025, based on criteria established in Internal Control–Integrated Framework issued by the Committee of Sponsoring Organizations of the Treadway Commission (2013 framework), and our report dated January 28, 2026 expressed an unqualified opinion thereon.\n\n---\n\n[META-2025-8-0020] META FY2025 Item 8 (similitud 0.702)\nCost of Revenue\n\nOur cost of revenue consists of expenses associated with the delivery and distribution of our products. These mainly include expenses related to the operation of our data centers and technical infrastructure, such as depreciation expense from servers, network infrastructure and buildings, employee compensation which includes payroll, share-based compensation and benefits for employees on our operations teams, and energy and bandwidth costs. Cost of revenue also consists of costs associated with partner arrangements, including traffic acquisition costs and credit card and other fees related to processing customer transactions; RL inventory costs, which consist of cost of products sold and estimated losses on non-cancelable contractual commitments; and content costs.\n\nContent Costs\n\nOur content costs are mostly related to payments to content providers from whom we license video and music to increase engagement on the platform. We pay fees to these content providers based on revenue generated, a flat fee, or both. For licensed video, we expense the cost per title when the title is accepted and available for viewing if the capitalization criteria are not met. Video content costs that meet the criteria for capitalization were not material to date.\n\nFor licensed music, we expense the license fees over the contractual license period. We pay fees to music partners based on revenue generated, minimum guaranteed fees, flat fees, or a combination thereof. Expensed content costs are included in cost of revenue on our consolidated statements of income.\n\nSoftware Development Costs\n\nSoftware development costs, including costs to develop software products or the software component of products to be marketed or sold to external users, are expensed before the software or technology reach technological feasibility, which is typically reached shortly before the release of such products. Software development costs also include costs to develop software to be used solely to meet internal needs and applications used to deliver our services. These software development\n\ncosts meet the criteria for capitalization once the preliminary project stage is complete, and it is probable that the project will be completed and the software will be used to perform the function intended. Software development costs that meet the criteria for capitalization were not material to date.\n\nShare-based Compensation\n\nShare-based compensation expense consists of our restricted stock units (RSUs) expense. RSUs granted to employees are measured based on the grant-date fair value. In general, our RSUs vest over a service period of four years. Share-based compensation expense is generally recognized on the straight-line basis over the requisite service period and forfeitures are accounted for as they occur.\n\n---\n\n[META-2025-8-0077] META FY2025 Item 8 (similitud 0.699)\n):\n\nYear Ended December 31,\n2025\t\t2024\t\t2023\nCost of revenue\t$\t1,124\t\t\t$\t1,055\t\t\t$\t740\nResearch and development\t17,485\t\t\t13,683\t\t\t11,429\nMarketing and sales\t926\t\t\t1,026\t\t\t952\nGeneral and administrative\t892\t\t\t926\t\t\t906\nTotal\t$\t20,427\t\t\t$\t16,690\t\t\t$\t14,027\n\nThe following table summarizes the activities for our unvested RSUs for the year ended December 31, 2025:\n\nNumber of Shares\t\tWeighted-Average Grant Date Fair Value Per Share\n(in thousands)\nUnvested at December 31, 2024\t122,632\t\t\t$\t302.27\nGranted\t69,666\t\t\t$\t661.57\nVested\t( 61,906 )\t\t\t$\t317.68\nForfeited\t( 14,840 )\t\t\t$\t379.82\nUnvested at December 31, 2025\t115,552\t\t\t$\t500.68\n\nThe fair value as of the respective vesting dates of RSUs that vested during the years ended December 31, 2025, 2024, and 2023 was $43.11 billion, $33.14 billion, and $17.46 billion, respectively. The income tax benefit recognized related to awards vested during the years ended December 31, 2025, 2024, and 2023 was $9.33 billion, $6.95 billion, and $3.65 billion, respectively.\n\nAs of December 31, 2025, unrecognized share-based compensation expense related to RSU awards was $54.81 billion, which is expected to be recognized over a weighted-average period of approximately three years based on vesting under the award service conditions.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_288842",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinanciera",
+      "args": {
+       "unidad": "USD",
+       "cifra": 57372000000,
+       "ticker": "META",
+       "fuente": "ambas",
+       "chunk_id": "AMZN-2025-8-0018",
+       "respuesta": "En FY2025, Meta reportó un gasto en Investigación y Desarrollo (I+D / Research and Development) de 57.372 millones de dólares (57.372.000.000 USD). Por su parte, Amazon no desglosa ni reporta una partida específica de I+D (Research and Development) en sus estados financieros ni en XBRL; en su lugar, agrupa los costes de investigación y desarrollo dentro de la partida 'Technology and infrastructure' (108.521 millones de dólares en FY2025), que también incluye costes de infraestructura, servidores y centros de datos de AWS y otros negocios.",
+       "ejercicio": 2025,
+       "cita": "Technology and infrastructure costs include payroll and related expenses for employees involved in the research and development of new and existing products and services..."
+      },
+      "id": "call_302954",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 9930,
+     "output_tokens": 1494,
+     "total_tokens": 11424,
+     "input_token_details": {
+      "cache_read": 3899,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 1240
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta=\"En FY2025, Meta reportó un gasto en Investigación y Desarrollo (I+D / Research and Development) de 57.372 millones de dólares (57.372.000.000 USD). Por su parte, Amazon no desglosa ni reporta una partida específica de I+D (Research and Development) en sus estados financieros ni en XBRL; en su lugar, agrupa los costes de investigación y desarrollo dentro de la partida 'Technology and infrastructure' (108.521 millones de dólares en FY2025), que también incluye costes de infraestructura, servidores y centros de datos de AWS y otros negocios.\" cifra=57372000000.0 unidad='USD' ticker='META' ejercicio=2025 fuente='ambas' cita='Technology and infrastructure costs include payroll and related expenses for employees involved in the research and development of new and existing products and services...' chunk_id='AMZN-2025-8-0018'",
+    "tool_calls": null,
+    "name": "RespuestaFinanciera",
+    "tool_call_id": "call_302954",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "baseline"
+ }
+}

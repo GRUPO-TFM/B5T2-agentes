@@ -1,4 +1,4 @@
-versión,acierto,cita,cifra,trayectoria,recall@5,coste medio (¢),latencia media (s),llamadas/pregunta,% fuente=ninguna,errores,reintentos proveedor,% corrigió cifra,% corrigió cita,reintentos esquema,% límite alcanzado,% búsquedas reescritas,% búsquedas con ticker,acierto numerica,acierto extractiva,acierto comparativa
-baseline rep1,0.65,0.5714285714285714,0.5,0.8,0.5,1.51336125,21.65749518997036,3.95,0.0,0,0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.125
-baseline rep2,0.6,0.5,0.5,0.8,0.5,1.1737612499999999,17.20618015497457,3.65,0.0,0,0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.8333333333333334,0.125
-baseline rep3,0.6,0.5,0.5,0.9,0.5,2.15844375,22.124426509952173,4.25,0.0,0,0,0.0,0.0,0.05,0.0,0.0,1.0,1.0,1.0,0.0
+versión,acierto,cita,cifra,trayectoria,recall@5,coste medio (¢),latencia media (s),llamadas/pregunta,% fuente=ninguna,errores,reintentos proveedor,reintentos por respuesta vacía,% sin respuesta,% corrigió cifra,% corrigió cita,reintentos esquema,% límite alcanzado,% búsquedas reescritas,% búsquedas con ticker,acierto numerica,acierto extractiva,acierto comparativa,honestidad
+baseline rep1,0.65,0.5714285714285714,0.5,0.8,0.5,1.51336125,21.65749518997036,3.95,0.0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.125,
+baseline rep2,0.6,0.5,0.5,0.8,0.5,1.1737612499999999,17.20618015497457,3.65,0.0,0,0,0,0.05,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.8333333333333334,0.125,
+baseline rep3,0.6,0.5,0.5,0.9,0.5,2.15844375,22.124426509952173,4.25,0.0,0,0,0,0.0,0.0,0.0,0.05,0.0,0.0,1.0,1.0,1.0,0.0,

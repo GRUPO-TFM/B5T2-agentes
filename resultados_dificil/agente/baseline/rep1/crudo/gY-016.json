@@ -1,0 +1,299 @@
+{
+ "item": {
+  "id": "gY-016",
+  "pregunta": "Ante una caída hipotética del 10 % en el precio de sus acciones cotizadas en cartera a cierre de FY2025, ¿qué compañía perdería más valor: Alphabet o Meta?",
+  "familia": "multi",
+  "ticker": "GOOGL",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "Alphabet: 631 M USD frente a 599 M USD de Meta (Item 7A de cada 10-K FY2025). cifra=631,000,000 USD, fuente='texto'.",
+  "cifra_esperada": 631000000.0,
+  "unidad": "USD",
+  "concept_xbrl": null,
+  "item_esperado": "7A",
+  "ancla_texto": "A hypothetical adverse price change of 10% on our December 31, 2025 balance would decrease the fair value of marketable equity securities by $631 million.",
+  "ancla_inicio": null,
+  "ancla_fin": null,
+  "chunk_id_esperado": "GOOGL-2025-7A-0003",
+  "herramienta_esperada": [
+   "search_filings"
+  ],
+  "autor": null,
+  "fuente_esperada": null,
+  "nota": "Cifra que SOLO está en texto (no es un hecho XBRL). Dos trampas: la escala ('$631 million' → 631,000,000) y el verificador de cifras de A1, que compara toda cifra con XBRL aunque fuente='texto' y la rechazará. Meta: META-2025-7A-0002, 599 M."
+ },
+ "rep": 1,
+ "thread_id": "baseline-rep1-gY-016",
+ "commit": "1e19c11",
+ "fecha": "2026-09-23T17:04:01",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "Alphabet perdería más valor que Meta ante una caída hipotética del 10 % en el precio de sus acciones cotizadas a 31 de diciembre de 2025. Según los análisis de sensibilidad de mercado (Item 7A) de sus respectivos informes 10-K de FY2025, una caída adversa del 10 % reduciría el valor razonable de las acciones cotizadas en 631 millones de dólares en el caso de Alphabet (sobre un saldo de 6.300 millones) y en 599 millones de dólares en el caso de Meta (sobre un saldo de 5.990 millones).",
+   "cifra": 631000000.0,
+   "unidad": "USD",
+   "ticker": "GOOGL, META",
+   "ejercicio": 2025,
+   "fuente": "texto",
+   "cita": "A hypothetical adverse price change of 10% on our December 31, 2025 balance would decrease the fair value of marketable equity securities by $631 million. / A hypothetical adverse price change of 10% on our December 31, 2025 balance would decrease the fair value of marketable equity securities by $599 million.",
+   "chunk_id": "GOOGL-2025-7A-0003, META-2025-7A-0002"
+  },
+  "herramientas": [
+   "list_available",
+   "search_filings",
+   "search_filings",
+   "get_xbrl_fact",
+   "get_xbrl_fact"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "query": "equity price risk 10% adverse change fair value market price marketable equity securities",
+     "item": "7A",
+     "fiscal_year": 2025,
+     "ticker": "GOOGL"
+    }
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "item": "7A",
+     "fiscal_year": 2025,
+     "ticker": "META",
+     "query": "equity price risk 10% adverse change fair value market price marketable equity securities"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "MarketableSecuritiesCurrent",
+     "fiscal_year": 2025,
+     "ticker": "GOOGL"
+    }
+   },
+   {
+    "name": "get_xbrl_fact",
+    "args": {
+     "concept": "MarketableSecuritiesCurrent",
+     "fiscal_year": 2025,
+     "ticker": "META"
+    }
+   }
+  ],
+  "n_llamadas": 5,
+  "tokens_in": 12790,
+  "tokens_out": 1569,
+  "coste_usd": 0.01547625,
+  "latencia_s": 15.659727599937469,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "Ante una caída hipotética del 10 % en el precio de sus acciones cotizadas en cartera a cierre de FY2025, ¿qué compañía perdería más valor: Alphabet o Meta?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_832614",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 996,
+     "output_tokens": 76,
+     "total_tokens": 1072,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 66
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_832614",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "query": "equity price risk 10% adverse change fair value market price marketable equity securities",
+       "item": "7A",
+       "fiscal_year": 2025,
+       "ticker": "GOOGL"
+      },
+      "id": "call_834154",
+      "type": "tool_call"
+     },
+     {
+      "name": "search_filings",
+      "args": {
+       "item": "7A",
+       "fiscal_year": 2025,
+       "ticker": "META",
+       "query": "equity price risk 10% adverse change fair value market price marketable equity securities"
+      },
+      "id": "call_834166",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1319,
+     "output_tokens": 227,
+     "total_tokens": 1546,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 117
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "[GOOGL-2025-7A-0003] GOOGL FY2025 Item 7A (similitud 0.827)\nEquity Investment Risk\n\nOur marketable and non-marketable equity securities are subject to a wide variety of market-related risks that could substantially reduce or increase the fair value of our holdings.\n\n42.\n\nTable of Contents\tAlphabet Inc.\n\nOur marketable equity securities are primarily publicly traded stocks or funds and our non-marketable equity securities are primarily investments in privately held companies, some of which are in the startup or development stages.\n\nWe record marketable equity securities at fair value subject to market price volatility. These securities represent $5.1 billion and $6.3 billion of our investments as of December 31, 2024 and 2025, respectively. A hypothetical adverse price change of 10% on our December 31, 2025 balance would decrease the fair value of marketable equity securities by $631 million. From time to time, we may enter into derivatives to hedge the market price risk on certain of our marketable equity securities.\n\nOur non-marketable equity securities not accounted for under the equity method are primarily adjusted to fair value for observable transactions for identical or similar investments of the same issuer or impairment (referred to as the measurement alternative). The fair value measured at the time of the observable transaction is not necessarily an indication of the current fair value as of the balance sheet date. These investments, especially those that are in the early stages, are inherently risky because the technologies or products these companies have under development are typically in the early phases and may never materialize, and they may experience a decline in financial condition, which could result in a loss of a substantial part of our investment in these companies. Valuations of our equity investments in private companies are inherently more complex due to the lack of readily available market data and observable transactions at lower valuations could result in significant losses. In addition, global economic conditions could result in additional volatility. The success of our investment in any private company is also typically dependent on the likelihood of our ability to realize appreciation in the value of investments through liquidity events such as public offerings, acquisitions, private sales, or other market events. Changes in the valuation of non-marketable equity securities may not directly correlate with changes in valuation of marketable equity securities. As of December 31, 2024 and 2025, the carrying value of our non-marketable equity securities, which were accounted for under the measurement alternative, was $35.2 billion and $64.1 billion, respectively.\n\nThe carrying values of our equity method investments,\n\n---\n\n[GOOGL-2025-7A-0004] GOOGL FY2025 Item 7A (similitud 0.778)\nthe valuation of non-marketable equity securities may not directly correlate with changes in valuation of marketable equity securities. As of December 31, 2024 and 2025, the carrying value of our non-marketable equity securities, which were accounted for under the measurement alternative, was $35.2 billion and $64.1 billion, respectively.\n\nThe carrying values of our equity method investments, which totaled approximately $2.0 billion and $2.5 billion as of December 31, 2024 and 2025, respectively, generally do not fluctuate based on market price changes. However, these investments could be impaired if the carrying value exceeds the fair value and is not expected to recover.\n\nFor additional information about our equity investments, see Note 1 and Note 3 of the Notes to Consolidated Financial Statements included in Item 8 of this Annual Report on Form 10-K.\n\n43.\n\nTable of Contents\tAlphabet Inc.\n\n---\n\n[GOOGL-2025-7A-0001] GOOGL FY2025 Item 7A (similitud 0.759)\nInterest Rate Risk\n\nWe are exposed to interest rate risk related to our investment portfolio and outstanding debt.\n\nOur Corporate Treasury investment strategy is to achieve a return that will allow us to preserve capital and maintain liquidity. By policy, we limit the amount of credit exposure within our investment portfolio to any one issuer. Our investments in both fixed rate and floating rate interest earning securities carry a degree of interest rate risk. Fixed rate securities may have their fair market value adversely affected due to a rise in interest rates, while floating rate securities may produce less income than predicted if interest rates fall. Unrealized gains and losses on our marketable debt securities are primarily due to interest rate fluctuations as compared to interest rates at the time of purchase. For certain fixed and floating rate debt securities, we have elected the fair value option for which changes in fair value are recorded in OI&E. We measure securities for which we have not elected the fair value option at fair value with gains and losses recorded in AOCI until the securities are sold, less any expected credit losses.\n\nWe use value-at-risk (VaR) analysis to determine the potential effect of fluctuations in interest rates on the value of our investment portfolio. The VaR is the expected loss in fair value, for a given confidence interval, for our investment portfolio due to adverse movements in interest rates. We use a variance/covariance VaR model with 95% confidence interval. The estimated one-day loss in fair value of our investment portfolio as of December 31, 2024 and 2025 are shown below (in millions):\n\nAs of December 31,\t\t12-Month Average As of December 31,\n2024\t\t2025\t\t2024\t\t2025\nRisk category - interest rate\t$\t208\t\t\t$\t162\t\t\t$\t230\t\t\t$\t184\n\nActual future gains and losses associated with our investment portfolio may differ materially from the sensitivity analyses performed as of December 31, 2024 and 2025 due to the inherent limitations associated with predicting the timing and amount of changes in interest rates and our actual exposures and positions. VaR analysis is not intended to represent actual losses but is used as a risk estimation.\n\nAdditionally, we had senior unsecured notes outstanding with a total carrying value of $11.9 billion and $48.5 billion as of December 31, 2024 and 2025, respectively. As our senior unsecured notes primarily bear interest at fixed rates and\n\n---\n\n[GOOGL-2025-7A-0002] GOOGL FY2025 Item 7A (similitud 0.707)\nand our actual exposures and positions. VaR analysis is not intended to represent actual losses but is used as a risk estimation.\n\nAdditionally, we had senior unsecured notes outstanding with a total carrying value of $11.9 billion and $48.5 billion as of December 31, 2024 and 2025, respectively. As our senior unsecured notes primarily bear interest at fixed rates and are recorded at amortized cost, interest rate fluctuations generally do not affect our consolidated financial statements. However, the fair value of the notes will fluctuate with movement in market interest rates.\n\n---\n\n[GOOGL-2025-7A-0000] GOOGL FY2025 Item 7A (similitud 0.699)\nITEM 7A.QUANTITATIVE AND QUALITATIVE DISCLOSURES ABOUT MARKET RISK\n\nWe are exposed to financial market risks, including changes in foreign currency exchange rates, interest rates, and equity investment risks.\n\nForeign Currency Exchange Risk\n\nWe transact business globally in multiple currencies. International revenues, foreign-denominated monetary assets and liabilities, and investments in foreign subsidiaries expose us to the risk of fluctuations in foreign exchange rates against the US dollar. Principal currency exposures include the Australian dollar, British pound, Canadian dollar, Euro, and Japanese yen.\n\n41.\n\nTable of Contents\tAlphabet Inc.\n\nWe monitor our foreign currency exposures and hedge foreign exchange risks with derivative and non-derivative instruments, including forwards, options (including collars), cross-currency swaps, and foreign currency-denominated debt. Gains or losses on these foreign currency exposures are generally offset by corresponding gains or losses on the derivative and non-derivative instruments.\n\nConsidering historical trends in foreign exchange rates, we determined that it was reasonably possible that adverse changes in exchange rates of 10% could be experienced. We performed a sensitivity analysis on our foreign currency exposures to estimate the potential impact of this adverse 10% change. The estimated effects on our financial position would be as follows (in millions):\n\nAs of December 31,\nImpact\t\t2024\t\t2025\nForeign currency risk\nForeign denominated monetary assets and liabilities (1)\tOI&E\t\t$\t135\t\t\t$\t671\nCash flow hedges of foreign currency revenue (2)\tAOCI\t\t$\t1,627\t\t\t$\t2,096\nNet investment hedges of investments in foreign subsidiaries (3)\tAOCI\t\t$\t660\t\t\t$\t2,942\n\n(1)After consideration of the effect of derivative contracts.\n\n(2)The change in accumulated other comprehensive income (AOCI) would be expected to offset a corresponding foreign currency change in forecasted hedged revenues when recognized.\n\n(3)The change in AOCI would be expected to offset a corresponding foreign currency translation gain or loss from our investments in foreign subsidiaries.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_834154",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "[META-2025-7A-0002] META FY2025 Item 7A (similitud 0.835)\nEquity Price Risk\n\nOur equity investments include marketable and non-marketable equity investments subject to equity price risks that could have a material impact on the fair value or carrying value of our holdings. Our marketable equity securities are publicly traded stocks and our non-marketable equity investments are investments in privately-held companies without readily determinable fair values.\n\nWe record marketable equity securities at fair value based on readily determinable market values, of which publicly traded stocks are subject to market price volatility and represent $5.99 billion and $1.23 billion of our investments as of December 31, 2025 and 2024, respectively. A hypothetical adverse price change of 10% on our December 31, 2025 balance would decrease the fair value of marketable equity securities by $599 million.\n\nOur non-marketable equity investments accounted for under the measurement alternative are adjusted for changes in fair value resulting from observable transactions for identical or similar securities of the same issuer. Valuations of our non-marketable equity investments are complex due to the lack of readily available market data and observable transactions. Uncertainties in the global economic climate and financial markets could adversely impact the valuation of the companies we invest in and, therefore, result in a material impairment or downward adjustment in these investments. The carrying value of the non-marketable equity investments accounted for under the measurement alternative was $20.08 billion and $6.02 billion as of December 31, 2025 and 2024, respectively.\n\nThe carrying value of our non-marketable equity method investments was $7.45 billion and $52 million as of December 31, 2025 and 2024, respectively. These investments could be impaired if the carrying value exceeds the fair value and is not expected to recover.\n\nFor additional information, see Note 1 — Summary of Significant Accounting Policies, Note 4 — Financial Instruments, Note 5 — Non-Marketable Equity Investments, and Note 10 — Long-term Debt in the notes to the consolidated financial statements included in Part II, Item 8, \"Financial Statements and Supplementary Data\" and Part II, Item 7, \"Management’s Discussion and Analysis of Financial Conditions and Results of Operations — Critical Accounting Estimates\" contained in this Annual Report on Form 10-K.\n\n---\n\n[META-2025-7A-0001] META FY2025 Item 7A (similitud 0.737)\nInterest Rate Sensitivity\n\nOur exposure to changes in interest rates relates primarily to interest income and market value of our cash equivalents, marketable debt securities, and the fair value of our long-term debt.\n\nOur cash, cash equivalents, and marketable debt securities consist of cash, time deposits, money market funds, U.S. government and agency securities, and investment grade corporate debt securities. Our investment policy and strategy are focused on preservation of capital and supporting our liquidity requirements. Changes in U.S. interest rates affect the interest earned on our cash, cash equivalents, and marketable debt securities, and the market value of those securities. A hypothetical 100 basis point increase in market interest rates would have resulted in a decrease of $711 million and $680 million in the market value of our available-for-sale debt securities and cash equivalents as of December 31, 2025 and 2024, respectively. Any realized gains or losses resulting from such interest rate changes and from the current unrealized gains or losses would only occur if we sold the investments prior to maturity.\n\nAs of December 31, 2025 and 2024, we also had aggregate principal amounts of fixed-rate senior notes (the Notes) outstanding of $59.0 billion and $29.0 billion, respectively. Since our Notes bear interest at fixed rates and are carried at amortized cost, fluctuations in interest rates do not have any impact on our consolidated financial statements. However, the fair value of the Notes will fluctuate with movements in market interest rates, increasing in periods of declining interest rates and declining in periods of increasing interest rates.\n\n---\n\n[META-2025-7A-0000] META FY2025 Item 7A (similitud 0.703)\nItem 7A.Quantitative and Qualitative Disclosures About Market Risk\n\nWe are exposed to market risks, including changes to foreign currency exchange rates, interest rates, and equity price risk.\n\nForeign Currency Exchange Risk\n\nWe have foreign currency risks related to our revenue and operating expenses denominated in currencies other than the U.S. dollar, the majority of which is in Euro. Accordingly, changes in exchange rates, and in particular a strengthening of the U.S. dollar, have in the past, and may in the future, negatively affect our revenue and other operating results as expressed in U.S. dollars. See Management's Discussion and Analysis of Financial Condition and Results of Operations — Foreign Exchange Impact on Revenue section included in Part II, Item 7 of this Annual Report on Form 10-K for additional information.\n\nWe have experienced and will continue to experience fluctuations in our net income as a result of transaction gains or losses related to remeasuring monetary asset and liability balances that are denominated in currencies other than the functional currency of the entities in which they are recorded. Foreign currency transaction gains, net were $352 million for the year ended December 31, 2025 and foreign currency transaction losses, net were $690 million, and $366 million for the years ended December 31, 2024 and 2023, respectively.\n\nBeginning in 2025, we use short-term foreign currency forward contracts for cash management to reduce, but not entirely eliminate, exchange rate impacts on foreign currency cash conversions. These contracts are not designated as hedging instruments. As of December 31, 2025, no such contracts were outstanding. Realized gains, losses, and forward points for 2025 were not material and recorded within interest and other income, net in the consolidated statements of income.",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_834166",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "MarketableSecuritiesCurrent",
+       "fiscal_year": 2025,
+       "ticker": "GOOGL"
+      },
+      "id": "call_762599",
+      "type": "tool_call"
+     },
+     {
+      "name": "get_xbrl_fact",
+      "args": {
+       "concept": "MarketableSecuritiesCurrent",
+       "fiscal_year": 2025,
+       "ticker": "META"
+      },
+      "id": "call_762603",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4930,
+     "output_tokens": 456,
+     "total_tokens": 5386,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 376
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "GOOGL no reportó 'MarketableSecuritiesCurrent' en FY2025. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, Liabilities, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, ResearchAndDevelopmentExpense, Revenues, StockholdersEquity",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_762599",
+    "usage_metadata": null
+   },
+   {
+    "type": "tool",
+    "content": "META no reportó 'MarketableSecuritiesCurrent' en FY2025. Conceptos disponibles: Assets, CashAndCashEquivalentsAtCarryingValue, EarningsPerShareBasic, EarningsPerShareDiluted, Liabilities, NetCashProvidedByUsedInOperatingActivities, NetIncomeLoss, OperatingIncomeLoss, ResearchAndDevelopmentExpense, RevenueFromContractWithCustomerExcludingAssessedTax, StockholdersEquity",
+    "tool_calls": null,
+    "name": "get_xbrl_fact",
+    "tool_call_id": "call_762603",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinanciera",
+      "args": {
+       "chunk_id": "GOOGL-2025-7A-0003, META-2025-7A-0002",
+       "ejercicio": 2025,
+       "fuente": "texto",
+       "cifra": 631000000,
+       "unidad": "USD",
+       "ticker": "GOOGL, META",
+       "respuesta": "Alphabet perdería más valor que Meta ante una caída hipotética del 10 % en el precio de sus acciones cotizadas a 31 de diciembre de 2025. Según los análisis de sensibilidad de mercado (Item 7A) de sus respectivos informes 10-K de FY2025, una caída adversa del 10 % reduciría el valor razonable de las acciones cotizadas en 631 millones de dólares en el caso de Alphabet (sobre un saldo de 6.300 millones) y en 599 millones de dólares en el caso de Meta (sobre un saldo de 5.990 millones).",
+       "cita": "A hypothetical adverse price change of 10% on our December 31, 2025 balance would decrease the fair value of marketable equity securities by $631 million. / A hypothetical adverse price change of 10% on our December 31, 2025 balance would decrease the fair value of marketable equity securities by $599 million."
+      },
+      "id": "call_745489",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 5545,
+     "output_tokens": 810,
+     "total_tokens": 6355,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 487
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='Alphabet perdería más valor que Meta ante una caída hipotética del 10 % en el precio de sus acciones cotizadas a 31 de diciembre de 2025. Según los análisis de sensibilidad de mercado (Item 7A) de sus respectivos informes 10-K de FY2025, una caída adversa del 10 % reduciría el valor razonable de las acciones cotizadas en 631 millones de dólares en el caso de Alphabet (sobre un saldo de 6.300 millones) y en 599 millones de dólares en el caso de Meta (sobre un saldo de 5.990 millones).' cifra=631000000.0 unidad='USD' ticker='GOOGL, META' ejercicio=2025 fuente='texto' cita='A hypothetical adverse price change of 10% on our December 31, 2025 balance would decrease the fair value of marketable equity securities by $631 million. / A hypothetical adverse price change of 10% on our December 31, 2025 balance would decrease the fair value of marketable equity securities by $599 million.' chunk_id='GOOGL-2025-7A-0003, META-2025-7A-0002'",
+    "tool_calls": null,
+    "name": "RespuestaFinanciera",
+    "tool_call_id": "call_745489",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "baseline"
+ }
+}

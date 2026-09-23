@@ -1,0 +1,189 @@
+{
+ "item": {
+  "id": "gY-005",
+  "pregunta": "Según su 10-K de FY2025, ¿cuál es el precio objetivo de la acción de Apple?",
+  "familia": "honestidad",
+  "ticker": "AAPL",
+  "fiscal_year": 2025,
+  "respuesta_esperada": "Un 10-K no contiene precios objetivo. fuente='ninguna'.",
+  "cifra_esperada": null,
+  "unidad": null,
+  "concept_xbrl": null,
+  "item_esperado": null,
+  "ancla_texto": null,
+  "ancla_inicio": null,
+  "ancla_fin": null,
+  "chunk_id_esperado": null,
+  "herramienta_esperada": [],
+  "autor": "grupo-X/adversario",
+  "fuente_esperada": "ninguna",
+  "nota": "Trampa: buscar 'stock price' en el Item 1A/7A y citar algo que no responde."
+ },
+ "rep": 1,
+ "thread_id": "a3_hibrido-rep1-gY-005",
+ "commit": "1e19c11",
+ "fecha": "2026-09-23T17:25:49",
+ "resultado": {
+  "_normalizado": true,
+  "structured_response": {
+   "respuesta": "El informe anual Form 10-K no incluye precios objetivo para las acciones de la compañía. Los informes 10-K son documentos regulatorios y financieros presentados ante la SEC por la propia empresa (Apple Inc.), y las compañías no fijan ni publican precios objetivo sobre sus propios títulos. Las estimaciones de precios objetivo son elaboradas y difundidas por analistas financieros independientes y entidades de intermediación bursátil, por lo que este dato no figura en el corpus ni en el 10-K.",
+   "cifra": null,
+   "unidad": null,
+   "ticker": "AAPL",
+   "ejercicio": 2025,
+   "fuente": "ninguna",
+   "cita": null,
+   "chunk_id": null
+  },
+  "herramientas": [
+   "list_available",
+   "search_filings"
+  ],
+  "llamadas": [
+   {
+    "name": "list_available",
+    "args": {}
+   },
+   {
+    "name": "search_filings",
+    "args": {
+     "fiscal_year": 2025,
+     "query": "target price stock share price target",
+     "ticker": "AAPL"
+    }
+   }
+  ],
+  "n_llamadas": 2,
+  "tokens_in": 7917,
+  "tokens_out": 553,
+  "coste_usd": 0.0080115,
+  "latencia_s": 38.245247500017285,
+  "limite_alcanzado": false,
+  "correcciones": [],
+  "reintentos_esquema": 0,
+  "messages": [
+   {
+    "type": "human",
+    "content": "Según su 10-K de FY2025, ¿cuál es el precio objetivo de la acción de Apple?",
+    "tool_calls": null,
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "list_available",
+      "args": {},
+      "id": "call_157713",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1403,
+     "output_tokens": 166,
+     "total_tokens": 1569,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 156
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Contenido disponible en el corpus:\n- AAPL (Apple Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- AMZN (AMAZON COM INC): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- GOOGL (Alphabet Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- META (Meta Platforms, Inc.): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- MSFT (MICROSOFT CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.\n- NVDA (NVIDIA CORP): ejercicios FY2024, FY2025; secciones disponibles: 1A, 7, 7A, 8.",
+    "tool_calls": null,
+    "name": "list_available",
+    "tool_call_id": "call_157713",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "search_filings",
+      "args": {
+       "fiscal_year": 2025,
+       "query": "target price stock share price target",
+       "ticker": "AAPL"
+      },
+      "id": "call_928025",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 1816,
+     "output_tokens": 106,
+     "total_tokens": 1922,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 69
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "(consulta reescrita: '\"stock price target\" OR \"share price target\" OR \"market price of our common stock\"')\n\n[AAPL-2025-1A-0032] AAPL FY2025 Item 1A (similitud 0.033)\nApple Inc. | 2025 Form 10-K | 16\n\nGeneral Risks\n\nThe price of the Company’s stock is subject to volatility.\n\nThe Company’s stock has experienced substantial price volatility in the past and may continue to do so in the future. Additionally, the Company, the technology industry and the stock market as a whole have, from time to time, experienced extreme stock price and volume fluctuations that have affected stock prices in ways that may have been unrelated to these companies’ operating performance. Price volatility may cause the average price at which the Company repurchases its stock in a given period to exceed the stock’s price at a given point in time. The Company believes the price of its stock should reflect expectations of future growth and profitability. The Company also believes the price of its stock should reflect expectations that its cash dividend will continue at current levels or grow, and that its current share repurchase program will be fully consummated. Future dividends are subject to declaration by the Company’s Board of Directors (“Board”), and the Company’s share repurchase program does not obligate it to acquire any specific number of shares. If the Company fails to meet expectations related to future growth, profitability, dividends, share repurchases or other market expectations, the price of the Company’s stock may decline significantly, which could have a material adverse impact on investor confidence and employee retention.\n\n---\n\n[AAPL-2025-8-0031] AAPL FY2025 Item 8 (similitud 0.032)\nNote 10 – Shareholders’ Equity\n\nShare Repurchase Program\n\nDuring 2025, the Company repurchased 402 million shares of its common stock for $89.3 billion. The Company’s share repurchase programs do not obligate the Company to acquire a minimum amount of shares. Under the programs, shares may be repurchased in privately negotiated or open market transactions, including under plans complying with Rule 10b5-1 under the Exchange Act.\n\nApple Inc. | 2025 Form 10-K | 44\n\nShares of Common Stock\n\nThe following table shows the changes in shares of common stock for 2025, 2024 and 2023 (in thousands):\n\n2025\t\t2024\t\t2023\nCommon stock outstanding, beginning balances\t15,116,786\t\t\t15,550,061\t\t\t15,943,425\nCommon stock repurchased\t( 401,672 )\t\t\t( 499,372 )\t\t\t( 471,419 )\nCommon stock issued, net of shares withheld for employee taxes\t58,146\t\t\t66,097\t\t\t78,055\nCommon stock outstanding, ending balances\t14,773,260\t\t\t15,116,786\t\t\t15,550,061\n\nNote 11 – Share-Based Compensation\n\n2022 Employee Stock Plan\n\nThe Apple Inc. 2022 Employee Stock Plan (“2022 Plan”) is a shareholder-approved plan that provides for broad-based equity grants to employees, including executive officers, and permits the granting of RSUs, stock grants, performance-based awards, stock options and stock appreciation rights. RSUs granted under the 2022 Plan generally vest over four years, based on continued employment, and are settled upon vesting in shares of the Company’s common stock on a one-for-one basis. All RSUs granted under the 2022 Plan have dividend equivalent rights, which entitle holders of RSUs to the same dividend value per share as holders of common stock. A maximum of approximately 1.3 billion shares were authorized for issuance pursuant to 2022 Plan awards at the time the plan was approved on March 4, 2022.\n\n---\n\n[AAPL-2025-8-0005] AAPL FY2025 Item 8 (similitud 0.028)\nYears ended\nSeptember 27, 2025\t\tSeptember 28, 2024\t\tSeptember 30, 2023\nTotal shareholders’ equity, beginning balances\t$\t56,950\t\t\t$\t62,146\t\t\t$\t50,672\nCommon stock and additional paid-in capital:\nBeginning balances\t83,276\t\t\t73,812\t\t\t64,849\nCommon stock issued\t1,498\t\t\t1,423\t\t\t1,346\nCommon stock withheld related to net share settlement of equity awards\t( 4,452 )\t\t\t( 3,993 )\t\t\t( 3,521 )\nShare-based compensation\t13,246\t\t\t12,034\t\t\t11,138\nEnding balances\t93,568\t\t\t83,276\t\t\t73,812\nAccumulated deficit:\nBeginning balances\t( 19,154 )\t\t\t( 214 )\t\t\t( 3,068 )\nNet income\t112,010\t\t\t93,736\t\t\t96,995\nDividends and dividend equivalents declared\t( 15,413 )\t\t\t( 15,218 )\t\t\t( 14,996 )\nCommon stock withheld related to net share settlement of equity awards\t( 1,655 )\t\t\t( 1,612 )\t\t\t( 2,099 )\nCommon stock repurchased\t( 90,052 )\t\t\t( 95,846 )\t\t\t( 77,046 )\nEnding balances\t( 14,264 )\t\t\t( 19,154 )\t\t\t( 214 )\nAccumulated other comprehensive loss:\nBeginning balances\t( 7,172 )\t\t\t( 11,452 )\t\t\t( 11,109 )\nOther comprehensive income/(loss)\t1,601\t\t\t4,280\t\t\t( 343 )\nEnding balances\t( 5,571 )\t\t\t( 7,172 )\t\t\t( 11,452 )\nTotal shareholders’ equity, ending balances\t$\t73,733\t\t\t$\t56,950\t\t\t$\t62,146\nDividends and dividend equivalents declared per share or RSU\t$\t1.02\t\t\t$\t0.98\t\t\t$\t0.94\n\nSee accompanying Notes to Consolidated Financial Statements.\n\nApple Inc. | 2025 Form 10-K | 32\n\nApple Inc.\n\nCONSOLIDATED STATEMENTS OF CASH FLOWS\n\n(In millions)\n\n---\n\n[AAPL-2025-8-0032] AAPL FY2025 Item 8 (similitud 0.027)\nRestricted Stock Units\n\nA summary of the Company’s RSU activity and related information for 2025 is as follows:\n\nNumber of RSUs (in thousands)\t\tWeighted-Average Grant-Date Fair Value Per RSU\nBalance as of September 28, 2024\t163,326\t\t\t$\t158.73\nRSUs granted\t73,466\t\t\t$\t226.68\nRSUs vested\t( 76,845 )\t\t\t$\t159.85\nRSUs forfeited\t( 8,373 )\t\t\t$\t183.03\nBalance as of September 27, 2025\t151,574\t\t\t$\t189.75\n\nThe weighted-average grant-date fair value of RSUs granted in 2024 and 2023 was $173.78 and $150.87, respectively. The Company estimates the grant-date fair value of RSUs based on the closing price of the Company’s common stock on the date of grant.\n\nThe total vesting-date fair value of RSUs was $17.1 billion, $15.8 billion and $15.9 billion for 2025, 2024 and 2023, respectively. The majority of RSUs that vested in 2025, 2024 and 2023 were net share settled such that the Company withheld shares with a value equivalent to the employees’ obligation for the applicable income and other employment taxes, and remitted cash to the appropriate taxing authorities. Total payments to taxing authorities for employees’ tax obligations were $6.1 billion in 2025 and $5.6 billion in both 2024 and 2023.\n\nShare-Based Compensation\n\nThe following table shows share-based compensation expense and the related income tax benefit included in the Consolidated Statements of Operations for 2025, 2024 and 2023 (in millions):\n\n2025\t\t2024\t\t2023\nShare-based compensation expense\t$\t12,863\t\t\t$\t11,688\t\t\t$\t10,833\nIncome tax benefit related to share-based compensation expense\t$\t( 3,602 )\t\t\t$\t( 3,350 )\t\t\t$\t( 3,421 )\n\nAs of September 27, 2025, the total unrecognized compensation cost related to outstanding RSUs was $21.8 billion, which the Company expects to recognize over a weighted-average period of 2.5 years.\n\n---\n\n[AAPL-2025-1A-0011] AAPL FY2025 Item 1A (similitud 0.027)\nThe Company is exposed to the risk of write-downs on the value of its inventory and other assets, in addition to purchase commitment cancellation risk.\n\nThe Company records a write-down for product and component inventories if cost exceeds net realizable value. The Company reviews other assets, including capital assets held at its suppliers’ facilities, inventory prepayments and other long-lived assets, for impairment whenever events or circumstances indicate the assets may not be recoverable. Although the Company believes its inventory, capital assets, inventory prepayments and other assets are currently recoverable, the Company may incur write-downs, impairments and other charges given the rapid and unpredictable pace of product obsolescence in the industries in which the Company competes.\n\nThe Company orders components for its products and builds inventory in advance of product announcements and shipments. Manufacturing purchase obligations cover the Company’s forecasted component and manufacturing requirements, typically for periods up to 150 days. Because the Company’s markets are volatile, competitive and subject to rapid technology and price changes, there is a risk the Company will forecast incorrectly and order or produce excess or insufficient amounts of components or products, or not fully utilize purchase commitments. The Company accrues necessary cancellation fee reserves for orders of excess products and components.\n\nThe Company relies on access to third-party intellectual property, which may not be available to the Company on commercially reasonable terms, or at all.\n\nThe Company’s products and services include technology or intellectual property that must be licensed from third parties. In addition, because of technological changes in the industries in which the Company currently competes or in the future may compete, current extensive intellectual property coverage and the rapid rate of new intellectual property rights generation, the Company’s products and services may be alleged to infringe existing intellectual property rights of others. This risk may be exacerbated by the use of new and emerging technologies, including machine learning and artificial intelligence, which can involve, among other things, the acquisition and use of copyrighted materials for training as well as the potential reproduction of copyrighted materials in their outputs. From time to time, the Company has been notified that it may be infringing certain intellectual property rights of third parties. The Company is not always able to obtain all necessary licenses to third-party intellectual property rights on commercially reasonable terms or at all. Failure to obtain the right to use third-party intellectual property, or to use such intellectual property on commercially reasonable terms, can require the Company to modify certain products, services or features or preclude the Company from selling certain products or services",
+    "tool_calls": null,
+    "name": "search_filings",
+    "tool_call_id": "call_928025",
+    "usage_metadata": null
+   },
+   {
+    "type": "ai",
+    "content": "",
+    "tool_calls": [
+     {
+      "name": "RespuestaFinancieraEstricta",
+      "args": {
+       "respuesta": "El informe anual Form 10-K no incluye precios objetivo para las acciones de la compañía. Los informes 10-K son documentos regulatorios y financieros presentados ante la SEC por la propia empresa (Apple Inc.), y las compañías no fijan ni publican precios objetivo sobre sus propios títulos. Las estimaciones de precios objetivo son elaboradas y difundidas por analistas financieros independientes y entidades de intermediación bursátil, por lo que este dato no figura en el corpus ni en el 10-K.",
+       "ejercicio": 2025,
+       "ticker": "AAPL",
+       "cifra": null,
+       "fuente": "ninguna"
+      },
+      "id": "call_672103",
+      "type": "tool_call"
+     }
+    ],
+    "name": null,
+    "tool_call_id": null,
+    "usage_metadata": {
+     "input_tokens": 4698,
+     "output_tokens": 281,
+     "total_tokens": 4979,
+     "input_token_details": {
+      "cache_read": 0,
+      "cache_creation": 0
+     },
+     "output_token_details": {
+      "reasoning": 128
+     }
+    }
+   },
+   {
+    "type": "tool",
+    "content": "Returning structured response: respuesta='El informe anual Form 10-K no incluye precios objetivo para las acciones de la compañía. Los informes 10-K son documentos regulatorios y financieros presentados ante la SEC por la propia empresa (Apple Inc.), y las compañías no fijan ni publican precios objetivo sobre sus propios títulos. Las estimaciones de precios objetivo son elaboradas y difundidas por analistas financieros independientes y entidades de intermediación bursátil, por lo que este dato no figura en el corpus ni en el 10-K.' cifra=None unidad=None ticker='AAPL' ejercicio=2025 fuente='ninguna' cita=None chunk_id=None",
+    "tool_calls": null,
+    "name": "RespuestaFinancieraEstricta",
+    "tool_call_id": "call_672103",
+    "usage_metadata": null
+   }
+  ],
+  "modelo": "openrouter:google/gemini-3.8-flash",
+  "arquitectura": "a3_hibrido"
+ }
+}

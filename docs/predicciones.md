@@ -507,4 +507,40 @@ Razonamiento:
   Diferencias de ±1 pregunta son ruido.
 - **a4**: 13/15 re-puntuado + 1-2 de las nuevas.
 
-> Resultado: _(pendiente)_
+> **Resultado (23-sep, 1 rep, 18 preguntas):**
+>
+> | | acierto | honestidad | multi | multi_temporal | texto 016-018 | coste | latencia |
+> |---|---|---|---|---|---|---|---|
+> | baseline | 61,1 % | 3/5 | 4/6 | 3/7 | 0/3 | 1,46 ¢ | 23 s |
+> | a1_guardrails | 72,2 % | 5/5 | 5/6 | 3/7 | 0/3 | 1,77 ¢ | 25 s |
+> | a2_retrieval | 72,2 % | 5/5 | 5/6 | 3/7 | 0/3 | 1,75 ¢ | 35 s |
+> | a3_hibrido | 66,7 %* | 5/5 | 4/6 | 3/7 | 0/3 | 1,89 ¢ | 40 s |
+> | a4_comparativas | 72,2 % | 5/5 | 5/6 | 3/7 | 0/3 | 1,89 ¢ | 39 s |
+>
+> \* gY-008 en A3 es un turno vacío (sin respuesta), no un fallo de razonamiento: se repara solo al volver a correr.
+>
+> - **Los números globales caen dentro de lo predicho en las cinco arquitecturas.** De A1 a A4
+>   no se mueve nada: la escalera en este golden es «A1 y ya». A2-A4 atacaban la búsqueda y la
+>   cita de texto, que aquí no es lo que falla (el ancla aparece en la trayectoria de las 4
+>   preguntas con ancla en las cinco arquitecturas).
+> - **Texto (016-018): 0/3 en todas, y el mecanismo NO es el predicho.** El verificador no se
+>   disparó nunca. En A1-A4 las 12 respuestas son correctas en prosa y citan el fragmento
+>   exacto (`cita` = 100 %), pero dejan `cifra=null`: el prompt de A1 dice que `cifra` solo sale
+>   de `get_xbrl_fact`, y el modelo obedece. El prompt vuelve a actuar antes que el middleware
+>   (igual que en la v1). El baseline, que no tiene esa regla, sí da la cifra, pero **en millones**
+>   (476 y 590 en vez de 476.000.000 y 590.000.000) y en gY-016 cita dos `chunk_id` a la vez.
+>   Conclusión: **ninguna arquitectura tiene contrato para una cifra que sale del texto.** El
+>   bug del verificador sigue latente: no ha llegado a probarse porque el prompt lo tapa.
+> - **Honestidad: predicción del baseline equivocada.** Esperaba que calculara el margen bruto de
+>   Amazon. No lo hizo: en gY-001 y gY-010 la respuesta del baseline es honesta en prosa («no se
+>   realiza una estimación»), pero etiqueta `fuente='texto'`/`'ambas'`. Lo que A1 aporta en
+>   honestidad es **la etiqueta coherente**, no evitar que el modelo invente: no inventa ni sin
+>   guardrails.
+> - **El límite, confirmado como coste**: el baseline, sin límite, acierta gY-015 (13 llamadas);
+>   A1-A4 la pierden. gY-012 falla en las cinco (en el baseline por dejar `cifra=null` con
+>   `fuente='xbrl'`, que el esquema estricto habría rechazado).
+> - `read_section` se usó 3 veces (A2 en 017 y 018, A3 en 018) y es lo más lento de la
+>   ejecución: 112 s y 128 s en gY-018, frente a 46 s en A4, que resolvió con una búsqueda.
+> - Coste casi plano (1,5-1,9 ¢). La latencia es la que paga cada peldaño: 23 → 39 s aquí y
+>   20 → 49 s en el original.
+
