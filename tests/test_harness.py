@@ -1,6 +1,7 @@
 """ejecutar → puntuar → comparar con un responder falso. Sin API."""
 import json
 
+import pandas as pd
 from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 
 from agente import interfaz
@@ -58,6 +59,26 @@ def test_flujo_completo(tmp_path, monkeypatch):
     assert (tmp_path / "resultados" / "comparativa.md").is_file()
     md = (tmp_path / "resultados" / "comparativa.md").read_text(encoding="utf-8")
     assert "baseline" in md and "recall@5" in md
+
+
+def test_evaluar_holdout_no_mezcla_el_golden_guardado(tmp_path, monkeypatch):
+    monkeypatch.setattr(interfaz, "dir_resultados", lambda: tmp_path / "resultados")
+    original = interfaz.leer_golden("data/golden_set.jsonl")[0]
+    holdout = {**original, "pregunta": original["pregunta"] + " (hold-out)"}
+    ruta_original = tmp_path / "original.jsonl"
+    ruta_holdout = tmp_path / "holdout.jsonl"
+    ruta_original.write_text(json.dumps(original, ensure_ascii=False) + "\n", encoding="utf-8")
+    ruta_holdout.write_text(json.dumps(holdout, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    interfaz.ejecutar(ruta_original, "final", responder_fn=_responder_falso, verbose=False)
+    tabla = interfaz.evaluar(ruta_holdout, responder=_responder_falso, con_recall=False)
+
+    assert tabla["id"].tolist() == [original["id"]]
+    assert tabla["obsoleta"].tolist() == [False]
+    guardada = interfaz.dir_rep("holdout", 1) / "tabla.csv"
+    assert pd.read_csv(guardada)["id"].tolist() == [original["id"]]
+    assert (interfaz.dir_rep("final", 1) / "crudo" / f"{original['id']}.json").is_file()
+    assert (interfaz.dir_rep("holdout", 1) / "crudo" / f"{original['id']}.json").is_file()
 
 
 def test_calentar_no_revienta_si_no_hay_codificador(capsys):

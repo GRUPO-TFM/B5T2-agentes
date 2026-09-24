@@ -643,17 +643,22 @@ def evaluar(ruta_jsonl: str | Path, responder=None, etiqueta: str = "",
     """`evaluar("holdout.jsonl")`: ejecuta la arquitectura final sobre el JSONL,
     aplica los tres evaluadores y devuelve la tabla por pregunta.
 
-    Los resultados quedan en `resultados/agente/<arquitectura>/rep<rep>/`. Con
-    `etiqueta` se usa una arquitectura con ese nombre de carpeta (por ejemplo
-    "holdout") sin cambiar la configuración de la final.
+    Los resultados quedan en `resultados/agente/<arquitectura>/rep<rep>/`.
+    `holdout.jsonl` usa automáticamente la carpeta `holdout`, incluso con la
+    llamada mínima del profesor. `etiqueta` permite elegir otro nombre sin
+    cambiar la configuración de la arquitectura final.
     """
     arq = arquitectura if isinstance(arquitectura, Arquitectura) else ARQUITECTURAS[arquitectura]
+    if not etiqueta and Path(ruta_jsonl).name.casefold() == "holdout.jsonl":
+        etiqueta = "holdout"
     if etiqueta:
         from dataclasses import replace
         arq = replace(arq, nombre=etiqueta)
         ARQUITECTURAS.setdefault(etiqueta, arq)
     ejecutar(ruta_jsonl, arq, rep, responder_fn=responder)
-    tabla = puntuar(arq, rep, con_recall=con_recall)
+    # La carpeta puede contener ejecuciones anteriores del golden propio.
+    # El hold-out debe devolver y guardar solo los ítems del JSONL recibido.
+    tabla = puntuar(arq, rep, con_recall=con_recall, golden=ruta_jsonl)
     if salida:
         Path(salida).parent.mkdir(parents=True, exist_ok=True)
         tabla.to_csv(salida, index=False)
