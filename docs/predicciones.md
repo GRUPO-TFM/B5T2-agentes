@@ -624,3 +624,18 @@ A4 hasta que las tres estén medidas en los dos golden.
 >   frente a 52 s). No lo atribuyo a nada: con 1 repetición y la dispersión del
 >   proveedor (7-19 s por llamada) es ruido hasta que se demuestre lo contrario.
 
+---
+
+## Decisión · `final` = A6 (24-sep)
+
+Con la reconciliación del 23-sep (turnos vacíos repetidos) las cifras vigentes son:
+A6 100 % en el original (1 rep) y **94,4 %** en el difícil, frente al 72,2 % de A4.
+La condición que se puso para cambiar `final` —A5 y A6 medidas en los dos golden—
+está cumplida, así que `ARQUITECTURAS["final"]` pasa de A4 a **A6**.
+
+Lo que se asume al elegirla, dicho antes de las preguntas ciegas:
+- Sin regresión en el original, pero con 1 repetición frente a las 3 de A4.
+- gY-009 (un ratio que se calcula, no se reporta) sigue abierto (bug 33): una
+  pregunta ciega de márgenes operativos podría caer en `fuente='ninguna'`.
+- Latencia ~39-47 s por pregunta (A4: 39-48 s): ~7-8 minutos para 10 preguntas.
+

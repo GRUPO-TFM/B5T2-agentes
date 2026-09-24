@@ -32,7 +32,7 @@ CITA_GOOGL = ("A hypothetical adverse price change of 10% on our December 31, 20
 
 
 # --- la escalera ------------------------------------------------------------
-def test_la_segunda_escalera_es_acumulativa_y_final_no_cambia():
+def test_la_segunda_escalera_es_acumulativa_y_final_es_a6():
     orden = ["a4_comparativas", "a5_limites", "a6_cifras_texto"]
     booleanos = ["limites", "verificador_cifras", "verificador_cita", "esquema_estricto",
                  "filtros_forzados", "reescritura", "hibrido", "limites_por_herramienta",
@@ -46,8 +46,8 @@ def test_la_segunda_escalera_es_acumulativa_y_final_no_cambia():
         nuevos = [b for b in booleanos if actual[b] and not previo[b]]
         assert len(nuevos) == 1, (nombre, nuevos)
         previo = actual
-    # lo que corre evaluar() mañana no cambia hasta medir
-    assert ARQUITECTURAS["final"].nombre == "a4_comparativas"
+    # lo que corre evaluar() el día 24: A6, medida en los dos golden
+    assert ARQUITECTURAS["final"].nombre == "a6_cifras_texto"
     # el experimento descartado no está en la escalera
     assert "x_reescritura_rapida" not in ARQUITECTURAS
     from agente.config import X_REESCRITURA_RAPIDA

@@ -136,7 +136,7 @@ def test_la_escalera_es_acumulativa():
         for b in booleanos:
             assert actual[b] >= previo[b], f"{nombre} apaga {b}"
         previo = actual
-    assert ARQUITECTURAS["final"].nombre == "a4_comparativas"
+    assert ARQUITECTURAS["final"].nombre == "a6_cifras_texto"
 
 
 def test_la_instrumentacion_se_recalcula_al_puntuar(tmp_path, monkeypatch):

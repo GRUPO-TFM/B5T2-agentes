@@ -117,9 +117,10 @@ A6 = replace(
 
 ARQUITECTURAS: dict[str, Arquitectura] = {a.nombre: a for a in (BASELINE, A1, A2, A3, A4,
                                                                  A5, A6)}
-# `final` sigue siendo A4 hasta que A5 y A6 estén medidas en los dos golden: lo
-# que corre `evaluar()` el día 24 no cambia por una intuición.
-ARQUITECTURAS["final"] = A4
+# `final` es A6 desde que A5 y A6 están medidas en los dos golden: iguala a A4 en
+# el original (100 %, sin regresión) y la supera en el difícil (94,4 % frente a
+# 72,2 %), con menos latencia que A5. Lo que corre `evaluar()` el día 24.
+ARQUITECTURAS["final"] = A6
 
 
 def arquitectura(nombre: str | Arquitectura) -> Arquitectura:

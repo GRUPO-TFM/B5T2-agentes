@@ -36,7 +36,7 @@ r = responder("¿Cuál fue el revenue de NVIDIA en FY2025?")
 tabla = evaluar("data/golden_set.jsonl", etiqueta="baseline")
 ```
 
-`construir_agente(mejoras=False)` es el sistema del día 10. `mejoras=True` es el mismo código con el interruptor listo para middleware y retrieval; hoy no cambia el comportamiento. No activar mejoras hasta congelar el baseline.
+`construir_agente(mejoras=False)` es el sistema del día 10 (`baseline`). `mejoras=True` es un alias de `arquitectura="final"`, que es **A6** (`a6_cifras_texto`): ver la escalera en `agente/config.py` y los resultados en `resultados/comparativa.md`.
 
 ## Estructura
 
