@@ -5,7 +5,7 @@ Dos órdenes, pensadas para lanzarse desde PowerShell en la raíz del repo:
     uv run python -m agente.lotes correr --plan           # qué falta, sin gastar
     uv run python -m agente.lotes correr                  # todas las arquitecturas, golden difícil, 1 rep
     uv run python -m agente.lotes correr --golden original --arqs a3_hibrido --reps 3
-    uv run python -m agente.lotes reconciliar             # sin API: estado + tablas finales
+    uv run python -m agente.lotes reconciliar             # estado + tablas, incluido baseline vs final
 
 `correr` nunca repite lo hecho: `ejecutar()` salta cada pregunta que ya tiene
 respuesta guardada y solo repite las que no dejaron respuesta (error del
@@ -17,7 +17,10 @@ qué está completo, qué falta, qué se hizo con una configuración o un golden
 distintos a los actuales, vuelve a puntuar TODO con el golden y los
 evaluadores actuales («crudo primero»: la medición no se repite, la
 puntuación sí) y escribe las tablas comparativas, una por golden y otra con los
-dos lado a lado, en `resultados/reconciliacion/`.
+dos lado a lado y baseline frente al alias `final`, en `resultados/reconciliacion/`.
+El recall del golden difícil se mide también al repuntuar. Las consultas
+reescritas se leen de la caché; si falta alguna, calcularla puede llamar al
+modelo.
 """
 from __future__ import annotations
 
@@ -201,7 +204,10 @@ def correr(golden: str = "dificil", arqs: list[str] | None = None, reps: int = 1
 # reconciliar — sin API
 # ---------------------------------------------------------------------------
 _COLS_LADO_A_LADO = ["reps", "acierto", "cita", "cifra", "trayectoria", "honestidad",
-                     "coste medio (¢)", "latencia media (s)", "% límite alcanzado"]
+                     "recall@5", "coste medio (¢)", "latencia media (s)",
+                     "llamadas/pregunta", "% límite alcanzado"]
+_COLS_BASELINE_FINAL = ["recall@5", "coste medio (¢)", "latencia media (s)",
+                        "llamadas/pregunta"]
 
 
 def _repuntuar(golden: str, con_recall: bool) -> pd.DataFrame:
@@ -223,12 +229,63 @@ def _fmt(v, col: str) -> str:
         return "—"
     if col in ("reps",):
         return str(int(v))
-    if col in ("coste medio (¢)", "latencia media (s)"):
-        return f"{v:.2f}" if "coste" in col else f"{v:.1f}"
+    if col in ("coste medio (¢)", "latencia media (s)", "llamadas/pregunta"):
+        return f"{v:.1f}" if col == "latencia media (s)" else f"{v:.2f}"
     return f"{v:.1%}"
 
 
-def reconciliar(con_recall_original: bool = True, con_recall_dificil: bool = False) -> pd.DataFrame:
+def tabla_baseline_final(comp: pd.DataFrame, golden: str) -> pd.DataFrame:
+    """Tabla breve del enunciado, usando el preset al que apunta `final`."""
+    nombre_final = arquitectura("final").nombre
+    nombres = ["baseline", nombre_final]
+    if comp.empty or not set(nombres).issubset(set(comp["arquitectura"])):
+        return pd.DataFrame()
+    familias = list(dict.fromkeys(g["familia"] for g in interfaz.leer_golden(GOLDENS[golden][0])))
+    columnas = ["arquitectura", "reps", "acierto"]
+    columnas += [f"acierto {familia}" for familia in familias]
+    columnas += _COLS_BASELINE_FINAL
+    faltan = [c for c in columnas if c not in comp]
+    if faltan:
+        raise ValueError(f"Faltan métricas para {golden}: {faltan}")
+    tabla = comp.set_index("arquitectura").loc[nombres, columnas[1:]].reset_index()
+    return tabla
+
+
+def _markdown_baseline_final(tabla: pd.DataFrame, golden: str) -> str:
+    """Marca máximos de acierto/recall y mínimos de coste/latencia/llamadas."""
+    nombre_final = arquitectura("final").nombre
+    menores = {"coste medio (¢)", "latencia media (s)", "llamadas/pregunta"}
+    porcentajes = {"acierto", "recall@5"} | {c for c in tabla if c.startswith("acierto ")}
+    mejores = {c: tabla[c].min() if c in menores else tabla[c].max()
+               for c in tabla if c not in ("arquitectura", "reps")}
+
+    def celda(col, valor):
+        if col == "arquitectura":
+            return "final" if valor == nombre_final else str(valor)
+        if col == "reps":
+            return str(int(valor))
+        if pd.isna(valor):
+            return "—"
+        forma = f"{valor:.1%}" if col in porcentajes else f"{valor:.2f}"
+        return f"**{forma}**" if valor == mejores[col] else forma
+
+    columnas = list(tabla.columns)
+    lineas = [f"## Golden {golden}: baseline frente a final ({nombre_final})", "",
+              "| " + " | ".join(columnas) + " |",
+              "|" + "|".join("---" for _ in columnas) + "|"]
+    lineas += ["| " + " | ".join(celda(c, r[c]) for c in columnas) + " |"
+              for _, r in tabla.iterrows()]
+    lineas += ["", "Media de las repeticiones. Aciertos por familia en porcentaje. "
+               "Recall@5 sobre las preguntas con ancla del golden; "
+               "coste, latencia y llamadas por pregunta. Mejor valor de cada columna "
+               "en negrita (los empates se remarcan en ambas filas)."]
+    if tabla["recall@5"].isna().any():
+        lineas += ["Recall@5 sin medir: vuelve a ejecutar `python -m agente.lotes reconciliar` "
+                   "sin `--sin-recall` para completar esta columna."]
+    return "\n".join(lineas) + "\n"
+
+
+def reconciliar(con_recall_original: bool = True, con_recall_dificil: bool = True) -> pd.DataFrame:
     with carpeta_de("original"):
         salida = interfaz.dir_resultados() / "reconciliacion"
     salida.mkdir(parents=True, exist_ok=True)
@@ -250,9 +307,23 @@ def reconciliar(con_recall_original: bool = True, con_recall_dificil: bool = Fal
         n in p.index for p in partes)]) if partes else pd.DataFrame()
     lado.to_csv(salida / "comparativa_dos_golden.csv")
 
+    # Tabla entregable por golden. Se deriva de las mismas comparativas de toda
+    # la escalera, así `final` sigue la configuración efectiva de evaluar().
+    tablas_bf = {}
+    for golden, comp in comps.items():
+        tabla = tabla_baseline_final(comp, golden)
+        if tabla.empty:
+            continue
+        tablas_bf[golden] = tabla
+        base = salida / f"baseline_vs_final_{golden}"
+        tabla.to_csv(base.with_suffix(".csv"), index=False)
+        base.with_suffix(".md").write_text(_markdown_baseline_final(tabla, golden), encoding="utf-8")
+
     # informe
     lineas = [f"# Reconciliación de resultados · {datetime.now():%Y-%m-%d %H:%M}", "",
-              "Todo re-puntuado con el golden y los evaluadores ACTUALES, sin llamar al agente.", ""]
+              "Todo re-puntuado con el golden y los evaluadores ACTUALES, sin repetir "
+              "las preguntas del agente. El recall puede usar el modelo si falta una "
+              "consulta reescrita en la caché.", ""]
     lineas += ["## Estado por golden, arquitectura y repetición", "",
                "| golden | arquitectura | rep | hechas | faltan | reparables | obsoletas | desde | hasta | config cambiada |",
                "|---|---|---|---|---|---|---|---|---|---|"]
@@ -286,6 +357,8 @@ def reconciliar(con_recall_original: bool = True, con_recall_dificil: bool = Fal
         lineas += ["", "Cada golden se lee por separado: no se promedian. El original es "
                    "la regresión (una mejora no puede empeorarlo); el difícil mide capacidad. "
                    "Con 18 preguntas y 1 repetición, cada pregunta vale 5,6 pp."]
+    for golden, tabla in tablas_bf.items():
+        lineas += ["", _markdown_baseline_final(tabla, golden).rstrip()]
     (salida / "reconciliacion.md").write_text("\n".join(lineas) + "\n", encoding="utf-8")
     print("\n".join(lineas))
     return lado
@@ -306,15 +379,16 @@ def main(argv: list[str] | None = None) -> None:
     c.add_argument("--plan", action="store_true", help="solo muestra qué falta, coste y tiempo")
     c.add_argument("--si", action="store_true", help="no pide confirmación")
     c.add_argument("--recall", action="store_true", help="calcula recall@5 al puntuar")
-    r = sub.add_parser("reconciliar", help="sin API: estado y tablas finales")
+    r = sub.add_parser("reconciliar", help="repuntúa y regenera las tablas finales")
     r.add_argument("--sin-recall", action="store_true",
-                   help="no recalcula recall@5 en el golden original (más rápido)")
+                   help="no recalcula recall@5 en ninguno de los dos golden (más rápido)")
     a = ap.parse_args(argv)
     if a.orden == "correr":
         correr(a.golden, a.arqs, a.reps, solo_plan=a.plan, confirmar=not a.si,
                con_recall=True if a.recall else None)
     else:
-        reconciliar(con_recall_original=not a.sin_recall)
+        reconciliar(con_recall_original=not a.sin_recall,
+                   con_recall_dificil=not a.sin_recall)
 
 
 if __name__ == "__main__":

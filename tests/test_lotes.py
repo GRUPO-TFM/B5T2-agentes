@@ -1,6 +1,7 @@
 """Ejecución por lotes y reconciliación, sin API: responder falso y golden temporal."""
 import json
 
+import pandas as pd
 import pytest
 
 from agente import interfaz, lotes
@@ -102,10 +103,38 @@ def test_reconciliar_sin_api(entorno):
     lotes.correr("dificil", ["baseline", "a1_guardrails"], 1, confirmar=False)
     lotes.correr("original", ["baseline"], 1, confirmar=False, con_recall=False)
     n = len(llamadas)
-    lado = lotes.reconciliar(con_recall_original=False)
+    lado = lotes.reconciliar(con_recall_original=False, con_recall_dificil=False)
     assert len(llamadas) == n                                          # no llama al agente
     assert list(lado.index) == ["baseline", "a1_guardrails"]
     assert "original · acierto" in lado.columns and "dificil · acierto" in lado.columns
     assert lado["original · acierto"].isna()["a1_guardrails"]          # no corrida en el original
     informe = (tmp / "resultados" / "reconciliacion" / "reconciliacion.md").read_text(encoding="utf-8")
     assert "lado a lado" in informe and "no ejecutada" in informe
+
+
+def test_tabla_baseline_final_tiene_las_columnas_y_remarca_el_mejor():
+    comp = pd.DataFrame([
+        {"arquitectura": "baseline", "reps": 3, "acierto": .6,
+         "acierto numerica": 1., "acierto extractiva": 1., "acierto comparativa": .1,
+         "recall@5": .5, "coste medio (¢)": 1.4,
+         "latencia media (s)": 20., "llamadas/pregunta": 4.},
+        {"arquitectura": "a4_comparativas", "reps": 3, "acierto": .9,
+         "acierto numerica": 1., "acierto extractiva": 1., "acierto comparativa": .75,
+         "recall@5": .85, "coste medio (¢)": 1.6,
+         "latencia media (s)": 48., "llamadas/pregunta": 3.6},
+        {"arquitectura": "a6_cifras_texto", "reps": 1, "acierto": 1.,
+         "acierto numerica": 1., "acierto extractiva": 1., "acierto comparativa": 1.,
+         "recall@5": .85, "coste medio (¢)": 1.8,
+         "latencia media (s)": 39., "llamadas/pregunta": 3.2},
+    ])
+    tabla = lotes.tabla_baseline_final(comp, "original")
+    assert list(tabla["arquitectura"]) == ["baseline", "a6_cifras_texto"]
+    assert list(tabla.columns) == ["arquitectura", "reps", "acierto", "acierto numerica",
+                                   "acierto extractiva", "acierto comparativa", "recall@5",
+                                   "coste medio (¢)", "latencia media (s)", "llamadas/pregunta"]
+    md = lotes._markdown_baseline_final(tabla, "original")
+    assert "| coste medio (¢) | latencia media (s) | llamadas/pregunta |" in md
+    assert "| baseline | 3 | 60.0% | **100.0%**" in md
+    assert "| final | 1 | **100.0%** | **100.0%**" in md
+    assert "**1.40** | **20.00** | 4.00" in md
+    assert "1.80 | 39.00 | **3.20**" in md

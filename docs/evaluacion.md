@@ -5,12 +5,14 @@
 ## Idea
 
 Una invocación del agente se ejecuta **una vez** y se guarda entera en un JSON.
-Todo lo demás —evaluadores, tablas, recall— se deriva de lo guardado sin volver
-a llamar a la API. Las arquitecturas son **presets de configuración**
+Los evaluadores y las tablas se derivan de lo guardado sin repetir preguntas
+del agente. El recall puede llamar al modelo si falta una consulta reescrita
+en la caché. Las arquitecturas son **presets de configuración**
 (`agente/config.py`), no ramas: el mismo commit genera todas las filas.
 
 ```
-baseline → a1_guardrails → a2_retrieval → a3_comparativas (= final)
+baseline → a1_guardrails → a2_retrieval → a3_hibrido → a4_comparativas
+         → a5_limites → a6_cifras_texto (= final)
 ```
 
 Cada preset añade algo al anterior y no quita nada.
@@ -34,6 +36,10 @@ uv run python -m agente.cli puntuar  --arq baseline --rep 2
 # la tabla del retrieval (§4.4): cinco configuraciones, recall@5 y posición del ancla
 uv run python -m agente.cli recall
 
+# repuntuar las arquitecturas probadas en ambos golden sets y regenerar
+# las tablas baseline frente a final (Markdown y CSV, con coste y latencia)
+uv run python -m agente.lotes reconciliar
+
 # ver una trayectoria guardada, sin gastar
 uv run python -m agente.cli traza --arq baseline --rep 1 --id gX-016
 
@@ -56,7 +62,10 @@ resultados/
 │   └── resumen.csv                una fila por repetición
 ├── comparativa.csv                una fila por arquitectura (media ± rango)
 ├── comparativa_por_familia.csv
-└── comparativa.md                 la tabla del informe, mejor valor en negrita
+├── comparativa.md                 la tabla completa, mejor valor en negrita
+└── reconciliacion/
+    ├── baseline_vs_final_original.md/.csv
+    └── baseline_vs_final_dificil.md/.csv
 ```
 
 Se commitea todo `resultados/`. El enunciado pide resultados regenerables, no
